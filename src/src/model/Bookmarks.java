@@ -1,6 +1,8 @@
 package model;
 
-public class Bookmarks {
+import java.io.Serializable;
+
+public class Bookmarks implements Serializable{
 	private int id;//ブックマークID
 	private String user_id;//ユーザーID
 	private int declaration_id;//宣言ID

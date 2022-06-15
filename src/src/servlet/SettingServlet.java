@@ -22,7 +22,7 @@ public class SettingServlet extends HttpServlet {
 		} */
 
 		// 設定画面にフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setteing.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 		dispatcher.forward(request, response);
 	}
 

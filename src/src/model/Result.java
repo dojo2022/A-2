@@ -1,7 +1,9 @@
 package model;
 
-public class Result {
-	private String message;
+import java.io.Serializable;
+
+public class Result implements Serializable {
+	private String message; //メッセージ
 
 	/**
 	 * @return message

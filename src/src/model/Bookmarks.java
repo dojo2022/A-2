@@ -1,10 +1,11 @@
 package model;
 
 public class Bookmarks {
-	private int id;
-	private String user_id;
-	private int declaration_id;
+	private int id;//ブックマークID
+	private String user_id;//ユーザーID
+	private int declaration_id;//宣言ID
 
+	//ゲッター、セッター
 	public int getId() {
 		return id;
 	}

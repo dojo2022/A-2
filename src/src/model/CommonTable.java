@@ -3,33 +3,33 @@ package model;
 import java.io.Serializable;
 
 public class CommonTable implements Serializable {
-	private String usersId;
-	private String usersPw;
-	private String usersName;
-	private String usersComment;
-	private int usersIcon;
-	private int usersThemecolr;
-	private int decsId;
-	private String decsDeclaration;
-	private int decsTag;
-	private boolean decsAchieveFlag;
-	private boolean decsPrivateFlag;
-	private boolean decsDeleteFlag;
-	private String decsUserId;
-	private int stepsId;
-	private String stepsStep;
-	private boolean stepsAchieveFlag;
-	private int stepsDecId;
-	private int reactionsId;
-	private String reactionsUserId;
-	private int reactionsDecId;
-	private int bookmarksId;
-	private String bookmarksUserId;
-	private int bookmarksDecId;
-	private String resultMessage;
+	private String usersId; 			//usersテーブルのID
+	private String usersPw; 			//usersテーブルのパスワード
+	private String usersName; 			//usersテーブルの名前
+	private String usersComment; 		//usersテーブルのコメント
+	private int usersIcon;			    //usersテーブルのアイコン
+	private int usersThemecolor; 		//usersテーブルのテーマカラー
+	private int decsId; 				//decsテーブルのID
+	private String decsDeclaration;  	//decsテーブルの宣言
+	private int decsTag; 				//decsテーブルのタグ
+	private boolean decsAchieveFlag;   //decsテーブルの達成
+	private boolean decsPrivateFlag;   //decsテーブルの非公開
+	private boolean decsDeleteFlag;    //decsテーブルの削除
+	private String decsUserId; 			//decsテーブルのユーザーID
+	private int stepsId; 				//stepsテーブルのID
+	private String stepsStep; 			//stepsテーブルのステップ
+	private boolean stepsAchieveFlag;  //stepsテーブルの達成
+	private int stepsDecId; 			//stepsテーブルの宣言ID
+	private int reactionsId;		    //reactionsテーブルのID
+	private String reactionsUserId;    //reactionsテーブルのユーザーID
+	private int reactionsDecId; 		//reactionsテーブルの宣言ID
+	private int bookmarksId;		    //bookmarksテーブルのID
+	private String bookmarksUserId;    //bookmarksテーブルのユーザーID
+	private int bookmarksDecId; 		//bookmarksテーブルの宣言ID
+	private String resultMessage;		//結果のメッセージ
 
 
-
+	//ゲッターとセッター
 	public String getUsersId() {
 		return usersId;
 	}
@@ -61,10 +61,10 @@ public class CommonTable implements Serializable {
 		this.usersIcon = usersIcon;
 	}
 	public int getUsersThemecolr() {
-		return usersThemecolr;
+		return usersThemecolor;
 	}
 	public void setUsersThemecolr(int usersThemecolr) {
-		this.usersThemecolr = usersThemecolr;
+		this.usersThemecolor = usersThemecolr;
 	}
 	public int getDecsId() {
 		return decsId;

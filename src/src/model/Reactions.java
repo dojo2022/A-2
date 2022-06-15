@@ -1,9 +1,10 @@
 package model;
+import java.io.Serializable;
 
-public class Reactions {
-	private int id;
-	private String users_id;
-	private int declarations_id;
+public class Reactions implements Serializable {
+	private int id; //リアクションid
+	private String users_id; //ユーザーid
+	private int declarations_id;//宣言id
 
 	public int getId() {
 		return id;

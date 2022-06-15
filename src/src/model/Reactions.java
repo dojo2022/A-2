@@ -3,8 +3,8 @@ import java.io.Serializable;
 
 public class Reactions implements Serializable {
 	private int id; //リアクションid
-	private String users_id; //ユーザーid
-	private int declarations_id;//宣言id
+	private String userId; //ユーザーid
+	private int declarationId;//宣言id
 
 	public int getId() {
 		return id;
@@ -12,18 +12,20 @@ public class Reactions implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUsers_id() {
-		return users_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUsers_id(String users_id) {
-		this.users_id = users_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public int getDeclarations_id() {
-		return declarations_id;
+	public int getDeclarationId() {
+		return declarationId;
 	}
-	public void setDeclarations_id(int declarations_id) {
-		this.declarations_id = declarations_id;
+	public void setDeclarationId(int declarationId) {
+		this.declarationId = declarationId;
 	}
+
+
 
 
 }

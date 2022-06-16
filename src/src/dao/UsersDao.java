@@ -73,6 +73,57 @@ public class UsersDao {
 
 
 
+		// 【isRegistOkメソッド】以下の処理でDBから「1」が返ってくれば「true」になり登録完了
+		// 引数はユーザーが入力した「id」「pw」「name」
+		public boolean isRegistOk (String id, String pw, String name) {
+
+			Connection conn = null;
+			boolean registResult = false;
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+				// SQL文のINSERTを用意
+				String sql = "INSERT INTO users (id, pw, name, comment) VALUES (?, ?, ?, 'よろしくお願いします');";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// INSERTの「?」を埋める(SQL文を完成させる)
+				pStmt.setString(1, id);
+				pStmt.setString(2, pw);
+				pStmt.setString(3, name);
+
+				// SQL文を実行する
+				if (pStmt.executeUpdate() == 1) {
+					registResult = true;
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			// 結果(true か false)を返す
+			return registResult;
+		}
+
+
 //Usersテーブルを更新するメソッド
 		public boolean updateUser(String name, String comment, int icon, int themecolor) {
 			Connection conn = null;

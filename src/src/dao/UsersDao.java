@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UsersDao {
 
@@ -18,7 +19,7 @@ public class UsersDao {
 		Class.forName("org.h2.Driver");
 
 // データベースに接続する
-		conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data");
+		conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 // SELECT文を準備する
 		String sql = "SELECT COUNT(*) FROM users WHERE id = ? and pw = ?";
@@ -35,8 +36,36 @@ public class UsersDao {
 		rs.next();
 		if (rs.getInt("count(*)") == 1) {
 			loginResult = true;
+
 		}
+
+	}
+//	SQL文で起こったバグを拾ってくる
+	catch (SQLException e) {
+		e.printStackTrace();
+		loginResult = false;
+	}
+//	DB接続に問題があった時
+	catch (ClassNotFoundException e) {
+		e.printStackTrace();
+		loginResult = false;
+	}
+	finally {
+// データベースを切断
+		if (conn != null) {
+			try {
+				conn.close();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				loginResult = false;
+			}
 		}
-		}
+	}
+
+// 結果を返す
+		return loginResult;
+	}
 }
+
 

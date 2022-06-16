@@ -136,6 +136,7 @@ public class ReactionsDao {
 			//SQL文を実行する（DBに送る）
 			//SQL文を実行して、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
+			rs.next();
 			num = rs.getInt("count");
 
 

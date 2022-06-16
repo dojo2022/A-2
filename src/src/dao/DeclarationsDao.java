@@ -215,7 +215,7 @@ public class DeclarationsDao {
 	//マイリストに表示するための表取得
 	public ArrayList<CommonTable> myListDec(String userId){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -247,16 +247,16 @@ public class DeclarationsDao {
 				ct.setStepsId(rs.getInt("steps.id"));
 				ct.setStepsStep(rs.getString("steps.step"));
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -266,19 +266,19 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 	//マイページに表示するための表取得
 	public ArrayList<CommonTable> myPageDec(String userId){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -311,16 +311,16 @@ public class DeclarationsDao {
 				ct.setStepsStep(rs.getString("steps.step"));
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
 
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -330,19 +330,19 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 	//他ユーザーページに表示するための表取得
 	public ArrayList<CommonTable> otherPageDec(String userId,String otherId){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -377,16 +377,16 @@ public class DeclarationsDao {
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
 				ct.setReactionsId(rs.getInt("reactions.id"));
 				ct.setBookmarksId(rs.getInt("bookmarks.id"));
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -396,19 +396,19 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 	//タイムラインに表示するための表取得
 	public ArrayList<CommonTable> timelineDec(String userId){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -443,16 +443,16 @@ public class DeclarationsDao {
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
 				ct.setReactionsId(rs.getInt("reactions.id"));
 				ct.setBookmarksId(rs.getInt("bookmarks.id"));
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -462,19 +462,19 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 	//ブックマークに表示するための表取得
 	public ArrayList<CommonTable> bookmarkDec(String userId){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -511,16 +511,16 @@ public class DeclarationsDao {
 				ct.setReactionsId(rs.getInt("reactions.id"));
 				ct.setBookmarksId(rs.getInt("bookmarks.id"));
 
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -530,19 +530,19 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 	//検索結果に表示するための表取得
 	public ArrayList<CommonTable> searchResultDec(String userId,String str){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -580,16 +580,16 @@ public class DeclarationsDao {
 				ct.setReactionsId(rs.getInt("reactions.id"));
 				ct.setBookmarksId(rs.getInt("bookmarks.id"));
 
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -599,19 +599,19 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 	//タグ検索結果に表示するための表取得
 	public ArrayList<CommonTable> tagSearchDec(String userId,int tagNumber){
 		Connection conn = null;
-		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -646,16 +646,16 @@ public class DeclarationsDao {
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
 				ct.setReactionsId(rs.getInt("reactions.id"));
 				ct.setBookmarksId(rs.getInt("bookmarks.id"));
-				otherPageList.add(ct);
+				pageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			otherPageList = null;
+			pageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -665,13 +665,13 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					otherPageList = null;
+					pageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return otherPageList;
+		return pageList;
 	}
 
 }

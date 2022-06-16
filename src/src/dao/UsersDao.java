@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.Users;
 
@@ -47,12 +45,10 @@ public class UsersDao {
 //	SQL文で起こったバグを拾ってくる
 	catch (SQLException e) {
 		e.printStackTrace();
-		loginResult = false;
 	}
 //	DB接続に問題があった時
 	catch (ClassNotFoundException e) {
 		e.printStackTrace();
-		loginResult = false;
 	}
 	finally {
 // データベースを切断
@@ -62,7 +58,6 @@ public class UsersDao {
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				loginResult = false;
 			}
 		}
 	}
@@ -176,9 +171,9 @@ public class UsersDao {
 //セッションスコープから取得したユーザーIDを引数にして、ユーザー情報を持ってくる
 //	ユーザーの画面表示
 
-	public List<Users> selectUsers(String id) {
+	public Users selectUser(String id) {
 		Connection conn = null;
-		ArrayList<Users> usersList = new ArrayList<Users>();
+		Users user = new Users();
 
 		try {
 			// JDBCドライバを読み込む
@@ -198,23 +193,20 @@ public class UsersDao {
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				Users user = new Users();
+			rs.next();
 				user.setId(rs.getString("id"));
 				user.setName(rs.getString("name"));
 				user.setComment(rs.getString("comment"));
 				user.setIcon(rs.getInt("icon"));
 				user.setThemecolor(rs.getInt("themecolor"));
-				usersList.add(user);
-			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			usersList = null;
+			user = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			usersList = null;
+			user = null;
 		}
 		finally {
 			// データベースを切断
@@ -224,13 +216,13 @@ public class UsersDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					usersList = null;
+					user = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return usersList;
+		return user;
 	}
 }
 

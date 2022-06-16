@@ -212,16 +212,131 @@ public class DeclarationsDao {
 		return result;
 	}
 
-	//2022/6/16 11:00am　ここまで終了
-
 	//マイリストに表示するための表取得
-	public ArrayList<CommonTable> myListDec(){
+	public ArrayList<CommonTable> myListDec(String userId){
+		Connection conn = null;
+		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag "
+					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id "
+					+ "WHERE declarations.achieve_flag = 0  and declarations.delete_flag = 0  and declarations.user_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1の?が自分のID
+				pStmt.setString(1,userId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				otherPageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					otherPageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return otherPageList;
 	}
 
 	//マイページに表示するための表取得
-	public ArrayList<CommonTable> myPageDec(){
+	public ArrayList<CommonTable> myPageDec(String userId){
+		Connection conn = null;
+		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag "
+					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id "
+					+ "WHERE and declarations.delete_flag = 0  and declarations.user_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1の?が自分のID
+				pStmt.setString(1,userId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+
+				otherPageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					otherPageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return otherPageList;
 	}
 
 	//他ユーザーページに表示するための表取得
@@ -253,25 +368,25 @@ public class DeclarationsDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
 				CommonTable ct = new CommonTable();
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				ct.setAddress(rs.getString("address"));
-				oterPageList.add(ct);
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsAchieveFlag(rs.getBoolean("declarations.achieve_flag"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+				otherPageList.add(ct);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			otherPageList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			otherPageList = null;
 		}
 		finally {
 			// データベースを切断
@@ -281,33 +396,282 @@ public class DeclarationsDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					otherPageList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return cardList;
+		return otherPageList;
 	}
 
 	//タイムラインに表示するための表取得
-	public ArrayList<CommonTable> timelineDec(){
+	public ArrayList<CommonTable> timelineDec(String userId){
+		Connection conn = null;
+		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0 ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1,2の?が自分のID
+				pStmt.setString(1,userId);
+				pStmt.setString(2,userId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+				otherPageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					otherPageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return otherPageList;
 	}
 
 	//ブックマークに表示するための表取得
-	public ArrayList<CommonTable> bookmarkDec(){
+	public ArrayList<CommonTable> bookmarkDec(String userId){
+		Connection conn = null;
+		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and bookmarks.user_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1,2,3の?が自分のID、
+				pStmt.setString(1,userId);
+				pStmt.setString(2,userId);
+				pStmt.setString(3,userId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+
+				otherPageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					otherPageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return otherPageList;
 	}
 
 	//検索結果に表示するための表取得
-	public ArrayList<CommonTable> searchResultDec(){
+	public ArrayList<CommonTable> searchResultDec(String userId,String str){
+		Connection conn = null;
+		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id"
+					+ " FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and (declarations.declaration LIKE ?  or steps.step LIKE ?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1,2の?が自分のID、3,4の?が入力フォームに入力された値
+				pStmt.setString(1,userId);
+				pStmt.setString(2,userId);
+				pStmt.setString(3,"%" + str + "%");
+				pStmt.setString(4,"%" + str + "%");
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+
+				otherPageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					otherPageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return otherPageList;
 	}
 
 	//タグ検索結果に表示するための表取得
-	public ArrayList<CommonTable> tagSearchDec(){
+	public ArrayList<CommonTable> tagSearchDec(String userId,int tagNumber){
+		Connection conn = null;
+		ArrayList<CommonTable> otherPageList = new ArrayList<CommonTable>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
+					+ "WHERE declarations.achieve_flag = 0 and  declarations.private_flag = 0 and  declarations.delete_flag = 0 and declarations.tag = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1,2の?が自分のID、3の?が検索されたtagNumber
+				pStmt.setString(1,userId);
+				pStmt.setString(2,userId);
+				pStmt.setInt(3,tagNumber);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsAchieveFlag(rs.getBoolean("declarations.achieve_flag"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+				otherPageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			otherPageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					otherPageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return otherPageList;
 	}
 
 }

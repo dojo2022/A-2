@@ -18,6 +18,14 @@
 </header>
 
 <div class="hamburgar">
+	<!-- divタグ(cancel) CSSでハンバーガーとバツを作るよ -->
+	<div class="cancel" id="cancel">
+	<span></span>
+	<span></span>
+	<span></span>
+	</div>
+	<div class="black_back" id="black_back"></div>
+	<nav class="menu_list"></nav>
 	<h1 class = "my_page">
 		<a href="/killerQueen/MyPageServlet"><img src="images/sample.png"></a>
 	</h1>

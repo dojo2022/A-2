@@ -40,15 +40,35 @@ public class MyListServlet extends HttpServlet {
 		ArrayList<CommonTable> pageList = decDao.myListDec("1");
 
 		//for文でインスタンスで取り出す
-		for(int i=0; i<pageList.size(); i++) {
-			CommonTable ct = pageList.get(i);
-			String dec = ct.getDecsDeclaration();
-			String step = ct.getStepsStep();
-			if(dec==dec)
-			System.out.println(dec);
-			System.out.println(step);
+		CommonTable ct = pageList.get(0);//一個目のArrayListを取得
+
+		String dec = ct.getDecsDeclaration();//一個目に入っている宣言取得
+		System.out.println(dec);
+		for(int i = 1; i < pageList.size(); i++) {
+			ct = pageList.get(i);
+			String dec2 = ct.getDecsDeclaration();
+			if(dec == dec2) {
+				for(int j = 0; j < pageList.size(); j++) {
+					String step = ct.getStepsStep();
+					System.out.println(step);
+				}
+			}else {
+				System.out.println(dec2);
+			}
+
 		}
 
+		/*for(int i=1; i<pageList.size(); i++) {
+			if(dec!= de)
+			pageList.get(i);
+			String de= ct.getDecsDeclaration();
+			System.out.println(de);
+
+			String step = ct.getStepsStep();
+			System.out.println(step);
+
+
+		}*/
 		//pageListを整頓する必要があるんご
 
 

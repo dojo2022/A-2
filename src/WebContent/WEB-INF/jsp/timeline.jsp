@@ -22,12 +22,18 @@
 
 			<td>
 				<div>
-					<p><c:out value="${t.decsDeclaration}" /></p>
-					<p><c:out value="${t.stepsStep}" /></p>
-					<form method="POST" action="/simpleBC/bcDetailServlet">
-						<input type="hidden" value="${t.reactionsDecId}" name="">
-						<input type="hidden" value="${t.bookmarksUserId}" name="">
-						<input type="submit" value="詳細" id="">
+					<p>宣言：${t.decsDeclaration}</p>
+					<p>ユーザーid :${t.usersId}</p>
+					<p>ユーザーアイコン:${t.usersIcon}"</p>
+					<p>タグno:${t.decsTag}</p>
+					<c:forEach var="v" items="${timelineList}">
+						<p>ステップ:${v.stepsStep}"</p>
+						<p>達成:${t.stepsAchieveFlag}</p>
+					</c:forEach>
+					<form method="GET" action="/killerQueen/TimelineServlet">
+						<input type="hidden" value="${t.decsId}" name="">
+						<input type="hidden" value="${t.usersId}" name="">
+						<input type="submit" value="詳細">
 					</form>
 				</div>
 			</td>

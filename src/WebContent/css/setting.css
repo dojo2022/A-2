@@ -1,1 +1,10 @@
 @charset "UTF-8";
+
+
+.display {
+      display: none;
+    }
+
+    input:checked + label img {
+      border: 2px solid black;
+    }

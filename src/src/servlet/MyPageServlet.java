@@ -32,19 +32,26 @@ public class MyPageServlet extends HttpServlet {
 				return;
 	}*/
 
-		HttpSession session = request.getSession();
-		//session.setAttribute("id", "1");
-	//Daoをインスタンス化
+//セッションスコープをインスタンス化
+	HttpSession session = request.getSession();
+
+//session.setAttribute("id", "1");
+//Daoをインスタンス化
 	DeclarationsDao dDao = new DeclarationsDao();
 
-	//セッションスコープの自分のIDから検索処理
-	//String id = (String)session.getAttribute("id");
-	String id = "1";
+//セッションスコープの自分のIDから検索処理
+//String id = (String)session.getAttribute("id");
 
+	String id = "1";//仮で入れてるだけ。後で消す。
+
+	//検索処理
 	ArrayList<CommonTable> pageList = dDao.myPageDec(id);
+
 
 	//リクエストスコープに保存
 	request.setAttribute("pageList", pageList);
+
+
 
 	//マイページにフォワード
 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_page.jsp");

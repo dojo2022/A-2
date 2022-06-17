@@ -11,10 +11,11 @@
 <body>
 <p>a</p>
 <c:forEach var="e" items="${pageList}" >
-		<tr>
-			<td>${e.declarations.declaration}</td>
-		</tr>
-	</c:forEach>
+${e.decsId}
+${e.decsDeclaration}
+${e.decsTag}
+${e.decsPrivateFlag}
+</c:forEach>
 
 
 </body>

@@ -38,7 +38,7 @@ public class TimelineServlet extends HttpServlet {
 		String userId = session.getAttribute("user_id");*/
 
 		//テスト用
-		String userId = "0001";
+		String userId = "1";
 
 		//DeclarationsDaoのインスタンスを作成
 		DeclarationsDao decdao = new DeclarationsDao();

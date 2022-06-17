@@ -14,20 +14,27 @@
 
 <h1>検索</h1>
 <hr>
-	<div>
-		<form method="POST" action="/killerQueen/SearchServlet">
-			<table>
-			<tr>
-				<td>
-					<input type="text" name="str" autocomplete="off"><br>
-				</td>
-				<td class="search_button">
-					<input type="submit" name="submit" value="検索">
-				</td>
-			</tr>
-			</table>
-		</form>
-	</div>
+
+<div class="search">
+	<form method="POST" action="/killerQueen/SearchServlet">
+		<table>
+		<tr>
+			<td>
+				<input type="text" name="str" autocomplete="off"><br>
+			</td>
+			<td class="search_button">
+				<input type="submit" name="submit" value="検索">
+			</td>
+		</tr>
+		</table>
+	</form>
+</div>
+
+<div class="tag_search">
+	<form method="POST" action="/killerQueen/SearchServlet">
+		<input type="button" name="tagNumber">
+	</form>
+</div>
 
 </main>
 

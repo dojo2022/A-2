@@ -24,7 +24,8 @@ public class MyListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		//セッションが切れていたらLoginServletへ戻る
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
@@ -33,16 +34,13 @@ public class MyListServlet extends HttpServlet {
 		}
 
 		//DeclarationsDaoから宣言とステップのデータを取ってくる.
-	    String id =(String) session.getAttribute("id");
-		DeclarationsDao decDao =new DeclarationsDao();
-        //引数をidとしてdecDAOのmypagedecメゾット呼び出し
-		ArrayList<CommonTable> pageList = decDao.myPageDec(id);
-
+		String id = (String) session.getAttribute("id");
+		DeclarationsDao decDao = new DeclarationsDao();
+		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
+		ArrayList<CommonTable> pageList = decDao.myListDec(id);
 
 		//取ってきたデータをリクエストスコープへ保存
 		request.setAttribute("pageList", pageList);
-
-
 
 		//my_list.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
@@ -52,7 +50,36 @@ public class MyListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//セッションが切れていたらLoginServletへ戻る
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/killerQueen/LoginServlet");
+			return;
+		}
+
+		//行われた処理によって①～④条件分岐
+
+		//新規作成
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/killerQueen/MyListServlet");
+			return;
+		}
+
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("");
+		String number = request.getParameter("");
+		String name = request.getParameter("");
+
+
+		//編集
+
+		//達成
+
+		//削除
 
 	}
 

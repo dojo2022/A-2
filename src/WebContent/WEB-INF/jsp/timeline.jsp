@@ -14,9 +14,31 @@
 		<p><a href ="/killerQueen/BookmarkServlet">ブックマーク</a></p>
 	</div>
 
-  		<c:forEach var="t" items="${timelineList}">
-			<p><c:out value="${t.decsDeclaration}"/></p><br>
+  		<table>
+  		<c:forEach var="t" items="${timelineList}" varStatus="status">
+  			<c:if test="${status.index % 1 == 0}">
+ 				<tr>
+  			</c:if>
+
+			<td>
+				<div>
+					<p><c:out value="${t.decsDeclaration}" /></p>
+					<p><c:out value="${t.stepsStep}" /></p>
+					<form method="POST" action="/simpleBC/bcDetailServlet">
+						<input type="hidden" value="${t.reactionsDecId}" name="">
+						<input type="hidden" value="${t.bookmarksUserId}" name="">
+						<input type="submit" value="詳細" id="">
+					</form>
+				</div>
+			</td>
+
+			<c:if test="${status.index % 1 != 0}">
+				</tr>
+			</c:if>
+
 		</c:forEach>
+				</tr>
+	</table>
 
 </body>
 </html>

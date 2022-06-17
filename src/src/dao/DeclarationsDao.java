@@ -433,16 +433,16 @@ public class DeclarationsDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
 				CommonTable ct = new CommonTable();
-				ct.setDecsId(rs.getInt("declarations.id"));
-				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
-				ct.setDecsTag(rs.getInt("declarations.tag"));
-				ct.setUsersId(rs.getString("users.id"));
-				ct.setUsersIcon(rs.getInt("users.icon"));
-				ct.setStepsId(rs.getInt("steps.id"));
-				ct.setStepsStep(rs.getString("steps.step"));
-				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
-				ct.setReactionsId(rs.getInt("reactions.id"));
-				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+				//ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declaration"));
+				//ct.setDecsTag(rs.getInt("declarations.tag"));
+				//ct.setUsersId(rs.getString("users.id"));
+				//ct.setUsersIcon(rs.getInt("users.icon"));
+				//ct.setStepsId(rs.getInt("steps.id"));
+				//ct.setStepsStep(rs.getString("steps.step"));
+				//ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				//ct.setReactionsId(rs.getInt("reactions.id"));
+				//ct.setBookmarksId(rs.getInt("bookmarks.id"));
 				pageList.add(ct);
 			}
 		}

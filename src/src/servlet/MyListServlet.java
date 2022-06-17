@@ -27,17 +27,32 @@ public class MyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//セッションが切れていたらLoginServletへ戻る
-		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/killerQueen/LoginServlet");
-			return;
-		}
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("id") == null) {
+//			response.sendRedirect("/killerQueen/LoginServlet");
+//			return;
+//		}
 
 		//DeclarationsDaoから宣言とステップのデータを取ってくる.
-		String id = (String) session.getAttribute("id");
+		//String id = (String) session.getAttribute("id");
 		DeclarationsDao decDao = new DeclarationsDao();
 		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
-		ArrayList<CommonTable> pageList = decDao.myListDec(id);
+		ArrayList<CommonTable> pageList = decDao.myListDec("1");
+
+		//for文でインスタンスで取り出す
+		for(int i=0; i<pageList.size(); i++) {
+			CommonTable ct = pageList.get(i);
+			String dec = ct.getDecsDeclaration();
+			String step = ct.getStepsStep();
+			if(dec==dec)
+			System.out.println(dec);
+			System.out.println(step);
+		}
+
+		//pageListを整頓する必要があるんご
+
+
+
 
 		//取ってきたデータをリクエストスコープへ保存
 		request.setAttribute("pageList", pageList);
@@ -78,9 +93,9 @@ public class MyListServlet extends HttpServlet {
 
 		//
 		String id = (String) session.getAttribute("id");
-		DeclarationsDao decDao = new DeclarationsDao();
+		DeclarationsDao decDao2 = new DeclarationsDao();
 		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
-		ArrayList<CommonTable> pageList = decDao.myListDec(id);
+		ArrayList<CommonTable> pageList = decDao2.myListDec(id);
 
 		/*テキストボックスに入力されたデータを
 				getParmeterで受け取り、変数に格納する。

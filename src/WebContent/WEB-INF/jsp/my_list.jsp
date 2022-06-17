@@ -9,26 +9,43 @@
 </head>
 <body>
 <p>マイリストの表示</p>
-<c:forEach var="e" items="${listPage}">
-	${e.decsId}
-	${e.decsDeclaration}
-	${e.decsTag}
-	${e.decsPrivateFlag}
-	${e.decsId}
-	${e.decsId}
-	${e.decsId}
-
-
+<c:forEach var="e" items="${pageList}">
+	<p>${e.decsId}<br>
+	${e.decsDeclaration}<br>
+	${e.decsTag}<br>
+	${e.decsPrivateFlag}<br>
+	${e.usersId}<br>
+	${e.usersIcon}<br>
+	${e.stepsId}<br>
+	${e.stepsStep}<br>
+	${e.stepsAchieveFlag}<br></p>
 </c:forEach>
 
-<form method="POST" action="/killerQueen/MyListServlet">
-<input type = "text" name="declaration">
-<input type = "text" name="tag">
-<input type = "text" name="private_flag">
-
-<input type="submit" value="新規登録">
+<form method="POST" action="/killerQueen/MyListServlet" name="insert">
+<input type = "text" name="declaration"><br>
+<input type = "text" name="tag"><br>
+<input type = "text" name="private_flag"><br>
+<input type = "text" name="step"><br> <!-- stepのテキストボックスを増やすのはどのようにするのか -->
+<input type = "text" name="step"><br>
+<input type = "text" name="step"><br>
+<input type="submit" value="新規登録"><br>
 </form>
 
+<form method="POST" action="/killerQueen/MyListServlet" name="edit">
+<input type = "text" name="declaration"><br>
+<input type = "text" name="tag"><br>
+<input type = "text" name="private_flag"><br>
+<input type = "text" name="step"><br>
+<input type="submit" value="編集"><br>
+</form>
+
+<form method="POST" action="/killerQueen/MyListServlet" name="achieve">
+<input type="submit" value="達成"><br>
+</form>
+
+<form method="POST" action="/killerQueen/MyListServlet" name="delete">
+<input type="submit" value="削除"><br>
+</form>
 
 </body>
 </html>

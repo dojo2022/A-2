@@ -45,17 +45,13 @@ public class TimelineServlet extends HttpServlet {
 		DeclarationsDao decdao = new DeclarationsDao();
 
 		//ArrayList<CommonTable>のインスタンスを作成
-		ArrayList<CommonTable> list = decdao.timelineDec(userId);
+		ArrayList<CommonTable> timelineList = decdao.timelineDec(userId);
 
 		//CommonTableを分解して、Declarations.javaとSteps.javaに入れなおす。
-		for(int i = 0; i < list.size(); i++) {
-			Arraylist<Declarations> ad = new Arraylist<Declarations>();
-
-
-		}
+		ArrayList<Declarations> ad = new ArrayList<Declarations>();
 
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
-		request.setAttribute("timelineList", list);
+		request.setAttribute("timelineList", timelineList);
 
 		//timeline.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/timeline.jsp");

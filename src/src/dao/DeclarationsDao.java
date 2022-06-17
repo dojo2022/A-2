@@ -222,7 +222,7 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
 			String sql = "SELECT * "
@@ -285,7 +285,7 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
 			String sql = "SELECT *"
@@ -349,7 +349,7 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
 			String sql = "SELECT * "
@@ -415,17 +415,21 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT * "
-					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
+			String sql = "SELECT * FROM declarations "
+					+ "LEFT JOIN users ON declarations.user_id = users.id "
+					+ "LEFT JOIN steps ON declarations.id = steps.declaration_id "
+					+ "LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? "
+					+ "LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
 					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0 ";
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1,2の?が自分のID
-				pStmt.setString(1,userId);
-				pStmt.setString(2,userId);
+				pStmt.setInt(1,Integer.parseInt(userId));
+				pStmt.setInt(2,Integer.parseInt(userId));
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -433,16 +437,17 @@ public class DeclarationsDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
 				CommonTable ct = new CommonTable();
-				//ct.setDecsId(rs.getInt("declarations.id"));
-				ct.setDecsDeclaration(rs.getString("declaration"));
-				//ct.setDecsTag(rs.getInt("declarations.tag"));
-				//ct.setUsersId(rs.getString("users.id"));
-				//ct.setUsersIcon(rs.getInt("users.icon"));
-				//ct.setStepsId(rs.getInt("steps.id"));
-				//ct.setStepsStep(rs.getString("steps.step"));
-				//ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
-				//ct.setReactionsId(rs.getInt("reactions.id"));
-				//ct.setBookmarksId(rs.getInt("bookmarks.id"));
+
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
 				pageList.add(ct);
 			}
 		}
@@ -481,7 +486,7 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
 			String sql = "SELECT *"
@@ -549,7 +554,7 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
 			String sql = "SELECT *"
@@ -618,7 +623,7 @@ public class DeclarationsDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
 			String sql = "SELECT * "

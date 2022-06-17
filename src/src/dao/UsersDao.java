@@ -120,7 +120,7 @@ public class UsersDao {
 
 
 //Usersテーブルを更新するメソッド
-		public boolean updateUser(String name, String comment, int icon, int themecolor) {
+		public boolean updateUser(String name, String comment, int icon, int themecolor, String id) {
 			Connection conn = null;
 				boolean updateResult =false;
 
@@ -140,6 +140,7 @@ public class UsersDao {
 				pStmt.setString(2, comment);
 				pStmt.setInt(3, icon);
 				pStmt.setInt(4, themecolor);
+				pStmt.setString(5, id);
 
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {

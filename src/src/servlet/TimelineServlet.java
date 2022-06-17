@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
 import model.CommonTable;
+import model.Declarations;
 
 /**
  * Servlet implementation class TimelineServlet
@@ -45,6 +46,13 @@ public class TimelineServlet extends HttpServlet {
 
 		//ArrayList<CommonTable>のインスタンスを作成
 		ArrayList<CommonTable> list = decdao.timelineDec(userId);
+
+		//CommonTableを分解して、Declarations.javaとSteps.javaに入れなおす。
+		for(int i = 0; i < list.size(); i++) {
+			Arraylist<Declarations> ad = new Arraylist<Declarations>();
+
+
+		}
 
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
 		request.setAttribute("timelineList", list);

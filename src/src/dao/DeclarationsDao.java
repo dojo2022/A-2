@@ -225,7 +225,7 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag "
+			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id "
 					+ "WHERE declarations.achieve_flag = 0  and declarations.delete_flag = 0  and declarations.user_id = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -288,13 +288,13 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag "
+			String sql = "SELECT *"
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id "
-					+ "WHERE and declarations.delete_flag = 0  and declarations.user_id = ?";
+					+ "WHERE declarations.delete_flag = 0 and users.id = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1の?が自分のID
-				pStmt.setString(1,userId);
+				pStmt.setString(1, userId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -352,7 +352,7 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT declarations.id, declarations.declaration, declarations.tag, declarations.achieve_flag, steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
 					+ "WHERE declarations.private_flag = 0 and  declarations.delete_flag = 0 and users.id = ? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -418,7 +418,7 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
 					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0 ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -484,7 +484,7 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+			String sql = "SELECT *"
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
 					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and bookmarks.user_id = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -552,7 +552,7 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id"
+			String sql = "SELECT *"
 					+ " FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
 					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and (declarations.declaration LIKE ?  or steps.step LIKE ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -621,7 +621,7 @@ public class DeclarationsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT  declarations.id, declarations.declaration, declarations.tag,  users.id, users.icon,  steps.id, steps.step, steps.achieve_flag, reactions.id, bookmarks.id "
+			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
 					+ "WHERE declarations.achieve_flag = 0 and  declarations.private_flag = 0 and  declarations.delete_flag = 0 and declarations.tag = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);

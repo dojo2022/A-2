@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.UsersDao;
 import model.Result;
+import model.Users;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -40,9 +41,14 @@ public class LoginServlet extends HttpServlet {
 
 		// ログイン成功(UsersDaoかtrueが返ってきた場合)
 		if (ans == true) {
-			// セッションスコープ(attribute区画)にidを格納する
+
+			//
+			Users user = new Users();
+			user = usersDao.selectUser(id);
+
+			// セッションスコープ(attribute区画)にそのユーザーの情報(Usersテーブル)すべて格納する
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
+			session.setAttribute("user", user);
 
 			// MyListServletにリダイレクトする
 			response.sendRedirect("/killerQueen/MyListServlet");

@@ -36,19 +36,28 @@ public class LoginServlet extends HttpServlet {
 		// UsersDaoをインスタンス化
 		UsersDao usersDao = new UsersDao();
 
-		// ログイン処理
+		// ログイン処理(isLoginOKメソッド)
 		boolean ans = usersDao.isLoginOK(id, pw);
 
 		// ログイン成功(UsersDaoかtrueが返ってきた場合)
 		if (ans == true) {
 
-			//
+			// そのユーザーの情報(Usersテーブル)を取ってくる処理(selectUserメソッド)
 			Users user = new Users();
 			user = usersDao.selectUser(id);
 
+			String name = user.getName();
+			String comment = user.getComment();
+			int icon = user.getIcon();
+			int themecolor = user.getThemecolor();
+
 			// セッションスコープ(attribute区画)にそのユーザーの情報(Usersテーブル)すべて格納する
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("id", id);
+			session.setAttribute("name", name);
+			session.setAttribute("icon", icon);
+			session.setAttribute("comment", comment);
+			session.setAttribute("themecolor", themecolor);
 
 			// MyListServletにリダイレクトする
 			response.sendRedirect("/killerQueen/MyListServlet");

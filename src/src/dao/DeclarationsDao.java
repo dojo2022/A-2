@@ -428,8 +428,8 @@ public class DeclarationsDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1,2の?が自分のID
-				pStmt.setInt(1,Integer.parseInt(userId));
-				pStmt.setInt(2,Integer.parseInt(userId));
+				pStmt.setString(1,userId);
+				pStmt.setString(2,userId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

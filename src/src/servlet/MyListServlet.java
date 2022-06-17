@@ -61,25 +61,38 @@ public class MyListServlet extends HttpServlet {
 
 		//行われた処理によって①～④条件分岐
 
-		//新規作成
+		//①新規作成
 
-		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/killerQueen/MyListServlet");
-			return;
-		}
-
+		//セッションスコープの取得
+		String userId = (String) session.getAttribute("id");
 		// リクエストパラメータを取得する
-		request.setCharacterEncoding("");
-		String number = request.getParameter("");
-		String name = request.getParameter("");
+		request.setCharacterEncoding("UTF-8");
+		String declaration = request.getParameter("declarations.id");
+		int tag = Integer.parseInt(request.getParameter("tag"));
+		int privateFlag = Integer.parseInt(request.getParameter("private_flag"));
+
+		//DeclarationsDaoのinsertDecメソッドを呼ぶ
+		DeclarationsDao decDao = new DeclarationsDao();
+		boolean result =decDao.insertDec(declaration,tag,privateFlag,userId);
 
 
-		//編集
+		//
+		String id = (String) session.getAttribute("id");
+		DeclarationsDao decDao = new DeclarationsDao();
+		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
+		ArrayList<CommonTable> pageList = decDao.myListDec(id);
 
-		//達成
+		/*テキストボックスに入力されたデータを
+				getParmeterで受け取り、変数に格納する。
 
-		//削除
+				Declarations.javaに格納されたデータをnewしてインスタンス化し、引数としてDeclarationsDao.javaのcreateDecメソッドに渡して、
+				データベースにアクセスする*/
+
+		//②編集
+
+		//③達成
+
+		//④削除
 
 	}
 

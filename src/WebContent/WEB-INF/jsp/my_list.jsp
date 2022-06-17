@@ -21,7 +21,12 @@
 
 </c:forEach>
 
-<form method= "POST" action="/kellerQueen/MyListServlet">
+<form method="POST" action="/killerQueen/MyListServlet">
+<input type = "text" name="declaration">
+<input type = "text" name="tag">
+<input type = "text" name="private_flag">
+
+<input type="submit" value="新規登録">
 </form>
 
 

@@ -21,31 +21,32 @@
 	ステップ達成${e.stepsAchieveFlag}<br></p>
 </c:forEach>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="insert">
+<form method="POST" action="/killerQueen/MyListServlet">
 宣言：<input type = "text" name="declaration"><br>
 タグ：<input type = "text" name="tag"><br>
 非公開：<input type = "text" name="private_flag"><br>
 ステップ：<input type = "text" name="step"><br> <!-- stepのテキストボックスを増やすのはどのようにするのか -->
 ステップ<input type = "text" name="step"><br>
 ステップ<input type = "text" name="step"><br>
-ステップ<input type="submit" value="新規登録"><br>
-</form>
+<input type="submit" value="新規登録" name="bt"><br>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="edit">
+
+
+
 DecID<input type ="hidden" name="declaration_id">
 宣言：<input type = "text" name="declaration"><br>
 タグ：<input type = "text" name="tag"><br>
 非公開<input type = "text" name="private_flag"><br>
 ステップ<input type = "text" name="step"><br>
-<input type="submit" value="編集"><br>
-</form>
+<input type="submit" value="編集" name="bt"><br>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="achieve">
-<input type="submit" value="達成"><br>
-</form>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="delete">
-<input type="submit" value="削除"><br>
+
+<input type="submit" value="達成" name="bt"><br>
+
+
+
+<input type="submit" value="削除" name="bt"><br>
 </form>
 
 </body>

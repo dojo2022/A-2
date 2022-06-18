@@ -31,8 +31,16 @@
 </div>
 
 <div class="tag_search">
-	<form method="POST" action="/killerQueen/SearchServlet">
-		<input type="button" name="tagNumber">
+	<form name="tag" method="POST" action="/killerQueen/SearchServlet">
+		<input type="button" name="study" value="勉強">
+		<input type="button" name="work" value="仕事">
+		<input type="button" name="hobby" value="趣味">
+		<input type="button" name="diet" value="ダイエット">
+		<input type="button" name="exercise" value="運動">
+		<input type="button" name="health" value="健康">
+		<input type="button" name="beauty" value="美容">
+		<input type="button" name="ordinary" value="日常">
+		<input type="button" name="others" value="その他">
 	</form>
 </div>
 

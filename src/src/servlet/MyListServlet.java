@@ -106,7 +106,6 @@ public class MyListServlet extends HttpServlet {
 
 		String step = request.getParameter("step");
 
-
 		//DeclarationsDaoのinsertDecメソッドを呼ぶ
 		DeclarationsDao decDao = new DeclarationsDao();
 		boolean decResult = decDao.insertDec(declaration, tag, privateFlag, userId);
@@ -118,7 +117,6 @@ public class MyListServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
 		dispatcher.forward(request, response);
 
-
 		/*String id = (String) session.getAttribute("id");
 		DeclarationsDao decDao2 = new DeclarationsDao();
 		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
@@ -126,8 +124,34 @@ public class MyListServlet extends HttpServlet {
 		*/
 
 		//②編集
+		// リクエストパラメータを取得する
+
+		//選択されたデータを受け取る
+		String userId2 = (String) session.getAttribute("id");
+		request.setCharacterEncoding("UTF-8");
+		String declaration2 = request.getParameter("declaration");
+		int tag2 = Integer.parseInt(request.getParameter("tag"));
+		int privateFlag2 = Integer.parseInt(request.getParameter("private_flag"));
+
+		int decId= Integer.parseInt(request.getParameter("declaration_id"));
+
+
+		String step2 = request.getParameter("step");
+
+		//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
+		//		宣言を編集する処理
+		DeclarationsDao decDao2 = new DeclarationsDao();
+		boolean decResult2 = decDao2.editDec(declaration2, tag2, privateFlag2, userId2);
+		//		ステップを編集する処理
+		StepsDao stepsDao2 = new StepsDao();
+		boolean stepResult2 = stepsDao2.editStep(step,decId);
+
+		//MyListservletでフォワードする
+		RequestDispatcher dispatcher2 = request.getRequestDispatcher("/killerQueen/MyListServlet");
+		dispatcher2.forward(request, response);
 
 		//③達成
+
 
 		//④削除
 

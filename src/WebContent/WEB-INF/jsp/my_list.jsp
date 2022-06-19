@@ -9,19 +9,30 @@
 </head>
 <body>
 <p>マイリストの表示</p>
-<c:forEach var="e" items="${pageList}">
-	<p>${e.decsId}<br>
-	宣言${e.decsDeclaration}<br>
-	タグ${e.decsTag}<br>
-	非公開${e.decsPrivateFlag}<br>
-	ユーザーID${e.usersId}<br>
-	アイコン${e.usersIcon}<br>
-	ステップID${e.stepsId}<br>
-	ステップ${e.stepsStep}<br>
-	ステップ達成${e.stepsAchieveFlag}<br></p>
-</c:forEach>
+<h1>${result.message}</h1>
+<c:forEach var="e" items="${decList }">
+	宣言ID:${e.id }
+	宣言：${e.declaration}
+	タグ：${e.tag }
+	非公開：${e.privateFlag }
+	<c:forEach var="t" items="${pageList}">
+		<!--  ${t.decsId}<br>
+		宣言${t.decsDeclaration}<br>
+		タグ${t.decsTag}<br>
+		非公開${t.decsPrivateFlag}<br>
+		-->
 
+		ユーザーID：${t.usersId}<br>
+		アイコン：${t.usersIcon}<br>
+		ステップID：${t.stepsId}<br>
+		ステップ：${t.stepsStep}<br>
+		ステップ達成：${t.stepsAchieveFlag}<br>
+		ステップ外部キー${t.stepsDecId }<br>
+
+	</c:forEach>
+</c:forEach>
 <form method="POST" action="/killerQueen/MyListServlet">
+<!-- 宣言＆ステップの新規登録 -->
 宣言：<input type = "text" name="declaration"><br>
 タグ：<input type = "text" name="tag"><br>
 非公開：<input type = "text" name="private_flag"><br>
@@ -31,8 +42,7 @@
 <input type="submit" value="新規登録" name="bt"><br>
 
 
-
-
+<!-- 宣言＆ステップの編集 -->
 DecID<input type ="hidden" name="declaration_id">
 宣言：<input type = "text" name="declaration"><br>
 タグ：<input type = "text" name="tag"><br>
@@ -41,11 +51,11 @@ DecID<input type ="hidden" name="declaration_id">
 <input type="submit" value="編集" name="bt"><br>
 
 
-
+<!-- 宣言の達成 -->
 <input type="submit" value="達成" name="bt"><br>
 
 
-
+<!-- 宣言の削除 -->
 <input type="submit" value="削除" name="bt"><br>
 </form>
 

@@ -248,6 +248,7 @@ public class DeclarationsDao {
 				ct.setStepsId(rs.getInt("steps.id"));
 				ct.setStepsStep(rs.getString("steps.step"));
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setStepsDecId(rs.getInt("steps.declaration_id"));
 				pageList.add(ct);
 			}
 		}

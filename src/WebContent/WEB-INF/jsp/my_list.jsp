@@ -53,6 +53,6 @@ DecID<input type ="hidden" name="declaration_id">
 <!-- 宣言の削除 -->
 <input type="submit" value="削除" name="bt"><br>
 </form>
-
+<a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
 </body>
 </html>

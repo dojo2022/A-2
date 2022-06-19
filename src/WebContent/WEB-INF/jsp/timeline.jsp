@@ -24,11 +24,11 @@
 				<div>
 					<p>宣言：${t.decsDeclaration}</p>
 					<p>タグno:${t.decsTag}</p>
-					<p>ユーザーid:${t.decsUserId}</p>
+					<p>ユーザーid:${t.usersId}</p>
 					<p>ユーザーアイコン:${t.usersIcon}</p>
-					<c:forEach var="v" items="${timelineList}">
-						<p>ステップ:${v.stepsStep}"</p>
-						<p>達成:${v.stepsAchieveFlag}</p>
+					<c:forEach var="v" items="${stepsList}">
+						<p>ステップ:${v.step}"</p>
+						<p>達成:${v.achieveFlag}</p>
 					</c:forEach>
 					<form method="GET" action="/killerQueen/TimelineServlet">
 						<input type="hidden" value="${t.decsId}" name="">

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
 import model.CommonTable;
-import model.Declarations;
 
 /**
  * Servlet implementation class TimelineServlet
@@ -47,11 +46,29 @@ public class TimelineServlet extends HttpServlet {
 		//ArrayList<CommonTable>のインスタンスを作成
 		ArrayList<CommonTable> timelineList = decdao.timelineDec(userId);
 
-		//CommonTableを分解して、Declarations.javaとSteps.javaに入れなおす。
-		ArrayList<Declarations> ad = new ArrayList<Declarations>();
+		String dai = "aaa";
+
+		for(CommonTable c : timelineList) {
+			if(!dai.equals(c.getDecsDeclaration())) {
+				dai = c.getDecsDeclaration();
+				System.out.println(dai);
+			}
+			System.out.println(c.getStepsStep());
+		}
+
+		ArrayList<String> as = new ArrayList<String>();
+		for(CommonTable c : timelineList) {
+			if(!dai.equals(c.getDecsDeclaration())) {
+				dai = c.getDecsDeclaration();
+			}
+
+		}
+
+		//CommonTableを分解してステップだけSteps.javaに入れなおす。
 
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
 		request.setAttribute("timelineList", timelineList);
+		request.setAttribute("dec", "aaaaa");
 
 		//timeline.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/timeline.jsp");

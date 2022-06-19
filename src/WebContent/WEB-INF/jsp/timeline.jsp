@@ -26,9 +26,11 @@
 					<p>タグno:${t.decsTag}</p>
 					<p>ユーザーid:${t.usersId}</p>
 					<p>ユーザーアイコン:${t.usersIcon}</p>
-					<c:forEach var="v" items="${stepsList}">
-						<p>ステップ:${v.step}"</p>
-						<p>達成:${v.achieveFlag}</p>
+					<c:forEach var="v" items="${steper}" varStatus = "st">
+						<c:if test="${t.decsId == v.declarationId}">
+							<p>ステップ:${v.step}</p>
+							<p>達成:${v.achieveFlag}</p>
+						</c:if>
 					</c:forEach>
 					<form method="GET" action="/killerQueen/TimelineServlet">
 						<input type="hidden" value="${t.decsId}" name="">

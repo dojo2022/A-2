@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
 import model.CommonTable;
+import model.Steps;
 
 /**
  * Servlet implementation class TimelineServlet
@@ -46,7 +47,7 @@ public class TimelineServlet extends HttpServlet {
 		//ArrayList<CommonTable>のインスタンスを作成
 		ArrayList<CommonTable> timelineList = decdao.timelineDec(userId);
 
-		String dai = "aaa";
+		/*String dai = "aaa";
 
 		for(CommonTable c : timelineList) {
 			if(!dai.equals(c.getDecsDeclaration())) {
@@ -54,21 +55,38 @@ public class TimelineServlet extends HttpServlet {
 				System.out.println(dai);
 			}
 			System.out.println(c.getStepsStep());
-		}
+		}*/
 
-		ArrayList<String> as = new ArrayList<String>();
-		for(CommonTable c : timelineList) {
-			if(!dai.equals(c.getDecsDeclaration())) {
-				dai = c.getDecsDeclaration();
+
+		//timelineListからstep項目を抽出する
+		ArrayList<Steps> steper = new ArrayList<Steps>();
+		for(int i = 0; i < timelineList.size(); i++) {
+			CommonTable ct = timelineList.get(i);
+			Steps st = new Steps();
+			st.setStep(ct.getStepsStep());
+			st.setAchieveFlag(ct.isStepsAchieveFlag());
+			st.setDeclarationId(ct.getDecsId());
+			steper.add(st);
+		}
+		//timelineListから不要な宣言を削除する
+		int i = 0;
+		int k = 1;
+		while(i < timelineList.size()) {
+			while(k < timelineList.size()) {
+				if(timelineList.get(i).getDecsId() == timelineList.get(k).getDecsId()) {
+					timelineList.remove(k);
+				}else {
+					i++;
+					k++;
+				}
 			}
-
+			break;
 		}
 
-		//CommonTableを分解してステップだけSteps.javaに入れなおす。
 
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
 		request.setAttribute("timelineList", timelineList);
-		request.setAttribute("dec", "aaaaa");
+		request.setAttribute("steper", steper);
 
 		//timeline.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/timeline.jsp");

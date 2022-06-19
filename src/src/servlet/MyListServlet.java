@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 import dao.DeclarationsDao;
 import dao.StepsDao;
 import model.CommonTable;
+import model.Declarations;
+import model.Result;
+import model.Steps;
 
 /**
  * Servlet implementation class MyListServlet
@@ -41,7 +44,37 @@ public class MyListServlet extends HttpServlet {
 		ArrayList<CommonTable> pageList = decDao.myListDec("1");
 
 		//for文でインスタンスで取り出す
-		CommonTable ct = pageList.get(0);//一個目のArrayListを取得
+		//宣言が入るArrayListとステップが入るArrayListを作成
+		ArrayList<Declarations> decList = new ArrayList<Declarations>();
+		ArrayList<Steps> stepList =  new ArrayList<Steps>();
+
+		//pageListから宣言関係のデータのみをdecListに入れる
+		for(int i=0; i<pageList.size(); i++) {
+			CommonTable ct = pageList.get(i);
+			//CommonTableからDeclarationsテーブルの内容だけ取得
+			//Declartionsビーンズに格納する
+			Declarations dec = new Declarations();
+			dec.setId(ct.getDecsId());
+			dec.setDeclaration( ct.getDecsDeclaration());
+			dec.setTag(ct.getDecsTag());
+			dec.setPrivateFlag(ct.isDecsPrivateFlag());
+			//DeclarationsビーンズをArrayListに格納する
+			decList.add(dec);
+		}
+		//decListを選別する
+		for(int i = 0; i<decList.size(); i++) {
+			for(int j=1; j<decList.size(); j++) {
+				if(decList.get(i).getDeclaration()== decList.get(j).getDeclaration()) {
+					decList.remove(j);
+				}
+			}
+			System.out.println(decList.get(i).getDeclaration());
+		}
+
+
+
+
+		/*CommonTable ct = pageList.get(0);//一個目のArrayListを取得
 
 		String dec = ct.getDecsDeclaration();//一個目に入っている宣言取得
 		System.out.println(dec);
@@ -57,7 +90,7 @@ public class MyListServlet extends HttpServlet {
 				System.out.println(dec2);
 			}
 
-		}
+		}*/
 
 		/*for(int i=1; i<pageList.size(); i++) {
 			if(dec!= de)
@@ -74,6 +107,7 @@ public class MyListServlet extends HttpServlet {
 
 		//取ってきたデータをリクエストスコープへ保存
 		request.setAttribute("pageList", pageList);
+		request.setAttribute("decList", decList);
 
 		//my_list.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
@@ -114,11 +148,19 @@ public class MyListServlet extends HttpServlet {
 			StepsDao stepsDao = new StepsDao();
 			boolean stepResult = stepsDao.createStep(step);
 
+			//宣言かステップどちらか登録に失敗した場合(トランザクション処理？)
+			if(decResult== false || stepResult== false) {
+				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+				Result result = new Result();
+				result.setMessage("登録に失敗しました。");
+				request.setAttribute("result", result);
+			}
+
 			//MyListservletでフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
 			dispatcher.forward(request, response);
 
-			/*String id = (String) session.getAttribute("id");
+			/*仲原さんメモ：String id = (String) session.getAttribute("id");
 			DeclarationsDao decDao2 = new DeclarationsDao();
 			//引数をidとしてdecDAOのmypagedecメゾット呼び出し
 			ArrayList<CommonTable> pageList = decDao2.myListDec(id);
@@ -128,28 +170,36 @@ public class MyListServlet extends HttpServlet {
 		// リクエストパラメータを取得する
 		if(button.equals("編集")) {
 			//選択されたデータを受け取る
-			String userId2 = (String) session.getAttribute("id");
+			String userId = (String) session.getAttribute("id");
 			request.setCharacterEncoding("UTF-8");
-			String declaration2 = request.getParameter("declaration");
-			int tag2 = Integer.parseInt(request.getParameter("tag"));
-			int privateFlag2 = Integer.parseInt(request.getParameter("private_flag"));
+			String declaration = request.getParameter("declaration");
+			int tag = Integer.parseInt(request.getParameter("tag"));
+			int privateFlag = Integer.parseInt(request.getParameter("private_flag"));
 
 			int decId= Integer.parseInt(request.getParameter("declaration_id"));
 
 
-			String step2 = request.getParameter("step");
+			String step = request.getParameter("step");
 
 			//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
 			//		宣言を編集する処理
-			DeclarationsDao decDao2 = new DeclarationsDao();
-			boolean decResult2 = decDao2.editDec(declaration2, tag2, privateFlag2, userId2);
+			DeclarationsDao decDao = new DeclarationsDao();
+			boolean decResult = decDao.editDec(declaration, tag, privateFlag, userId);
 			//		ステップを編集する処理
-			StepsDao stepsDao2 = new StepsDao();
-			boolean stepResult2 = stepsDao2.editStep(step2,decId);
+			StepsDao stepsDao = new StepsDao();
+			boolean stepResult = stepsDao.editStep(step,decId);
+
+			//宣言かステップどちらか編集に失敗した場合(トランザクション処理？)
+			if(decResult== false || stepResult== false) {
+				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+				Result result = new Result();
+				result.setMessage("宣言とステップの編集に失敗しました。");
+				request.setAttribute("result", result);
+			}
 
 			//MyListservletでフォワードする
-			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/killerQueen/MyListServlet");
-			dispatcher2.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+			dispatcher.forward(request, response);
 		}
 		//③達成
 		if(button.equals("達成")) {

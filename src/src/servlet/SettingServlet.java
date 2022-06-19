@@ -19,13 +19,11 @@ public class SettingServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		/*
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/KillerQueen/LoginServlet");
+			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
 		}
-		*/
 
 		// 設定画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
@@ -42,18 +40,31 @@ public class SettingServlet extends HttpServlet {
 			return;
 		}
 
-	// リクエストスコープ(parameter区画)から「ユーザー名」「一言」「アイコン」「テーマカラー」を取得
+	// 「ユーザー名」「一言」「アイコン」「テーマカラー」を取得
 		request.setCharacterEncoding("UTF-8");
 
+		// リクエストスコープ(parameter区画)から「ユーザー名」を取得
 		String name = request.getParameter("name");
 		// スペースが入力された場合は空文字にする
 		name = name.replaceAll("　", ""); // 全角スペースを空文字に置換
         name = name.replaceAll(" ", ""); // 半角スペースを空文字に変換
 
-        if (name == "") {
+        // リクエストスコープ(parameter区画)から「一言」「アイコン」「テーマカラー」を取得
+		String comment = request.getParameter("comment");
+		int icon = Integer.parseInt(request.getParameter("icon"));
+		int themecolor  = Integer.parseInt(request.getParameter("themecolor"));
+
+		// 「id」はセッションスコープ(attribute区画)から取得
+		String id = (String)session.getAttribute("id");
+
+System.out.println(name);
+System.out.println("aaa");
+    // もしユーザー名が空になってしまったら設定画面に戻る
+        if (name.equals("")) {
+
 			// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 			Result result = new Result();
-			result.setMessage("スペースは無効です。");
+			result.setMessage("名前を入力してください。");
 			request.setAttribute("result", result);
 
 			// 設定画面にフォワードする
@@ -61,23 +72,19 @@ public class SettingServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
         } else {
-			String comment = request.getParameter("comment");
-			int icon = Integer.parseInt(request.getParameter("icon"));
-			int themecolor  = Integer.parseInt(request.getParameter("themecolor"));
-			String id = (String)session.getAttribute("id");
-
 		// UsersDaoをインスタンス化して変更処理を行う
 			// UsersDaoをインスタンス化
-			UsersDao usersDao = new UsersDao();
+			UsersDao userDao = new UsersDao();
 
 		// 変更処理
-			boolean ans = usersDao.updateUser(name, comment, icon, themecolor, id);
+			boolean ans = userDao.updateUser(name, comment, icon, themecolor, id);
 
-
+			// 変更成功(UsersDaoからtrueが返ってきた場合)
 			if (ans == true) {
 
-				// もともとのセッションスコープを破棄
+				/*// もともとのセッションスコープを破棄
 				session.invalidate();
+				*/
 
 				// セッションスコープ(attribute区画)にidを格納する
 				session.setAttribute("name", name);
@@ -89,7 +96,7 @@ public class SettingServlet extends HttpServlet {
 				response.sendRedirect("/killerQueen/MyPageServlet");
 			}
 
-			// 変更失敗(UsersDaoかfalseが返ってきた場合)
+			// 変更失敗(UsersDaoからfalseが返ってきた場合)
 			else {
 
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する

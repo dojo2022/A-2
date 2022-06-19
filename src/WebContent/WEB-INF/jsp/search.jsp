@@ -32,19 +32,26 @@
 
 <div class="tag_search">
 	<form name="tag" method="POST" action="/killerQueen/SearchServlet">
-		<input type="button" name="study" value="勉強">
-		<input type="button" name="work" value="仕事">
-		<input type="button" name="hobby" value="趣味">
-		<input type="button" name="diet" value="ダイエット">
-		<input type="button" name="exercise" value="運動">
-		<input type="button" name="health" value="健康">
-		<input type="button" name="beauty" value="美容">
-		<input type="button" name="ordinary" value="日常">
-		<input type="button" name="others" value="その他">
+	<input type="hidden" name="action">
+		<input type="button" onClick="goSubmit(this.form, this)" name="study" value="勉強">
+		<input type="button" onClick="goSubmit(this.form, this)" name="work" value="仕事">
+		<input type="button" onClick="goSubmit(this.form, this)" name="hobby" value="趣味">
+		<input type="button" onClick="goSubmit(this.form, this)" name="diet" value="ダイエット">
+		<input type="button" onClick="goSubmit(this.form, this)" name="exercise" value="運動">
+		<input type="button" onClick="goSubmit(this.form, this)" name="health" value="健康">
+		<input type="button" onClick="goSubmit(this.form, this)" name="beauty" value="美容">
+		<input type="button" onClick="goSubmit(this.form, this)" name="ordinary" value="日常">
+		<input type="button" onClick="goSubmit(this.form, this)" name="others" value="その他">
 	</form>
 </div>
-
 </main>
+
+<script type="text/javascript">
+function goSubmit(formObj, btnObj) {
+formObj.action.value=btnObj.name;
+formObj.submit();
+}
+</script>
 
 </body>
 </html>

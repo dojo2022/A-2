@@ -103,7 +103,7 @@ public class MyListServlet extends HttpServlet {
 
 
 		}*/
-		//pageListを整頓する必要があるんご
+
 
 		//取ってきたデータをリクエストスコープへ保存
 		request.setAttribute("pageList", pageList);

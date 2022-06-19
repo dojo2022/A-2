@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 
+.radio {
+	display: inline;
+}
+
+.color {
+	display: inline;
+}
+
 .display {
       display: none;
     }

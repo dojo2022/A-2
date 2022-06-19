@@ -24,6 +24,15 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* セッションスコープを使えるようにする
+		HttpSession session = request.getSession(); */
+
+		/* もしもログインしていなかったらログインサーブレットにリダイレクトする
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/killerQueen/LoginServlet");
+			return;
+		} */
+
 		//検索画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");
 		dispatcher.forward(request, response);
@@ -32,19 +41,32 @@ public class SearchServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// ユーザーIDをセッションスコープから取得
-		//HttpSession session = request.getSession();
-		//session.getAttribute("userId");
-		// テスト用
+		/* セッションスコープを使えるようにする
+		HttpSession session = request.getSession();　*/
+
+		/* もしもログインしていなかったらログインサーブレットにリダイレクトする
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/killerQueen/LoginServlet");
+			return;
+		} */
+
+		/* ユーザーIDをセッションスコープから取得
+		 String userId = session.getAttribute("user_Id"); */
+
+		// テスト用(ユーザーIDを「１」で試す)
 		String userId = "1";
+
+		//リクエストパラメーターの文字コードを設定する
+		request.setCharacterEncoding("UTF-8");
+
 
 		// あいまい検索がされたとき
 		if (request.getParameter("submit") != null) {
 
 		// 入力された文字列をリクエストパラメータから取得
-		request.setCharacterEncoding("UTF-8");
 		String search = request.getParameter("str");
 
 		// 検索処理を行う
@@ -112,5 +134,6 @@ public class SearchServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 		dispatcher.forward(request, response);
 		}
+
 	}
 }

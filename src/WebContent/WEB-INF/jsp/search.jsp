@@ -23,7 +23,8 @@
 				<input type="text" name="str" autocomplete="off"><br>
 			</td>
 			<td class="search_button">
-				<input type="submit" name="submit" value="検索">
+				<!-- <input type="submit" name="submit" value="検索">-->
+				<input type="image" name="submit" src="/killerQueen/img/icon/select.png"  alt="検索" value="検索" width="67" height="67">
 			</td>
 		</tr>
 		</table>
@@ -31,7 +32,7 @@
 </div>
 
 <div class="tag_search">
-	<form name="tag" method="POST" action="/killerQueen/SearchServlet">
+	<form method="POST" action="/killerQueen/SearchServlet">
 	<input type="hidden" name="action">
 		<input type="button" onClick="goSubmit(this.form, this)" name="study" value="勉強">
 		<input type="button" onClick="goSubmit(this.form, this)" name="work" value="仕事">

@@ -34,64 +34,83 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// あいまい検索！！！！！！！！！！
-		if (request.getParameter("str") != null) {
-//		// ユーザーIDをセッションスコープから取得
-//		HttpSession session = request.getSession();
-//		session.getAttribute("userId");
-//		今回は、お試しで「1」を使います。（56行目の引数）
+		// ユーザーIDをセッションスコープから取得
+		//HttpSession session = request.getSession();
+		//session.getAttribute("userId");
+		// テスト用
+		String userId = "1";
+
+		// あいまい検索がされたとき
+		if (request.getParameter("submit") != null) {
 
 		// 入力された文字列をリクエストパラメータから取得
 		request.setCharacterEncoding("UTF-8");
-
-//		String str = request.getParameter("str");
-//		今回は、お試しで「情報」を使います。
-		String search = "情報";
+		String search = request.getParameter("str");
 
 		// 検索処理を行う
-		DeclarationsDao dDao = new DeclarationsDao();
-//		CommonTable ct = new CommonTable();
-//		ct.setDecsDeclaration(str);
-//		ct.setStepsStep(str);
+		// DeclarationDaoのインスタンスを作成
+		DeclarationsDao decdao = new DeclarationsDao();
 
-		ArrayList<CommonTable> pageList = dDao.searchResultDec("1", search);
+		// ArrayList<CommonTable>のインスタンスを作成
+		ArrayList<CommonTable> list = decdao.searchResultDec(userId, search);
 
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("pageList", pageList);
+		// 検索結果をリクエストスコープにsearchListとして格納する
+		request.setAttribute("searchList", list);
 
-		// 結果ページにフォワードする
+		// 検索結果画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 		dispatcher.forward(request, response);
 
-		// タグ検索！！！！！！！！！！
-		} else if ("tagNumber".equals(request.getParameter("action"))) {
 
-//		// ユーザーIDをセッションスコープから取得
-//		HttpSession session = request.getSession();
-//		session.getAttribute("userId");
-//		今回は、お試しで「1」を使います。（56行目の引数）
+		// タグ検索がされたとき
+		} else if (request.getParameter("action") != null) {
 
-		// 入力された文字列をリクエストパラメータから取得
-		request.setCharacterEncoding("UTF-8");
-//		String tagNumber = request.getParameter("tagNumber");
-//		今回は、お試しで勉強タグの「0」を使います。
+		// 押下されたタグに番号をふる
 		int tagNumber = 0;
+		switch(request.getParameter("action")) {
+		case "study":
+			tagNumber = 0;
+		break;
+		case "work":
+			tagNumber = 1;
+		break;
+		case "hobby":
+			tagNumber = 2;
+		break;
+		case "diet":
+			tagNumber = 3;
+		break;
+		case "exercise":
+			tagNumber = 4;
+		break;
+		case "health":
+			tagNumber = 5;
+		break;
+		case "beauty":
+			tagNumber = 6;
+		break;
+		case "ordinary":
+			tagNumber = 7;
+		break;
+		case "others":
+			tagNumber = 8;
+		break;
+		}
+
 
 		// 検索処理を行う
-		DeclarationsDao dDao = new DeclarationsDao();
-//		CommonTable ct = new CommonTable();
-//		ct.setDecsDeclaration(str);
-//		ct.setStepsStep(str);
+		// DeclarationDaoのインスタンスを作成
+		DeclarationsDao decdao = new DeclarationsDao();
 
-		ArrayList<CommonTable> pageList = dDao.tagSearchDec("1", tagNumber);
+		// ArrayList<CommonTable>のインスタンスを作成
+		ArrayList<CommonTable> list = decdao.tagSearchDec(userId, tagNumber);
 
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("pageList", pageList);
+		// 検索結果をリクエストスコープにsearchListとして格納する
+		request.setAttribute("searchList", list);
 
-		// 結果ページにフォワードする
+		// 検索結果画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 		dispatcher.forward(request, response);
 		}
 	}
-
 }

@@ -14,17 +14,10 @@
 <h1>検索結果</h1>
 <hr>
 
-<c:forEach var="e" items="${pageList}" >
-	<table>
-	<tr>
-		<td>宣言</td>
-		<td>${e.decsDeclaration}</td>
-	</tr>
-	<tr>
-		<td>ステップ</td>
-		<td>${e.stepsStep}</td>
-	</tr>
-	</table>
+
+<c:forEach var="s" items="${searchList}" >
+	<p><c:out value="${s.decsDeclaration}"/></p>
+	<p><c:out value="${s.stepsStep}"/></p>
 </c:forEach>
 
 </main>

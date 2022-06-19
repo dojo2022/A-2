@@ -242,11 +242,13 @@ public class DeclarationsDao {
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsPrivateFlag(rs.getBoolean("declarations.private_flag"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));
 				ct.setStepsStep(rs.getString("steps.step"));
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setStepsDecId(rs.getInt("steps.declaration_id"));
 				pageList.add(ct);
 			}
 		}

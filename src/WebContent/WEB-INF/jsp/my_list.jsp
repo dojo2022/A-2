@@ -9,42 +9,54 @@
 </head>
 <body>
 <p>マイリストの表示</p>
-<c:forEach var="e" items="${pageList}">
-	<p>${e.decsId}<br>
-	${e.decsDeclaration}<br>
-	${e.decsTag}<br>
-	${e.decsPrivateFlag}<br>
-	${e.usersId}<br>
-	${e.usersIcon}<br>
-	${e.stepsId}<br>
-	${e.stepsStep}<br>
-	${e.stepsAchieveFlag}<br></p>
+<h1>${result.message}</h1>
+<c:forEach var="e" items="${decList }">
+	宣言ID:${e.id }
+	宣言：${e.declaration}
+	タグ：${e.tag }
+	非公開：${e.privateFlag }
+	<c:forEach var="t" items="${pageList}">
+		<!--  ${t.decsId}<br>
+		宣言${t.decsDeclaration}<br>
+		タグ${t.decsTag}<br>
+		非公開${t.decsPrivateFlag}<br>
+		-->
+
+		ユーザーID：${t.usersId}<br>
+		アイコン：${t.usersIcon}<br>
+		ステップID：${t.stepsId}<br>
+		ステップ：${t.stepsStep}<br>
+		ステップ達成：${t.stepsAchieveFlag}<br>
+		ステップ外部キー${t.stepsDecId }<br>
+
+	</c:forEach>
 </c:forEach>
+<form method="POST" action="/killerQueen/MyListServlet">
+<!-- 宣言＆ステップの新規登録 -->
+宣言：<input type = "text" name="declaration"><br>
+タグ：<input type = "text" name="tag"><br>
+非公開：<input type = "text" name="private_flag"><br>
+ステップ：<input type = "text" name="step"><br> <!-- stepのテキストボックスを増やすのはどのようにするのか -->
+ステップ<input type = "text" name="step"><br>
+ステップ<input type = "text" name="step"><br>
+<input type="submit" value="新規登録" name="bt"><br>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="insert">
-<input type = "text" name="declaration"><br>
-<input type = "text" name="tag"><br>
-<input type = "text" name="private_flag"><br>
-<input type = "text" name="step"><br> <!-- stepのテキストボックスを増やすのはどのようにするのか -->
-<input type = "text" name="step"><br>
-<input type = "text" name="step"><br>
-<input type="submit" value="新規登録"><br>
-</form>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="edit">
-<input type = "text" name="declaration"><br>
-<input type = "text" name="tag"><br>
-<input type = "text" name="private_flag"><br>
-<input type = "text" name="step"><br>
-<input type="submit" value="編集"><br>
-</form>
+<!-- 宣言＆ステップの編集 -->
+DecID<input type ="hidden" name="declaration_id">
+宣言：<input type = "text" name="declaration"><br>
+タグ：<input type = "text" name="tag"><br>
+非公開<input type = "text" name="private_flag"><br>
+ステップ<input type = "text" name="step"><br>
+<input type="submit" value="編集" name="bt"><br>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="achieve">
-<input type="submit" value="達成"><br>
-</form>
 
-<form method="POST" action="/killerQueen/MyListServlet" name="delete">
-<input type="submit" value="削除"><br>
+<!-- 宣言の達成 -->
+<input type="submit" value="達成" name="bt"><br>
+
+
+<!-- 宣言の削除 -->
+<input type="submit" value="削除" name="bt"><br>
 </form>
 
 </body>

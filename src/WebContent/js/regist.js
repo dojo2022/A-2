@@ -21,7 +21,7 @@ function goAjax(){
 			//どのメソッドを使用するか
 			type:"POST",
 			//受け取るデータのタイプ
-			dataType:"json",
+			dataType:"String",
 			//何をサーブレットに飛ばすか（変数を記述）
 			data: registData,
 			//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
@@ -30,7 +30,7 @@ function goAjax(){
 		})
 
 	//非同期通信が成功したときの処理
-		.done(function( answer = 'true') {
+		.done(function(data) {
 			alert("成功1");
 			// 今回は上の<div id="message"></div>の中にリダイレクト予告
 			document.getElementById("message").textContent = '登録完了！5秒後にログイン画面に移ります。';

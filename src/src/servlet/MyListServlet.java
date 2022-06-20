@@ -16,7 +16,6 @@ import dao.StepsDao;
 import model.CommonTable;
 import model.Declarations;
 import model.Result;
-import model.Steps;
 
 /**
  * Servlet implementation class MyListServlet
@@ -46,7 +45,7 @@ public class MyListServlet extends HttpServlet {
 		//for文でインスタンスで取り出す
 		//宣言が入るArrayListとステップが入るArrayListを作成
 		ArrayList<Declarations> decList = new ArrayList<Declarations>();
-		ArrayList<Steps> stepList = new ArrayList<Steps>();
+
 
 		//pageListから宣言関係のデータのみをdecListに入れる
 		for (int i = 0; i < pageList.size(); i++) {
@@ -62,14 +61,29 @@ public class MyListServlet extends HttpServlet {
 			decList.add(dec);
 		}
 		//decListを選別する
-		for (int i = 0; i < decList.size(); i++) {
+		int i = 0;
+		int k = 1;
+		while(i < decList.size()) {
+			while(k < decList.size()) {
+				if(decList.get(i).getDeclaration() == decList.get(k).getDeclaration()) {
+					decList.remove(k);
+				}else {
+					i++;
+					k++;
+
+				}
+			}
+			break;
+		}
+
+		/*for (int i = 0; i < decList.size(); i++) {
 			for (int j = 1; j < decList.size(); j++) {
 				if (decList.get(i).getDeclaration() == decList.get(j).getDeclaration()) {
 					decList.remove(j);
 				}
 			}
 			System.out.println(decList.get(i).getDeclaration());
-		}
+		}*/
 
 		/*CommonTable ct = pageList.get(0);//一個目のArrayListを取得
 

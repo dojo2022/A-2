@@ -12,51 +12,32 @@
 
 <!-- ユーザー情報 -->
 
-<p>ID: ${t.userId}</p>
-<p>NAME: ${OtherPageList.userName}</p>
-<p>ICON: ${OtherPageList.userIcon}</p>
-<p>COMMENT: ${OtherPageList.userCommment}</p>
-<p>ランクを表示したい気持ちはある</p>
-
-
-
+<p>ID: ${userInfo.id}</p>
+<p>NAME: ${userInfo.name}</p>
+<p>ICON: ${userInfo.icon}</p>
+<p>COMMENT: ${userInfo.comment}</p>
+<p>ランクを表示したい気持はある</p>
 
 
 <!-- 自分の宣言リストたち -->
-<table>
-  		<c:forEach var="t" items="${OtherPageList}" varStatus="status">
-  			<c:if test="${status.index % 1 == 0}">
- 				<tr>
-  			</c:if>
-
-			<td>
-				<div>
-					<p>宣言：${t.decsDeclaration}</p>
-					<p>タグno:${t.decsTag}</p>
-					<p>リアクション有無:</p>
-					<p>ブックマーク有無:</p>
-					<p>宣言達成のフラグ後で追加するだおいじるお</p>
-					<c:forEach var="v" items="${steper}" varStatus = "st">
-						<c:if test="${t.decsId == v.declarationId}">
-							<p>ステップ:${v.step}</p>
-							<p>達成:${v.achieveFlag}</p>
-						</c:if>
-					</c:forEach>
-					<form method="GET" action="/killerQueen/MyPageServlet">
-						<input type="hidden" value="${t.decsId}" name="">
-						<input type="submit" value="詳細">
-					</form>
-
-				</div>
-			</td>
-
-			<c:if test="${status.index % 1 != 0}">
-				</tr>
+<c:forEach var="t" items="${OtherPageList}">
+<details>
+	<summary>
+		宣言：${t.decsDeclaration}<br>
+		タグno:${t.decsTag}<br>
+		リアクション有無:<br>
+		ブックマーク有無:<br>
+		宣言達成:${t.decsAchieveFlag}<br>
+	</summary>
+		<c:forEach var="v" items="${steper}" varStatus = "st">
+			<c:if test="${t.decsId == v.declarationId}">
+				ステップ:${v.step}<br>
+				達成:${v.achieveFlag}<br>
 			</c:if>
-
 		</c:forEach>
-				</tr>
-	</table>
+</details>
+</c:forEach>
+
 
 </body>
 </html>

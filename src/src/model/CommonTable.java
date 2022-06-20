@@ -27,8 +27,14 @@ public class CommonTable implements Serializable {
 	private String bookmarksUserId;    //bookmarksテーブルのユーザーID
 	private int bookmarksDecId; 		//bookmarksテーブルの宣言ID
 	private String resultMessage;		//結果のメッセージ
+	private int countReaction;
 
-
+	public int getCountReaction() {
+		return countReaction;
+	}
+	public void setCountReaction(int countReaction) {
+		this.countReaction = countReaction;
+	}
 	//ゲッターとセッター
 	public String getUsersId() {
 		return usersId;

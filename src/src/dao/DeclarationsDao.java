@@ -236,13 +236,20 @@ public class DeclarationsDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
+			//リアクション数数えるよ
+			String sql2 = "SELECT count(*) FROM reactions WHERE declarations_id = ? ";
+			PreparedStatement pStmt2 = conn.prepareStatement(sql2);
+			pStmt2.setInt(1,rs.getInt("declarations.id"));
+			ResultSet rs2 = pStmt.executeQuery();
+
 			// 結果表をコレクションにコピーする
-			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+			while (rs.next() && rs2.next()) {//.next() ← rsインスタンスの内容を全て取り出す
 				CommonTable ct = new CommonTable();
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
 				ct.setDecsPrivateFlag(rs.getBoolean("declarations.private_flag"));
+				ct.setCountReaction(rs2.getInt("count(*)"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));
@@ -301,12 +308,15 @@ public class DeclarationsDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
+
+
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
 				CommonTable ct = new CommonTable();
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsTag(rs.getInt("declarations.achieve_flag"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));
@@ -340,6 +350,53 @@ public class DeclarationsDao {
 		// 結果を返す
 		return pageList;
 	}
+
+	//リアクション数
+	public int countReaction(int decsId){
+			Connection conn = null;
+			int count = 0;
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+				// SQL文を準備する
+				String sql = "SELECT count(*) FROM REACTIONS where declaration_id = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				pStmt.setInt(1,decsId);
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする
+				rs.next();
+					count = rs.getInt("count(*)");
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				count = 0;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				count = 0;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						count = 0;
+					}
+				}
+				return count;
+			}
+		}
 
 	//他ユーザーページに表示するための表取得
 	public ArrayList<CommonTable> otherPageDec(String userId,String otherId){
@@ -681,4 +738,53 @@ public class DeclarationsDao {
 		return pageList;
 	}
 
+	//ステップ達成個数を検索
+	public int countAchieve(String id) {
+		Connection conn = null;
+		int count = 0;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT count(*) FROM declarations\r\n"
+					+ "LEFT JOIN users ON declarations.user_id = users.id\r\n"
+					+ "LEFT JOIN steps ON declarations.id = steps.declaration_id\r\n"
+					+ "WHERE user_id =? and steps.achieve_flag = true";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1,id);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			rs.next();
+				count = rs.getInt("count(*)");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					count = 0;
+				}
+			}
+			return count;
+		}
+	}
 }

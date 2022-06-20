@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class BookmarksDao {
 
 	//insertBookmarkメソッドで
-	public boolean insertBookmark(int userId, int decId) {
+	public boolean insertBookmark(String userId, int decId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -25,7 +25,7 @@ public class BookmarksDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
-			pStmt.setInt(1, userId);
+			pStmt.setString(1, userId);
 			pStmt.setInt(2, decId);
 
 			//SQL文を実行する（DBに送る）
@@ -61,7 +61,7 @@ public class BookmarksDao {
 
 
 	//deleteBookmarkメソッドでブックマークを削除する
-	public boolean deleteBookmark(int userId, int decId) {
+	public boolean deleteBookmark(String userId, int decId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -78,7 +78,7 @@ public class BookmarksDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
-			pStmt.setInt(1, userId);
+			pStmt.setString(1, userId);
 			pStmt.setInt(2, decId);
 
 			//SQL文を実行する（DBに送る）

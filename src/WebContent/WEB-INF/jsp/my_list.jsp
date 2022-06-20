@@ -29,6 +29,10 @@
 		ステップ外部キー:${t.stepsDecId }<br>
 		</c:if>
 	</c:forEach>
+<button id="open_modal2" name="open_modal_btn2">編集</button>
+<form method="POST" action="/killerQueen/MyListServlet">
+<input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
+</form>
 </details>
 </c:forEach>
 <!-- 宣言＆ステップの新規登録 -->
@@ -42,7 +46,7 @@
 			タグ：<input type = "text" name="tag"><br>
 			非公開：<input type = "text" name="private_flag"><br>
 			<div id="target">
-			<span>ステップ：</span><input type = "text" name="step" id="inputform_0">
+			<span>ステップ：</span><input type = "text" name="step" id="inputform_0"><br>
 			</div>
 			<input type="button" value="+" onclick="addForm()">
 			<input type="submit" value="新規登録" name="bt"><br>
@@ -60,12 +64,11 @@ DecID<input type ="hidden" name="declaration_id">
 <input type="submit" value="編集" name="bt"><br>
 
 
-<!-- 宣言の達成 -->
+<!-- 宣言の達成
 <input type="submit" value="達成" name="bt"><br>
+     宣言の削除
+<input type="submit" value="削除" name="bt"><br>-->
 
-
-<!-- 宣言の削除 -->
-<input type="submit" value="削除" name="bt"><br>
 </form>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
 <!-- モーダル表示のjs -->
@@ -104,10 +107,12 @@ function addForm(){
 	input_data.type = 'text';
 	input_data.id = 'inputform_' + i;
 	var step = document.createElement('span');
-	step.innerHTML = 'ステップ';
+	step.innerHTML = 'ステップ：';
+	var br = document.createElement('br');
 	var parent = document.getElementById('target');
 	parent.appendChild(step);
 	parent.appendChild(input_data);
+	parent.appendChild(br);
 	i++;
 	return false;
 }

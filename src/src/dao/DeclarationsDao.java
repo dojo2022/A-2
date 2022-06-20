@@ -236,20 +236,13 @@ public class DeclarationsDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			//リアクション数数えるよ
-			String sql2 = "SELECT count(*) FROM reactions WHERE declarations_id = ? ";
-			PreparedStatement pStmt2 = conn.prepareStatement(sql2);
-			pStmt2.setInt(1,rs.getInt("declarations.id"));
-			ResultSet rs2 = pStmt.executeQuery();
-
 			// 結果表をコレクションにコピーする
-			while (rs.next() && rs2.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
 				CommonTable ct = new CommonTable();
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
 				ct.setDecsPrivateFlag(rs.getBoolean("declarations.private_flag"));
-				ct.setCountReaction(rs2.getInt("count(*)"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));

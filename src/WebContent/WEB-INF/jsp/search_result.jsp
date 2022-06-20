@@ -14,10 +14,26 @@
 <h1>検索結果</h1>
 <hr>
 
+<c:forEach var="e" items="${decList}">
+<details>
+	<summary>
+	宣言ID:${e.id}
+	宣言：${e.declaration}
+	タグ：${e.tag}
+	非公開：${e.privateFlag}
+	</summary>
 
-<c:forEach var="s" items="${searchList}" >
-	<p><c:out value="${s.decsDeclaration}"/></p>
-	<p><c:out value="${s.stepsStep}"/></p>
+	<c:forEach var="t" items="${searchList}" >
+		<c:if test="${t.stepsDecId == e.id }">
+		ユーザーID：${t.usersId}<br>
+		アイコン：${t.usersIcon}<br>
+		ステップID：${t.stepsId}<br>
+		ステップ：${t.stepsStep}<br>
+		ステップ達成：${t.stepsAchieveFlag}<br>
+		ステップ外部キー:${t.stepsDecId }<br>
+		</c:if>
+	</c:forEach>
+</details>
 </c:forEach>
 
 </main>

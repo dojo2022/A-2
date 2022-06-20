@@ -35,78 +35,70 @@
 	<form method="POST" action="/killerQueen/SearchServlet">
 	<input type="hidden" name="action">
 
+
 	<table>
 	<tr>
 	<td>
-		<div id = "study_tag">
+		<button name="study" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_study.png" width="60" height="60">#勉強</p>
-		</div>
+		</button>
 	</td>
 
 	<td>
-		<div id = "work_tag">
-		<p><img src="/killerQueen/img/tag_icon/work.png"  width="60" height="60">#仕事</p>
-		</div>
+		<button name="work" onClick="goSubmit(this.form, this)">
+		<p><img src="/killerQueen/img/tag_icon/work.png" width="60" height="60">#仕事</p>
+		</button>
 	</td>
 
 	<td>
-		<div id = "hobby_tag">
-		<p><img src="/killerQueen/img/tag_icon/tag_hobby.png"  width="60" height="60">#趣味</p>
-		</div>
+		<button name="hobby" onClick="goSubmit(this.form, this)">
+		<p><img src="/killerQueen/img/tag_icon/tag_hobby.png" width="60" height="60">#趣味</p>
+		</button>
 	</td>
 	</tr>
 
 	<tr>
 	<td>
-		<div id = "diet_tag">
+		<button name="diet" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_diet.png" width="60" height="60">#ダイエット</p>
-		</div>
+		</button>
 	</td>
 
 	<td>
-		<div id = "exercise_tag">
+		<button name="exercise" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_exercise.png" width="60" height="60">#運動</p>
-		</div>
+		</button>
 	</td>
 
 	<td>
-		<div id = "health_tag">
+		<button name="health" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_health.png" width="60" height="60">#健康</p>
-		</div>
+		</button>
 	</td>
 	</tr>
 
 	<tr>
 	<td>
-		<div id = "beauty_tag">
+		<button name="beauty" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_beauty.png" width="60" height="60">#美容</p>
-		</div>
+		</button>
 	</td>
 
 	<td>
-		<div id = "ordinary_tag">
+		<button name="ordinary" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_everyday.png" width="60" height="60">#日常</p>
-		</div>
+		</button>
 	</td>
 
 	<td>
-		<div>
+		<button name="others" onClick="goSubmit(this.form, this)">
 		<p><img src="/killerQueen/img/tag_icon/tag_others.png" width="60" height="60">#その他</p>
-		</div>
+		</button>
 	</td>
 	</tr>
 	</table>
 
-		<input type="button" onClick="goSubmit(this.form, this)" name="study" value="勉強">
-		<input type="button" onClick="goSubmit(this.form, this)" name="work" value="仕事">
-		<input type="button" onClick="goSubmit(this.form, this)" name="hobby" value="趣味">
-		<input type="button" onClick="goSubmit(this.form, this)" name="diet" value="ダイエット">
-		<input type="button" onClick="goSubmit(this.form, this)" name="exercise" value="運動">
-		<input type="button" onClick="goSubmit(this.form, this)" name="health" value="健康">
-		<input type="button" onClick="goSubmit(this.form, this)" name="beauty" value="美容">
-		<input type="button" onClick="goSubmit(this.form, this)" name="ordinary" value="日常">
-		<input type="button" onClick="goSubmit(this.form, this)" name="others" value="その他">
-	</form>
+</form>
 </div>
 </main>
 

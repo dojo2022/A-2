@@ -27,15 +27,15 @@ public class MyPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//もしもログインしていなかったらログインサーブレットにリダイレクトする
-	/*HttpSession session = request.getSession();
-	if (session.getAttribute("id") == null) {
-	response.sendRedirect("/killerQueen/LoginServlet");
-				return;
-	}*/
-		//セッションを使えるようにする
 		HttpSession session = request.getSession();
+		/*if (session.getAttribute("id") == null) {
+		response.sendRedirect("/killerQueen/LoginServlet");
+					return;
+		}*/
+
 		//セッションスコープから自分のID取得
-		String id = (String)session.getAttribute("id");
+		String id2 = (String)session.getAttribute("id");
+		String id = "1";
 
 
 		//テスト用！！
@@ -46,13 +46,42 @@ public class MyPageServlet extends HttpServlet {
 		session.setAttribute("comment", "comment");*/
 
 		//テスト用
-		String test = "1";
+		//String test = "1";
 
 		//DeclarationsDaoのインスタンスを作成
 		DeclarationsDao decdao = new DeclarationsDao();
 
+		int countAchieve = decdao.countAchieve(id);
+
+
+
 		//ArrayList<CommonTable>のインスタンスを作成
-		ArrayList<CommonTable> myPageList = decdao.myPageDec(test);
+		ArrayList<CommonTable> myPageList = decdao.myPageDec(id);
+
+		//リアクション数を数える
+		ArrayList<CommonTable> reacter = new ArrayList<CommonTable>();
+		for(int i = 0; i < myPageList.size(); i++) {
+			CommonTable ct = myPageList.get(i);
+			int decId = ct.getDecsId();
+			CommonTable st = new CommonTable();
+			st.setDecsId(ct.getDecsId());
+			st.setCountReaction(decdao.countReaction(decId));
+			reacter.add(st);
+		}
+		int r = 0;
+		int t = 1;
+		while(r < reacter.size()) { //リストが０行以上だったら
+			while(t < reacter.size()) { //リストが１行以上
+				//マイリストのi行目とi+1行目のDecsidが同じだったら行削除、違えばプラス１
+				if(reacter.get(r).getDecsId() == reacter.get(t).getDecsId()) {
+					reacter.remove(t);
+				}else {
+					r++;
+					t++;
+				}
+			}
+			break;
+		}
 
 
 		//MypageListからstep項目を抽出する
@@ -86,6 +115,8 @@ public class MyPageServlet extends HttpServlet {
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
 		request.setAttribute("myPageList", myPageList);
 		request.setAttribute("steper", steper);
+		request.setAttribute("countAchieve", countAchieve);
+		request.setAttribute("reacter", reacter);
 
 
 	//マイページにフォワード

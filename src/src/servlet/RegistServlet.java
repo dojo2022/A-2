@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.UsersDao;
 
@@ -41,13 +40,18 @@ public class RegistServlet extends HttpServlet {
 
 		// 登録処理(isRegistOKメソッド)
 		boolean ans = usersDao.isRegistOk(id, pw, name);
+		String result = String.valueOf(ans);
 
-		ObjectMapper mapper = new ObjectMapper();
 		// 登録成功(UsersDaoからtrueが返ってきた場合)
-		if (ans == true) {
+		if (result.equals("true")) {
 
-			String data = "true";
+			//JSPに返却する値を作成する。値はoutの中に格納する
+			PrintWriter out = response.getWriter();
 
+			//outの中に"true"を入れる
+			//勝手にJSPに渡り、dataという名前で使用することができる
+			out.print(result);
 		}
+		return;
 	}
 }

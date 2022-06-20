@@ -31,7 +31,7 @@ function goAjax(){
 
 	//非同期通信が成功したときの処理
 		.done(function(data) {
-			alert("成功1");
+			alert(data);
 			// 今回は上の<div id="message"></div>の中にリダイレクト予告
 			document.getElementById("message").textContent = '登録完了！5秒後にログイン画面に移ります。';
 			setTimeout(function () {

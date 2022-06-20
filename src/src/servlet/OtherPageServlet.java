@@ -15,6 +15,7 @@ import dao.DeclarationsDao;
 import dao.UsersDao;
 import model.CommonTable;
 import model.Steps;
+import model.Users;
 
 /**
  * Servlet implementation class OtherPageServlet
@@ -27,38 +28,38 @@ public class OtherPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		/*もしもログインしていなかったらログインサーブレットにリダイレクトする
+		//セッションを使えるようにする
+		HttpSession session = request.getSession();
+		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/killerQueen/loginServlet");
 			return;
-		}*/
+		}
 
-		//セッションを使えるようにする
-		HttpSession session = request.getSession();
+
 		//セッションスコープから自分のID取得
-		String mmid = (String)session.getAttribute("id");
+		String myId = (String)session.getAttribute("id");
 
-		//リクエストスコープからユーザーIDを取得
+		//リクエストスコープから他のユーザーIDを取得
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		String otherId = request.getParameter("id");
 
 
 
 //テスト用
-		String mytest = "2";
-		String othertest = "1";
+/*String mytest = "2";
+String othertest = "1";*/
 
-		//ユーザーDaoのインスタンスを作成
-		UsersDao user = new UsersDao();
-
+		//ユーザー情報を検索
+		UsersDao userdao = new UsersDao();
+		Users userInfo = userdao.selectUser(otherId);
 
 
 		//宣言DAOをインスタンス
 		DeclarationsDao decdao = new DeclarationsDao();
 
 		//ArrayList<CommonTable>のインスタンスを作成
-		ArrayList<CommonTable> OtherPageList = decdao.otherPageDec(mytest, othertest);
+		ArrayList<CommonTable> OtherPageList = decdao.otherPageDec(myId, otherId);
 
 		//timelineListからstep項目を抽出する
 		ArrayList<Steps> steper = new ArrayList<Steps>();
@@ -89,6 +90,7 @@ public class OtherPageServlet extends HttpServlet {
 
 
 		//リクエストスコープにlistを"OtherPageList"という名前を付けて入れる
+		request.setAttribute("userInfo", userInfo);
 		request.setAttribute("OtherPageList", OtherPageList);
 		request.setAttribute("steper", steper);
 		//others.jspにフォワードする

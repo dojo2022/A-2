@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -68,6 +69,7 @@ public class TimelineServlet extends HttpServlet {
 			st.setDeclarationId(ct.getDecsId());
 			steper.add(st);
 		}
+
 		//timelineListから不要な宣言を削除する
 		int i = 0;
 		int k = 1;
@@ -97,6 +99,26 @@ public class TimelineServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+		response.setHeader("Cache-Control", "nocache");
+		response.setCharacterEncoding("utf-8");
+
+		// 送信されたデータの取得 int decId int userId
+		int decsId = Integer.parseInt(request.getParameter("data1"));
+		String usersId = request.getParameter("data2");
+		String buttonId = request.getParameter("data3");
+
+		System.out.println(decsId);
+		System.out.println(usersId);
+		System.out.println(buttonId);
+
+		//JSPに返却する値を作成する。値はoutの中に格納する
+		PrintWriter out = response.getWriter();
+		//outの中に持ってきたデータを連結したものを入れる
+		//勝手にJSPに渡り、dataという名前で使用することができる
+		out.print("宣言ID:" + decsId +","+ "ユーザーID:" + usersId +","+ "ボタンValue:" + buttonId);
+		return;
 
 	}
 

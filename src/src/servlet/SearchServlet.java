@@ -64,7 +64,11 @@ public class SearchServlet extends HttpServlet {
 
 
 		// あいまい検索がされたとき
-		if (request.getParameter("submit") != null) {
+		if (request.getParameter("str") != null) {
+
+//		String test = request.getParameter("str");
+//		System.out.println(test);
+//		System.out.println("aaa");
 
 		// 入力された文字列をリクエストパラメータから取得
 		String search = request.getParameter("str");
@@ -134,6 +138,5 @@ public class SearchServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 		dispatcher.forward(request, response);
 		}
-
 	}
 }

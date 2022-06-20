@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
+import dao.ReactionsDao;
 import model.CommonTable;
 import model.Steps;
 
@@ -109,15 +110,20 @@ public class TimelineServlet extends HttpServlet {
 		String usersId = request.getParameter("data2");
 		String buttonId = request.getParameter("data3");
 
-		System.out.println(decsId);
-		System.out.println(usersId);
-		System.out.println(buttonId);
-
+		//ReactionsDaoをインスタンス化
+		ReactionsDao rd = new ReactionsDao();
+		boolean result = rd.insertReaction(usersId, decsId);
+		String resString = String.valueOf(result);
 		//JSPに返却する値を作成する。値はoutの中に格納する
 		PrintWriter out = response.getWriter();
+		if(result) {
+			out.print(resString);
+		}else {
+			out.print(resString);
+		}
+
 		//outの中に持ってきたデータを連結したものを入れる
 		//勝手にJSPに渡り、dataという名前で使用することができる
-		out.print("宣言ID:" + decsId +","+ "ユーザーID:" + usersId +","+ "ボタンValue:" + buttonId);
 		return;
 
 	}

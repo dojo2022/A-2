@@ -21,14 +21,14 @@
  				<tr>
   			</c:if>
 
+
 			<td>
-				<div>
-					<details>
+				<details>
 					<summary>
-					<p>宣言：${t.decsDeclaration}</p>
-					<p>タグno:${t.decsTag}</p>
-					<p>ユーザーid:${t.usersId}</p>
-					<p>ユーザーアイコン:${t.usersIcon}</p>
+					宣言：${t.decsDeclaration}
+					タグno:${t.decsTag}
+					ユーザーid:${t.usersId}
+					ユーザーアイコン:${t.usersIcon}
 					</summary>
 					<c:forEach var="v" items="${steper}" varStatus = "st">
 						<c:if test="${t.decsId == v.declarationId}">
@@ -36,14 +36,13 @@
 							<p>達成:${v.achieveFlag}</p>
 						</c:if>
 					</c:forEach>
-					</details>
-						<input type="hidden" value="${t.decsId}" name="decsId" class="decsId">
-						<input type="hidden" value="${t.usersId}" name="usersId" class="usersId">
-						<input type="hidden" value="${status.index}" >
-						<input type="button" value="リアクション" class="buttonId" onclick="goAjax()">
+				</details>
+						<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
+						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
+						<input type="button" value="リアクション" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+						<!--  <input type="button" value="リアクション" id="buttonId${status.index}" onclick="goAjax('${status.index}')"> -->
 						<!--  <input type="button" value="ブックマーク"  class="buttonId" onclick="goAjax()"> -->
-						<div class="test">a</div>
-				</div>
+						<div id="test${status.index}">ここが書き変わる</div>
 			</td>
 
 			<c:if test="${status.index % 1 != 0}">
@@ -55,13 +54,12 @@
 	</table>
 
 	<script>
-		function goAjax(){
+		function goAjax(indexNo){
 			alert("functionはいったよ！");
 			//入力値を取得してくる
-			let index = 0;
-			let usersId = document.getElementsByClassName('usersId')[index].value;
-			let decsId = document.getElementsByClassName('decsId')[index].value;
-			let buttonId = document.getElementsByClassName('buttonId')[index].value
+			let usersId = document.getElementById('usersId' + indexNo).value;
+			let decsId = document.getElementById('decsId' + indexNo).value;
+			let buttonId = document.getElementById('reaction' + indexNo).value;
 
 			//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
 			let postData = {data1:decsId,data2:usersId,data3:buttonId}
@@ -85,9 +83,9 @@
 			   //非同期通信が成功したときの処理
 			})
             .done(function(data) {
-            	alert("成功1");
+            	alert("成功");
 				// 今回は上の<div id="test"></div>の中に返ってきた文字列を入れる
-				document.getElementsByClassName("test")[index].innerText=data;
+					document.getElementById('test' + indexNo).innerText = data;
 			  })
 			   //非同期通信が失敗したときの処理
 			  .fail(function() {

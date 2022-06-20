@@ -19,7 +19,7 @@
 					ID
 				</td>
 				<td>
-					<input type="text" name="id" required>
+					<input type="text" name="id" required minlength="1" maxlength="10">
 				</td>
 			</tr>
 
@@ -28,7 +28,7 @@
 					PW
 				</td>
 				<td>
-					<input type="password" name="pw" required>
+					<input type="password" name="pw" required minlength="4" maxlength="10">
 				</td>
 			</tr>
 		</table>

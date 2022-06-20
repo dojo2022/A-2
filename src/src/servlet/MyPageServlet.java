@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
 import model.CommonTable;
+import model.Steps;
 
 /**
  * Servlet implementation class MyPageServlet
@@ -31,26 +32,60 @@ public class MyPageServlet extends HttpServlet {
 	response.sendRedirect("/killerQueen/LoginServlet");
 				return;
 	}*/
-
-//セッションスコープをインスタンス化
-	HttpSession session = request.getSession();
-
-//session.setAttribute("id", "1");
-//Daoをインスタンス化
-	DeclarationsDao dDao = new DeclarationsDao();
-
-//セッションスコープの自分のIDから検索処理
-//String id = (String)session.getAttribute("id");
-
-	String id = "1";//仮で入れてるだけ。後で消す。
-
-	//検索処理
-	ArrayList<CommonTable> pageList = dDao.myPageDec(id);
+		//セッションを使えるようにする
+		HttpSession session = request.getSession();
+		//セッションスコープから自分のID取得
+		String id = (String)session.getAttribute("id");
 
 
-	//リクエストスコープに保存
-	request.setAttribute("pageList", pageList);
+		//テスト用！！
+		/*
+		session.setAttribute("id", "id");
+		session.setAttribute("name", "Name");
+		session.setAttribute("icon", 1);
+		session.setAttribute("comment", "comment");*/
 
+		//テスト用
+		String test = "1";
+
+		//DeclarationsDaoのインスタンスを作成
+		DeclarationsDao decdao = new DeclarationsDao();
+
+		//ArrayList<CommonTable>のインスタンスを作成
+		ArrayList<CommonTable> myPageList = decdao.myPageDec(test);
+
+
+		//MypageListからstep項目を抽出する
+		ArrayList<Steps> steper = new ArrayList<Steps>();
+		for(int i = 0; i < myPageList.size(); i++) {
+			CommonTable ct = myPageList.get(i);
+			Steps st = new Steps();
+			st.setStep(ct.getStepsStep());
+			st.setAchieveFlag(ct.isStepsAchieveFlag());
+			st.setDeclarationId(ct.getDecsId());
+			steper.add(st);
+		}
+
+		//timelineListから（DECIDがかぶっている箇所）不要な宣言を削除する
+		int i = 0;
+		int k = 1;
+		while(i < myPageList.size()) { //リストが０行以上だったら
+			while(k < myPageList.size()) { //リストが１行以上
+				//マイリストのi行目とi+1行目のDecsidが同じだったら行削除、違えばプラス１
+				if(myPageList.get(i).getDecsId() == myPageList.get(k).getDecsId()) {
+					myPageList.remove(k);
+				}else {
+					i++;
+					k++;
+				}
+			}
+			break;
+		}
+
+
+		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
+		request.setAttribute("myPageList", myPageList);
+		request.setAttribute("steper", steper);
 
 
 	//マイページにフォワード

@@ -36,7 +36,7 @@ public class SettingServlet extends HttpServlet {
 	// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/KillerQueen/LoginServlet");
+			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
 		}
 
@@ -57,8 +57,6 @@ public class SettingServlet extends HttpServlet {
 		// 「id」はセッションスコープ(attribute区画)から取得
 		String id = (String)session.getAttribute("id");
 
-System.out.println(name);
-System.out.println("aaa");
     // もしユーザー名が空になってしまったら設定画面に戻る
         if (name.equals("")) {
 
@@ -81,10 +79,6 @@ System.out.println("aaa");
 
 			// 変更成功(UsersDaoからtrueが返ってきた場合)
 			if (ans == true) {
-
-				/*// もともとのセッションスコープを破棄
-				session.invalidate();
-				*/
 
 				// セッションスコープ(attribute区画)にidを格納する
 				session.setAttribute("name", name);

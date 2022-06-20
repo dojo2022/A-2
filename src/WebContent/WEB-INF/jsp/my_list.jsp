@@ -11,10 +11,13 @@
 <p>マイリストの表示</p>
 <h1>${result.message}</h1>
 <c:forEach var="e" items="${decList }">
+<details>
+	<summary>
 	宣言ID:${e.id }
 	宣言：${e.declaration}
 	タグ：${e.tag }
 	非公開：${e.privateFlag }
+	</summary>
 	<c:forEach var="t" items="${pageList }" >
 		<c:if test="${t.stepsDecId == e.id }">
 		ユーザーID：${t.usersId}<br>
@@ -22,9 +25,10 @@
 		ステップID：${t.stepsId}<br>
 		ステップ：${t.stepsStep}<br>
 		ステップ達成：${t.stepsAchieveFlag}<br>
-		ステップ外部キー${t.stepsDecId }<br>
+		ステップ外部キー:${t.stepsDecId }<br>
 		</c:if>
 	</c:forEach>
+</details>
 </c:forEach>
 <form method="POST" action="/killerQueen/MyListServlet">
 <!-- 宣言＆ステップの新規登録 -->

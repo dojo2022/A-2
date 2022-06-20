@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ReactionsDao {
 
 	//insertReactionでリアクションが押された時にデータを一つ追加する
-	public boolean insertReaction(int userId, int decId) {
+	public boolean insertReaction(String userId, int decId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -26,7 +26,7 @@ public class ReactionsDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
-			pStmt.setInt(1, userId);
+			pStmt.setString(1, userId);
 			pStmt.setInt(2, decId);
 
 			//SQL文を実行する（DBに送る）
@@ -61,7 +61,7 @@ public class ReactionsDao {
 
 
 	//deleteReactionメソッドでリアクションを取り消す
-	public boolean deleteReaction(int userId, int decId) {
+	public boolean deleteReaction(String userId, int decId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -78,7 +78,7 @@ public class ReactionsDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
-			pStmt.setInt(1, userId);
+			pStmt.setString(1, userId);
 			pStmt.setInt(2, decId);
 
 			//SQL文を実行する（DBに送る）

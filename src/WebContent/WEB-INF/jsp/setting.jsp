@@ -13,43 +13,43 @@
 		<form method="POST" action="SettingServlet">
 			<p>アイコン</p>
 			<div class="radio">
-				<input id="radio-1" class="display" type="radio" name="icon" value= 0>
+				<input type="radio" name="icon" value= 0 id="radio-1" class="display" checked>
 				<label for="radio-1" class="radio-label">
 					<img src="/killerQueen/img/icon/userIcon.png">
 				</label>
 			</div>
 			<div class="radio">
-				<input id="radio-2" class="display" type="radio" name="icon" value= 1>
+				<input type="radio"  name="icon" value= 1 id="radio-2" class="display">
 				<label for="radio-2" class="radio-label">
 					<img src="/killerQueen/img/icon/man.png">
 				</label>
 			</div>
 			<div class="radio">
-				<input id="radio-3" class="display" type="radio" name="icon" value= 2>
+				<input type="radio"  name="icon" value= 2 id="radio-3" class="display">
 				<label for="radio-3" class="radio-label">
 					<img src="/killerQueen/img/icon/woman.png">
 				</label>
 			</div>
 			<br>
-			名前<input type="text" name="name"  required>
+			名前<input type="text" name="name" required value="${name}" minlength="1" maxlength="10">
 			<br>
-			ひとこと<input type="text" name="comment">
+			ひとこと<input type="text" name="comment" value="${comment}" maxlength="30">
 			<br>
 			<p>テーマカラー</p>
 			<div class="color">
-				<input id="color-1" class="display" type="radio" name="themecolor" value= 0>
+				<input type="radio" name="themecolor" value= 0 id="color-1" class="display" checked>
 				<label for="color-1" class="color-label">
 					<img src="/killerQueen/img/icon/gleenHeart.png">
 				</label>
 			</div>
 			<div class="color">
-				<input id="color-2" class="display" type="radio" name="themecolor" value= 1>
+				<input type="radio" name="themecolor" value= 1 id="color-2" class="display">
 				<label for="color-2" class="color-label">
 					<img src="/killerQueen/img/icon/redHeart.png">
 				</label>
 			</div>
 			<div class="color">
-				<input id="color-3" class="display" type="radio" name="themecolor" value= 2>
+				<input  type="radio" name="themecolor" value= 2 id="color-3" class="display">
 				<label for="color-3" class="color-label">
 					<img src="/killerQueen/img/icon/yellowHeart.png">
 				</label>

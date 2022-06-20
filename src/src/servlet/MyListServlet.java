@@ -46,33 +46,30 @@ public class MyListServlet extends HttpServlet {
 		//for文でインスタンスで取り出す
 		//宣言が入るArrayListとステップが入るArrayListを作成
 		ArrayList<Declarations> decList = new ArrayList<Declarations>();
-		ArrayList<Steps> stepList =  new ArrayList<Steps>();
+		ArrayList<Steps> stepList = new ArrayList<Steps>();
 
 		//pageListから宣言関係のデータのみをdecListに入れる
-		for(int i=0; i<pageList.size(); i++) {
+		for (int i = 0; i < pageList.size(); i++) {
 			CommonTable ct = pageList.get(i);
 			//CommonTableからDeclarationsテーブルの内容だけ取得
 			//Declartionsビーンズに格納する
 			Declarations dec = new Declarations();
 			dec.setId(ct.getDecsId());
-			dec.setDeclaration( ct.getDecsDeclaration());
+			dec.setDeclaration(ct.getDecsDeclaration());
 			dec.setTag(ct.getDecsTag());
 			dec.setPrivateFlag(ct.isDecsPrivateFlag());
 			//DeclarationsビーンズをArrayListに格納する
 			decList.add(dec);
 		}
 		//decListを選別する
-		for(int i = 0; i<decList.size(); i++) {
-			for(int j=1; j<decList.size(); j++) {
-				if(decList.get(i).getDeclaration()== decList.get(j).getDeclaration()) {
+		for (int i = 0; i < decList.size(); i++) {
+			for (int j = 1; j < decList.size(); j++) {
+				if (decList.get(i).getDeclaration() == decList.get(j).getDeclaration()) {
 					decList.remove(j);
 				}
 			}
 			System.out.println(decList.get(i).getDeclaration());
 		}
-
-
-
 
 		/*CommonTable ct = pageList.get(0);//一個目のArrayListを取得
 
@@ -104,7 +101,6 @@ public class MyListServlet extends HttpServlet {
 
 		}*/
 
-
 		//取ってきたデータをリクエストスコープへ保存
 		request.setAttribute("pageList", pageList);
 		request.setAttribute("decList", decList);
@@ -128,7 +124,7 @@ public class MyListServlet extends HttpServlet {
 
 		String button = request.getParameter("bt");
 		//行われた処理によって①～④条件分岐
-		if(button.equals("新規登録")) {
+		if (button.equals("新規登録")) {
 			//①新規作成
 
 			//セッションスコープの取得
@@ -149,7 +145,7 @@ public class MyListServlet extends HttpServlet {
 			boolean stepResult = stepsDao.createStep(step);
 
 			//宣言かステップどちらか登録に失敗した場合(トランザクション処理？)
-			if(decResult== false || stepResult== false) {
+			if (decResult == false || stepResult == false) {
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 				Result result = new Result();
 				result.setMessage("登録に失敗しました。");
@@ -168,7 +164,7 @@ public class MyListServlet extends HttpServlet {
 		}
 		//②編集
 		// リクエストパラメータを取得する
-		if(button.equals("編集")) {
+		if (button.equals("編集")) {
 			//選択されたデータを受け取る
 			String userId = (String) session.getAttribute("id");
 			request.setCharacterEncoding("UTF-8");
@@ -176,8 +172,7 @@ public class MyListServlet extends HttpServlet {
 			int tag = Integer.parseInt(request.getParameter("tag"));
 			int privateFlag = Integer.parseInt(request.getParameter("private_flag"));
 
-			int decId= Integer.parseInt(request.getParameter("declaration_id"));
-
+			int decId = Integer.parseInt(request.getParameter("declaration_id"));
 
 			String step = request.getParameter("step");
 
@@ -187,10 +182,10 @@ public class MyListServlet extends HttpServlet {
 			boolean decResult = decDao.editDec(declaration, tag, privateFlag, userId);
 			//		ステップを編集する処理
 			StepsDao stepsDao = new StepsDao();
-			boolean stepResult = stepsDao.editStep(step,decId);
+			boolean stepResult = stepsDao.editStep(step, decId);
 
 			//宣言かステップどちらか編集に失敗した場合(トランザクション処理？)
-			if(decResult== false || stepResult== false) {
+			if (decResult == false || stepResult == false) {
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 				Result result = new Result();
 				result.setMessage("宣言とステップの編集に失敗しました。");
@@ -201,16 +196,71 @@ public class MyListServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
 			dispatcher.forward(request, response);
 		}
-		//③達成
-		if(button.equals("達成")) {
+		//③宣言達成
+//		達成ボタンが押されたら、declaration_idを取ってくる
+		if (button.equals("達成")) {
+			//選択されたデータを受け取る
+			String userId = (String) session.getAttribute("id");
+			request.setCharacterEncoding("UTF-8");
+			int decId = Integer.parseInt(request.getParameter("declaration_id"));
+
+			//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
+			//宣言を編集する処理
+			DeclarationsDao decDao = new DeclarationsDao();
+			boolean decResult = decDao.achiveDec(decId);
+//			L変数を用意してT/Fを用意する必要がある
+
+			//登録に失敗した場合
+			if(decResult==false) {
+				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+//				beansに入っているエラーメッセージのデータをjspに送りたい
+				Result result = new Result();
+				result.setMessage("宣言の達成登録に失敗しました。");
+				request.setAttribute("result",result);
+
+			}
+            //MyListservletでフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+			dispatcher.forward(request, response);
+		}
+			/*
+			 * 選択されたデータを受け取る
+			CommonTable.javaに格納されたデータをDeclarationsDao.javaにもっていき、データベースにアクセスする
+			達成（achieve_flag）を０→１へupdateする
+			MyListServletへフォワードする
+
+			 */
+
+	//④削除
+	if(button.equals("削除")) {
+		//選択されたデータを受け取る
+		String userId = (String) session.getAttribute("id");
+		request.setCharacterEncoding("UTF-8");
+		int decId = Integer.parseInt(request.getParameter("declaration_id"));
+
+		//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
+		//宣言を削除する処理
+		DeclarationsDao decDao = new DeclarationsDao();
+		boolean decResult = decDao.deleteDec(decId);
+        //L変数を用意してT/Fを用意する必要がある
+
+		//削除に失敗した場合
+		if(decResult==false) {
+			// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+        //beansに入っているエラーメッセージのデータをjspに送りたい
+			Result result = new Result();
+			result.setMessage("宣言の削除に失敗しました。");
+			request.setAttribute("result",result);
 
 		}
+        //MyListservletでフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+		dispatcher.forward(request, response);
+	}
 
-		//④削除
-		if(button.equals("削除")) {
-
-		}
 
 	}
 
 }
+
+

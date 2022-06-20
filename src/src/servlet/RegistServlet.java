@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import dao.UsersDao;
 
 @WebServlet("/RegistServlet")
@@ -40,8 +42,10 @@ public class RegistServlet extends HttpServlet {
 		// 登録処理(isRegistOKメソッド)
 		boolean ans = usersDao.isRegistOk(id, pw, name);
 
+		ObjectMapper mapper = new ObjectMapper();
 		// 登録成功(UsersDaoからtrueが返ってきた場合)
 		if (ans == true) {
+
 			String data = "true";
 
 		}

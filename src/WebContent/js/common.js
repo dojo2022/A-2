@@ -1,7 +1,7 @@
 
+console.log("aaaaaaa");
 
-
-(function() {
+$(function() {
   function toggleNav() {
     var body = document.body;
     var hamburger = document.getElementById("js-hamburger");

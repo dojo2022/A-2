@@ -10,6 +10,7 @@
 <title>タイムライン</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/jsp/common.jsp"%>
 	<div>
 		<!-- タイムラインとブックマークのリンク -->
 		<p><a href ="/killerQueen/TimelineServlet">タイムライン</a></p>

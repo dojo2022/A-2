@@ -18,11 +18,27 @@
 	宣言：${e.declaration}
 	タグ：${e.tag }
 	非公開：${e.privateFlag }
+	<c:forEach var="s" items="${reacter}" >
+			<c:if test="${s.decsId == e.id}">
+				リアクションに応じて画像を変えるよ:${s.countReaction}
+				<c:if test="${s.countReaction==0}">
+				ゼロだよ<img src="/killerQueen/img/icon/whiteHeart.png">
+				</c:if>
+				<c:if test="${s.countReaction>0 && s.countReaction<=4}">
+				1から４！！<img src="/killerQueen/img/icon/yellowHeart.png">
+				</c:if>
+				<c:if test="${s.countReaction>4 && s.countReaction<=9}">
+				５から９！！<img src="/killerQueen/img/icon/gleenHeart.png">
+				</c:if>
+				<c:if test="${s.countReaction>9}">
+				10以上！！<img src="/killerQueen/img/icon/redHeart.png">
+				</c:if>
+			</c:if>
+		</c:forEach>
 	</summary>
 	<c:forEach var="t" items="${pageList }" >
 		<c:if test="${t.stepsDecId == e.id }">
 		ユーザーID：${t.usersId}<br>
-		アイコン：${t.usersIcon}<br>
 		ステップID：${t.stepsId}<br>
 		ステップ：${t.stepsStep}<br>
 		ステップ達成：${t.stepsAchieveFlag}<br>
@@ -35,6 +51,8 @@
 </form>
 </details>
 </c:forEach>
+
+
 <!-- 宣言＆ステップの新規登録 -->
 <button id="open_modal" name="open_modal_btn">新規登録へ</button>
 <form method="POST" action="/killerQueen/MyListServlet">
@@ -56,21 +74,31 @@
 
 
 <!-- 宣言＆ステップの編集 -->
-DecID<input type ="hidden" name="declaration_id">
-宣言：<input type = "text" name="declaration"><br>
-タグ：<input type = "text" name="tag"><br>
-非公開<input type = "text" name="private_flag"><br>
-ステップ<input type = "text" name="step"><br>
-<input type="submit" value="編集" name="bt"><br>
-
-
-<!-- 宣言の達成
-<input type="submit" value="達成" name="bt"><br>
-     宣言の削除
-<input type="submit" value="削除" name="bt"><br>-->
-
+<c:forEach var="e" items="${decList }">
+<div id="edit_modal" class="modal">
+	<div class="modal_content">
+		<span class='close2'>X</span>
+		<div class="modal_body">
+		DecID:<input type ="text" name="declaration_id" value="${e.id }">
+		宣言：<input type = "text" name="declaration" value="${e.declaration}"><br>
+		タグ：<input type = "text" name="tag" value="${e.tag }"><br>
+		非公開:<input type = "text" name="private_flag" value="${e.privateFlag }"><br>
+		<c:forEach var="t" items="${pageList }" >
+			<c:if test="${t.stepsDecId == e.id }">
+			ステップID:<input type="text" name="step_id" value="${t.stepsId}">
+			ステップ:<input type = "text" name="step" value="${t.stepsStep}"><br>
+			ステップ達成：<input type="text" name="step_achive_flag" value="${t.stepsAchieveFlag}"><br>
+			</c:if>
+		</c:forEach>
+	<input type="submit" value="編集" name="bt"><br>
+	</div>
+	</div>
+</div>
+</c:forEach>
 </form>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
+
+
 <!-- モーダル表示のjs -->
 <script>
 'use strict;'
@@ -94,6 +122,29 @@ window.onclick = function(event) {
 		modal.style.display = 'none';
 	}
 };
+
+
+//編集画面用のモーダル
+var modal2 = document.getElementById('edit_modal');
+var btn2 = document.getElementById('open_modal2');
+var close2 = modal.getElementsByClassName('close2')[0];
+//新規登録へを押したらモーダルを表示する
+btn2.onclick = function() {
+	  modal2.style.display = 'block';
+};
+//×を押したらモーダルを閉じる
+close2.onclick = function() {
+		  modal2.style.display = 'none';
+};
+
+// When the user clicks outside the modal -- close it.
+window.onclick = function(event) {
+	if (event.target == modal2) {
+
+		modal2.style.display = 'none';
+	}
+};
+
 
 </script>
 <!-- テキストボックス追加のjs -->

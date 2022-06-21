@@ -9,12 +9,17 @@
 
 
 <style>
+body { background-color: #C0C8D5; }
+h1 { text-align:center;}
+.search {
+	margin-left: auto;
+ 	margin-right: auto; }
+
+/* アコーディオンメニュー */
 nav{ display: none; }
 .nav-open{
 	padding: 15px;
-	color: #fff;
 	font-size: 20px;
-	background: #2073c8;
 	position: relative;
 }
 .nav-open::before{/* 閉じている時 */
@@ -25,7 +30,33 @@ nav{ display: none; }
 .nav-open.active::before{/* 開いている時 */
 	content: "－";
 }
+
+/* 宣言リスト */
+.list {
+	background-color: #FFFFFF;
+	border			: 1px solid;
+	border-radius	: 20px;
+	border-color	: #8989ff;
+	margin-left		: 100px;
+	margin-right	: 130px;
+	margin-top		: 50px;
+	padding			: 40px;
+	box-shadow		: 6px 6px 5px #7f7fff;
+	}
 </style>
+
+<!--  アコーディオンメニューのjQuery -->
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav').slideToggle();
+		});
+	});
+</script>
+
 
 </head>
 <body>
@@ -35,7 +66,21 @@ nav{ display: none; }
 <h1>検索結果</h1>
 <hr>
 
+	<form method="POST" action="/killerQueen/SearchServlet">
+		<table class="search">
+		<tr>
+			<td>
+				<input type="text" name="str" autocomplete="off">
+			</td>
+			<td class="search_button">
+				<input type="image" src="/killerQueen/img/icon/select.png"  alt="検索" value="検索" width="30" height="30">
+			</td>
+		</tr>
+		</table>
+	</form>
+
 <c:forEach var="p" items="${pageList}">
+<div class="list">
 	<p class="nav-open">
 			${p.usersIcon}
 			# ${p.decsTag}
@@ -51,23 +96,10 @@ nav{ display: none; }
 			</c:forEach>
 		</ul>
 		</nav>
+</div>
 </c:forEach>
 
-
 </main>
-
-<script src="js/jquery-1.12.4.min.js"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-	$(function(){
-		//クリックで動く
-		$('.nav-open').click(function(){
-			$(this).toggleClass('active');
-			$(this).next('nav').slideToggle();
-		});
-	});
-</script>
 
 </body>
 </html>

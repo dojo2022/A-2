@@ -17,6 +17,7 @@ h1 { text-align:center;}
 
 /* アコーディオンメニュー */
 nav{ display: none; }
+ul{list-style: none;}
 .nav-open{
 	padding: 15px;
 	font-size: 20px;
@@ -33,16 +34,41 @@ nav{ display: none; }
 
 /* 宣言リスト */
 .list {
+	display			: block;
+	width			: 700px;
 	background-color: #FFFFFF;
 	border			: 1px solid;
 	border-radius	: 20px;
 	border-color	: #8989ff;
-	margin-left		: 100px;
-	margin-right	: 130px;
+	margin-left		: auto;
+	margin-right	: auto;
 	margin-top		: 50px;
 	padding			: 40px;
 	box-shadow		: 6px 6px 5px #7f7fff;
-	}
+}
+
+/* hoverすると少し反応する*/
+.list:hover {
+	top:-3px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.user_botton img {
+float: left;
+width : 50px;
+height : 50px;
+}
+
+.decla_tag{ font-size: 15px; }
+.decla_list{ font-weight:bold; }
+
+
+.step_list img{
+width : 25px;
+height : 25px;
+}
+
+
 </style>
 
 <!--  アコーディオンメニューのjQuery -->
@@ -79,23 +105,54 @@ nav{ display: none; }
 		</table>
 	</form>
 
-<c:forEach var="p" items="${pageList}">
+<c:forEach var="t" items="${pageList}">
 <div class="list">
-	<p class="nav-open">
-			${p.usersIcon}
-			# ${p.decsTag}
-			${p.decsDeclaration}
-		</p>
-
-		<nav>
-		<ul>
-			<c:forEach var="s" items="${stepList}" >
-				<c:if test="${p.decsId == s.declarationId }">
-				<li>${s.achieveFlag} ${s.step}</li>
+	<div class="nav-open">
+		<div class="user_botton">
+			<c:if test="${t.usersIcon==0}">
+			<img src="/killerQueen/img/icon/userIcon.png">
 			</c:if>
-			</c:forEach>
-		</ul>
-		</nav>
+			<c:if test="${t.usersIcon==1}">
+			<img src="/killerQueen/img/icon/man.png">
+			</c:if>
+			<c:if test="${t.usersIcon==2}">
+			<img src="/killerQueen/img/icon/woman.png">
+			</c:if>
+		</div>
+
+		<div class="dec">
+		<div class="decla_tag">
+			<c:if test="${t.decsTag == 0}">#勉強</c:if>
+			<c:if test="${t.decsTag == 1}">#仕事</c:if>
+			<c:if test="${t.decsTag == 2}">#趣味</c:if>
+			<c:if test="${t.decsTag == 3}">#ダイエット</c:if>
+			<c:if test="${t.decsTag == 4}">#運動</c:if>
+			<c:if test="${t.decsTag == 5}">#健康</c:if>
+			<c:if test="${t.decsTag == 6}">#美容</c:if>
+			<c:if test="${t.decsTag == 7}">#日常</c:if>
+			<c:if test="${t.decsTag == 8}">#その他</c:if>
+		</div>
+
+		<div class="decla_list">
+			${t.decsDeclaration}
+		</div>
+		</div>
+	</div>
+
+	<nav class="step_list">
+	<ul>
+		<c:forEach var="s" items="${stepList}" >
+		<c:if test="${t.decsId == s.declarationId }">
+
+	<li>
+		<c:if test="${s.achieveFlag==false}"><img src="/killerQueen/img/icon/delete.png"></c:if>
+		<c:if test="${s.achieveFlag==true}"><img src="/killerQueen/img/icon/check.png"></c:if>
+		${s.step}
+	</li>
+		</c:if>
+		</c:forEach>
+	</ul>
+	</nav>
 </div>
 </c:forEach>
 

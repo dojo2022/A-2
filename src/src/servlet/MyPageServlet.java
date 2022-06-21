@@ -28,6 +28,14 @@ public class MyPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
+
+//テスト
+session.setAttribute("id", "1");
+session.setAttribute("name", "チョコラータ");
+session.setAttribute("icon", 1);
+session.setAttribute("comment", "頑張ろう～！");
+
+
 		if (session.getAttribute("id") == null) {
 		response.sendRedirect("/killerQueen/LoginServlet");
 					return;

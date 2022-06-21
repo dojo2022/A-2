@@ -10,54 +10,67 @@
 </head>
 <body>
 <!-- ユーザー情報 -->
-<p>ID: ${id}</p>
-<p>NAME: ${name}</p>
+<!-- ID: ${id}使わない -->
+<table>
+<tr>
+	<td rowspan="3">
+		<div class="my_icon">
+		<c:if test="${icon==0}">
+		<img src="/killerQueen/img/icon/userIcon.png" width="40px">
+		</c:if>
+		<c:if test="${icon==1}">
+		<img src="/killerQueen/img/icon/man.png" width="40px">
+		</c:if>
+		<c:if test="${icon==2}">
+		<img src="/killerQueen/img/icon/woman.png" width="40px">
+		</c:if>
+		</div>
+	</td>
+	<td>${name}</td>
+	<td><a href="SettingServlet"><img src="/killerQueen/img/icon/setting.png" width="20px"></a></td>
+</tr>
+<tr>
+	<td colspan="2">
+		${comment}
+	</td>
+</tr>
+<tr>
+	<td>
+		ゲージ
+	</td>
+	<td><c:if test="${countAchieve<=10}">
+		<img src="/killerQueen/img/icon/beginner.png" width="30px">
+		</c:if>
+		<c:if test="${countAchieve>10 && countAchieve<=50}">
+		<img src="/killerQueen/img/icon/bronze.png" width="30px">
+		</c:if>
+		<c:if test="${countAchieve>50 && countAchieve<=99}">
+		<img src="/killerQueen/img/icon/silver.png" width="30px">
+		</c:if>
+		<c:if test="${countAchieve>99}">
+		<img src="/killerQueen/img/icon/gold.png" width="30px">
+		</c:if>
+	</td>
 
-<p>ICON: ${icon}
-<c:if test="${icon==0}">
-0のとき<img src="/killerQueen/img/icon/userIcon.png">
-</c:if>
-<c:if test="${icon==1}">
-1のとき<img src="/killerQueen/img/icon/man.png">
-</c:if>
-<c:if test="${icon==2}">
-2のとき<img src="/killerQueen/img/icon/woman.png">
-</c:if>
-</p>
+</tr>
+</table>
 
-<p>COMMENT: ${commment}</p>
+--------------------------------------------------------
 
-<p>
-ランク:${countAchieve}
-<c:if test="${countAchieve<=10}">
-0から10まで<img src="/killerQueen/img/icon/beginner.png">
-</c:if>
-<c:if test="${countAchieve>10 && countAchieve<=50}">
-10から50<img src="/killerQueen/img/icon/bronze.png">
-</c:if>
-<c:if test="${countAchieve>50 && countAchieve<=99}">
-51から99<img src="/killerQueen/img/icon/silver.png">
-</c:if>
-<c:if test="${countAchieve>99}">
-100以上だよ<img src="/killerQueen/img/icon/gold.png">
-</c:if>
-</p>
-
-<a href="SettingServlet">設定！！</a>
 
 
 <c:forEach var="t" items="${myPageList}" >
 <details>
 	<summary><%int step=0; %><%int achieve=0; %>
-		「アイコン
+		「
 		<c:if test="${icon==0}">
-		0の画像
+		<img src="/killerQueen/img/icon/userIcon.png" width="20px">
 		</c:if>
 		<c:if test="${icon==1}">
-		1の画像
+		<img src="/killerQueen/img/icon/man.png" width="20px">
 		</c:if>
 		<c:if test="${icon==2}">
-		2の画像
+		<img src="/killerQueen/img/icon/woman.png" width="20px">
 		</c:if>」
 
 

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/killerQueen/css/timeline.css">
 <title>タイムライン</title>
 </head>
 <body>
@@ -40,14 +41,18 @@
 						<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
 						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
 						<c:if test="${t.reactionsId == 0}">
-						<input type="button" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				<div id="change${status.index}">
+						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
 						</c:if>
 						<c:if test="${t.reactionsId != 0}">
-						<input type="button" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				<div id="change${status.index}">
+						<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
 						</c:if>
 						<!--  <input type="button" value="リアクション" id="buttonId${status.index}" onclick="goAjax('${status.index}')"> -->
 						<!--  <input type="button" value="ブックマーク"  class="buttonId" onclick="goAjax()"> -->
-						<div id="test${status.index}">ここが書き変わる</div>
+						<p id="test${status.index}">"${t.decsId}"</p>
 			</td>
 
 			<c:if test="${status.index % 1 != 0}">

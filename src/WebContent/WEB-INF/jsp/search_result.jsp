@@ -7,21 +7,96 @@
 <meta charset="UTF-8">
 <title>検索結果</title>
 
+
 <style>
+body { background-color: #C0C8D5; }
+h1 { text-align:center;}
+.search {
+	margin-left: auto;
+ 	margin-right: auto; }
+
+/* アコーディオンメニュー */
+nav{ display: none; }
+ul{list-style: none;}
+.nav-open{
+	font-size: 20px;
+	position: relative;
+	padding-bottom  : 50px;
+}
+.nav-open::before{/* 閉じている時 */
+	position: absolute;
+	right: 20px;
+}
+
+
+/* 宣言リスト */
+.list {
+	display			: block;
+	width			: 700px;
+	background-color: #FFFFFF;
+	border			: 1px solid;
+	border-radius	: 20px;
+	border-color	: #8989ff;
+	margin-left		: auto;
+	margin-right	: auto;
+	margin-top		: 50px;
+	padding			: 40px;
+	box-shadow		: 6px 6px 5px #7f7fff;
+}
+
+/* hoverすると少し反応する*/
+.list:hover {
+	top:-3px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.user_botton img {
+float: left;
+width : 50px;
+height : 50px;
+}
+
+.dexala_text {
+	float: left;
+	margin-left : 30px;
+}
+.decla_tag{ font-size: 15px; }
+.decla_list{ font-weight:bold; }
+.achieve_rate { float: right; }
+
+.reaction_button img {
+	float: right;
+	width : 25px;
+	height : 25px;
+}
+
+.bookmark_button img{
+	float: right;
+	width : 25px;
+	height : 25px;
+}
+
+.step_list { clear:both; } /*回り込み解除*/
+.step_list img{
+width : 25px;
+height : 25px;
+}
+
 
 </style>
 
+<!--  アコーディオンメニューのjQuery -->
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-$(function () {
-	  // タイトルをクリックすると
-	  $(".js-accordion-title").on("click", function () {
-	    // クリックした次の要素を開閉
-	    $(this).next().slideToggle(300);
-	    // タイトルにopenクラスを付け外しして矢印の向きを変更
-	    $(this).toggleClass("open", 300);
-	  });
+	$(function(){
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav').slideToggle();
+		});
 	});
 </script>
+
 
 </head>
 <body>
@@ -31,29 +106,89 @@ $(function () {
 <h1>検索結果</h1>
 <hr>
 
-<div class="accordion">
-  <div class="accordion-container">
+	<form method="POST" action="/killerQueen/SearchServlet">
+		<table class="search">
+		<tr>
+			<td>
+				<input type="text" name="str" autocomplete="off">
+			</td>
+			<td class="search_button">
+				<input type="image" src="/killerQueen/img/icon/select.png"  alt="検索" value="検索" width="30" height="30">
+			</td>
+		</tr>
+		</table>
+	</form>
 
-<c:forEach var="p" items="${pageList}">
-	<div class="accordion-item">
-    	<div class="accordion-title js-accordion-title">
-		${p.usersIcon}
-		# ${p.decsTag}
-		${p.decsDeclaration}
+<c:forEach var="t" items="${pageList}">
+<div class="list">
+
+	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
+		<div class="user_botton">
+			<c:if test="${t.usersIcon==0}">
+			<img src="/killerQueen/img/icon/userIcon.png">
+			</c:if>
+			<c:if test="${t.usersIcon==1}">
+			<img src="/killerQueen/img/icon/man.png">
+			</c:if>
+			<c:if test="${t.usersIcon==2}">
+			<img src="/killerQueen/img/icon/woman.png">
+			</c:if>
+		</div>
+
+		<div class="dexala_text">
+		<div class="decla_tag">
+			<c:if test="${t.decsTag == 0}">#勉強</c:if>
+			<c:if test="${t.decsTag == 1}">#仕事</c:if>
+			<c:if test="${t.decsTag == 2}">#趣味</c:if>
+			<c:if test="${t.decsTag == 3}">#ダイエット</c:if>
+			<c:if test="${t.decsTag == 4}">#運動</c:if>
+			<c:if test="${t.decsTag == 5}">#健康</c:if>
+			<c:if test="${t.decsTag == 6}">#美容</c:if>
+			<c:if test="${t.decsTag == 7}">#日常</c:if>
+			<c:if test="${t.decsTag == 8}">#その他</c:if>
+		</div>
+
+		<div class="decla_list">
+			${t.decsDeclaration}
+		</div>
+		</div>
+
+		<div class="achieve_rate">
+			<c:forEach var="s" items="${stepList}" >
+			<c:if test="${t.decsId == s.declarationId}">
+				<c:if test="${s.achieveFlag==true}">
+				<%achieve++; %>
+				</c:if>
+				<%step++; %>
+			</c:if>
+			</c:forEach>
+				<%=achieve %>/<%=step %>
+		</div>
+		<div class="reaction_button">
+			<img src="/killerQueen/img/icon/redHeart.png">
+		</div>
+		<div class="bookmark_button">
+			<img src="/killerQueen/img/icon/bookmarkWhite.png">
 		</div>
 	</div>
 
-	<c:forEach var="s" items="${stepList}" >
-		<c:if test="${p.decsId == s.declarationId }">
-		<div class="accordion-content">
-		${s.achieveFlag} ${s.step}
-		</div>
-		</c:if>
-	</c:forEach>
-</c:forEach>
+	<nav class="step_list">
+	<ul>
+		<c:forEach var="s" items="${stepList}" >
+		<c:if test="${t.decsId == s.declarationId }">
 
+	<li>
+		<c:if test="${s.achieveFlag==false}"><img src="/killerQueen/img/icon/delete.png"></c:if>
+		<c:if test="${s.achieveFlag==true}"><img src="/killerQueen/img/icon/check.png"></c:if>
+		${s.step}
+	</li>
+	</c:if>
+	</c:forEach>
+
+	</ul>
+	</nav>
 </div>
-</div>
+</c:forEach>
 
 </main>
 

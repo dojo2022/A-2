@@ -1,6 +1,7 @@
 
 'use strict'
 
+/* 悔しいから一応残すね
 function goAjax(){
 	alert("functionはいったよ！");
 	// 入力値を取得してくる
@@ -44,6 +45,6 @@ function goAjax(){
 			alert("失敗！");
 		});
 }
-
+*/
 
 

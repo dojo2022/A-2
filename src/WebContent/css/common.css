@@ -1,1 +1,117 @@
 @charset "UTF-8";
+
+/* メニュー固定 */
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.line-list {
+  display: block;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-right: 0;
+  margin-left: auto;
+  z-index: 300;
+}
+
+/* ハンバーガーメニューの棒 */
+.line-list span {
+  display: block;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 1px;
+  background: #333;
+}
+.line-list span:nth-child(1) {
+  margin-top: -6px;
+}
+.line-list span:nth-child(3) {
+  margin-top: 6px;
+}
+
+/* ハンバーガーメニューが開くときに×にする */
+.line-list.active span:nth-child(1) {
+  -webkit-transform: translateY(6px) rotate(-45deg);
+  transform: translateY(6px) rotate(-45deg);
+  left: 10px;
+}
+.line-list.active span:nth-child(2) {
+  opacity: 0;
+}
+.line-list.active span:nth-child(3) {
+  -webkit-transform: translateY(-6px) rotate(45deg);
+  transform: translateY(-6px) rotate(45deg);
+  left: 10px;
+}
+
+/* メニューが開いたときの黒い半透明の背景 */
+.menu-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background: #333;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s;
+  cursor: pointer;
+}
+
+/* メニューの中身 */
+.global-nav {
+  position: fixed;
+  right: -320px;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  padding-top: 40px;
+  background: #fff;
+  transition: all 0.6s;
+  z-index: 200;
+  overflow-y: auto;
+}
+.link-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.link-list li {
+  text-align: center;
+  padding: 0 14px;
+}
+.link-list li a {
+  display: block;
+  padding: 20px 0;
+  color: #333;
+}
+.link-list li:hover {
+  background: #464646;
+}
+
+/* メニューが横から開く */
+.nav-open .global-nav {
+  right: 0;
+}
+
+/* メニューが横から開いた時の背景 */
+.nav-open .menu-bg {
+  opacity: 0.8;
+  visibility: visible;
+}
+
+

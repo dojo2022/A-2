@@ -18,7 +18,7 @@
 	宣言：${e.declaration}
 	タグ：${e.tag }
 	非公開：${e.privateFlag }
-	<c:forEach var="s" items="${reacter}" >
+	<c:forEach var="s" items="${reacter}" varstatus="status" >
 			<c:if test="${s.decsId == e.id}">
 				リアクションに応じて画像を変えるよ:${s.countReaction}
 				<c:if test="${s.countReaction==0}">
@@ -45,7 +45,7 @@
 		ステップ外部キー:${t.stepsDecId }<br>
 		</c:if>
 	</c:forEach>
-<button id="open_modal2" name="open_modal_btn2">編集</button>
+<button id="open_modal2" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
 <form method="POST" action="/killerQueen/MyListServlet">
 <input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
 </form>
@@ -58,7 +58,7 @@
 <form method="POST" action="/killerQueen/MyListServlet">
 <div id="resist_modal" class="modal">
 	 <div class="modal_content">
-	 	<span class='close'>X</span>
+	 	<span class="close">X</span>
 	 	<div class="modal_body">
 			宣言：<input type = "text" name="declaration"><br>
 			タグ：<input type = "text" name="tag"><br>
@@ -74,10 +74,10 @@
 
 
 <!-- 宣言＆ステップの編集 -->
-<c:forEach var="e" items="${decList }">
+<c:forEach var="e" items="${decList }" varstatus="status">
 <div id="edit_modal" class="modal">
 	<div class="modal_content">
-		<span class='close2'>X</span>
+		<span class="close2">X</span>
 		<div class="modal_body">
 		DecID:<input type ="text" name="declaration_id" value="${e.id }">
 		宣言：<input type = "text" name="declaration" value="${e.declaration}"><br>
@@ -115,35 +115,41 @@ close.onclick = function() {
 		  modal.style.display = 'none';
 };
 
-// When the user clicks outside the modal -- close it.
-window.onclick = function(event) {
-	if (event.target == modal) {
-
-		modal.style.display = 'none';
-	}
-};
-
 
 //編集画面用のモーダル
 var modal2 = document.getElementById('edit_modal');
 var btn2 = document.getElementById('open_modal2');
-var close2 = modal.getElementsByClassName('close2')[0];
+var close_btn = modal2.getElementsByClassName('close2')[0];//クラスは配列みたいになっている
+
 //新規登録へを押したらモーダルを表示する
 btn2.onclick = function() {
 	  modal2.style.display = 'block';
 };
 //×を押したらモーダルを閉じる
-close2.onclick = function() {
+close_btn.onclick = function() {
 		  modal2.style.display = 'none';
 };
 
-// When the user clicks outside the modal -- close it.
-window.onclick = function(event) {
-	if (event.target == modal2) {
+//When the user clicks outside the modal -- close it.
+window.onclick = function (event)  {
+	if (event.target == modal) {
 
+		modal.style.display = 'none';
+
+	}else if(event.target == modal2){
 		modal2.style.display = 'none';
 	}
 };
+
+
+
+// When the user clicks outside the modal -- close it.
+//window.onclick = function(event) {
+//	if (event.target == modal2) {
+//
+//		modal2.style.display = 'none';
+//	}
+//};
 
 
 </script>

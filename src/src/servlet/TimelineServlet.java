@@ -108,18 +108,36 @@ public class TimelineServlet extends HttpServlet {
 		// 送信されたデータの取得 int decId int userId
 		int decsId = Integer.parseInt(request.getParameter("data1"));
 		String usersId = request.getParameter("data2");
-		String buttonId = request.getParameter("data3");
-
-		//ReactionsDaoをインスタンス化
-		ReactionsDao rd = new ReactionsDao();
-		boolean result = rd.insertReaction(usersId, decsId);
-		String resString = String.valueOf(result);
-		//JSPに返却する値を作成する。値はoutの中に格納する
+		String buttonStatus = request.getParameter("data3");
 		PrintWriter out = response.getWriter();
-		if(result) {
-			out.print(resString);
+
+		if(buttonStatus.equals("リアクションしてない")) {
+			//ReactionsDaoをインスタンス化
+			ReactionsDao rd = new ReactionsDao();
+			boolean result = rd.insertReaction(usersId, decsId);
+			if(result) {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				String resString = "inReactTrue";
+				out.print(resString);
+			}else {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				String resString = "inReactFalse";
+				out.print(resString);
+			}
 		}else {
-			out.print(resString);
+			//ReactionsDaoをインスタンス化
+			ReactionsDao rd = new ReactionsDao();
+			boolean result =rd.deleteReaction(usersId, decsId);
+			//JSPに返却する値を作成する。値はoutの中に格納す
+			if(result) {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				String resString = "delReactTrue";
+				out.print(resString);
+			}else {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				String resString = "delReactFalse";
+				out.print(resString);
+			}
 		}
 
 		//outの中に持ってきたデータを連結したものを入れる

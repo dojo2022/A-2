@@ -6,6 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
+
+<style>
+
+</style>
+
+<script>
+$(function () {
+	  // タイトルをクリックすると
+	  $(".js-accordion-title").on("click", function () {
+	    // クリックした次の要素を開閉
+	    $(this).next().slideToggle(300);
+	    // タイトルにopenクラスを付け外しして矢印の向きを変更
+	    $(this).toggleClass("open", 300);
+	  });
+	});
+</script>
+
 </head>
 <body>
 
@@ -14,27 +31,29 @@
 <h1>検索結果</h1>
 <hr>
 
-<c:forEach var="e" items="${decList}">
-<details>
-	<summary>
-	宣言ID:${e.id}
-	宣言：${e.declaration}
-	タグ：${e.tag}
-	非公開：${e.privateFlag}
-	</summary>
+<div class="accordion">
+  <div class="accordion-container">
 
-	<c:forEach var="t" items="${searchList}" >
-		<c:if test="${t.stepsDecId == e.id }">
-		ユーザーID：${t.usersId}<br>
-		アイコン：${t.usersIcon}<br>
-		ステップID：${t.stepsId}<br>
-		ステップ：${t.stepsStep}<br>
-		ステップ達成：${t.stepsAchieveFlag}<br>
-		ステップ外部キー:${t.stepsDecId }<br>
+<c:forEach var="p" items="${pageList}">
+	<div class="accordion-item">
+    	<div class="accordion-title js-accordion-title">
+		${p.usersIcon}
+		# ${p.decsTag}
+		${p.decsDeclaration}
+		</div>
+	</div>
+
+	<c:forEach var="s" items="${stepList}" >
+		<c:if test="${p.decsId == s.declarationId }">
+		<div class="accordion-content">
+		${s.achieveFlag} ${s.step}
+		</div>
 		</c:if>
 	</c:forEach>
-</details>
 </c:forEach>
+
+</div>
+</div>
 
 </main>
 

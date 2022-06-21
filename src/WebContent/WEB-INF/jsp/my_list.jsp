@@ -11,7 +11,7 @@
 <body>
 <p>マイリストの表示</p>
 <h1>${result.message}</h1>
-<c:forEach var="e" items="${decList }" varStatus="satus">
+<c:forEach var="e" items="${decList }" varStatus="status">
 <details>
 	<summary>
 	宣言ID:${e.id }
@@ -79,11 +79,11 @@
 
 <!-- 宣言＆ステップの編集 -->
 <c:forEach var="e" items="${decList }" varStatus="status">
-<div id="edit_modal" class="modal">
+<div id="edit_modal${status.index}" class="modal">
 	<div class="modal_content">
 		<span class="close2">X</span>
 		<div class="modal_body">
-		<input type="hidden" value="${status.index}" id="status_id${status.index}">
+		<input type="text" value="${status.index}" id="status_id${status.index}">
 		DecID:<input type ="text" name="declaration_id" value="${e.id }">
 		宣言：<input type = "text" name="declaration" value="${e.declaration}"><br>
 		タグ：<input type = "text" name="tag" value="${e.tag }"><br>
@@ -125,11 +125,13 @@ close.onclick = function() {
 
 //function disp()
 function disp(indexNo){
-	var modal2 = document.getElementById('edit_modal');
-	var btn2 = document.getElementById('open_modal2'+indexNo);
+	var modal2 = document.getElementById('edit_modal'+ indexNo);
+	//var btn2 = document.getElementById('open_modal2'+indexNo);
 	var stId = document.getElementById('status_id'+indexNo);
-	console.log(stId);
-	if(btn2.onclick && indexNo == stId){
+	console.log(modal2);
+	console.log(indexNo);
+	//console.log(stId);
+	if(indexNo == 1){
 		modal2.style.display = 'block';
 	}else {
 		console.log('まだまだだね');

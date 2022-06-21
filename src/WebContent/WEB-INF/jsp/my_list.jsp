@@ -83,6 +83,7 @@
 	<div class="modal_content">
 		<span class="close2">X</span>
 		<div class="modal_body">
+		<input type="hidden" value="${status.index}" id="status_id${status.index}">
 		DecID:<input type ="text" name="declaration_id" value="${e.id }">
 		宣言：<input type = "text" name="declaration" value="${e.declaration}"><br>
 		タグ：<input type = "text" name="tag" value="${e.tag }"><br>
@@ -94,7 +95,7 @@
 			ステップ達成：<input type="text" name="step_achive_flag" value="${t.stepsAchieveFlag}"><br>
 			</c:if>
 		</c:forEach>
-	<input type="submit" value="完了" name="bt" id="edit_id${status.index}"><br>
+	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>
 </div>
@@ -119,15 +120,19 @@ close.onclick = function() {
 //編集画面用のモーダル
 //var modal2 = document.getElementById('edit_modal');
 //var btn2 = document.getElementById('open_modal2');
-var close_btn = modal2.getElementsByClassName('close2')[0];//クラスは配列みたいになっている
+//クラスは配列みたいになっている
 
 
 //function disp()
 function disp(indexNo){
 	var modal2 = document.getElementById('edit_modal');
 	var btn2 = document.getElementById('open_modal2'+indexNo);
-	if(btn2.onclick){
+	var stId = document.getElementById('status_id'+indexNo);
+	console.log(stId);
+	if(btn2.onclick && indexNo == stId){
 		modal2.style.display = 'block';
+	}else {
+		console.log('まだまだだね');
 	}
 }
 
@@ -135,7 +140,8 @@ function disp(indexNo){
 //btn2.onclick = function() {
 	//  modal2.style.display = 'block';
 //};
-
+var modal2 = document.getElementById('edit_modal');
+var close_btn = modal2.getElementsByClassName('close2')[0];
 
 //×を押したらモーダルを閉じる
 close_btn.onclick = function() {

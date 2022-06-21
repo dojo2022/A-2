@@ -8,7 +8,7 @@ function goAjax(){
 		let id = document.getElementById('regist_id').value;
 		let pw = document.getElementById('regist_password').value;
 
-	//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+	//{変数名：中に入れるもの}みたいに書いて、複数の値をregistData変数に格納
 		let registData = {data1:name,data2:id,data3:pw}
 
 
@@ -21,7 +21,7 @@ function goAjax(){
 			//どのメソッドを使用するか
 			type:"POST",
 			//受け取るデータのタイプ
-			dataType:"String",
+			dataType:"text",
 			//何をサーブレットに飛ばすか（変数を記述）
 			data: registData,
 			//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
@@ -44,7 +44,6 @@ function goAjax(){
 			alert("失敗！");
 		});
 }
-
 
 
 

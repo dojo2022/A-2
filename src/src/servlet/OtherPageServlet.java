@@ -45,7 +45,6 @@ public class OtherPageServlet extends HttpServlet {
 		String otherId = request.getParameter("id");
 
 
-
 //テスト用
 /*String mytest = "2";
 String othertest = "1";*/
@@ -57,6 +56,9 @@ String othertest = "1";*/
 
 		//宣言DAOをインスタンス
 		DeclarationsDao decdao = new DeclarationsDao();
+
+		//達成個数を数える。
+		int countAchieve = decdao.countAchieve(otherId);
 
 		//ArrayList<CommonTable>のインスタンスを作成
 		ArrayList<CommonTable> OtherPageList = decdao.otherPageDec(myId, otherId);
@@ -93,6 +95,7 @@ String othertest = "1";*/
 		request.setAttribute("userInfo", userInfo);
 		request.setAttribute("OtherPageList", OtherPageList);
 		request.setAttribute("steper", steper);
+		request.setAttribute("countAchieve", countAchieve);
 		//others.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/other_page.jsp");
 		dispatcher.forward(request, response);

@@ -6,19 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>マイリスト</title>
-<link rel="stylesheet" type="text/css" href="/killerQueen/css/my_list.css">
+<!--  <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_list.css">-->
 </head>
 <body>
 <p>マイリストの表示</p>
 <h1>${result.message}</h1>
-<c:forEach var="e" items="${decList }">
+<c:forEach var="e" items="${decList }" varStatus="satus">
 <details>
 	<summary>
 	宣言ID:${e.id }
 	宣言：${e.declaration}
 	タグ：${e.tag }
 	非公開：${e.privateFlag }
-	<c:forEach var="s" items="${reacter}" varstatus="status" >
+	<c:forEach var="s" items="${reacter}" >
 			<c:if test="${s.decsId == e.id}">
 				リアクションに応じて画像を変えるよ:${s.countReaction}
 				<c:if test="${s.countReaction==0}">
@@ -45,7 +45,7 @@
 		ステップ外部キー:${t.stepsDecId }<br>
 		</c:if>
 	</c:forEach>
-<button id="open_modal2" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
+<button id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
 <form method="POST" action="/killerQueen/MyListServlet">
 <input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
 </form>
@@ -73,8 +73,12 @@
 </div>
 
 
+
+
+
+
 <!-- 宣言＆ステップの編集 -->
-<c:forEach var="e" items="${decList }" varstatus="status">
+<c:forEach var="e" items="${decList }" varStatus="status">
 <div id="edit_modal" class="modal">
 	<div class="modal_content">
 		<span class="close2">X</span>
@@ -99,88 +103,7 @@
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
 
 
-<!-- モーダル表示のjs -->
-<script>
-'use strict;'
 
-var modal = document.getElementById('resist_modal');
-var btn = document.getElementById('open_modal');
-var close = modal.getElementsByClassName('close')[0];
-//新規登録へを押したらモーダルを表示する
-btn.onclick = function() {
-	  modal.style.display = 'block';
-};
-//×を押したらモーダルを閉じる
-close.onclick = function() {
-		  modal.style.display = 'none';
-};
-
-
-//編集画面用のモーダル
-var modal2 = document.getElementById('edit_modal');
-var btn2 = document.getElementById('open_modal2');
-var close_btn = modal2.getElementsByClassName('close2')[0];//クラスは配列みたいになっている
-
-//新規登録へを押したらモーダルを表示する
-btn2.onclick = function() {
-	  modal2.style.display = 'block';
-};
-//×を押したらモーダルを閉じる
-close_btn.onclick = function() {
-		  modal2.style.display = 'none';
-};
-
-//When the user clicks outside the modal -- close it.
-window.onclick = function (event)  {
-	if (event.target == modal) {
-
-		modal.style.display = 'none';
-
-	}else if(event.target == modal2){
-		modal2.style.display = 'none';
-	}
-};
-
-
-
-// When the user clicks outside the modal -- close it.
-//window.onclick = function(event) {
-//	if (event.target == modal2) {
-//
-//		modal2.style.display = 'none';
-//	}
-//};
-
-
-</script>
-<!-- テキストボックス追加のjs -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-'use strict'
-
-var i = 1;
-function addForm(){
-	var input_data = document.createElement('input');
-	input_data.type = 'text';
-	input_data.id = 'inputform_' + i;
-	var step = document.createElement('span');
-	step.innerHTML = 'ステップ：';
-	var br = document.createElement('br');
-	var parent = document.getElementById('target');
-	parent.appendChild(step);
-	parent.appendChild(input_data);
-	parent.appendChild(br);
-	i++;
-	return false;
-}
-
-//jQueryのやり方
-//$(document).on("click", ".add", function() {
-//    $(this).parent().clone(true).insertAfter($(this).parent());
-//
-//});
-
-</script>
 
 </body>
 </html>

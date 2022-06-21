@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="/killerQueen/css/setting.css">
 	</head>
 	<body>
+	<jsp:include page="common.jsp" />
 		<form method="POST" action="SettingServlet">
 			<p>アイコン</p>
 			<div class="radio">

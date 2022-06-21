@@ -103,11 +103,10 @@
 </form>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
 <script>
-
+//新規登録へを押したらモーダルを表示する
 var modal = document.getElementById('resist_modal');
 var btn = document.getElementById('open_modal');
 var close = modal.getElementsByClassName('close')[0];
-//新規登録へを押したらモーダルを表示する
 btn.onclick = function() {
 	  modal.style.display = 'block';
 };
@@ -120,10 +119,7 @@ close.onclick = function() {
 //編集画面用のモーダル
 //var modal2 = document.getElementById('edit_modal');
 //var btn2 = document.getElementById('open_modal2');
-//クラスは配列みたいになっている
-
-
-//function disp()
+//編集ボタンを押した時の表示：function disp()
 function disp(indexNo){
 	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	//var btn2 = document.getElementById('open_modal2'+indexNo);
@@ -138,34 +134,22 @@ function disp(indexNo){
 	}
 }
 
-//新規登録へを押したらモーダルを表示する
-//btn2.onclick = function() {
-	//  modal2.style.display = 'block';
-//};
 
+//×を押したらモーダルが消える
 function batten (indexNo){
 	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	//var close_btn = modal2.getElementById('close' + indexNo)
 	modal2.style.display = 'none';
 	console.log(indexNo);
 }
-//var modal2 = document.getElementById('edit_modal');
-//var close_btn = modal2.getElementsByClassName('close2')[0];
 
-//×を押したらモーダルを閉じる
-//close_btn.onclick = function() {
-//		  modal2.style.display = 'none';
-//};
 
+
+//モーダル以外を押したらモーダルが閉じる
 window.onclick = function (event)  {
-	var indexNo = document.getElementById();
-	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	if (event.target == modal) {
 
 		modal.style.display = 'none';
-
-	}else {
-		modal2.style.display = 'none';
 	}
 };
 

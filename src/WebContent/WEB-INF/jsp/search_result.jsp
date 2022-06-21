@@ -19,18 +19,15 @@ h1 { text-align:center;}
 nav{ display: none; }
 ul{list-style: none;}
 .nav-open{
-	padding: 15px;
 	font-size: 20px;
 	position: relative;
+	padding-bottom  : 50px;
 }
 .nav-open::before{/* 閉じている時 */
-	content: "＋";
 	position: absolute;
 	right: 20px;
 }
-.nav-open.active::before{/* 開いている時 */
-	content: "－";
-}
+
 
 /* 宣言リスト */
 .list {
@@ -59,10 +56,27 @@ width : 50px;
 height : 50px;
 }
 
+.dexala_text {
+	float: left;
+	margin-left : 30px;
+}
 .decla_tag{ font-size: 15px; }
 .decla_list{ font-weight:bold; }
+.achieve_rate { float: right; }
 
+.reaction_button img {
+	float: right;
+	width : 25px;
+	height : 25px;
+}
 
+.bookmark_button img{
+	float: right;
+	width : 25px;
+	height : 25px;
+}
+
+.step_list { clear:both; } /*回り込み解除*/
 .step_list img{
 width : 25px;
 height : 25px;
@@ -107,7 +121,8 @@ height : 25px;
 
 <c:forEach var="t" items="${pageList}">
 <div class="list">
-	<div class="nav-open">
+
+	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
 		<div class="user_botton">
 			<c:if test="${t.usersIcon==0}">
 			<img src="/killerQueen/img/icon/userIcon.png">
@@ -120,7 +135,7 @@ height : 25px;
 			</c:if>
 		</div>
 
-		<div class="dec">
+		<div class="dexala_text">
 		<div class="decla_tag">
 			<c:if test="${t.decsTag == 0}">#勉強</c:if>
 			<c:if test="${t.decsTag == 1}">#仕事</c:if>
@@ -137,6 +152,24 @@ height : 25px;
 			${t.decsDeclaration}
 		</div>
 		</div>
+
+		<div class="achieve_rate">
+			<c:forEach var="s" items="${stepList}" >
+			<c:if test="${t.decsId == s.declarationId}">
+				<c:if test="${s.achieveFlag==true}">
+				<%achieve++; %>
+				</c:if>
+				<%step++; %>
+			</c:if>
+			</c:forEach>
+				<%=achieve %>/<%=step %>
+		</div>
+		<div class="reaction_button">
+			<img src="/killerQueen/img/icon/redHeart.png">
+		</div>
+		<div class="bookmark_button">
+			<img src="/killerQueen/img/icon/bookmarkWhite.png">
+		</div>
 	</div>
 
 	<nav class="step_list">
@@ -149,8 +182,9 @@ height : 25px;
 		<c:if test="${s.achieveFlag==true}"><img src="/killerQueen/img/icon/check.png"></c:if>
 		${s.step}
 	</li>
-		</c:if>
-		</c:forEach>
+	</c:if>
+	</c:forEach>
+
 	</ul>
 	</nav>
 </div>

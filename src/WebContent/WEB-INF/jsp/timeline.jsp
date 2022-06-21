@@ -47,7 +47,7 @@
 						</c:if>
 						<!--  <input type="button" value="リアクション" id="buttonId${status.index}" onclick="goAjax('${status.index}')"> -->
 						<!--  <input type="button" value="ブックマーク"  class="buttonId" onclick="goAjax()"> -->
-						<div id="test${status.index}">ここが書き変わる</div>
+						<p id="test${status.index}">"${t.decsId}"</p>
 			</td>
 
 			<c:if test="${status.index % 1 != 0}">

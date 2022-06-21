@@ -7,21 +7,56 @@
 <meta charset="UTF-8">
 <title>検索結果</title>
 
-<style>
 
+<style>
+body { background-color: #C0C8D5; }
+h1 { text-align:center;}
+.search {
+	margin-left: auto;
+ 	margin-right: auto; }
+
+/* アコーディオンメニュー */
+nav{ display: none; }
+.nav-open{
+	padding: 15px;
+	font-size: 20px;
+	position: relative;
+}
+.nav-open::before{/* 閉じている時 */
+	content: "＋";
+	position: absolute;
+	right: 20px;
+}
+.nav-open.active::before{/* 開いている時 */
+	content: "－";
+}
+
+/* 宣言リスト */
+.list {
+	background-color: #FFFFFF;
+	border			: 1px solid;
+	border-radius	: 20px;
+	border-color	: #8989ff;
+	margin-left		: 100px;
+	margin-right	: 130px;
+	margin-top		: 50px;
+	padding			: 40px;
+	box-shadow		: 6px 6px 5px #7f7fff;
+	}
 </style>
 
+<!--  アコーディオンメニューのjQuery -->
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-$(function () {
-	  // タイトルをクリックすると
-	  $(".js-accordion-title").on("click", function () {
-	    // クリックした次の要素を開閉
-	    $(this).next().slideToggle(300);
-	    // タイトルにopenクラスを付け外しして矢印の向きを変更
-	    $(this).toggleClass("open", 300);
-	  });
+	$(function(){
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav').slideToggle();
+		});
 	});
 </script>
+
 
 </head>
 <body>
@@ -31,29 +66,38 @@ $(function () {
 <h1>検索結果</h1>
 <hr>
 
-<div class="accordion">
-  <div class="accordion-container">
+	<form method="POST" action="/killerQueen/SearchServlet">
+		<table class="search">
+		<tr>
+			<td>
+				<input type="text" name="str" autocomplete="off">
+			</td>
+			<td class="search_button">
+				<input type="image" src="/killerQueen/img/icon/select.png"  alt="検索" value="検索" width="30" height="30">
+			</td>
+		</tr>
+		</table>
+	</form>
 
 <c:forEach var="p" items="${pageList}">
-	<div class="accordion-item">
-    	<div class="accordion-title js-accordion-title">
-		${p.usersIcon}
-		# ${p.decsTag}
-		${p.decsDeclaration}
-		</div>
-	</div>
+<div class="list">
+	<p class="nav-open">
+			${p.usersIcon}
+			# ${p.decsTag}
+			${p.decsDeclaration}
+		</p>
 
-	<c:forEach var="s" items="${stepList}" >
-		<c:if test="${p.decsId == s.declarationId }">
-		<div class="accordion-content">
-		${s.achieveFlag} ${s.step}
-		</div>
-		</c:if>
-	</c:forEach>
+		<nav>
+		<ul>
+			<c:forEach var="s" items="${stepList}" >
+				<c:if test="${p.decsId == s.declarationId }">
+				<li>${s.achieveFlag} ${s.step}</li>
+			</c:if>
+			</c:forEach>
+		</ul>
+		</nav>
+</div>
 </c:forEach>
-
-</div>
-</div>
 
 </main>
 

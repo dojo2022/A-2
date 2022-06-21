@@ -7,21 +7,25 @@
 <meta charset="UTF-8">
 <title>検索結果</title>
 
+
 <style>
-
+nav{ display: none; }
+.nav-open{
+	padding: 15px;
+	color: #fff;
+	font-size: 20px;
+	background: #2073c8;
+	position: relative;
+}
+.nav-open::before{/* 閉じている時 */
+	content: "＋";
+	position: absolute;
+	right: 20px;
+}
+.nav-open.active::before{/* 開いている時 */
+	content: "－";
+}
 </style>
-
-<script>
-$(function () {
-	  // タイトルをクリックすると
-	  $(".js-accordion-title").on("click", function () {
-	    // クリックした次の要素を開閉
-	    $(this).next().slideToggle(300);
-	    // タイトルにopenクラスを付け外しして矢印の向きを変更
-	    $(this).toggleClass("open", 300);
-	  });
-	});
-</script>
 
 </head>
 <body>
@@ -31,31 +35,39 @@ $(function () {
 <h1>検索結果</h1>
 <hr>
 
-<div class="accordion">
-  <div class="accordion-container">
-
 <c:forEach var="p" items="${pageList}">
-	<div class="accordion-item">
-    	<div class="accordion-title js-accordion-title">
-		${p.usersIcon}
-		# ${p.decsTag}
-		${p.decsDeclaration}
-		</div>
-	</div>
+	<p class="nav-open">
+			${p.usersIcon}
+			# ${p.decsTag}
+			${p.decsDeclaration}
+		</p>
 
-	<c:forEach var="s" items="${stepList}" >
-		<c:if test="${p.decsId == s.declarationId }">
-		<div class="accordion-content">
-		${s.achieveFlag} ${s.step}
-		</div>
-		</c:if>
-	</c:forEach>
+		<nav>
+		<ul>
+			<c:forEach var="s" items="${stepList}" >
+				<c:if test="${p.decsId == s.declarationId }">
+				<li>${s.achieveFlag} ${s.step}</li>
+			</c:if>
+			</c:forEach>
+		</ul>
+		</nav>
 </c:forEach>
 
-</div>
-</div>
 
 </main>
+
+<script src="js/jquery-1.12.4.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		//クリックで動く
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav').slideToggle();
+		});
+	});
+</script>
 
 </body>
 </html>

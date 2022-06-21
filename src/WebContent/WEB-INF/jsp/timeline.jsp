@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>タイムライン</title>
 </head>
 <body>
@@ -39,7 +39,12 @@
 				</details>
 						<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
 						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
-						<input type="button" value="リアクション" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+						<c:if test="${t.reactionsId == 0}">
+						<input type="button" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+						</c:if>
+						<c:if test="${t.reactionsId != 0}">
+						<input type="button" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+						</c:if>
 						<!--  <input type="button" value="リアクション" id="buttonId${status.index}" onclick="goAjax('${status.index}')"> -->
 						<!--  <input type="button" value="ブックマーク"  class="buttonId" onclick="goAjax()"> -->
 						<div id="test${status.index}">ここが書き変わる</div>
@@ -52,48 +57,6 @@
 		</c:forEach>
 				</tr>
 	</table>
-
-	<script>
-		function goAjax(indexNo){
-			alert("functionはいったよ！");
-			//入力値を取得してくる
-			let usersId = document.getElementById('usersId' + indexNo).value;
-			let decsId = document.getElementById('decsId' + indexNo).value;
-			let buttonId = document.getElementById('reaction' + indexNo).value;
-
-			//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-			let postData = {data1:decsId,data2:usersId,data3:buttonId}
-
-
-			//非同期通信始めるよ
-			$.ajaxSetup({scriptCharset:'utf-8'});
-			$.ajax({
-				//どのサーブレットに送るか
-				//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-				url: '/killerQueen/TimelineServlet',
-				//どのメソッドを使用するか
-				type:"POST",
-				//ここは今回は決まりの書き方　→　受け取る型
-				dataType:"text",
-				//何をサーブレットに飛ばすか（変数を記述）
-				data: postData,
-				//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
-				processDate:false,
-				timeStamp: new Date().getTime()
-			   //非同期通信が成功したときの処理
-			})
-            .done(function(data) {
-            	alert("成功");
-				// 今回は上の<div id="test"></div>の中に返ってきた文字列を入れる
-					document.getElementById('test' + indexNo).innerText = data;
-			  })
-			   //非同期通信が失敗したときの処理
-			  .fail(function() {
-				//失敗とアラートを出す
-				alert("失敗！");
-			  });
-		}
-	</script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="/killerQueen/js/timeline.js" charset="utf-8"></script>
 </html>

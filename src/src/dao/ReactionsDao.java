@@ -73,7 +73,7 @@ public class ReactionsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			//SQL文を準備する
-			String sql = "DELETE from reactions WHRE user_id = ? and declaration_id = ?";
+			String sql = "DELETE from reactions WHERE user_id = ? and declaration_id = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 

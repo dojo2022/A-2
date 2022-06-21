@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>ユーザー登録</title>
+
 </head>
 <body>
-	name：<input type="text" name="name" id="regist_name"><br>
-	id：<input type="text" name="id" id="regist_id"><br>
-	password：<input type="text" name="pw" id="regist_password">
-	<input type="button" value="登録" onclick="goAjax()">
-	<div id="message"></div>
+	<form method="POST" action="/killerQueen/RegistServlet">
 
-<script src="/killerQueen/js/regist.js" charset="utf-8"></script>
+		name：<input type="text" name="name" id="regist_name" required minlength="1" maxlength="10"><br>
+		id：<input type="text" name="id" id="regist_id" required minlength="1" maxlength="10"><br>
+		password：<input type="text" name="pw" id="regist_password" required minlength="4" maxlength="10">
+		<p>${result.message}</p>
+		<input type="submit" value="登録">
+
+	</form>
 </body>
 </html>

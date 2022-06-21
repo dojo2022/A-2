@@ -28,14 +28,14 @@ public class MyPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		/*if (session.getAttribute("id") == null) {
+		if (session.getAttribute("id") == null) {
 		response.sendRedirect("/killerQueen/LoginServlet");
 					return;
-		}*/
+		}
 
 		//セッションスコープから自分のID取得
-		String id2 = (String)session.getAttribute("id");
-		String id = "1";
+		String id = (String)session.getAttribute("id");
+		//String id = "2";
 
 
 		//テスト用！！
@@ -55,10 +55,11 @@ public class MyPageServlet extends HttpServlet {
 
 
 
-		//ArrayList<CommonTable>のインスタンスを作成
+		//ArrayList<CommonTable>のインスタンスを作成　検索処理
 		ArrayList<CommonTable> myPageList = decdao.myPageDec(id);
 
-		//リアクション数を数える
+		//リアクション数を数えるよ
+		//宣言IDをもってきて
 		ArrayList<CommonTable> reacter = new ArrayList<CommonTable>();
 		for(int i = 0; i < myPageList.size(); i++) {
 			CommonTable ct = myPageList.get(i);
@@ -110,6 +111,8 @@ public class MyPageServlet extends HttpServlet {
 			}
 			break;
 		}
+
+
 
 
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる

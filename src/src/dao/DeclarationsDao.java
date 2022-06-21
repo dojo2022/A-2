@@ -309,7 +309,6 @@ public class DeclarationsDao {
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
-				ct.setDecsTag(rs.getInt("declarations.achieve_flag"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));

@@ -46,6 +46,32 @@ public class MyListServlet extends HttpServlet {
 		//宣言が入るArrayListとステップが入るArrayListを作成
 		ArrayList<Declarations> decList = new ArrayList<Declarations>();
 
+		//リアクション数を取ってくる
+		//宣言IDをもってきて
+		ArrayList<CommonTable> reacter = new ArrayList<CommonTable>();
+		for(int i = 0; i < pageList.size(); i++) {
+			CommonTable ct = pageList.get(i);
+			int decId = ct.getDecsId();
+			CommonTable st = new CommonTable();
+			st.setDecsId(ct.getDecsId());
+			st.setCountReaction(decDao.countReaction(decId));
+			reacter.add(st);
+		}
+		int r = 0;
+		int t = 1;
+		while(r < reacter.size()) { //リストが０行以上だったら
+			while(t < reacter.size()) { //リストが１行以上
+				//マイリストのi行目とi+1行目のDecsidが同じだったら行削除、違えばプラス１
+				if(reacter.get(r).getDecsId() == reacter.get(t).getDecsId()) {
+					reacter.remove(t);
+				}else {
+					r++;
+					t++;
+				}
+			}
+			break;
+		}
+
 
 		//pageListから宣言関係のデータのみをdecListに入れる
 		for (int i = 0; i < pageList.size(); i++) {
@@ -118,7 +144,7 @@ public class MyListServlet extends HttpServlet {
 		//取ってきたデータをリクエストスコープへ保存
 		request.setAttribute("pageList", pageList);
 		request.setAttribute("decList", decList);
-
+		request.setAttribute("reacter", reacter);
 		//my_list.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
 		dispatcher.forward(request, response);

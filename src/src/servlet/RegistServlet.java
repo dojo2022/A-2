@@ -30,25 +30,22 @@ public class RegistServlet extends HttpServlet {
 		Result result = new Result();
 
 	// 送信されたデータの取得
+		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 
 	// スペースが入力された場合は空文字にする
-		name = name.replaceAll("　", ""); // 全角スペースを空文字に置換
-        name = name.replaceAll(" ", ""); // 半角スペースを空文字に変換
+		name = name.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
+        id = id.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
+        pw = pw.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
 
-        id = id.replaceAll("　", ""); // 全角スペースを空文字に置換
-        id = id.replaceAll(" ", ""); // 半角スペースを空文字に変換
-
-        pw = pw.replaceAll("　", ""); // 全角スペースを空文字に置換
-        pw = pw.replaceAll(" ", ""); // 半角スペースを空文字に変換
 
     // 空文字になってしまった場合はエラーを返す
-        if ((name.equals("")) || (id.equals("")) || (pw.equals(""))) {
+        if (name.equals("") || id.equals("") || pw.equals("")) {
 
 			// リクエストスコープ(attribute区画)にエラーメッセージを格納する
-			result.setMessage("スペースは登録できません。");
+			result.setMessage("スペースのみでは登録できません。");
 			request.setAttribute("result", result);
 
 			// 新規登録画面にフォワードする
@@ -74,7 +71,7 @@ public class RegistServlet extends HttpServlet {
 			} else {
 
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
-				result.setMessage("他のユーザーにidが使われています。");
+				result.setMessage("このidは他のユーザーに使われています。");
 				request.setAttribute("result", result);
 
 				// 新規登録画面にフォワードする

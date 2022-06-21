@@ -81,7 +81,7 @@
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div id="edit_modal${status.index}" class="modal">
 	<div class="modal_content">
-		<span class="close2">X</span>
+		<span class="close2" onclick="batten('${status.index}')" id="close${status.index}">X</span>
 		<div class="modal_body">
 		<input type="text" value="${status.index}" id="status_id${status.index}">
 		DecID:<input type ="text" name="declaration_id" value="${e.id }">
@@ -127,11 +127,11 @@ close.onclick = function() {
 function disp(indexNo){
 	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	//var btn2 = document.getElementById('open_modal2'+indexNo);
-	var stId = document.getElementById('status_id'+indexNo);
-	console.log(modal2);
-	console.log(indexNo);
+	//var stId = document.getElementById('status_id'+indexNo);
+	//console.log(modal2);
+	//console.log(indexNo);
 	//console.log(stId);
-	if(indexNo == 1){
+	if(indexNo == indexNo){
 		modal2.style.display = 'block';
 	}else {
 		console.log('まだまだだね');
@@ -142,20 +142,29 @@ function disp(indexNo){
 //btn2.onclick = function() {
 	//  modal2.style.display = 'block';
 //};
-var modal2 = document.getElementById('edit_modal');
-var close_btn = modal2.getElementsByClassName('close2')[0];
+
+function batten (indexNo){
+	var modal2 = document.getElementById('edit_modal'+ indexNo);
+	//var close_btn = modal2.getElementById('close' + indexNo)
+	modal2.style.display = 'none';
+	console.log(indexNo);
+}
+//var modal2 = document.getElementById('edit_modal');
+//var close_btn = modal2.getElementsByClassName('close2')[0];
 
 //×を押したらモーダルを閉じる
-close_btn.onclick = function() {
-		  modal2.style.display = 'none';
-};
+//close_btn.onclick = function() {
+//		  modal2.style.display = 'none';
+//};
 
 window.onclick = function (event)  {
+	var indexNo = document.getElementById();
+	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	if (event.target == modal) {
 
 		modal.style.display = 'none';
 
-	}else if(event.target == modal2){
+	}else {
 		modal2.style.display = 'none';
 	}
 };

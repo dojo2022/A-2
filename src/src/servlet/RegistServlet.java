@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UsersDao;
 import model.Result;
+import model.Users;
 
 @WebServlet("/RegistServlet")
 public class RegistServlet extends HttpServlet {
@@ -27,6 +29,7 @@ public class RegistServlet extends HttpServlet {
 
 	// 必要なBeansをインスタンス化
 		UsersDao usersDao = new UsersDao();
+		Users user = new Users();
 		Result result = new Result();
 
 	// 送信されたデータの取得
@@ -60,12 +63,30 @@ public class RegistServlet extends HttpServlet {
 
 			// 登録成功(UsersDaoからtrueが返ってきた場合)
 			if (ans == true) {
-				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+				/*// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 				result.setMessage("登録完了です！ログインをしましょう！");
+				request.setAttribute("result", result);*/
+
+				user = usersDao.selectUser(id);
+
+				String comment = user.getComment();
+				int icon = user.getIcon();
+				int themecolor = user.getThemecolor();
+
+				// セッションスコープ(attribute区画)にそのユーザーの情報(Usersテーブル)すべて格納する
+				HttpSession session = request.getSession();
+				session.setAttribute("id", id);
+				session.setAttribute("name", name);
+				session.setAttribute("icon", icon);
+				session.setAttribute("comment", comment);
+				session.setAttribute("themecolor", themecolor);
+
+				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+				result.setMessage("<a href=\"/killerQueen/MyListServlet\">ここをクリックしてください</a>");
 				request.setAttribute("result", result);
 
 				// 新規登録画面にフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/regist.jsp");
 				dispatcher.forward(request, response);
 
 			} else {

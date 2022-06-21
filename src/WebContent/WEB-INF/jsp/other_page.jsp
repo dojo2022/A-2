@@ -16,7 +16,22 @@
 <p>NAME: ${userInfo.name}</p>
 <p>ICON: ${userInfo.icon}</p>
 <p>COMMENT: ${userInfo.comment}</p>
-<p>ランクを表示したい気持はある</p>
+
+<p>
+ランク:${countAchieve}
+<c:if test="${countAchieve<=10}">
+0から10まで<img src="/killerQueen/img/icon/beginner.png">
+</c:if>
+<c:if test="${countAchieve>10 && countAchieve<=50}">
+10から50<img src="/killerQueen/img/icon/bronze.png">
+</c:if>
+<c:if test="${countAchieve>50 && countAchieve<=99}">
+51から99<img src="/killerQueen/img/icon/silver.png">
+</c:if>
+<c:if test="${countAchieve>99}">
+100以上だよ<img src="/killerQueen/img/icon/gold.png">
+</c:if>
+</p>
 
 
 <!-- 自分の宣言リストたち -->
@@ -28,11 +43,17 @@
 		リアクション有無:<br>
 		ブックマーク有無:<br>
 		宣言達成:${t.decsAchieveFlag}<br>
-	</summary>
+	</summary><%! int count = 0;%><%int localcount = 0;%>
 		<c:forEach var="v" items="${steper}" varStatus = "st">
 			<c:if test="${t.decsId == v.declarationId}">
-				ステップ:${v.step}<br>
-				達成:${v.achieveFlag}<br>
+				ステップ:${v.step}
+				達成:${v.achieveFlag}
+					<c:if test="${countAchieve==1}">
+						達成済み
+					</c:if>
+					<c:if test="${countAchieve==0}">
+						未達成
+					</c:if>
 			</c:if>
 		</c:forEach>
 </details>

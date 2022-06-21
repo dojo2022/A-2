@@ -29,11 +29,26 @@ function goAjax(indexNo){
 			   //非同期通信が成功したときの処理
 			})
             .done(function(data) {
-            	alert("成功");
+            	//alert("成功");
+
 				if(data === "inReactTrue"){
-				document.getElementById("reaction${indexNo}").innerHTML = `<input type="button" value="リアクションしてる" id="reaction${indexNo}" onclick="goAjax('${indexNo}')">`;
+				$("#change" + indexNo).html("");
+				//document.getElementById('reaction' + indexNo).innerHTML = `<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${indexNo}" onclick="goAjax('${indexNo}')">`;
+				var htmltext = "";
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction` + indexNo;
+				htmltext = htmltext + `" onclick="goAjax('` + indexNo;
+				htmltext = htmltext + `')">`;
+				$("#change" + indexNo).append(htmltext);
+
 				}else if(data === "delReactTrue"){
-				document.getElementById("reaction${indexNo}").innerHTML = `<input type="button" value="リアクションしてない" id="reaction${indexNo}" onclick="goAjax('${indexNo}')">`;
+				$("#change" + indexNo).html("");
+				//document.getElementById('reaction' + indexNo).innerHTML = `<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${indexNo}" onclick="goAjax("${indexNo}")">`;
+				var htmltext = "";
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてる" id="reaction` + indexNo;
+				htmltext = htmltext + `" onclick="goAjax('` + indexNo;
+				htmltext = htmltext + `')">`;
+				$("#change" + indexNo).append(htmltext);
+
 				}else {
 				document.getElementById("test" + indexNo).innerText = "失敗";
 				}

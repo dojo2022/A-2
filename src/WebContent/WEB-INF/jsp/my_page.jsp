@@ -38,20 +38,25 @@
 
 	</td>
 	<td><c:if test="${countAchieve<=10}">
+		<progress id="myProgress" value="${countAchieve}" max="10">${countAchieve}</progress>
 		<img src="/killerQueen/img/icon/beginner.png" width="30px">
 		</c:if>
 		<c:if test="${countAchieve>10 && countAchieve<=50}">
+		<progress id="myProgress" value="${countAchieve-10}" max="40">${countAchieve}</progress>
 		<img src="/killerQueen/img/icon/bronze.png" width="30px">
 		</c:if>
 		<c:if test="${countAchieve>50 && countAchieve<=99}">
+		<progress id="myProgress" value="${countAchieve-50}" max="50">${countAchieve}</progress>
 		<img src="/killerQueen/img/icon/silver.png" width="30px">
 		</c:if>
 		<c:if test="${countAchieve>99}">
+		<progress id="myProgress" value="100" max="100">${countAchieve}</progress>
 		<img src="/killerQueen/img/icon/gold.png" width="30px">
 		</c:if>
 	</td>
 </tr>
 </table>
+
 
 --------------------------------------------------------
 
@@ -121,6 +126,13 @@
 		</c:if>
 		<c:if test="${t.decsAchieveFlag==false}">
 		未達成（この文は消す）
+		</c:if>」
+
+		「<c:if test="${t.decsPrivateFlag==true}">
+		<img src="/killerQueen/img/icon/close.png" width="30px">
+		</c:if>
+		<c:if test="${t.decsPrivateFlag==false}">
+		<img src="/killerQueen/img/icon/open.png" width="30px">
 		</c:if>」
 
 		<c:forEach var="s" items="${reacter}" >

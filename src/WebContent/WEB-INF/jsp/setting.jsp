@@ -30,7 +30,7 @@
 			</c:if>
 
 			<div class="radio">
-				<input type="radio" <%=icon1 %> checked name="icon" value= 0 id="radio-1" class="display" checked>
+				<input type="radio" <%=icon1 %> name="icon" value= 0 id="radio-1" class="display" checked>
 				<label for="radio-1" class="radio-label">
 					<img src="/killerQueen/img/icon/userIcon.png">
 				</label>
@@ -69,7 +69,7 @@
 			<% color3 = "checked"; %>
 			</c:if>
 			<div class="color">
-				<input type="radio" <%=color1 %> name="themecolor" value= 0 id="color-1" class="display" checked>
+				<input type="radio" <%=color1 %> name="themecolor" value= 0 id="color-1" class="display">
 				<label for="color-1" class="color-label">
 					<img src="/killerQueen/img/icon/gleenHeart.png">
 				</label>

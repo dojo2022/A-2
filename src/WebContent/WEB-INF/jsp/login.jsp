@@ -36,6 +36,6 @@
 		<input type="submit" name="login" value="ログイン">
 	</form>
 
-
+	<p>新規登録は<a href="/killerQueen/RegistServlet">こちら</a></p>
 </body>
 </html>

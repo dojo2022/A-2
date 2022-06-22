@@ -57,7 +57,7 @@
 
 
 
-<c:forEach var="t" items="${myPageList}" >
+<c:forEach var="t" items="${myPageList}" varStatus="status">
 <details>
 	<summary><%int step=0; %><%int achieve=0; %>
 		「<a href="/killerQueen/OtherPageServlet?${t.usersId}">
@@ -139,7 +139,11 @@
 				<img src="/killerQueen/img/icon/redHeart.png" width="30px">
 				</c:if>」
 			</c:if>
+
 		</c:forEach>
+
+
+
 
 	</summary>
 		<c:forEach var="v" items="${steper}" varStatus = "st">

@@ -30,10 +30,10 @@ public class MyPageServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 //テスト
-session.setAttribute("id", "1");
+/*session.setAttribute("id", "1");
 session.setAttribute("name", "チョコラータ");
 session.setAttribute("icon", 1);
-session.setAttribute("comment", "頑張ろう～！");
+session.setAttribute("comment", "頑張ろう～！");*/
 
 
 		if (session.getAttribute("id") == null) {
@@ -98,10 +98,12 @@ session.setAttribute("comment", "頑張ろう～！");
 		for(int i = 0; i < myPageList.size(); i++) {
 			CommonTable ct = myPageList.get(i);
 			Steps st = new Steps();
+			if(ct.getStepsId() != 0) {
 			st.setStep(ct.getStepsStep());
 			st.setAchieveFlag(ct.isStepsAchieveFlag());
 			st.setDeclarationId(ct.getDecsId());
 			steper.add(st);
+			}
 		}
 
 		//timelineListから（DECIDがかぶっている箇所）不要な宣言を削除する
@@ -119,9 +121,6 @@ session.setAttribute("comment", "頑張ろう～！");
 			}
 			break;
 		}
-
-
-
 
 		//リクエストスコープにlistを"timelineList"という名前を付けて入れる
 		request.setAttribute("myPageList", myPageList);

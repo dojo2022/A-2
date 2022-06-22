@@ -227,7 +227,7 @@ public class DeclarationsDao {
 			// SQL文を準備する
 			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id "
-					+ "WHERE declarations.achieve_flag = 0  and declarations.delete_flag = 0  and declarations.user_id = ?";
+					+ "WHERE declarations.achieve_flag = 0  and declarations.delete_flag = 0  and declarations.user_id = ? ORDER BY declarations.id , steps.achieve_flag";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1の?が自分のID
@@ -292,7 +292,7 @@ public class DeclarationsDao {
 			// SQL文を準備する
 			String sql = "SELECT *"
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id "
-					+ "WHERE declarations.delete_flag = 0 and users.id = ?";
+					+ "WHERE declarations.delete_flag = 0 and users.id = ? ORDER BY declarations.id , steps.achieve_flag";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1の?が自分のID
@@ -309,6 +309,8 @@ public class DeclarationsDao {
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsTag(rs.getInt("declarations.achieve_flag"));
+				ct.setDecsTag(rs.getInt("declarations.private_flag"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));
@@ -405,7 +407,7 @@ public class DeclarationsDao {
 			// SQL文を準備する
 			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
-					+ "WHERE declarations.private_flag = 0 and  declarations.delete_flag = 0 and users.id = ? ";
+					+ "WHERE declarations.private_flag = 0 and  declarations.delete_flag = 0 and users.id = ? ORDER BY declarations.id , steps.achieve_flag";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1,2の?が自分のID、3の?が他の人のID
@@ -474,7 +476,7 @@ public class DeclarationsDao {
 					+ "LEFT JOIN steps ON declarations.id = steps.declaration_id "
 					+ "LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? "
 					+ "LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
-					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0 ";
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0 ORDER BY declarations.id , steps.achieve_flag";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -542,7 +544,7 @@ public class DeclarationsDao {
 			// SQL文を準備する
 			String sql = "SELECT *"
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
-					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and bookmarks.user_id = ?";
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and bookmarks.user_id = ? ORDER BY declarations.id , steps.achieve_flag";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1,2,3の?が自分のID、
@@ -610,7 +612,7 @@ public class DeclarationsDao {
 			// SQL文を準備する
 			String sql = "SELECT *"
 					+ " FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
-					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and (declarations.declaration LIKE ?  or steps.step LIKE ?)";
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  and (declarations.declaration LIKE ?  or steps.step LIKE ?)ORDER BY declarations.id , steps.achieve_flag";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1,2の?が自分のID、3,4の?が入力フォームに入力された値
@@ -628,6 +630,7 @@ public class DeclarationsDao {
 				ct.setDecsId(rs.getInt("declarations.id"));
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsAchieveFlag(rs.getBoolean("declarations.achieve_flag"));
 				ct.setUsersId(rs.getString("users.id"));
 				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));
@@ -679,7 +682,7 @@ public class DeclarationsDao {
 			// SQL文を準備する
 			String sql = "SELECT * "
 					+ "FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
-					+ "WHERE declarations.achieve_flag = 0 and  declarations.private_flag = 0 and  declarations.delete_flag = 0 and declarations.tag = ?";
+					+ "WHERE declarations.achieve_flag = 0 and  declarations.private_flag = 0 and  declarations.delete_flag = 0 and declarations.tag = ? ORDER BY declarations.id , steps.achieve_flag";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 1,2の?が自分のID、3の?が検索されたtagNumber
@@ -697,6 +700,8 @@ public class DeclarationsDao {
 				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
 				ct.setDecsTag(rs.getInt("declarations.tag"));
 				ct.setDecsAchieveFlag(rs.getBoolean("declarations.achieve_flag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
 				ct.setStepsId(rs.getInt("steps.id"));
 				ct.setStepsStep(rs.getString("steps.step"));
 				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));

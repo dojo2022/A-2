@@ -17,5 +17,7 @@
 		<input type="submit" value="登録">
 
 	</form>
+
+	<p>ログインは<a href="/killerQueen/LoginServlet">こちら</a></p>
 </body>
 </html>

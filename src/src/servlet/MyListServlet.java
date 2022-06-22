@@ -178,34 +178,38 @@ public class MyListServlet extends HttpServlet {
 			int tag = Integer.parseInt(request.getParameter("tag"));
 			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag"));
 
-			String step = request.getParameter("step");
-
 			//DeclarationsDaoのinsertDecメソッドを呼ぶ
 			DeclarationsDao decDao = new DeclarationsDao();
 			boolean decResult = decDao.insertDec(declaration, tag, privateFlag, userId);
+
 			//StepをINSERTするメゾット
-			StepsDao stepsDao = new StepsDao();
-			boolean stepResult = stepsDao.createStep(step);
+			//ループして登録する
+			int count = Integer.parseInt(request.getParameter("count"));
+			System.out.println(request.getParameter("count"));
+			for(int i = 1; i < count + 1; i++) {
+				String step = request.getParameter("step"+i);
+				System.out.println(step);
+				StepsDao stepsDao = new StepsDao();
+				boolean stepResult = stepsDao.createStep(step);
+
+			}
+
 
 			//宣言かステップどちらか登録に失敗した場合(トランザクション処理？)
-			if (decResult == false || stepResult == false) {
+			/*if (decResult == false || stepResult == false) {
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 				Result result = new Result();
 				result.setMessage("登録に失敗しました。");
 				request.setAttribute("result", result);
-			}
+			}*/
 
 			//MyListservletでリダイレクトする
 			response.sendRedirect("/killerQueen/MyListServlet");
-			//MyListservletでフォワードする
+			//MyListservletでフォワードする(これをすると無限doPost)
 			//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
 			//dispatcher.forward(request, response);
 
-			/*仲原さんメモ：String id = (String) session.getAttribute("id");
-			DeclarationsDao decDao2 = new DeclarationsDao();
-			//引数をidとしてdecDAOのmypagedecメゾット呼び出し
-			ArrayList<CommonTable> pageList = decDao2.myListDec(id);
-			*/
+
 		}
 		//②編集
 		// リクエストパラメータを取得する
@@ -214,21 +218,22 @@ public class MyListServlet extends HttpServlet {
 			String userId = (String) session.getAttribute("id");
 			request.setCharacterEncoding("UTF-8");
 			String declaration = request.getParameter("declaration_edit");
-			int tag = Integer.parseInt(request.getParameter("tag"));
+			int tag = Integer.parseInt(request.getParameter("tag_edit"));
 			System.out.println(declaration);
-			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag"));
+			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag_edit"));
 
-			int decId = Integer.parseInt(request.getParameter("declaration_id"));
+			int decId = Integer.parseInt(request.getParameter("declaration_id_edit"));
 
-			String step = request.getParameter("step");
+			String step = request.getParameter("step_edit");
+			int stepId = Integer.parseInt(request.getParameter("step_id_edit"));
 
 			//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
 			//		宣言を編集する処理
 			DeclarationsDao decDao = new DeclarationsDao();
-			boolean decResult = decDao.editDec(declaration, tag, privateFlag, userId);
+			boolean decResult = decDao.editDec(declaration, tag, privateFlag, decId);
 			//		ステップを編集する処理
 			StepsDao stepsDao = new StepsDao();
-			boolean stepResult = stepsDao.editStep(step, decId);
+			boolean stepResult = stepsDao.editStep(step, stepId);
 
 			//宣言かステップどちらか編集に失敗した場合(トランザクション処理？)
 			if (decResult == false || stepResult == false) {

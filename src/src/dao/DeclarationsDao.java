@@ -63,7 +63,7 @@ public class DeclarationsDao {
 	}
 
 	//宣言リストの編集
-	public boolean editDec(String dec,int tag,boolean privateFlag,String userId) {
+	public boolean editDec(String dec,int tag,boolean privateFlag,int decId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -82,7 +82,7 @@ public class DeclarationsDao {
 			pStmt.setString(1,dec);
 			pStmt.setInt(2,tag);
 			pStmt.setBoolean(3,privateFlag);
-			pStmt.setString(4,userId);
+			pStmt.setInt(4,decId);
 
 			// SQL文の成功/失敗を変数に入れる
 			int ans = pStmt.executeUpdate();

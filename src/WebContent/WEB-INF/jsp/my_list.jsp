@@ -9,12 +9,14 @@
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_list.css">
 </head>
 <body>
+<%@ include file="/WEB-INF/jsp/common.jsp" %>
 <p>マイリストの表示</p>
 <h1>${result.message}</h1>
 <c:forEach var="e" items="${decList }" varStatus="status">
+<form method="POST" action="/killerQueen/MyListServlet">
 <details>
 	<summary>
-	宣言ID:${e.id }
+	宣言ID:${e.id }<input type="hidden" name="declaration_id" value="${e.id }">
 	宣言：${e.declaration}
 	タグ：${e.tag }
 	非公開：${e.privateFlag }
@@ -46,11 +48,12 @@
 		</c:if>
 	</c:forEach>
 <button id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
-<form method="POST" action="/killerQueen/MyListServlet">
+
 <input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
-</form>
 </details>
+</form>
 </c:forEach>
+\
 
 
 <!-- 宣言＆ステップの新規登録 -->
@@ -64,14 +67,15 @@
 			タグ：<input type = "text" name="tag"><br>
 			非公開：<input type = "text" name="private_flag"><br>
 			<div id="target">
-			<span>ステップ：</span><input type = "text" name="step" id="inputform_0"><br>
+			<span>ステップ：</span><input type = "text" name="step1" id="inputform_1"><br>
 			</div>
+			<input type="hidden" name="count" value="1" id="count">
 			<input type="button" value="+" onclick="addForm()">
 			<input type="submit" value="新規登録" name="bt"><br>
 		</div>
 	</div>
 </div>
-
+</form>
 
 
 
@@ -79,28 +83,29 @@
 
 <!-- 宣言＆ステップの編集 -->
 <c:forEach var="e" items="${decList }" varStatus="status">
+<form method="POST" action="/killerQueen/MyListServlet">
 <div id="edit_modal${status.index}" class="modal">
 	<div class="modal_content">
 		<span class="close2" onclick="batten('${status.index}')" id="close${status.index}">X</span>
 		<div class="modal_body">
 		<input type="text" value="${status.index}" id="status_id${status.index}">
-		DecID:<input type ="text" name="declaration_id" value="${e.id }">
+		DecID:<input type ="text" name="declaration_id_edit" value="${e.id }">
 		宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
-		タグ：<input type = "text" name="tag" value="${e.tag }"><br>
-		非公開:<input type = "text" name="private_flag" value="${e.privateFlag }"><br>
+		タグ：<input type = "text" name="tag_edit" value="${e.tag }"><br>
+		非公開:<input type = "text" name="private_flag_edit" value="${e.privateFlag }"><br>
 		<c:forEach var="t" items="${pageList }" >
 			<c:if test="${t.stepsDecId == e.id }">
-			ステップID:<input type="text" name="step_id" value="${t.stepsId}">
-			ステップ:<input type = "text" name="step" value="${t.stepsStep}"><br>
-			ステップ達成：<input type="text" name="step_achive_flag" value="${t.stepsAchieveFlag}"><br>
+			ステップID:<input type="text" name="step_id_edit" value="${t.stepsId}">
+			ステップ:<input type = "text" name="step_edit" value="${t.stepsStep}"><br>
+			ステップ達成：<input type="text" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><br>
 			</c:if>
 		</c:forEach>
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>
 </div>
-</c:forEach>
 </form>
+</c:forEach>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
 <script>
 //新規登録へを押したらモーダルを表示する
@@ -121,17 +126,23 @@ close.onclick = function() {
 //var btn2 = document.getElementById('open_modal2');
 //編集ボタンを押した時の表示：function disp()
 function disp(indexNo){
+	alert('押したやろ');
+	alert(indexNo);
 	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	//var btn2 = document.getElementById('open_modal2'+indexNo);
 	//var stId = document.getElementById('status_id'+indexNo);
 	//console.log(modal2);
 	//console.log(indexNo);
 	//console.log(stId);
+	alert(document.getElementById('edit_modal'+ indexNo));
 	if(indexNo == indexNo){
+		alert('if文にいるよん');
 		modal2.style.display = 'block';
+		event.preventDefault();
 	}else {
 		console.log('まだまだだね');
 	}
+
 }
 
 
@@ -165,16 +176,19 @@ window.onclick = function (event)  {
 
 
 </script>
-<!-- テキストボックス追加のjs -->
+<!-- テキストボックス追加のjs-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 'use strict'
 
 var i = 1;
 function addForm(){
+	i++;
 	var input_data = document.createElement('input');
 	input_data.type = 'text';
 	input_data.id = 'inputform_' + i;
+	input_data.name='step' + i;
+	alert(input_data.name);
 	var step = document.createElement('span');
 	step.innerHTML = 'ステップ：';
 	var br = document.createElement('br');
@@ -182,7 +196,11 @@ function addForm(){
 	parent.appendChild(step);
 	parent.appendChild(input_data);
 	parent.appendChild(br);
-	i++;
+
+	var count = document.getElementById('count');
+	count.value = i;
+	alert(document.getElementById('count').value);
+
 	return false;
 }
 

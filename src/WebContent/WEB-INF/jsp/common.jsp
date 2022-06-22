@@ -13,7 +13,7 @@
 <header>
     <div class="my_list_logo">
       <a href="/killerQueen/MyListServlet">
-        <img src="/killerQueen/img/logo/logo.png">
+        <img src="/killerQueen/img/logo/logo.png" class="logo">
       </a>
     </div>
 </header>

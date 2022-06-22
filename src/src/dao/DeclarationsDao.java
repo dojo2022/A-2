@@ -11,7 +11,7 @@ import model.CommonTable;
 
 public class DeclarationsDao {
 	//宣言リストの新規作成
-	public boolean insertDec(String dec,int tag,int privateFlag,String userId) {
+	public boolean insertDec(String dec,int tag,boolean privateFlag,String userId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -29,7 +29,7 @@ public class DeclarationsDao {
 			// SQL文を作成する
 			pStmt.setString(1,dec);
 			pStmt.setInt(2,tag);
-			pStmt.setInt(3,privateFlag);
+			pStmt.setBoolean(3,privateFlag);
 			pStmt.setString(4,userId);
 
 			// SQL文の成功/失敗を変数に入れる
@@ -63,7 +63,7 @@ public class DeclarationsDao {
 	}
 
 	//宣言リストの編集
-	public boolean editDec(String dec,int tag,int privateFlag,String userId) {
+	public boolean editDec(String dec,int tag,boolean privateFlag,String userId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -81,7 +81,7 @@ public class DeclarationsDao {
 			// SQL文を作成する
 			pStmt.setString(1,dec);
 			pStmt.setInt(2,tag);
-			pStmt.setInt(3,privateFlag);
+			pStmt.setBoolean(3,privateFlag);
 			pStmt.setString(4,userId);
 
 			// SQL文の成功/失敗を変数に入れる

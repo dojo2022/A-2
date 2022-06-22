@@ -85,7 +85,7 @@
 		<div class="modal_body">
 		<input type="text" value="${status.index}" id="status_id${status.index}">
 		DecID:<input type ="text" name="declaration_id" value="${e.id }">
-		宣言：<input type = "text" name="declaration" value="${e.declaration}"><br>
+		宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
 		タグ：<input type = "text" name="tag" value="${e.tag }"><br>
 		非公開:<input type = "text" name="private_flag" value="${e.privateFlag }"><br>
 		<c:forEach var="t" items="${pageList }" >

@@ -30,17 +30,17 @@ public class MyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//セッションが切れていたらLoginServletへ戻る
-		//		HttpSession session = request.getSession();
-		//		if (session.getAttribute("id") == null) {
-		//			response.sendRedirect("/killerQueen/LoginServlet");
-		//			return;
-		//		}
+				HttpSession session = request.getSession();
+				if (session.getAttribute("id") == null) {
+					response.sendRedirect("/killerQueen/LoginServlet");
+					return;
+				}
 
 		//DeclarationsDaoから宣言とステップのデータを取ってくる.
-		//String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 		DeclarationsDao decDao = new DeclarationsDao();
 		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
-		ArrayList<CommonTable> pageList = decDao.myListDec("1");
+		ArrayList<CommonTable> pageList = decDao.myListDec(id);
 
 		//for文でインスタンスで取り出す
 		//宣言が入るArrayListとステップが入るArrayListを作成
@@ -157,11 +157,13 @@ public class MyListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//セッションが切れていたらLoginServletへ戻る
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+			if (session.getAttribute("id") == null) {
 			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
 		}
 
+
+		request.setCharacterEncoding("UTF-8");
 		String button = request.getParameter("bt");
 		//行われた処理によって①～④条件分岐
 		if (button.equals("新規登録")) {
@@ -170,10 +172,11 @@ public class MyListServlet extends HttpServlet {
 			//セッションスコープの取得
 			String userId = (String) session.getAttribute("id");
 			// リクエストパラメータを取得する
+			//String userId = "1";
 			request.setCharacterEncoding("UTF-8");
-			String declaration = request.getParameter("declarations.id");
+			String declaration = request.getParameter("declaration");
 			int tag = Integer.parseInt(request.getParameter("tag"));
-			int privateFlag = Integer.parseInt(request.getParameter("private_flag"));
+			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag"));
 
 			String step = request.getParameter("step");
 
@@ -192,9 +195,11 @@ public class MyListServlet extends HttpServlet {
 				request.setAttribute("result", result);
 			}
 
+			//MyListservletでリダイレクトする
+			response.sendRedirect("/killerQueen/MyListServlet");
 			//MyListservletでフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
-			dispatcher.forward(request, response);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
+			//dispatcher.forward(request, response);
 
 			/*仲原さんメモ：String id = (String) session.getAttribute("id");
 			DeclarationsDao decDao2 = new DeclarationsDao();
@@ -204,13 +209,14 @@ public class MyListServlet extends HttpServlet {
 		}
 		//②編集
 		// リクエストパラメータを取得する
-		if (button.equals("編集")) {
+		if (button.equals("完了")) {
 			//選択されたデータを受け取る
 			String userId = (String) session.getAttribute("id");
 			request.setCharacterEncoding("UTF-8");
-			String declaration = request.getParameter("declaration");
+			String declaration = request.getParameter("declaration_edit");
 			int tag = Integer.parseInt(request.getParameter("tag"));
-			int privateFlag = Integer.parseInt(request.getParameter("private_flag"));
+			System.out.println(declaration);
+			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag"));
 
 			int decId = Integer.parseInt(request.getParameter("declaration_id"));
 
@@ -232,9 +238,11 @@ public class MyListServlet extends HttpServlet {
 				request.setAttribute("result", result);
 			}
 
+			response.sendRedirect("/killerQueen/MyListServlet");
+
 			//MyListservletでフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
-			dispatcher.forward(request, response);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+			//dispatcher.forward(request, response);
 		}
 		//③宣言達成
 //		達成ボタンが押されたら、declaration_idを取ってくる
@@ -259,9 +267,10 @@ public class MyListServlet extends HttpServlet {
 				request.setAttribute("result",result);
 
 			}
+			response.sendRedirect("/killerQueen/MyListServlet");
             //MyListservletでフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
-			dispatcher.forward(request, response);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+			//dispatcher.forward(request, response);
 		}
 			/*
 			 * 選択されたデータを受け取る
@@ -293,9 +302,10 @@ public class MyListServlet extends HttpServlet {
 			request.setAttribute("result",result);
 
 		}
+		response.sendRedirect("/killerQueen/MyListServlet");
         //MyListservletでフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
-		dispatcher.forward(request, response);
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+		//dispatcher.forward(request, response);
 	}
 
 

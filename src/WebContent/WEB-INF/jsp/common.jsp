@@ -9,9 +9,6 @@
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/common.css">
 </head>
 
-
-<body>
-
 	<% String js = ""; %>
 
 	<c:if test="${theme == 0}">
@@ -24,7 +21,9 @@
 		<% js = "changeTheme2()"; %>
 	</c:if>
 
-<div onLoad="<%=js %>">
+<body onLoad="<%=js %>">
+
+<div>
 <header>
     <div class="my_list_logo">
       <a href="/killerQueen/MyListServlet">

@@ -3,12 +3,11 @@
 function goAjax(indexNo){
 			alert("gojaxはいったよ！");
 			//入力値を取得してくる
-			let usersId = 1;
 			let decsId = document.getElementById('decsId' + indexNo).value;
 			let buttonStatus = document.getElementById('reaction' + indexNo).value;
 
 			//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-			let postData = {data1:decsId,data2:usersId,data3:buttonStatus}
+			let postData = {data1:decsId,data2:buttonStatus}
 
 
 			//非同期通信始めるよ
@@ -63,12 +62,11 @@ function goAjax(indexNo){
 function goBook(indexNo){
 			alert("gobookはいったよ！");
 			//入力値を取得してくる
-			let usersId = 1;
 			let decsId = document.getElementById('decsId' + indexNo).value;
 			let bookStatus = document.getElementById('bookmark' + indexNo).value;
 
 			//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-			let postData = {data1:decsId,data2:usersId,data3:bookStatus}
+			let postData = {data1:decsId,data2:bookStatus}
 
 
 			//非同期通信始めるよ

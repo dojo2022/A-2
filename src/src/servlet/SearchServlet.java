@@ -34,6 +34,7 @@ public class SearchServlet extends HttpServlet {
 			return;
 		} */
 
+
 		//検索画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");
 		dispatcher.forward(request, response);
@@ -63,13 +64,8 @@ public class SearchServlet extends HttpServlet {
 		//リクエストパラメーターの文字コードを設定する
 		request.setCharacterEncoding("UTF-8");
 
-
 		// あいまい検索がされたとき
 		if (request.getParameter("str") != null) {
-
-//		String test = request.getParameter("str");
-//		System.out.println(test);
-//		System.out.println("aaa");
 
 		// 入力された文字列をリクエストパラメータから取得
 		String search = request.getParameter("str");
@@ -91,14 +87,16 @@ public class SearchServlet extends HttpServlet {
 			//CommonTableからDeclarationsテーブルの内容だけ取得
 			//Declartionsビーンズに格納する
 			Steps st = new Steps();
+			if(ct.getStepsId() != 0) {
 			st.setStep(ct.getStepsStep());
 			st.setAchieveFlag(ct.isStepsAchieveFlag());
 			st.setDeclarationId(ct.getDecsId());
 			//stepsビーンズをArrayListに格納する
 			stepList.add(st);
+			}
 		}
 
-		//decListを選別する
+		//Listを選別する
 				int i = 0;
 				int k = 1;
 				while(i < pageList.size()) {
@@ -114,37 +112,6 @@ public class SearchServlet extends HttpServlet {
 					break;
 				}
 
-		/*CommonTable ct = pageList.get(0);//一個目のArrayListを取得
-
-		String dec = ct.getDecsDeclaration();//一個目に入っている宣言取得
-		System.out.println(dec);
-		for (int i = 1; i < pageList.size(); i++) {
-			ct = pageList.get(i);
-			String dec2 = ct.getDecsDeclaration();
-			if (dec == dec2) {
-				for (int j = 0; j < pageList.size(); j++) {
-					String step = ct.getStepsStep();
-					System.out.println(step);
-				}
-			} else {
-				System.out.println(dec2);
-			}
-
-		}
-
-		for(int i=1; i< pageList.size(); i++) {
-			if(dec!= de)
-			pageList.get(i);
-			String de= ct.getDecsDeclaration();
-			System.out.println(de);
-
-			String step = ct.getStepsStep();
-			System.out.println(step);
-
-
-		}*/
-
-
 		// 検索結果をリクエストスコープにpageListとして格納する
 		request.setAttribute("pageList", pageList);
 		request.setAttribute("stepList", stepList);
@@ -152,7 +119,6 @@ public class SearchServlet extends HttpServlet {
 		// 検索結果画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 		dispatcher.forward(request, response);
-
 
 		// タグ検索がされたとき
 		} else if (request.getParameter("action") != null) {
@@ -212,7 +178,7 @@ public class SearchServlet extends HttpServlet {
 			st.setDeclarationId(ct.getDecsId());
 			//stepsビーンズをArrayListに格納する
 			stepList.add(st);
-		}
+			}
 
 		//decListを選別する
 				int i = 0;
@@ -230,8 +196,8 @@ public class SearchServlet extends HttpServlet {
 					break;
 				}
 
-		// 検索結果をリクエストスコープにsearchListとして格納する
-		request.setAttribute("searchList", pageList);
+		// 検索結果をリクエストスコープにpageListとして格納する
+		request.setAttribute("pageList", pageList);
 		request.setAttribute("stepList", stepList);
 
 		// 検索結果画面にフォワードする

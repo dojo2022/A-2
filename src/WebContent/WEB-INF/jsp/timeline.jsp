@@ -51,8 +51,18 @@
 						<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 						</c:if>
-						<!--  <input type="button" value="リアクション" id="buttonId${status.index}" onclick="goAjax('${status.index}')"> -->
-						<!--  <input type="button" value="ブックマーク"  class="buttonId" onclick="goAjax()"> -->
+
+				<!-- ブックマークアイコン -->
+						<c:if test="${t.bookmarksId == 0}">
+				<div id="changeBook${status.index}">
+						<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+				</div>
+						</c:if>
+						<c:if test="${t.bookmarksId != 0}">
+				<div id="changeBook${status.index}">
+						<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+				</div>
+						</c:if>
 						<p id="test${status.index}">"${t.decsId}"</p>
 			</td>
 

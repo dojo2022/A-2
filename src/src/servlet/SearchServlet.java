@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
 import model.CommonTable;
@@ -25,14 +26,15 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/* セッションスコープを使えるようにする
-		HttpSession session = request.getSession(); */
+		 //セッションスコープを使えるようにする
 
-		/* もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession session = request.getSession();
+
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
-		} */
+		}
 
 
 		//検索画面にフォワードする
@@ -46,20 +48,21 @@ public class SearchServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/* セッションスコープを使えるようにする
-		HttpSession session = request.getSession();　*/
 
-		/* もしもログインしていなかったらログインサーブレットにリダイレクトする
+		//セッションスコープを使えるようにする
+		HttpSession session = request.getSession();
+
+		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
-		} */
+		}
 
-		/* ユーザーIDをセッションスコープから取得
-		 String userId = session.getAttribute("user_Id"); */
+		// ユーザーIDをセッションスコープから取得
+		 String userId = (String)session.getAttribute("user_Id");
 
 		// テスト用(ユーザーIDを「１」で試す)
-		String userId = "1";
+		//String userId = "1";
 
 		//リクエストパラメーターの文字コードを設定する
 		request.setCharacterEncoding("UTF-8");

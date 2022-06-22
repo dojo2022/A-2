@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body {
+	background-color:var(--color-main);
+}
 
 .radio {
 	display: inline;

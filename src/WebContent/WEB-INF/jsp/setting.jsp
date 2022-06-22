@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="/killerQueen/css/setting.css">
 	</head>
 	<body>
+
 	<%@ include file="/WEB-INF/jsp/common.jsp" %>
 		<form method="POST" action="SettingServlet">
 			<p>アイコン</p>

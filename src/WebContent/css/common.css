@@ -1,4 +1,26 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+/* theme color */
+:root,
+:root[theme='0'] {
+  --color-container: #9EABC5;
+  --color-main: #E9E6E0;
+  --color-sub: #C6BEBA;
+}
+
+:root[theme='1'] {
+  --color-container: #FFF568;
+  --color-main:#FFFCC6;
+  --color-sub: #FFFEE6;
+}
+
+:root[theme='2'] {
+  --color-container: #D4AF92;
+  --color-main:#F5E1BF;
+  --color-sub: #F5F2DA;
+}
+
 
 .logo {
 	display:block;
@@ -15,6 +37,7 @@
   right: 0;
   width: 100%;
   height: 40px;
+  background-color:var(--color-container);
 }
 
 .line-list {

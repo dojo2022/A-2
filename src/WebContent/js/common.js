@@ -1,6 +1,22 @@
 
-console.log("aaaaaaa");
 
+
+
+function changeTheme0() {
+      document.documentElement.setAttribute('theme', '0');
+}
+
+function changeTheme1(){
+      document.documentElement.setAttribute('theme', '1');
+}
+
+function changeTheme2(){
+      document.documentElement.setAttribute('theme', '2');
+}
+
+
+
+// ハンバーガーメニューの作り方
 $(function() {
   function toggleNav() {
     var body = document.body;

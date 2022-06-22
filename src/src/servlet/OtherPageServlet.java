@@ -32,7 +32,7 @@ public class OtherPageServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/killerQueen/loginServlet");
+			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
 		}
 
@@ -42,12 +42,14 @@ public class OtherPageServlet extends HttpServlet {
 
 		//リクエストスコープから他のユーザーIDを取得
 		request.setCharacterEncoding("UTF-8");
-		String otherId = request.getParameter("id");
+		//urlに埋め込まれたデータを取得
+		String otherId = request.getQueryString();
+
 
 
 //テスト用
-/*String mytest = "2";
-String othertest = "1";*/
+//String myId = "1";
+//String otherId = "1";
 
 		//ユーザー情報を検索
 		UsersDao userdao = new UsersDao();
@@ -67,11 +69,13 @@ String othertest = "1";*/
 		ArrayList<Steps> steper = new ArrayList<Steps>();
 		for(int i = 0; i < OtherPageList.size(); i++) {
 			CommonTable ct = OtherPageList.get(i);
+			if(ct.getStepsId() != 0) {
 			Steps st = new Steps();
 			st.setStep(ct.getStepsStep());
 			st.setAchieveFlag(ct.isStepsAchieveFlag());
 			st.setDeclarationId(ct.getDecsId());
 			steper.add(st);
+			}
 		}
 
 		//timelineListから（DECIDがかぶっている箇所）不要な宣言を削除する

@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>他ユーザーマイページ</title>
 </head>
 <body>
@@ -58,7 +59,7 @@
 
 
 <!-- 他ユーザーの宣言リストたち -->
-<c:forEach var="t" items="${OtherPageList}" >
+<c:forEach var="t" items="${OtherPageList}"  varStatus="status">
 <details>
 	<summary><%int step=0; %><%int achieve=0; %>
 		「
@@ -141,6 +142,32 @@
 			</c:if>
 		</c:forEach>
 
+		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
+						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
+						<c:if test="${t.reactionsId == 0}">
+				<div id="change${status.index}">
+						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+						</c:if>
+						<c:if test="${t.reactionsId != 0}">
+				<div id="change${status.index}">
+						<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+						</c:if>
+
+				<!-- ブックマークアイコン -->
+						<c:if test="${t.bookmarksId == 0}">
+				<div id="changeBook${status.index}">
+						<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+				</div>
+						</c:if>
+						<c:if test="${t.bookmarksId != 0}">
+				<div id="changeBook${status.index}">
+						<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+				</div>
+						</c:if>
+				<p id="test${status.index}">"${t.decsId}"</p>
+
 	</summary>
 		<c:forEach var="v" items="${steper}" varStatus = "st">
 			<c:if test="${t.decsId == v.declarationId}">
@@ -160,4 +187,5 @@
 
 
 </body>
+<script src="/killerQueen/js/timeline.js" charset="utf-8"></script>
 </html>

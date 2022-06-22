@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BookmarksDao;
 import dao.DeclarationsDao;
 import dao.ReactionsDao;
 import model.CommonTable;
@@ -110,6 +111,10 @@ public class TimelineServlet extends HttpServlet {
 		String usersId = request.getParameter("data2");
 		String buttonStatus = request.getParameter("data3");
 		PrintWriter out = response.getWriter();
+		String resString;
+
+		System.out.print(buttonStatus);
+
 
 		if(buttonStatus.equals("リアクションしてない")) {
 			//ReactionsDaoをインスタンス化
@@ -117,26 +122,55 @@ public class TimelineServlet extends HttpServlet {
 			boolean result = rd.insertReaction(usersId, decsId);
 			if(result) {
 				//JSPに返却する値を作成する。値はoutの中に格納する
-				String resString = "inReactTrue";
+				resString = "inReactTrue";
 				out.print(resString);
+				resString = "";
 			}else {
 				//JSPに返却する値を作成する。値はoutの中に格納する
-				String resString = "inReactFalse";
+				resString = "inReactFalse";
 				out.print(resString);
+				resString = "";
 			}
-		}else {
+		}else if(buttonStatus.equals("リアクションしてる")){
 			//ReactionsDaoをインスタンス化
 			ReactionsDao rd = new ReactionsDao();
 			boolean result =rd.deleteReaction(usersId, decsId);
 			//JSPに返却する値を作成する。値はoutの中に格納す
 			if(result) {
 				//JSPに返却する値を作成する。値はoutの中に格納する
-				String resString = "delReactTrue";
+				resString = "delReactTrue";
+				System.out.println(resString);
 				out.print(resString);
+				resString = "";
 			}else {
 				//JSPに返却する値を作成する。値はoutの中に格納する
-				String resString = "delReactFalse";
+				resString = "delReactFalse";
 				out.print(resString);
+				resString = "";
+			}
+		}else if(buttonStatus.equals("ブックマークしてない")) {
+			BookmarksDao bd = new BookmarksDao();
+			boolean resultBook = bd.insertBookmark(usersId, decsId);
+			if(resultBook) {
+				resString = "inBookTrue";
+				out.print(resString);
+				resString = "";
+			}else {
+				resString = "inBookFalse";
+				out.print(resString);
+				resString = "";
+			}
+		}else if(buttonStatus.equals("ブックマークしてる")){
+			BookmarksDao bd = new BookmarksDao();
+			boolean resultBook = bd.deleteBookmark(usersId, decsId);
+			if(resultBook) {
+				resString = "delBookTrue";
+				out.print(resString);
+				resString = "";
+			}else {
+				resString = "delBookFalse";
+				out.print(resString);
+				resString = "";
 			}
 		}
 

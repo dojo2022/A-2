@@ -9,8 +9,7 @@
 <title>マイページ</title>
 </head>
 <body>
-<!-- ユーザー情報 -->
-<!-- ID: ${id}使わない -->
+<%@ include file="/WEB-INF/jsp/common.jsp" %>
 <table>
 <tr>
 	<td rowspan="3">
@@ -36,7 +35,7 @@
 </tr>
 <tr>
 	<td>
-		ゲージ
+
 	</td>
 	<td><c:if test="${countAchieve<=10}">
 		<img src="/killerQueen/img/icon/beginner.png" width="30px">
@@ -51,7 +50,6 @@
 		<img src="/killerQueen/img/icon/gold.png" width="30px">
 		</c:if>
 	</td>
-
 </tr>
 </table>
 
@@ -62,7 +60,7 @@
 <c:forEach var="t" items="${myPageList}" >
 <details>
 	<summary><%int step=0; %><%int achieve=0; %>
-		「
+		「<a href="/killerQueen/OtherPageServlet?${t.usersId}">
 		<c:if test="${icon==0}">
 		<img src="/killerQueen/img/icon/userIcon.png" width="20px">
 		</c:if>
@@ -71,7 +69,8 @@
 		</c:if>
 		<c:if test="${icon==2}">
 		<img src="/killerQueen/img/icon/woman.png" width="20px">
-		</c:if>」
+		</c:if>
+		</a>」
 
 
 		「宣言：${t.decsDeclaration}」
@@ -118,7 +117,7 @@
 
 「
 		<c:if test="${t.decsAchieveFlag==true}">
-		<img src="/killerQueen/img/icon/achievement.png">
+		<img src="/killerQueen/img/icon/achievement.png" width="30px">
 		</c:if>
 		<c:if test="${t.decsAchieveFlag==false}">
 		未達成（この文は消す）

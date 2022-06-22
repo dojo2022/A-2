@@ -32,17 +32,17 @@ public class TimelineServlet extends HttpServlet {
 		//セッションを使えるようにする
 		HttpSession session = request.getSession();
 
-		/*もしもログインしていなかったらログインサーブレットにリダイレクトする
+		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/killerQueen/loginServlet");
 			return;
-		}*/
+		}
 
-		/*セッションスコープからuse_idを取得する
-		String userId = session.getAttribute("user_id");*/
+		//セッションスコープからuse_idを取得する
+		String userId = (String)session.getAttribute("id");
 
 		//テスト用
-		String userId = "1";
+		//String userId = "1";
 
 		//DeclarationsDaoのインスタンスを作成
 		DeclarationsDao decdao = new DeclarationsDao();
@@ -106,14 +106,14 @@ public class TimelineServlet extends HttpServlet {
 		response.setHeader("Cache-Control", "nocache");
 		response.setCharacterEncoding("utf-8");
 
+		HttpSession session = request.getSession();
+
 		// 送信されたデータの取得 int decId int userId
 		int decsId = Integer.parseInt(request.getParameter("data1"));
-		String usersId = request.getParameter("data2");
-		String buttonStatus = request.getParameter("data3");
+		String usersId = (String)session.getAttribute("id");
+		String buttonStatus = request.getParameter("data2");
 		PrintWriter out = response.getWriter();
 		String resString;
-
-		System.out.print(buttonStatus);
 
 
 		if(buttonStatus.equals("リアクションしてない")) {

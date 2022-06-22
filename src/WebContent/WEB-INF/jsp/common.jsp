@@ -8,8 +8,23 @@
 <title>共通画面</title>
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/common.css">
 </head>
+
+
 <body>
 
+	<% String js = ""; %>
+
+	<c:if test="${theme == 0}">
+		<% js = "changeTheme0()"; %>
+	</c:if>
+	<c:if test="${theme == 1}">
+		<% js = "changeTheme1()"; %>
+	</c:if>
+	<c:if test="${theme == 2}">
+		<% js = "changeTheme2()"; %>
+	</c:if>
+
+<div onLoad="<%=js %>">
 <header>
     <div class="my_list_logo">
       <a href="/killerQueen/MyListServlet">
@@ -45,7 +60,7 @@
 		</ul>
 	</nav>
 </div>
-
+</div>
 </body>
 <script src="/killerQueen/js/common.js" charset="utf-8"></script>
 </html>

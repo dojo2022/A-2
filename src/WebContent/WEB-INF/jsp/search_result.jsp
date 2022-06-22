@@ -52,34 +52,43 @@ ul{list-style: none;}
 
 .user_botton img {
 float: left;
-width : 50px;
-height : 50px;
+width : 60px;
+height : 60px;
 }
 
 .dexala_text {
 	float: left;
 	margin-left : 30px;
 }
-.decla_tag{ font-size: 15px; }
-.decla_list{ font-weight:bold; }
+.decla_tag{ font-size: 18px; }
+.decla_list{
+	font-weight:bold;
+	font-size: 22px;
+}
 .achieve_rate { float: right; }
 
 .reaction_button img {
 	float: right;
-	width : 25px;
-	height : 25px;
+	width : 30px;
+	height : 30px;
+	margin-left : 20px;
 }
 
 .bookmark_button img{
 	float: right;
-	width : 25px;
-	height : 25px;
+	width : 30px;
+	height : 30px;
+	margin-left : 20px;
 }
 
-.step_list { clear:both; } /*回り込み解除*/
-.step_list img{
-width : 25px;
-height : 25px;
+.step_list {
+	clear:both;  /*回り込み解除*/
+	margin-top : 40px;
+}
+
+.step_list img {
+	width : 25px;
+	height : 25px;
 }
 
 
@@ -124,6 +133,7 @@ height : 25px;
 
 	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
 		<div class="user_botton">
+		<a href="/killerQueen/OtherPageServlet?${t.usersId}">
 			<c:if test="${t.usersIcon==0}">
 			<img src="/killerQueen/img/icon/userIcon.png">
 			</c:if>
@@ -133,6 +143,7 @@ height : 25px;
 			<c:if test="${t.usersIcon==2}">
 			<img src="/killerQueen/img/icon/woman.png">
 			</c:if>
+			</a>
 		</div>
 
 		<div class="dexala_text">
@@ -153,6 +164,14 @@ height : 25px;
 		</div>
 		</div>
 
+		<div class="bookmark_button">
+			<img src="/killerQueen/img/icon/bookmarkWhite.png">
+		</div>
+
+		<div class="reaction_button">
+			<img src="/killerQueen/img/icon/redHeart.png">
+		</div>
+
 		<div class="achieve_rate">
 			<c:forEach var="s" items="${stepList}" >
 			<c:if test="${t.decsId == s.declarationId}">
@@ -164,12 +183,7 @@ height : 25px;
 			</c:forEach>
 				<%=achieve %>/<%=step %>
 		</div>
-		<div class="reaction_button">
-			<img src="/killerQueen/img/icon/redHeart.png">
-		</div>
-		<div class="bookmark_button">
-			<img src="/killerQueen/img/icon/bookmarkWhite.png">
-		</div>
+
 	</div>
 
 	<nav class="step_list">

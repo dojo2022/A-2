@@ -42,6 +42,7 @@ public class SearchServlet extends HttpServlet {
 			// 押下されたタグに番号をふる
 			int tagNumber = Integer.parseInt(request.getQueryString());
 
+			// ユーザーIDをセッションスコープから取得
 			String userId = (String)session.getAttribute("user_Id");
 
 

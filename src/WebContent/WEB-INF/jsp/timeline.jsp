@@ -27,6 +27,17 @@
 			<td>
 				<details>
 					<summary>
+					<a href="/killerQueen/OtherPageServlet?${t.usersId}">
+					<c:if test="${t.usersIcon == 0}">
+						<img src="/killerQueen/img/icon/userIcon.png" width="20px">
+					</c:if>
+					<c:if test="${t.usersIcon == 1}">
+						<img src="/killerQueen/img/icon/man.png" width="20px">
+					</c:if>
+						<c:if test="${t.usersIcon == 2}">
+					<img src="/killerQueen/img/icon/woman.png" width="20px">
+					</c:if>
+					</a>
 					宣言：${t.decsDeclaration}
 					タグno:${t.decsTag}
 					ユーザーid:${t.usersId}

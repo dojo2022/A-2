@@ -62,6 +62,8 @@
 <c:forEach var="t" items="${OtherPageList}"  varStatus="status">
 <details>
 	<summary><%int step=0; %><%int achieve=0; %>
+
+<!--
 		「
 		<c:if test="${icon==0}">
 		<img src="/killerQueen/img/icon/userIcon.png" width="20px">
@@ -72,9 +74,12 @@
 		<c:if test="${icon==2}">
 		<img src="/killerQueen/img/icon/woman.png" width="20px">
 		</c:if>」
+ -->
 
 
 		「宣言：${t.decsDeclaration}」
+
+<a href="SearchServlet?${t.decsTag}">
 		「タグ:
 		<c:if test="${t.decsTag == 0}">
 		#勉強
@@ -103,7 +108,7 @@
 		<c:if test="${t.decsTag == 8}">
 		#その他
 		</c:if>」
-
+</a>
 
 		<c:forEach var="v" items="${steper}" varStatus = "st">
 			<c:if test="${t.decsId == v.declarationId}">
@@ -116,13 +121,16 @@
 		「<%=achieve %>
 		/<%=step %>」
 
-「
+
+
+		「
 		<c:if test="${t.decsAchieveFlag==true}">
 		<img src="/killerQueen/img/icon/achievement.png" width="30px">
 		</c:if>
 		<c:if test="${t.decsAchieveFlag==false}">
 		未達成（この文は消す）
 		</c:if>」
+
 
 		<c:forEach var="s" items="${reacter}" >
 			<c:if test="${s.decsId == t.decsId}">
@@ -142,6 +150,7 @@
 			</c:if>
 		</c:forEach>
 
+				<!-- リアクションアイコン -->
 		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
 						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
 						<c:if test="${t.reactionsId == 0}">
@@ -168,7 +177,10 @@
 						</c:if>
 				<p id="test${status.index}">"${t.decsId}"</p>
 
+
 	</summary>
+
+
 		<c:forEach var="v" items="${steper}" varStatus = "st">
 			<c:if test="${t.decsId == v.declarationId}">
 					<c:if test="${v.achieveFlag==true}">
@@ -179,6 +191,8 @@
 					</c:if>
 			</c:if>
 		</c:forEach>
+
+
 </details>
 </c:forEach>
 

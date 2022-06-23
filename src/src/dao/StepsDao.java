@@ -75,7 +75,7 @@ public class StepsDao {
 
 			//SQL文を完成させる
 			pStmt.setString(1, step);
-			pStmt.setInt(1, id);
+			pStmt.setInt(2, id);
 
 			//SQL文を実行する（DBに送る）
 

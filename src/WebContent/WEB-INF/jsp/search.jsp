@@ -10,7 +10,7 @@
 
 </head>
 <body>
-
+<%@ include file="/WEB-INF/jsp/common.jsp"%>
 <main>
 
 <h1>検索</h1>

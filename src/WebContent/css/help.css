@@ -63,7 +63,7 @@ header {
 	text-align: center;
 }
 
-/* テキストの配置 */
+/* テキストSの配置 */
 .wrapper .container {
 	max-width: 1000px;
 	margin: 0px auto;
@@ -92,3 +92,26 @@ height : 60px;
 margin: 0px;
 
 }
+
+.box{
+text-align:center;
+}
+.text{
+text-align:left;
+display:inline-block;
+}
+
+/*ブロック内
+---------------------------------------------------------------------------*/
+.parent {
+    text-align: center;         /* 子要素を左右中央揃えにする */
+    border: solid 2px;          /* 枠線指定 */
+    padding:  20px;             /* 余白指定 */
+}
+
+.inline-block_test {
+    display: inline-block;      /* インラインブロック要素にする */
+    background-color:  #ccc;    /* 背景色指定 */
+    padding:  20px;             /* 余白指定 */
+}
+

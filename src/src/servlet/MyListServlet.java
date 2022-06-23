@@ -232,24 +232,28 @@ public class MyListServlet extends HttpServlet {
 
 
 			//ステップを編集する処理
-			// 既存のステップのデータを削除する
+			// 既存のステップのみ編集
 			boolean stepResult;
 			int stepCount= Integer.parseInt(request.getParameter("step_count"));
 			System.out.println(stepCount);
 			for(int i = 0; i < stepCount; i++) {
+				String step = request.getParameter("step_edit" + i);
 				int stepId = Integer.parseInt(request.getParameter("step_id_edit" + i));
 				StepsDao stepsDao = new StepsDao();
-				stepResult = stepsDao.deleteStep(stepId);
+				stepResult = stepsDao.editStep(step, stepId);
 			}
 
 			int allStepCount = Integer.parseInt(request.getParameter("all_count"));
-			System.out.println(allStepCount);
-			for(int i = 0; i < allStepCount; i++) {
-				int stepForeignId = Integer.parseInt(request.getParameter("step_foreign_id" + i));
-				String step = request.getParameter("step_edit" + i);
-				System.out.println(step);
-				StepsDao stepsDao = new StepsDao();
-				stepResult = stepsDao.editInsertStep(step, stepForeignId);
+			if(allStepCount > 0) {
+				System.out.println(allStepCount);
+				for(int i = 0; i < allStepCount; i++) {
+					int stepForeignId = Integer.parseInt(request.getParameter("step_foreign_id" + i));
+					String step = request.getParameter("step_edit" + i);
+					System.out.println(step);
+					StepsDao stepsDao = new StepsDao();
+					stepResult = stepsDao.editInsertStep(step, stepForeignId);
+				}
+
 			}
 
 			//宣言かステップどちらか編集に失敗した場合(トランザクション処理？)

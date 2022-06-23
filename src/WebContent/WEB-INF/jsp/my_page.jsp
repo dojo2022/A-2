@@ -58,13 +58,14 @@
 </table>
 
 
---------------------------------------------------------
+--------------------------------------------------------<br>
 
-
+${myPageList.size()}
 
 <c:forEach var="t" items="${myPageList}" varStatus="status">
 <details>
 	<summary><%int step=0; %><%int achieve=0; %>
+<!--
 		「<a href="/killerQueen/OtherPageServlet?${t.usersId}">
 		<c:if test="${icon==0}">
 		<img src="/killerQueen/img/icon/userIcon.png" width="20px">
@@ -76,9 +77,11 @@
 		<img src="/killerQueen/img/icon/woman.png" width="20px">
 		</c:if>
 		</a>」
-
+ -->
 
 		「宣言：${t.decsDeclaration}」
+
+<a href="SearchServlet?${t.decsTag}">
 		「タグ:
 		<c:if test="${t.decsTag == 0}">
 		#勉強
@@ -107,6 +110,7 @@
 		<c:if test="${t.decsTag == 8}">
 		#その他
 		</c:if>」
+</a>
 
 
 		<c:forEach var="v" items="${steper}" varStatus = "st">
@@ -117,10 +121,12 @@
 					<%step++; %>
 			</c:if>
 		</c:forEach>
+
+
 		「<%=achieve %>
 		/<%=step %>」
 
-「
+		「
 		<c:if test="${t.decsAchieveFlag==true}">
 		<img src="/killerQueen/img/icon/achievement.png" width="30px">
 		</c:if>
@@ -128,12 +134,14 @@
 		未達成（この文は消す）
 		</c:if>」
 
+
 		「<c:if test="${t.decsPrivateFlag==true}">
 		<img src="/killerQueen/img/icon/close.png" width="30px">
 		</c:if>
 		<c:if test="${t.decsPrivateFlag==false}">
 		<img src="/killerQueen/img/icon/open.png" width="30px">
 		</c:if>」
+
 
 		<c:forEach var="s" items="${reacter}" >
 			<c:if test="${s.decsId == t.decsId}">
@@ -150,6 +158,8 @@
 				<c:if test="${s.countReaction>9}">
 				<img src="/killerQueen/img/icon/redHeart.png" width="30px">
 				</c:if>」
+
+
 			</c:if>
 
 		</c:forEach>
@@ -158,6 +168,8 @@
 
 
 	</summary>
+
+
 		<c:forEach var="v" items="${steper}" varStatus = "st">
 			<c:if test="${t.decsId == v.declarationId}">
 					<c:if test="${v.achieveFlag==true}">
@@ -168,6 +180,8 @@
 					</c:if>
 			</c:if>
 		</c:forEach>
+
+
 </details>
 </c:forEach>
 

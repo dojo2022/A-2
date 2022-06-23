@@ -105,12 +105,12 @@
 		</c:forEach>
 		<input type="hidden" name="step_count" value="<%=countStep %>">
 		<div id="target2${status.index}"></div>
-		<input type="button" value="+" onclick="addEditForm('${status.index}', <%=countStep%>)">
+		<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
+		<input type="hidden" name="all_count" value="0" id="all_count">
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>
 </div>
-<input type="hidden" name="all_count" value="0" id="all_count">
 </form>
 </c:forEach>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
@@ -196,8 +196,10 @@ function addEditForm(indexNo, indexStep){
 	j++;
 	//numが編集する際にプラスされたステップも含めたステップの個数
 	var count = document.getElementById('all_count');
-	count.value = num;
+	count.value = j;
 	alert(document.getElementById('all_count').value);
+
+
 }
 
 

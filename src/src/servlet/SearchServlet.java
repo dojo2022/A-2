@@ -36,6 +36,63 @@ public class SearchServlet extends HttpServlet {
 			return;
 		}
 
+		//宣言リストのタグから検索をする
+		if (request.getQueryString() != null) {
+
+			// 押下されたタグに番号をふる
+			int tagNumber = Integer.parseInt(request.getQueryString());
+
+			String userId = (String)session.getAttribute("user_Id");
+
+
+			// 検索処理を行う
+			// DeclarationDaoのインスタンスを作成
+			DeclarationsDao decdao = new DeclarationsDao();
+
+			// ArrayList<CommonTable>のインスタンスを作成
+			ArrayList<CommonTable> pageList = decdao.tagSearchDec(userId, tagNumber);
+
+			//for文でインスタンスで取り出す
+			//ステップが入るArrayListを作成
+			ArrayList<Steps> stepList = new ArrayList<Steps>();
+
+			//pageListからステップ関係のデータのみをstepListに入れる
+			for (int i = 0; i < pageList.size(); i++) {
+				CommonTable ct = pageList.get(i);
+				//CommonTableからDeclarationsテーブルの内容だけ取得
+				//Declartionsビーンズに格納する
+				Steps st = new Steps();
+				st.setStep(ct.getStepsStep());
+				st.setAchieveFlag(ct.isStepsAchieveFlag());
+				st.setDeclarationId(ct.getDecsId());
+				//stepsビーンズをArrayListに格納する
+				stepList.add(st);
+				}
+
+			//decListを選別する
+					int i = 0;
+					int k = 1;
+					while(i < pageList.size()) {
+						while(k < pageList.size()) {
+							if(pageList.get(i).getDecsId() == pageList.get(k).getDecsId()) {
+								pageList.remove(k);
+							}else {
+								i++;
+								k++;
+
+							}
+						}
+						break;
+					}
+
+			// 検索結果をリクエストスコープにpageListとして格納する
+			request.setAttribute("pageList", pageList);
+			request.setAttribute("stepList", stepList);
+
+			// 検索結果画面にフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
+			dispatcher.forward(request, response);
+			}
 
 		//検索画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");

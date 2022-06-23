@@ -6,108 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
-
+<link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 
 <style>
-body { background-color: #C0C8D5; }
-h1 { text-align:center;}
 .search {
 	margin-left: auto;
  	margin-right: auto; }
 
-/* アコーディオンメニュー */
-nav{ display: none; }
-ul{list-style: none;}
-.nav-open{
-	font-size: 20px;
-	position: relative;
-	padding-bottom  : 50px;
-}
-.nav-open::before{/* 閉じている時 */
-	position: absolute;
-	right: 20px;
+.search_button {
+ 	width: 30px;
+	height: 30px;
+	margin-left: 20px;
 }
 
-
-/* 宣言リスト */
-.list {
-	display			: block;
-	width			: 700px;
-	background-color: #FFFFFF;
-	border			: 1px solid;
-	border-radius	: 20px;
-	border-color	: #8989ff;
-	margin-left		: auto;
-	margin-right	: auto;
-	margin-top		: 50px;
-	padding			: 30px 40px 40px 40px;
-	box-shadow		: 6px 6px 5px #7f7fff;
-}
-
-/* hoverすると少し反応する*/
-.list:hover {
-	top:-3px;
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-}
-
-.user_botton img {
-float: left;
-width : 60px;
-height : 60px;
-}
-
-.dexala_text {
-	float: left;
-	margin-left : 30px;
-}
-.decla_tag{ font-size: 18px; }
-.decla_list{
-	font-weight:bold;
-	font-size: 22px;
-}
-.achieve_rate { float: right; }
-
-.reaction_white {
-	float: right;
-	width : 30px;
-	height : 30px;
-	margin-left : 20px;
-	opacity: 0.7;
-}
-
-.reaction_red {
-	float: right;
-	width : 30px;
-	height : 30px;
-	margin-left : 20px;
-}
-
-.bookmark_button {
-	float: right;
-	width : 30px;
-	height : 30px;
-	margin-left : 20px;
-}
-
-.step_list {
-	clear:both;  /*回り込み解除*/
-	margin-top : 40px;
-}
-
-.step_list img {
-	width : 25px;
-	height : 25px;
-	margin-top: 10px;
-	margin-right: 20px;
-}
-
-.achieve_step {
-	opacity: 0.8;
-	text-decoration: line-through;
+.search_box {
+	width: 400px;
+	height: 20px;
 }
 
 </style>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <!--  アコーディオンメニューのjQuery -->
@@ -122,7 +39,6 @@ height : 60px;
 	});
 </script>
 
-
 </head>
 <body>
 
@@ -131,14 +47,18 @@ height : 60px;
 <h1>検索結果</h1>
 <hr>
 
+	<!-- あいまい検索機能 -->
 	<form method="POST" action="/killerQueen/SearchServlet">
 		<table class="search">
 		<tr>
-			<td>
-				<input type="text" name="str" autocomplete="off">
+			<td ><!-- 検索ボックス -->
+				<input type="text" name="str" autocomplete="off" class="search_box">
 			</td>
-			<td class="search_button">
-				<input type="image" src="/killerQueen/img/icon/select.png"  alt="検索" value="検索" width="30" height="30">
+			<td><!-- 検索ボタン -->
+				<input type="image" src="/killerQueen/img/icon/select.png" class="search_button">
+			</td>
+			<td><!-- 検索件数 -->
+				<p class="search_count">${pageList.size()}件表示</p>
 			</td>
 		</tr>
 		</table>
@@ -175,6 +95,7 @@ height : 60px;
 		<!-- タグと宣言 -->
 		<div class="dexala_text">
 			<div class="decla_tag">
+			<a href="SearchServlet?${t.decsTag}">
 				<c:if test="${t.decsTag == 0}">#勉強</c:if>
 				<c:if test="${t.decsTag == 1}">#仕事</c:if>
 				<c:if test="${t.decsTag == 2}">#趣味</c:if>
@@ -184,6 +105,7 @@ height : 60px;
 				<c:if test="${t.decsTag == 6}">#美容</c:if>
 				<c:if test="${t.decsTag == 7}">#日常</c:if>
 				<c:if test="${t.decsTag == 8}">#その他</c:if>
+			</a>
 			</div>
 
 			<div class="decla_list">

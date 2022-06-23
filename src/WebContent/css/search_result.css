@@ -1,172 +1,23 @@
 @charset "UTF-8";
 
-色、マージンパディング、ホバー最終調整...。
 
 /* ----------あいまい検索機能---------- */
 
 /* あいまい検索 */
 .search {
+	margin-top  : 30px; /* 間隔調整 */
 	margin-left	: auto; /* 中央揃え */
  	margin-right: auto; /* 中央揃え */
- }
+}
 
 /* 検索ボックス */
 .search_box {
-	width		: 400px; /* サイズ */
-	height		: 20px;  /* サイズ */
-}
-
-/* 検索ボタン */
-.search_button {
- 	width		: 30px; /* サイズ */
-	height		: 30px; /* サイズ */
-	margin-left : 20px; /* 間隔調整 */
-}
-
-/* ---------宣言リストのひとかたまり--------- */
-
-/* 宣言リスト */
-.list {
-	display			: block; /*リストをブロック要素*/
-	margin-top		: 50px;  /* 間隔調整 */
-	margin-left		: auto;  /* 中央揃え */
-	margin-right	: auto;  /* 中央揃え */
-	padding			: 30px 40px 40px 40px; /*間隔調整*/
-	width			: 700px;  /* 幅を700px */
-	background-color: #FFFFFF;/* 背景を白 */
-	border			: 1px solid; /* 枠線 */
-	border-radius	: 20px;   /* 枠線に丸み */
-	border-color	: var(--back-color);/* 枠線の色 */
-	box-shadow		: 6px 6px 5px #7f7fff; /* 影 */
-}
-
-/* 宣言リストをhover */
-.list:hover {
-	top			: -3px; /* 浮く*/
-	box-shadow	: 0 2px 3px rgba(0, 0, 0, 0.3); /* 影の色変わる */
-}
-
-
-/* ---------アコーディオンメニュ---------- */
-
-/* ステップリストを隠す */
-nav{
-	display: none;
-}
-
-.nav-open{
-	font-size: 20px;
-	position: relative;
-	padding-bottom  : 50px;
-}
-
-/* 閉じているとき */
-.nav-open::before{
-	position: absolute;
-	right: 20px;
-}
-
-
-/* ユーザーアイコン画像 */
-.user_botton img {
-	float	: left; /* 左に回り込み */
-	width 	: 60px; /* サイズ */
-	height 	: 60px; /* サイズ */
-}
-
-/* タグと宣言の二行 */
-.decla_text {
-	float		: left; /* 左に回り込み */
-	margin-left : 30px; /* 間隔調整 */
-}
-
-/* タグ */
-.decla_tag{
-	font-size	: 18px; /* 文字サイズ */
-}
-
-/* 宣言 */
-.decla_list{
-	font-weight	: bold; /* 文字太さ */
-	font-size	: 22px; /* 文字サイズ */
-}
-
-/* ブックマーク */
-.bookmark_button {
-	float		: right; /* 右に回り込み */
-	width 		: 30px;  /* サイズ */
-	height 		: 30px;  /* サイズ */
-	margin-left : 20px;  /* 間隔調整 */
-}
-
-/* リアクション白 */
-.reaction_white {
-	float		: right; /* 右に回り込み */
-	width 		: 30px;  /* サイズ */
-	height 		: 30px;  /* サイズ */
-	margin-left : 20px;  /* 間隔調整 */
-	opacity		: 0.7;   /* 画像の色を薄く調整 */
-}
-
-/* リアクション赤 */
-.reaction_red {
-	float		: right; /* 右に回り込み */
-	width 		: 30px;  /* サイズ */
-	height 		: 30px;  /* サイズ */
-	margin-left : 20px;  /* 間隔調整 */
-}
-
-/* ステップ達成率 */
-.achieve_rate {
-	float		: right; /* 右に回り込み */
-}
-
-/* ---アコーディオンメニュ閉じている状態ここまで--- */
-
-
-/* ステップリスト */
-.step_list {
-	clear		: both; /*回り込み解除*/
-	margin-top 	: 40px; /* 間隔調整 */
-}
-
-ul{list-style: none;}
-
-.step_list img {
-	width		: 25px; /* サイズ */
-	height		: 25px; /* サイズ */
-	margin-top	: 10px; /* 間隔調整 */
-	margin-right: 20px; /* 間隔調整 */
-}
-
-.step_list td {
-	opacity			: 0.8; 	/* 画像の色を薄く調整 */
-	text-decoration	: line-through; /* 訂正線 */
-}
-
-
-------------------------------------------------------------
-
-
-<link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
-
-<style>
-
-/* ----------あいまい検索機能---------- */
-
-/* あいまい検索 */
-.search {
-	margin-top  : 30px;
-	margin-left	: auto; /* 中央揃え */
- 	margin-right: auto; /* 中央揃え */
- }
-
-/* 検索ボックス */
-.search_box {
-	width		: 450px; /* サイズ */
-	height		: 30px;  /* サイズ */
-	border-radius: 8px;
-	font-size: 100%;
+	width		  : 450px; /* サイズ */
+	height		  : 30px;  /* サイズ */
+	border		  : 1.5px solid; /* 枠線 */
+	border-color  : var(--mono-color);/* 枠線の色 */
+	border-radius : 8px; /* 枠線の丸み */
+	font-size	  : 100%; /* 入力文字サイズ */
 }
 
 /* 検索ボタン */
@@ -178,48 +29,48 @@ ul{list-style: none;}
 
 .search_count {
 	margin-left : 20px; /* 間隔調整 */
-	font-size	: 20px;
+	font-size	: 20px;	/* 文字サイズ */
 }
 
 /* ---------宣言リストのひとかたまり--------- */
 
 /* 宣言リスト */
 .list {
-	display			: block; /*リストをブロック要素*/
+	display			: block; /*ブロック要素*/
 	margin-top		: 40px;  /* 間隔調整 */
 	margin-left		: auto;  /* 中央揃え */
 	margin-right	: auto;  /* 中央揃え */
+	margin-bottom	: 40px;  /* 間隔調整 */
 	padding			: 30px 40px 40px 40px; /*間隔調整*/
 	width			: 700px;  /* 幅を700px */
 	background-color: #FFFFFF;/* 背景を白 */
 	border			: 1px solid; /* 枠線 */
+	border-color	: var(--mono-color);;/* 枠線の色 */
 	border-radius	: 20px;   /* 枠線に丸み */
-	border-color	: #8989ff;/* 枠線の色 */
-	box-shadow		: 6px 6px 5px #7f7fff; /* 影 */
+	box-shadow		: 6px 6px 5px var(--sub-color); /* 影 */
 }
 
 /* 宣言リストをhover */
 .list:hover {
-	top			: -3px; /* 浮く*/
-	box-shadow	: 0 2px 3px rgba(0, 0, 0, 0.3); /* 影の色変わる */
+	box-shadow		: 0 2px 3px rgba(0, 0, 0, 0.3); /* 影の色変わる */
 }
 
 
 /* ---------アコーディオンメニュ---------- */
 
-/* ステップリストを隠す */
 nav{
-	display: none;
+	display	: none; /* ステップリストを隠す */
 }
 
+/* 開いているとき */
 .nav-open{
-	position: relative;
-	padding-bottom  : 70px;
+	position		: relative; /* 相対位置 */
+	padding-bottom  : 70px;		/* 間隔調整 */
 }
 
 /* 閉じているとき */
 .nav-open::before{
-	position: absolute;
+	position		: absolute; /* 絶対位置 */
 }
 
 
@@ -237,25 +88,22 @@ nav{
 }
 
 /* タグ */
-.decla_tag{
-	font-size	: 18px; /* 文字サイズ */
-}
-
-
 .decla_tag a:link {
-	color		   : #8989ff;
-	text-decoration: none;
-  }
+	font-size		: 18px; /* 文字サイズ */
+	font-style		: italic; /* 文字の種類 */
+	color		   	: var(--mono-color); /* 文字の色 */
+	text-decoration	: none; /* 下線を消す */
+}
 .decla_tag a:visited {
-	color		   : #8989ff;
-	text-decoration: none;
-  }
+	color		   	: var(--mono-color); /* 文字の色 */
+	text-decoration	: none; /* 下線を消す */
+}
 
 /* 宣言 */
 .decla_list{
 	font-weight	: bold; /* 文字太さ */
 	font-size	: 22px; /* 文字サイズ */
-	margin-left : 10px;
+	margin-left : 10px;	/* 間隔調整 */
 }
 
 /* ブックマーク */
@@ -295,29 +143,39 @@ nav{
 /* ステップリスト */
 .step_list {
 	clear		: both; /*回り込み解除*/
+	font-size	: 18px; /* 文字サイズ */
+	color		:rgb(75, 75, 75); /* 文字の色 */
+	font-weight	: bold; /* 文字太さ */
 	margin-top 	: 40px; /* 間隔調整 */
 }
 
-ul{list-style: none;}
+/* リストの黒丸を消す */
+ul	{ list-style: none; }
 
+/* チェックボックス */
 .step_list img {
-	width		: 25px; /* サイズ */
-	height		: 25px; /* サイズ */
-	margin-top	: 10px; /* 間隔調整 */
-	margin-right: 20px; /* 間隔調整 */
+	width			: 25px; /* サイズ */
+	height			: 25px; /* サイズ */
+	margin-top		: 10px; /* 間隔調整 */
+	margin-right	: 15px; /* 間隔調整 */
+	padding-bottom	: 5px ; /* 間隔調整 */
 }
 
-.step_list td {
-	opacity			: 0.8; 	/* 画像の色を薄く調整 */
+/* 達成したステップ */
+.step_achieve td {
+	opacity			: 0.7; 	/* 画像の色を薄く調整 */
 	text-decoration	: line-through; /* 訂正線 */
 }
 
+/* ----------宣言リストここまで---------- */
+
+/* 上に戻るボタン */
 .top_back img {
-	display: block;
-	float		: right;
-	width		: 50px; /* サイズ */
-	height		: 50px; /* サイズ */
-	margin-right: 70px;
-	margin-bottom: 80px;
+	display		: block; /*ブロック要素*/
+	position	: fixed; /* 固定 */
+	width		: 70px;  /* サイズ */
+	height		: 70px;  /* サイズ */
+	right		: 85px;  /* 間隔調整 */
+	bottom		: 50px;  /* 間隔調整 */
 }
-</style>
+

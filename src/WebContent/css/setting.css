@@ -13,5 +13,14 @@
     }
 
     input:checked + label img {
-      border: 2px solid black;
+      border: 3px solid var(--mono-color);
+      border-radius: 50px;
     }
+
+.radio_icon {
+	width: 100px;
+	height: 100px;
+
+}
+
+

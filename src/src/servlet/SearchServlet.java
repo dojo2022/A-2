@@ -42,6 +42,7 @@ public class SearchServlet extends HttpServlet {
 			// 押下されたタグに番号をふる
 			int tagNumber = Integer.parseInt(request.getQueryString());
 
+			// ユーザーIDをセッションスコープから取得
 			String userId = (String)session.getAttribute("user_Id");
 
 
@@ -116,7 +117,7 @@ public class SearchServlet extends HttpServlet {
 		}
 
 		// ユーザーIDをセッションスコープから取得
-		 String userId = (String)session.getAttribute("user_Id");
+		 String userId = (String)session.getAttribute("id");
 
 		// テスト用(ユーザーIDを「１」で試す)
 		//String userId = "1";
@@ -259,6 +260,10 @@ public class SearchServlet extends HttpServlet {
 		// 検索結果をリクエストスコープにpageListとして格納する
 		request.setAttribute("pageList", pageList);
 		request.setAttribute("stepList", stepList);
+
+		CommonTable ccc = new CommonTable();
+		ccc = pageList.get(1);
+		System.out.println(ccc.getReactionsId());
 
 		// 検索結果画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");

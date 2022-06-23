@@ -42,14 +42,21 @@
   <nav class="global-nav">
     <ul class="link-list">
     		<c:if test="${icon == 0}">
-				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/icon/userIcon.png"></a></li>
+				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/user_icon/user_boy.png" class="user_icon"></a></li>
 			</c:if>
 			<c:if test="${icon == 1}">
-				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/icon/man.png"></a></li>
+				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/user_icon/user_man1.png" class="user_icon"></a></li>
 			</c:if>
 			<c:if test="${icon == 2}">
-				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/icon/woman.png"></a></li>
+				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/user_icon/user_man2.png" class="user_icon"></a></li>
 			</c:if>
+			<c:if test="${icon == 3}">
+				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/user_icon/user_woman1.png" class="user_icon"></a></li>
+			</c:if>
+			<c:if test="${icon == 4}">
+				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/user_icon/user_woman2.png" class="user_icon"></a></li>
+			</c:if>
+
 			<li><a href="/killerQueen/MyListServlet">マイリスト</a></li>
 			<li><a href="/killerQueen/TimelineServlet">タイムライン</a></li>
 			<li><a href="/killerQueen/BookmarkServlet">ブックマーク</a></li>

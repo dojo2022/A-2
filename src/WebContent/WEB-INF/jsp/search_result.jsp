@@ -6,25 +6,179 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
-<link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 
 <style>
+
+/* ----------あいまい検索機能---------- */
+
+/* あいまい検索 */
 .search {
-	margin-left: auto;
- 	margin-right: auto; }
+	margin-top  : 30px;
+	margin-left	: auto; /* 中央揃え */
+ 	margin-right: auto; /* 中央揃え */
+ }
 
-.search_button {
- 	width: 30px;
-	height: 30px;
-	margin-left: 20px;
-}
-
+/* 検索ボックス */
 .search_box {
-	width: 400px;
-	height: 20px;
+	width		: 450px; /* サイズ */
+	height		: 30px;  /* サイズ */
+	border-radius: 8px;
+	font-size: 100%;
 }
 
+/* 検索ボタン */
+.search_button {
+ 	width		: 35px; /* サイズ */
+	height		: 35px; /* サイズ */
+	margin-left : 20px; /* 間隔調整 */
+}
+
+.search_count {
+	margin-left : 20px; /* 間隔調整 */
+	font-size	: 20px;
+}
+
+/* ---------宣言リストのひとかたまり--------- */
+
+/* 宣言リスト */
+.list {
+	display			: block; /*リストをブロック要素*/
+	margin-top		: 40px;  /* 間隔調整 */
+	margin-left		: auto;  /* 中央揃え */
+	margin-right	: auto;  /* 中央揃え */
+	padding			: 30px 40px 40px 40px; /*間隔調整*/
+	width			: 700px;  /* 幅を700px */
+	background-color: #FFFFFF;/* 背景を白 */
+	border			: 1px solid; /* 枠線 */
+	border-radius	: 20px;   /* 枠線に丸み */
+	border-color	: #8989ff;/* 枠線の色 */
+	box-shadow		: 6px 6px 5px #7f7fff; /* 影 */
+}
+
+/* 宣言リストをhover */
+.list:hover {
+	top			: -3px; /* 浮く*/
+	box-shadow	: 0 2px 3px rgba(0, 0, 0, 0.3); /* 影の色変わる */
+}
+
+
+/* ---------アコーディオンメニュ---------- */
+
+/* ステップリストを隠す */
+nav{
+	display: none;
+}
+
+.nav-open{
+	position: relative;
+	padding-bottom  : 70px;
+}
+
+/* 閉じているとき */
+.nav-open::before{
+	position: absolute;
+}
+
+
+/* ユーザーアイコン画像 */
+.user_botton img {
+	float	: left; /* 左に回り込み */
+	width 	: 70px; /* サイズ */
+	height 	: 70px; /* サイズ */
+}
+
+/* タグと宣言の二行 */
+.decla_text {
+	float		: left; /* 左に回り込み */
+	margin-left : 30px; /* 間隔調整 */
+}
+
+/* タグ */
+.decla_tag{
+	font-size	: 18px; /* 文字サイズ */
+}
+
+
+.decla_tag a:link {
+	color		   : #8989ff;
+	text-decoration: none;
+  }
+.decla_tag a:visited {
+	color		   : #8989ff;
+	text-decoration: none;
+  }
+
+/* 宣言 */
+.decla_list{
+	font-weight	: bold; /* 文字太さ */
+	font-size	: 22px; /* 文字サイズ */
+	margin-left : 10px;
+}
+
+/* ブックマーク */
+.bookmark_button {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+/* リアクション白 */
+.reaction_white {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+	opacity		: 0.7;   /* 画像の色を薄く調整 */
+}
+
+/* リアクション赤 */
+.reaction_red {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+/* ステップ達成率 */
+.achieve_rate {
+	float		: right; /* 右に回り込み */
+	font-size	: 20px; /* 文字サイズ */
+}
+
+/* ---アコーディオンメニュ閉じている状態ここまで--- */
+
+
+/* ステップリスト */
+.step_list {
+	clear		: both; /*回り込み解除*/
+	margin-top 	: 40px; /* 間隔調整 */
+}
+
+ul{list-style: none;}
+
+.step_list img {
+	width		: 25px; /* サイズ */
+	height		: 25px; /* サイズ */
+	margin-top	: 10px; /* 間隔調整 */
+	margin-right: 20px; /* 間隔調整 */
+}
+
+.step_achieve td {
+	opacity			: 0.8; 	/* 画像の色を薄く調整 */
+	text-decoration	: line-through; /* 訂正線 */
+}
+
+.top_back img {
+	display: block;
+	float		: right;
+	width		: 50px; /* サイズ */
+	height		: 50px; /* サイズ */
+	margin-right: 70px;
+	margin-bottom: 80px;
+}
 </style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <!--  アコーディオンメニューのjQuery -->
@@ -41,7 +195,7 @@
 
 </head>
 <body>
-
+<%@ include file="/WEB-INF/jsp/common.jsp"%>
 <main>
 
 <h1>検索結果</h1>
@@ -92,8 +246,9 @@
 		</a>
 		</div>
 
-		<!-- タグと宣言 -->
-		<div class="dexala_text">
+		<!-- タグと宣言のまとまり -->
+		<div class="decla_text">
+			<!-- タグ -->
 			<div class="decla_tag">
 			<a href="SearchServlet?${t.decsTag}">
 				<c:if test="${t.decsTag == 0}">#勉強</c:if>
@@ -108,6 +263,7 @@
 			</a>
 			</div>
 
+			<!-- 宣言 -->
 			<div class="decla_list">
 				${t.decsDeclaration}
 			</div>
@@ -130,18 +286,16 @@
 
 		<!-- リアクションアイコン -->
 		<div>
-			<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
-			<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
-				<c:if test="${t.reactionsId == 0}">
-					<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
-					</div>
-				</c:if>
-				<c:if test="${t.reactionsId != 0}">
-					<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
-					</div>
-				</c:if>
+			<c:if test="${t.reactionsId == 0}">
+				<div id="change${status.index}">
+					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+			</c:if>
+			<c:if test="${t.reactionsId != 0}">
+				<div id="change${status.index}">
+					<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+			</c:if>
 		</div>
 
 		<!-- ステップ達成率 -->
@@ -169,13 +323,13 @@
 			<c:if test="${s.achieveFlag==false}">
 				<table>
 				<tr>
-					<th>〇</th>
+					<th>〇</th> <!-- いったん〇にしてます後で画像にします -->
 					<td>${s.step}</td>
 				</tr>
 				</table>
 			</c:if>
 			<c:if test="${s.achieveFlag==true}" >
-				<table>
+				<table class="step_achieve">
 				<tr>
 					<th><img src="/killerQueen/img/icon/check.png"></th>
 					<td>${s.step}</td>
@@ -189,6 +343,7 @@
 	</nav>
 </div>
 </c:forEach>
+<!-- リストのひとかたまりここまで -->
 
 </main>
 

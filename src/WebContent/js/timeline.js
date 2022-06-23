@@ -1,7 +1,6 @@
 'use strict'
 
 function goAjax(indexNo){
-			alert("gojaxはいったよ！");
 			//入力値を取得してくる
 			let decsId = document.getElementById('decsId' + indexNo).value;
 			let buttonStatus = document.getElementById('reaction' + indexNo).value;
@@ -60,7 +59,6 @@ function goAjax(indexNo){
 
 
 function goBook(indexNo){
-			alert("gobookはいったよ！");
 			//入力値を取得してくる
 			let decsId = document.getElementById('decsId' + indexNo).value;
 			let bookStatus = document.getElementById('bookmark' + indexNo).value;

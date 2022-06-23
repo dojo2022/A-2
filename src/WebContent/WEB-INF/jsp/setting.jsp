@@ -51,19 +51,19 @@
 				</label>
 			</div>
 			<div class="radio">
-				<input type="radio" <%=icon2 %> name="icon" value= 3 id="radio-3" class="display">
+				<input type="radio" <%=icon2 %> name="icon" value= 2 id="radio-3" class="display">
 				<label for="radio-3" class="radio-label">
 					<img src="/killerQueen/img/user_icon/user_man2.png" class="radio_icon">
 				</label>
 			</div>
 			<div class="radio">
-				<input type="radio" <%=icon3 %> name="icon" value= 4 id="radio-4" class="display">
+				<input type="radio" <%=icon3 %> name="icon" value= 3 id="radio-4" class="display">
 				<label for="radio-4" class="radio-label">
 					<img src="/killerQueen/img/user_icon/user_woman1.png" class="radio_icon">
 				</label>
 			</div>
 			<div class="radio">
-				<input type="radio" <%=icon4 %> name="icon" value= 5 id="radio-5" class="display">
+				<input type="radio" <%=icon4 %> name="icon" value= 4 id="radio-5" class="display">
 				<label for="radio-5" class="radio-label">
 					<img src="/killerQueen/img/user_icon/user_woman2.png" class="radio_icon">
 				</label>

@@ -108,7 +108,10 @@
 						<div class="text">
 							●ハートの色について<br> もらったリアクションの数で<img
 								src="/killerQueen/img/icon/whiteHeart.png" width="15"
-								height="15">が黄、緑、赤に変化します。
+								height="15">が黄、緑、赤に変化します。<br>
+								★アップの条件：　白：0 / 黄色：1～4 / 緑：5～9 / 赤：10～（いいね数）<br>
+
+
 
 
 

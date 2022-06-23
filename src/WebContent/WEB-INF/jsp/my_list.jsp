@@ -40,11 +40,13 @@
 	</summary>
 	<c:forEach var="t" items="${pageList }" >
 		<c:if test="${t.stepsDecId == e.id }">
-		ユーザーID：${t.usersId}<br>
-		ステップID：${t.stepsId}<br>
-		ステップ：${t.stepsStep}<br>
-		ステップ達成：${t.stepsAchieveFlag}<br>
-		ステップ外部キー:${t.stepsDecId }<br>
+		<!--  ユーザーID：${t.usersId}
+		ステップID：${t.stepsId}
+		ステップ達成：${t.stepsAchieveFlag}
+		ステップ外部キー:${t.stepsDecId }<br>-->
+			<c:if test="${t.stepsStep != ''}">
+			ステップ：${t.stepsStep}<br>
+			</c:if>
 		</c:if>
 	</c:forEach>
 <button id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
@@ -104,9 +106,8 @@
 			</c:if>
 		</c:forEach>
 		<input type="hidden" name="step_count" value="<%=countStep %>">
-		<div id="target2${status.index}"></div>
+		<div id="target2${status.index}"><input type="hidden" name="all_count" value="0" id="all_count"></div>
 		<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
-		<input type="hidden" name="all_count" value="1" id="all_count">
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>

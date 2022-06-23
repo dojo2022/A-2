@@ -247,8 +247,8 @@ public class MyListServlet extends HttpServlet {
 			if(allStepCount > 0) {
 				System.out.println(allStepCount);
 				for(int i = 0; i < allStepCount; i++) {
-					int stepForeignId = Integer.parseInt(request.getParameter("step_foreign_id" + i));
-					String step = request.getParameter("step_edit" + i);
+					int stepForeignId = Integer.parseInt(request.getParameter("declaration_id_edit"));
+					String step = request.getParameter("edit_form" + i);
 					System.out.println(step);
 					StepsDao stepsDao = new StepsDao();
 					stepResult = stepsDao.editInsertStep(step, stepForeignId);

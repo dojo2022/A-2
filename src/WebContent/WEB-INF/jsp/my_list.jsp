@@ -106,7 +106,7 @@
 		<input type="hidden" name="step_count" value="<%=countStep %>">
 		<div id="target2${status.index}"></div>
 		<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
-		<input type="hidden" name="all_count" value="0" id="all_count">
+		<input type="hidden" name="all_count" value="1" id="all_count">
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>
@@ -183,8 +183,8 @@ function addEditForm(indexNo, indexStep){
 	alert(num);
 	var input_data = document.createElement('input');
 	input_data.type = 'text';
-	input_data.id = 'edit_form' + num;
-	input_data.name='step_edit' + num;
+	input_data.id = 'edit_form' + j;
+	input_data.name='edit_form' + j;
 	alert(input_data.name);
 	var step = document.createElement('span');
 	step.innerHTML = 'ステップ：';
@@ -199,6 +199,7 @@ function addEditForm(indexNo, indexStep){
 	count.value = j;
 	alert(document.getElementById('all_count').value);
 
+	return false;
 
 }
 

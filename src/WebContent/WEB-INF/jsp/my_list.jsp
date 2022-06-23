@@ -99,6 +99,7 @@
 			ステップID:<input type="text" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
 			ステップ:<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>">
 			ステップ達成：<input type="text" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><br>
+			ステップ外部キー：<input type="text" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }">
 			<%countStep++; %>
 			</c:if>
 		</c:forEach>
@@ -196,6 +197,7 @@ function addEditForm(indexNo, indexStep){
 	//numが編集する際にプラスされたステップも含めたステップの個数
 	var count = document.getElementById('all_count');
 	count.value = num;
+	alert(document.getElementById('all_count').value);
 }
 
 

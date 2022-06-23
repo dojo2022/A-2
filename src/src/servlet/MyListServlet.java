@@ -221,27 +221,34 @@ public class MyListServlet extends HttpServlet {
 			int tag = Integer.parseInt(request.getParameter("tag_edit"));
 			System.out.println(declaration);
 			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag_edit"));
-
 			int decId = Integer.parseInt(request.getParameter("declaration_id_edit"));
 
-			String step = request.getParameter("step_edit");
-			int stepId = Integer.parseInt(request.getParameter("step_id_edit"));
+
 
 			//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
-			//		宣言を編集する処理
+			//宣言を編集する処理
 			DeclarationsDao decDao = new DeclarationsDao();
 			boolean decResult = decDao.editDec(declaration, tag, privateFlag, decId);
-			//		ステップを編集する処理
-			StepsDao stepsDao = new StepsDao();
-			boolean stepResult = stepsDao.editStep(step, stepId);
+
+
+			//ステップを編集する処理
+			// 既存のステップのデータを削除する
+			int stepCount= Integer.parseInt(request.getParameter("step_count"));
+			System.out.println(stepCount);
+			for(int i = 0; i < stepCount; i++) {
+				int stepId = Integer.parseInt(request.getParameter("step_id_edit" + i));
+				StepsDao stepsDao = new StepsDao();
+				boolean stepResult = stepsDao.deleteStep(stepId);
+			}
+
 
 			//宣言かステップどちらか編集に失敗した場合(トランザクション処理？)
-			if (decResult == false || stepResult == false) {
+			/*if (decResult == false || stepResult == false) {
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 				Result result = new Result();
 				result.setMessage("宣言とステップの編集に失敗しました。");
 				request.setAttribute("result", result);
-			}
+			}*/
 
 			response.sendRedirect("/killerQueen/MyListServlet");
 

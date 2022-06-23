@@ -106,7 +106,7 @@
 			</c:if>
 		</c:forEach>
 		<input type="hidden" name="step_count" value="<%=countStep %>">
-		<div id="target2${status.index}"><input type="hidden" name="all_count" value="0" id="all_count"></div>
+		<div id="target2${status.index}"><input type="hidden" name="all_count" value="0" id="all_count${status.index}"></div>
 		<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
@@ -196,9 +196,9 @@ function addEditForm(indexNo, indexStep){
 	parent.appendChild(br);
 	j++;
 	//numが編集する際にプラスされたステップも含めたステップの個数
-	var count = document.getElementById('all_count');
+	var count = document.getElementById('all_count' + indexNo);
 	count.value = j;
-	alert(document.getElementById('all_count').value);
+	alert(document.getElementById('all_count' + indexNo).value);
 
 	return false;
 

@@ -24,16 +24,16 @@
 			<c:if test="${s.decsId == e.id}">
 				リアクションに応じて画像を変えるよ:${s.countReaction}
 				<c:if test="${s.countReaction==0}">
-				ゼロだよ<img src="/killerQueen/img/icon/whiteHeart.png">
+				ゼロだよ<img src="/killerQueen/img/icon/whiteHeart.png" width="30px">
 				</c:if>
 				<c:if test="${s.countReaction>0 && s.countReaction<=4}">
-				1から４！！<img src="/killerQueen/img/icon/yellowHeart.png">
+				1から４！！<img src="/killerQueen/img/icon/yellowHeart.png" width="30px">
 				</c:if>
 				<c:if test="${s.countReaction>4 && s.countReaction<=9}">
-				５から９！！<img src="/killerQueen/img/icon/gleenHeart.png">
+				５から９！！<img src="/killerQueen/img/icon/gleenHeart.png" width="30px">
 				</c:if>
 				<c:if test="${s.countReaction>9}">
-				10以上！！<img src="/killerQueen/img/icon/redHeart.png">
+				10以上！！<img src="/killerQueen/img/icon/redHeart.png" width="30px">
 				</c:if>
 			</c:if>
 		</c:forEach>
@@ -53,7 +53,7 @@
 </details>
 </form>
 </c:forEach>
-\
+
 
 
 <!-- 宣言＆ステップの新規登録 -->
@@ -93,13 +93,17 @@
 		宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
 		タグ：<input type = "text" name="tag_edit" value="${e.tag }"><br>
 		非公開:<input type = "text" name="private_flag_edit" value="${e.privateFlag }"><br>
-		<c:forEach var="t" items="${pageList }" >
+		<c:forEach var="t" items="${pageList }" varStatus="step_status" >
 			<c:if test="${t.stepsDecId == e.id }">
-			ステップID:<input type="text" name="step_id_edit" value="${t.stepsId}">
-			ステップ:<input type = "text" name="step_edit" value="${t.stepsStep}"><br>
+			ステップID:<input type="text" name="step_id_edit${status.index}" value="${t.stepsId}">
+			ステップ:<input type = "text" name="step_edit" value="${t.stepsStep}" id=edit_form1>
 			ステップ達成：<input type="text" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><br>
 			</c:if>
 		</c:forEach>
+		<div id="target2">
+
+		</div>
+		<input type="button" value="+" onclick="addEditForm()">
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>
@@ -202,6 +206,23 @@ function addForm(){
 	alert(document.getElementById('count').value);
 
 	return false;
+}
+
+var j = 1;
+function addEditForm(){
+	j++;
+	var input_data = document.createElement('input');
+	input_data.type = 'text';
+	input_data.id = 'edit_form' + j;
+	input_data.name='step_edit' + j;
+	alert(input_data.name);
+	var step = document.createElement('span');
+	step.innerHTML = 'ステップ：';
+	var br = document.createElement('br');
+	var parent = document.getElementById('target2');
+	parent.appendChild(step);
+	parent.appendChild(input_data);
+	parent.appendChild(br);
 }
 
 //jQueryのやり方

@@ -4,30 +4,37 @@
 /* theme color */
 :root,
 :root[theme='0'] {
-  --color-main: #E9E6E0;
-  --color-container: #9EABC5;
-  --color-sub: #C6BEBA;
+	--back-color: #E9E6E0;
+	--header-color: #9EABC5;
+	--sub-color: #C6BEBA;
+	--mono-color: #4b4b4b;
 }
 
 :root[theme='1'] {
-  --color-main:#FFFCC6;
-  --color-container: #FFF568;
-  --color-sub: #FFFEE6;
+	--back-color: #FFFCC6;
+	--header-color: #FFF568;
+	--sub-color: #FFFAA8;
+	--mono-color: #4b4b4b;
 }
 
 :root[theme='2'] {
-  --color-main:#F5E1BF;
-  --color-container: #D4AF92;
-  --color-sub: #F5F2DA;
+	--back-color: #F5E1BF;
+	--header-color: #D4AF92;
+	--sub-color: #DDC7AF;
+	--mono-color: #4b4b4b;
 }
 
 body {
-	background-color:var(--color-main);
+	background-color:var(--back-color);
 	margin: 0;
 }
 
 header {
-	background-color:var(--color-container);
+	background-color:var(--header-color);
+}
+
+a {
+	text-decoration: none;
 }
 
 .logo {
@@ -36,6 +43,11 @@ header {
 	margin-left:auto;
 	width: 13%; /*画像の幅*/
 	height:90% /*画像の高さ*/
+}
+
+.user_icon {
+	width: 120px;
+	height: 120px;
 }
 
 /* メニュー固定 */
@@ -48,15 +60,15 @@ header {
 }
 
 .line-list {
-  display: block;
-  transition: all 0.4s;
-  box-sizing: border-box;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  margin-right: 0;
-  margin-left: auto;
-  z-index: 300;
+	display: fixed;
+	transition: all 0.4s;
+	box-sizing: border-box;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	margin-right: 0;
+	margin-left: auto;
+	z-index: 300;
 }
 
 /* ハンバーガーメニューの棒 */
@@ -71,7 +83,7 @@ header {
   transform: translateX(-50%);
   width: 20px;
   height: 1px;
-  background: #333;
+  background: var(--mono-color);
 }
 .line-list span:nth-child(1) {
   margin-top: -6px;
@@ -103,7 +115,7 @@ header {
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background: #333;
+  background: var(--mono-color);
   opacity: 0;
   visibility: hidden;
   transition: all 0.6s;
@@ -118,7 +130,7 @@ header {
   width: 300px;
   height: 100vh;
   padding-top: 40px;
-  background: #fff;
+  background: var(--header-color);
   transition: all 0.6s;
   z-index: 200;
   overflow-y: auto;
@@ -135,10 +147,10 @@ header {
 .link-list li a {
   display: block;
   padding: 20px 0;
-  color: #333;
+  color: var(--mono-color);
 }
 .link-list li:hover {
-  background: #464646;
+  background: var(--sub-color);
 }
 
 /* メニューが横から開く */

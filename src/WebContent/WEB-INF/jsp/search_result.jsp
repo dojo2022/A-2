@@ -24,7 +24,7 @@
 
 </head>
 <body>
-
+<%@ include file="/WEB-INF/jsp/common.jsp"%>
 <main>
 
 <h1>検索結果</h1>
@@ -98,6 +98,10 @@
 			</div>
 		</div>
 
+		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
+		<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
+		<input type="button" value="${t.reactionsId}">
+
 		<!-- ブックマークアイコン -->
 		<div>
 			<c:if test="${t.bookmarksId == 0}">
@@ -115,18 +119,16 @@
 
 		<!-- リアクションアイコン -->
 		<div>
-			<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
-			<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
-				<c:if test="${t.reactionsId == 0}">
-					<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
-					</div>
-				</c:if>
-				<c:if test="${t.reactionsId != 0}">
-					<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
-					</div>
-				</c:if>
+			<c:if test="${t.reactionsId == 0}">
+				<div id="change${status.index}">
+					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+			</c:if>
+			<c:if test="${t.reactionsId != 0}">
+				<div id="change${status.index}">
+					<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+			</c:if>
 		</div>
 
 		<!-- ステップ達成率 -->

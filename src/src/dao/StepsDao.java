@@ -171,7 +171,7 @@ public class StepsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			//SQL文を準備する
-			String sql = "DELETE * FROM steps WHERE id = ?;";
+			String sql = "DELETE FROM steps WHERE id = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 

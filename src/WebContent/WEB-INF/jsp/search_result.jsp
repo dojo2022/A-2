@@ -8,23 +8,6 @@
 <title>検索結果</title>
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 
-<style>
-.search {
-	margin-left: auto;
- 	margin-right: auto; }
-
-.search_button {
- 	width: 30px;
-	height: 30px;
-	margin-left: 20px;
-}
-
-.search_box {
-	width: 400px;
-	height: 20px;
-}
-
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <!--  アコーディオンメニューのjQuery -->
@@ -92,8 +75,9 @@
 		</a>
 		</div>
 
-		<!-- タグと宣言 -->
+		<!-- タグと宣言のまとまり -->
 		<div class="dexala_text">
+			<!-- タグ -->
 			<div class="decla_tag">
 			<a href="SearchServlet?${t.decsTag}">
 				<c:if test="${t.decsTag == 0}">#勉強</c:if>
@@ -108,6 +92,7 @@
 			</a>
 			</div>
 
+			<!-- 宣言 -->
 			<div class="decla_list">
 				${t.decsDeclaration}
 			</div>
@@ -169,7 +154,7 @@
 			<c:if test="${s.achieveFlag==false}">
 				<table>
 				<tr>
-					<th>〇</th>
+					<th>〇</th> <!-- いったん〇にしてます後で画像にします -->
 					<td>${s.step}</td>
 				</tr>
 				</table>
@@ -189,6 +174,7 @@
 	</nav>
 </div>
 </c:forEach>
+<!-- リストのひとかたまりここまで -->
 
 </main>
 

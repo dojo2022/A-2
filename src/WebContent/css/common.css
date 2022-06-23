@@ -21,6 +21,14 @@
   --color-sub: #F5F2DA;
 }
 
+body {
+	background-color:var(--color-main);
+	margin: 0;
+}
+
+header {
+	background-color:var(--color-container);
+}
 
 .logo {
 	display:block;
@@ -37,7 +45,6 @@
   right: 0;
   width: 100%;
   height: 40px;
-  background-color:var(--color-container);
 }
 
 .line-list {

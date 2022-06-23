@@ -11,19 +11,19 @@
 
 	<% String js = ""; %>
 
-	<c:if test="${theme == 0}">
+	<c:if test="${themecolor == 0}">
 		<% js = "changeTheme0()"; %>
 	</c:if>
-	<c:if test="${theme == 1}">
+	<c:if test="${themecolor == 1}">
 		<% js = "changeTheme1()"; %>
 	</c:if>
-	<c:if test="${theme == 2}">
+	<c:if test="${themecolor == 2}">
 		<% js = "changeTheme2()"; %>
 	</c:if>
 
 <body onLoad="<%=js %>">
 
-<div>
+
 <header>
     <div class="my_list_logo">
       <a href="/killerQueen/MyListServlet">
@@ -58,7 +58,6 @@
 			<li><a href="/killerQueen/LogoutServlet">ログアウト</a></li>
 		</ul>
 	</nav>
-</div>
 </div>
 </body>
 <script src="/killerQueen/js/common.js" charset="utf-8"></script>

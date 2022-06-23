@@ -52,7 +52,6 @@
 				</details>
 						<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
 						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
-						<input type="button" value="${t.reactionsId}">
 						<c:if test="${t.reactionsId == 0}">
 				<div id="change${status.index}">
 						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">

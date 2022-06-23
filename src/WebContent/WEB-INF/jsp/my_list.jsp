@@ -36,7 +36,7 @@
 				10以上！！<img src="/killerQueen/img/icon/redHeart.png" width="30px">
 				</c:if>
 			</c:if>
-		</c:forEach>
+	</c:forEach>
 	</summary>
 	<c:forEach var="t" items="${pageList }" >
 		<c:if test="${t.stepsDecId == e.id }">
@@ -93,24 +93,27 @@
 		宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
 		タグ：<input type = "text" name="tag_edit" value="${e.tag }"><br>
 		非公開:<input type = "text" name="private_flag_edit" value="${e.privateFlag }"><br>
+		<%int countStep = 0; %>
 		<c:forEach var="t" items="${pageList }" varStatus="step_status" >
 			<c:if test="${t.stepsDecId == e.id }">
-			ステップID:<input type="text" name="step_id_edit${status.index}" value="${t.stepsId}">
-			ステップ:<input type = "text" name="step_edit" value="${t.stepsStep}" id=edit_form1>
+			ステップID:<input type="text" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
+			ステップ:<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>">
 			ステップ達成：<input type="text" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><br>
+			<%countStep++; %>
 			</c:if>
 		</c:forEach>
-		<div id="target2">
-
-		</div>
-		<input type="button" value="+" onclick="addEditForm()">
+		<input type="hidden" name="step_count" value="<%=countStep %>">
+		<div id="target2${status.index}"></div>
+		<input type="button" value="+" onclick="addEditForm('${status.index}', <%=countStep%>)">
 	<input type="submit" value="完了" name="bt"><br>
 	</div>
 	</div>
 </div>
+<input type="hidden" name="all_count" value="0" id="all_count">
 </form>
 </c:forEach>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
+
 <script>
 //新規登録へを押したらモーダルを表示する
 var modal = document.getElementById('resist_modal');
@@ -129,15 +132,14 @@ close.onclick = function() {
 //var modal2 = document.getElementById('edit_modal');
 //var btn2 = document.getElementById('open_modal2');
 //編集ボタンを押した時の表示：function disp()
+var j = 0;
 function disp(indexNo){
+	j=0;
 	alert('押したやろ');
 	alert(indexNo);
 	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	//var btn2 = document.getElementById('open_modal2'+indexNo);
 	//var stId = document.getElementById('status_id'+indexNo);
-	//console.log(modal2);
-	//console.log(indexNo);
-	//console.log(stId);
 	alert(document.getElementById('edit_modal'+ indexNo));
 	if(indexNo == indexNo){
 		alert('if文にいるよん');
@@ -170,21 +172,36 @@ window.onclick = function (event)  {
 
 
 
-// When the user clicks outside the modal -- close it.
-//window.onclick = function(event) {
-//	if (event.target == modal2) {
-//
-//		modal2.style.display = 'none';
-//	}
-//};
+
+//編集画面のテキストボックスの追加
+
+var num = 0;
+function addEditForm(indexNo, indexStep){
+	alert(indexStep);
+	num= indexStep + j;
+	alert(num);
+	var input_data = document.createElement('input');
+	input_data.type = 'text';
+	input_data.id = 'edit_form' + num;
+	input_data.name='step_edit' + num;
+	alert(input_data.name);
+	var step = document.createElement('span');
+	step.innerHTML = 'ステップ：';
+	var br = document.createElement('br');
+	var parent = document.getElementById('target2'+ indexNo);
+	parent.appendChild(step);
+	parent.appendChild(input_data);
+	parent.appendChild(br);
+	j++;
+	//numが編集する際にプラスされたステップも含めたステップの個数
+	var count = document.getElementById('all_count');
+	count.value = num;
+}
 
 
-</script>
 <!-- テキストボックス追加のjs-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
 'use strict'
-
+//新規登録画面のテキストボックスの追加
 var i = 1;
 function addForm(){
 	i++;
@@ -208,31 +225,26 @@ function addForm(){
 	return false;
 }
 
-var j = 1;
-function addEditForm(){
-	j++;
-	var input_data = document.createElement('input');
-	input_data.type = 'text';
-	input_data.id = 'edit_form' + j;
-	input_data.name='step_edit' + j;
-	alert(input_data.name);
-	var step = document.createElement('span');
-	step.innerHTML = 'ステップ：';
-	var br = document.createElement('br');
-	var parent = document.getElementById('target2');
-	parent.appendChild(step);
-	parent.appendChild(input_data);
-	parent.appendChild(br);
-}
+
+//編集画面のテキストボックスの追加
+
 
 //jQueryのやり方
 //$(document).on("click", ".add", function() {
 //    $(this).parent().clone(true).insertAfter($(this).parent());
 //
 //});
+// When the user clicks outside the modal -- close it.
+//window.onclick = function(event) {
+//	if (event.target == modal2) {
+//
+//		modal2.style.display = 'none';
+//	}
+//};
+
 
 </script>
-
-
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">-->
 </body>
 </html>

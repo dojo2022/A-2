@@ -108,15 +108,15 @@
 						<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
 						<c:if test="${t.stepsAchieveFlag == false }">
 							<div id="change${step_ac.index}">
-								<input type="image" src="/killerQueen/img/cricle_icon/circle.png" value="ステップ未達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" name="bt">
+								<input type="image" src="/killerQueen/img/circle_icon/circle.png" width="30px" value="ステップ未達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" >
 							</div>
 						</c:if>
 						<c:if test="${t.stepsAchieveFlag == true }">
 							<div id="change${step_ac.index}">
-								<input type="image" src="/killerQueen/img/cricle_icon/check.png" value="ステップ達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" name="bt">
+								<input type="image" src="/killerQueen/img/circle_icon/check.png" width="30px" value="ステップ達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" >
 							</div>
 						</c:if>
-						ステップ：${t.stepsStep}<br>
+						<span>ステップ：${t.stepsStep}<br></span>
 					</c:if>
 				</c:if>
 			</c:forEach>
@@ -415,8 +415,7 @@ function addForm(){
 
 
 </script>
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 <script src="/killerQueen/js/my_list.js" charset="utf-8"></script>
 </html>

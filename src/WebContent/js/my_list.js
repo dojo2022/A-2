@@ -5,14 +5,18 @@
 
 function goAjax(indexNo){
 			//入力値を取得してくる
-			let stepsId = document.getElementById('steps_id' + indexNo).value;
-			let stepsAchieveF = document.getElementById('steps_achieve' + indexNo).value;
+			alert('Ajaxスタート');
+			let stepsAId = document.getElementById('steps_id' + indexNo).value;
+			let buttonStatus = document.getElementById('steps_achieve' + indexNo).value;
+			alert(stepsAId);
+			alert(buttonStatus);
 
 			//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-			let postData = {data1:stepsId,data2:stepsAchieveF}
+			let postData = {data1:stepsAId,data2:buttonStatus}
+			alert(postData);
 
 
-			//非同期通信始めるよ
+			alert('非同期通信始めるよ');
 			$.ajaxSetup({scriptCharset:'utf-8'});
 			$.ajax({
 				//どのサーブレットに送るか

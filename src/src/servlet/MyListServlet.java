@@ -165,7 +165,60 @@ public class MyListServlet extends HttpServlet {
 
 
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.setHeader("Cache-Control", "nocache");
+		response.setCharacterEncoding("utf-8");
+
+
+
 		String button = request.getParameter("bt");
+		//送信されたデータの取得
+		int stepsAId= Integer.parseInt(request.getParameter("data1"));
+		String buttonStatus = request.getParameter("data2");
+		System.out.println(buttonStatus);
+		PrintWriter out = response.getWriter();
+		String resString;
+
+		//⑤goAjax
+		if(buttonStatus.equals("ステップ未達成")) {
+			StepsDao stepsDao = new StepsDao();
+			boolean result= stepsDao.achieveStep(stepsAId);
+			if(result) {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveTrue";
+				out.print(resString);
+				resString = "";
+				return;
+			}else {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveFalse";
+				out.print(resString);
+				resString = "";
+				return;
+			}
+
+		} else if(buttonStatus.equals("ステップ達成")) {
+			StepsDao stepsDao = new StepsDao();
+			boolean result= stepsDao.notAchieveStep(stepsAId);
+			if(result) {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveTrue";
+				out.print(resString);
+				resString = "";
+				return;
+			}else {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveFalse";
+				out.print(resString);
+				resString = "";
+				return;
+			}
+		}
+
+
+
+
+
 		//行われた処理によって①～④条件分岐
 		if (button.equals("新規登録")) {
 			//①新規作成
@@ -334,51 +387,6 @@ public class MyListServlet extends HttpServlet {
 			//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
 			//dispatcher.forward(request, response);
 		}
-
-
-		//⑤goAjax
-		if(button.equals("ステップ未達成")) {
-			int stepsId= Integer.parseInt(request.getParameter("data1"));
-			boolean stepsAchieveF = Boolean.parseBoolean(request.getParameter("data2"));
-			PrintWriter out = response.getWriter();
-			String resString;
-
-			StepsDao stepsDao = new StepsDao();
-			boolean result= stepsDao.achieveStep(stepsId);
-			if(result) {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveTrue";
-				out.print(resString);
-				resString = "";
-			}else {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveFalse";
-				out.print(resString);
-				resString = "";
-			}
-
-		} else if(button.equals("ステップ達成")) {
-			int stepsId= Integer.parseInt(request.getParameter("data1"));
-			boolean stepsAchieveF = Boolean.parseBoolean(request.getParameter("data2"));
-			PrintWriter out = response.getWriter();
-			String resString;
-
-			StepsDao stepsDao = new StepsDao();
-			boolean result= stepsDao.notAchieveStep(stepsId);
-			if(result) {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveTrue";
-				out.print(resString);
-				resString = "";
-			}else {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveFalse";
-				out.print(resString);
-				resString = "";
-			}
-		}
-
-
 
 
 	}

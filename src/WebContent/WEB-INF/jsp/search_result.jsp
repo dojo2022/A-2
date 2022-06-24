@@ -16,9 +16,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
 	$(function(){
-		$('.nnnn').click(function(){
-			$('.nav-open').toggleClass('active');
-			$('.nav-open').next('nav').slideToggle();
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav').slideToggle();
 		});
 	});
 </script>
@@ -52,7 +52,7 @@
 
 	<!-- アコーディオン -->
 	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
-		<div class ="nnnn">
+
 		<!-- ユーザーアイコン -->
 		<div class="user_botton">
 		<a href="/killerQueen/OtherPageServlet?${t.usersId}">
@@ -96,11 +96,11 @@
 				${t.decsDeclaration}
 			</div>
 		</div>
-</div>
+
 		<!-- ブックマークアイコン -->
 		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
 		<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
-		<div class = "vvv">
+		<div class = "bookmark_div">
 			<c:if test="${t.bookmarksId == 0}">
 					<div id="changeBook${status.index}">
 							<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
@@ -114,7 +114,7 @@
 		</div>
 
 		<!-- リアクションアイコン -->
-		<div class ="ccc">
+		<div class ="reaction_div">
 			<c:if test="${t.reactionsId == 0}">
 				<div id="change${status.index}">
 					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
@@ -181,7 +181,7 @@
 </div>
 
 <!-- タイムラインjs -->>
-<script src="/killerQueen/js/timeline.js" charset="utf-8"></script>
+<script src="/killerQueen/js/search_result.js" charset="utf-8"></script>
 
 </body>
 </html>

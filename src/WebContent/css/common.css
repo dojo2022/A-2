@@ -154,12 +154,12 @@ a {
 }
 
 /* メニューが横から開く */
-.menu-open .global-nav {
+.global-nav.active {
   left: 0;
 }
 
 /* メニューが横から開いた時の背景 */
-.menu-open .menu-bg {
+.menu-bg.black {
   opacity: 0.8;
   visibility: visible;
 }

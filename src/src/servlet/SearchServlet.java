@@ -184,7 +184,6 @@ public class SearchServlet extends HttpServlet {
 
 		// タグ検索がされたとき
 		} else if (request.getParameter("action") != null) {
-
 		// 押下されたタグに番号をふる
 		int tagNumber = 0;
 		switch(request.getParameter("action")) {
@@ -263,10 +262,6 @@ public class SearchServlet extends HttpServlet {
 		// 検索結果をリクエストスコープにpageListとして格納する
 		request.setAttribute("pageList", pageList);
 		request.setAttribute("stepList", stepList);
-
-		CommonTable ccc = new CommonTable();
-		ccc = pageList.get(1);
-		System.out.println(ccc.getReactionsId());
 
 		// 検索結果画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");

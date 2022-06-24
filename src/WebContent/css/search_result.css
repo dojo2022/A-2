@@ -173,8 +173,8 @@ ul	{ list-style: none; }
 .top_back img {
 	display		: block; /*ブロック要素*/
 	position	: fixed; /* 固定 */
-	width		: 70px;  /* サイズ */
-	height		: 70px;  /* サイズ */
+	width		: 50px;  /* サイズ */
+	height		: 50px;  /* サイズ */
 	right		: 85px;  /* 間隔調整 */
 	bottom		: 50px;  /* 間隔調整 */
 }

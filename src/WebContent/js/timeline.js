@@ -32,7 +32,7 @@ function goAjax(indexNo){
 				if(data == "inReactTrue"){
 				$("#change" + indexNo).html("");
 				var htmltext = "";
-				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction` + indexNo;
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction` + indexNo;
 				htmltext = htmltext + `" onclick="goAjax('` + indexNo;
 				htmltext = htmltext + `')">`;
 				$("#change" + indexNo).append(htmltext);
@@ -41,7 +41,7 @@ function goAjax(indexNo){
 
 				$("#change" + indexNo).html("");
 				var htmltext = "";
-				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction` + indexNo;
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction` + indexNo;
 				htmltext = htmltext + `" onclick="goAjax('` + indexNo;
 				htmltext = htmltext + `')">`;
 				$("#change" + indexNo).append(htmltext);
@@ -91,7 +91,7 @@ function goBook(indexNo){
 
 				$("#changeBook" + indexNo).html("");
 				var htmltext = "";
-				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark` + indexNo;
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" value="ブックマークしてる" class="bookmark_button"id="bookmark` + indexNo;
 				htmltext = htmltext + `" onclick="goBook('` + indexNo;
 				htmltext = htmltext + `')">`;
 				$("#changeBook" + indexNo).append(htmltext);
@@ -100,7 +100,7 @@ function goBook(indexNo){
 
 				$("#changeBook" + indexNo).html("");
 				var htmltext = "";
-				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark` + indexNo;
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" value="ブックマークしてない" class="bookmark_button" id="bookmark` + indexNo;
 				htmltext = htmltext + `" onclick="goBook('` + indexNo;
 				htmltext = htmltext + `')">`;
 				$("#changeBook" + indexNo).append(htmltext);

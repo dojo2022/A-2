@@ -27,7 +27,7 @@
 		</div>
 	</td>
 	<td>${userInfo.name}</td>
-	<td><a href="SettingServlet"><img src="/killerQueen/img/icon/setting.png" width="20px"></a></td>
+	<td></td>
 </tr>
 <tr>
 	<td colspan="2">

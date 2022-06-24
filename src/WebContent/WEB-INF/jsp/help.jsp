@@ -137,6 +137,7 @@
 					<div class="icon">
 						<hr width="800％"></hr>
 						<h5 id="icon">
+						<br>
 							<font size="4">5.アイコンの種類</font>
 						</h5>
 						<div class="table">

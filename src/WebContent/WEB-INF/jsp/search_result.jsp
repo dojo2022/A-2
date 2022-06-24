@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <title>検索結果</title>
 
+<!-- 検索結果画面のCSS -->
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
-
+<!-- リアクションとブックマークのjs -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<!--  アコーディオンメニューのjQuery -->
+<!--  アコーディオンメニューのjs -->
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
@@ -25,6 +25,7 @@
 
 </head>
 <body id="top">
+<!-- 共通画面のインクルード -->>
 <%@ include file="/WEB-INF/jsp/common.jsp"%>
 <main>
 
@@ -150,7 +151,7 @@
 			<c:if test="${s.achieveFlag==false}">
 				<table>
 				<tr>
-					<th><img src="/killerQueen/img/circle_icon/add.png"></th>
+					<th><img src="/killerQueen/img/circle_icon/circle.png"></th>
 					<td>${s.step}</td>
 				</tr>
 				</table>
@@ -178,7 +179,7 @@
 <a href="#top"><img src="/killerQueen/img/circle_icon/top.png"></a>
 </div>
 
-
+<!-- タイムラインjs -->>
 <script src="/killerQueen/js/timeline.js" charset="utf-8"></script>
 
 </body>

@@ -8,35 +8,78 @@
 <meta charset="UTF-8">
 <title>検索</title>
 
+<style>
+/* ----------あいまい検索機能---------- */
+
+/* あいまい検索 */
+.search {
+	margin-top  : 30px; /* 間隔調整 */
+	margin-left	: auto; /* 中央揃え */
+ 	margin-right: auto; /* 中央揃え */
+}
+
+/* 検索ボックス */
+.search_box {
+	width		  : 450px; /* サイズ */
+	height		  : 30px;  /* サイズ */
+	border		  : 1.5px solid; /* 枠線 */
+	border-color  : var(--mono-color);/* 枠線の色 */
+	border-radius : 8px; /* 枠線の丸み */
+	font-size	  : 100%; /* 入力文字サイズ */
+}
+
+/* 検索ボタン */
+.search_button {
+ 	width		: 35px; /* サイズ */
+	height		: 35px; /* サイズ */
+	margin-left : 20px; /* 間隔調整 */
+}
+
+
+.tag_search {
+	margin-top		: 40px;  /* 間隔調整 */
+	margin-left		: auto;  /* 中央揃え */
+	margin-right	: auto;  /* 中央揃え */
+}
+
+button {
+width: 200px;
+heigh: 100px;
+margin: 10px 10px 10px 10px;
+	background-color: #FFFFFF;/* 背景を白 */
+	border			: 1px solid; /* 枠線 */
+	border-color	: var(--mono-color);;/* 枠線の色 */
+	border-radius	: 20px;   /* 枠線に丸み */
+	box-shadow		: 6px 6px 5px var(--sub-color); /* 影 */
+}
+
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp"%>
 <main>
 
-<h1>検索</h1>
-<hr>
-
-<div class="search">
+	<!-- あいまい検索機能 -->
 	<form method="POST" action="/killerQueen/SearchServlet">
-		<table>
+		<table class="search">
 		<tr>
-			<td>
-				<input type="text" name="str" autocomplete="off">
+			<td ><!-- 検索ボックス -->
+				<input type="text" name="str" autocomplete="off" class="search_box">
 			</td>
-			<td class="search_button">
-				<input type="image" src="/killerQueen/img/icon/select.png"  alt="検索" value="検索" width="30" height="30">
+			<td><!-- 検索ボタン -->
+				<input type="image" src="/killerQueen/img/icon/select.png" class="search_button">
 			</td>
 		</tr>
 		</table>
 	</form>
-</div>
 
-<div class="tag_search">
+
+<!-- タグ検索機能 -->
 	<form method="POST" action="/killerQueen/SearchServlet">
 	<input type="hidden" name="action">
 
 
-	<table>
+	<table class="tag_search">
 	<tr>
 	<td>
 		<button name="study" onClick="goSubmit(this.form, this)">
@@ -99,7 +142,6 @@
 	</table>
 
 </form>
-</div>
 </main>
 
 <script type="text/javascript">

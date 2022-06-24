@@ -73,6 +73,7 @@
 						<!-- <img src="/killerQueen/img/icon/open.png" width="30px"> -->
 					</span>
 				</c:if>
+
 				<!-- リアクション数に応じてハートマーク -->
 				<c:forEach var="s" items="${reacter}" >
 						<c:if test="${s.decsId == e.id}">
@@ -92,7 +93,9 @@
 						</c:if>
 				</c:forEach>
 			</summary>
-			<c:forEach var="t" items="${pageList }" >
+
+			<!-- ステップの表示 -->
+			<c:forEach var="t" items="${pageList }" varStatus="step_ac" >
 				<c:if test="${t.stepsDecId == e.id }">
 					<!--
 						 ユーザーID：${t.usersId}
@@ -101,6 +104,18 @@
 						ステップ外部キー:${t.stepsDecId }<br>
 					-->
 					<c:if test="${t.stepsStep != ''}">
+						<input type="hidden" value="${t.stepsId }" id="steps_id${step_ac.index}" name="steps_id${step_ac.index}">
+						<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
+						<c:if test="${t.stepsAchieveFlag == false }">
+							<div id="change${step_ac.index}">
+								<input type="image" src="/killerQueen/img/cricle_icon/circle.png" value="ステップ未達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" name="bt">
+							</div>
+						</c:if>
+						<c:if test="${t.stepsAchieveFlag == true }">
+							<div id="change${step_ac.index}">
+								<input type="image" src="/killerQueen/img/cricle_icon/check.png" value="ステップ達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" name="bt">
+							</div>
+						</c:if>
 						ステップ：${t.stepsStep}<br>
 					</c:if>
 				</c:if>
@@ -403,4 +418,5 @@ function addForm(){
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">-->
 </body>
+<script src="/killerQueen/js/my_list.js" charset="utf-8"></script>
 </html>

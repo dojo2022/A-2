@@ -65,7 +65,7 @@ nav{
 /* 開いているとき */
 .nav-open{
 	position		: relative; /* 相対位置 */
-	padding-bottom  : 70px;		/* 間隔調整 */
+	padding-bottom  : 40px;	/* 間隔調整 */
 }
 
 /* 閉じているとき */

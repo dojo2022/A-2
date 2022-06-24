@@ -52,3 +52,6 @@ progress::-ms-fill {
   background-color: #fcc800;
 }
 
+main{
+	z-index:1;
+}

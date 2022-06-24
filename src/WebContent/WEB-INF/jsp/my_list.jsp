@@ -17,8 +17,8 @@
 		<details>
 			<summary><%int step=0; %><%int achieve=0; %>
 				<input type="hidden" name="declaration_id" value="${e.id }">
-				宣言：${e.declaration}
-				<!-- タグ：${e.tag } -->
+
+				<!-- タグの表示：${e.tag } -->
 				<c:if test="${e.tag == 0}">
 					#勉強
 				</c:if>
@@ -47,6 +47,9 @@
 					#その他
 				</c:if>
 
+				<!-- 宣言の表示 -->
+				宣言：${e.declaration}
+
 				<!--達成/ステップ数の表示  -->
 				<c:forEach var="v" items="${pageList }" >
 						<c:if test="${e.id  == v.stepsDecId}">
@@ -66,7 +69,7 @@
 					<img src="/killerQueen/img/icon/close.png" width="30px">
 				</c:if>
 				<c:if test="${e.privateFlag ==false}">
-					<span width="30px">
+					<span>
 						<!-- <img src="/killerQueen/img/icon/open.png" width="30px"> -->
 					</span>
 				</c:if>
@@ -117,6 +120,7 @@
 		 <div class="modal_content">
 		 	<span class="close">X</span>
 		 	<div class="modal_body">
+		 		<!-- タグ選択のプルダウン -->
 		 		タグ：<select name="tag">
 		 				<option value="0">#勉強</option>
 		 				<option value="1">#仕事</option>
@@ -129,8 +133,10 @@
 		 				<option value="8">#その他</option>
 		 			  </select>
 		 		<!--  <input type = "text" name="tag">-->
+		 		<!-- 宣言の入力 -->
 				宣言：<input type = "text" name="declaration"><br>
-				非公開：<input type = "text" name="private_flag"><br>
+				<!-- 非公開選択ボタン -->
+				非公開：<input type = "checkbox" name="private_flag" value="true"><br>
 				<div id="target">
 					<span>ステップ：</span><input type = "text" name="step1" id="inputform_1"><br>
 				</div>
@@ -148,34 +154,116 @@
 
 <!-- 宣言＆ステップの編集 -->
 <c:forEach var="e" items="${decList }" varStatus="status">
-<form method="POST" action="/killerQueen/MyListServlet">
-<div id="edit_modal${status.index}" class="modal">
-	<div class="modal_content">
-		<span class="close2" onclick="batten('${status.index}')" id="close${status.index}">X</span>
-		<div class="modal_body">
-		<input type="hidden" value="${status.index}" id="status_id${status.index}">
-		DecID:<input type ="text" name="declaration_id_edit" value="${e.id }">
-		宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
-		タグ：<input type = "text" name="tag_edit" value="${e.tag }"><br>
-		非公開:<input type = "text" name="private_flag_edit" value="${e.privateFlag }"><br>
-		<%int countStep = 0; %>
-		<c:forEach var="t" items="${pageList }" varStatus="step_status" >
-			<c:if test="${t.stepsDecId == e.id }">
-			<input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
-			ステップ:<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>"><br>
-			<input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><br>
-			<input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }">
-			<%countStep++; %>
-			</c:if>
-		</c:forEach>
-		<input type="hidden" name="step_count" value="<%=countStep %>">
-		<div id="target2${status.index}"><input type="hidden" name="all_count" value="0" id="all_count${status.index}"></div>
-		<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
-	<input type="submit" value="完了" name="bt"><br>
-	</div>
-	</div>
-</div>
-</form>
+	<form method="POST" action="/killerQueen/MyListServlet">
+		<div id="edit_modal${status.index}" class="modal">
+			<div class="modal_content">
+				<span class="close2" onclick="batten('${status.index}')" id="close${status.index}">X</span>
+				<div class="modal_body">
+					<input type="hidden" value="${status.index}" id="status_id${status.index}">
+					<input type ="hidden" name="declaration_id_edit" value="${e.id }">
+					タグ：<select name="tag_edit" >
+							<c:choose>
+								<c:when test="${e.tag == 0 }">
+			 						<option value="0" selected>#勉強</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="0">#勉強</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 1 }">
+			 						<option value="1" selected>#仕事</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="1">#仕事</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 2 }">
+			 						<option value="2" selected>#趣味</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="2">#趣味</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 3 }">
+			 						<option value="3" selected>#ダイエット</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="3">#ダイエット</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 4 }">
+			 						<option value="4" selected>#運動</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="4">#運動</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 5 }">
+			 						<option value="5" selected>#健康</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="5">#健康</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 6 }">
+			 						<option value="6" selected>#美容</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="6">#美容</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 7 }">
+			 						<option value="7" selected>#日常</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="7">#日常</option>
+			 					</c:otherwise>
+			 				</c:choose>
+			 				<c:choose>
+								<c:when test="${e.tag == 8 }">
+			 						<option value="8" selected>#その他</option>
+			 					</c:when>
+			 					<c:otherwise>
+			 						<option value="8">#その他</option>
+			 					</c:otherwise>
+			 				</c:choose>
+		 			      </select>
+					宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
+					非公開:<c:choose>
+								<c:when test="${e.privateFlag == false }">
+									<input type = "checkbox" name="private_flag_edit" value="true"><br>
+								</c:when>
+								<c:otherwise>
+									<input type = "checkbox" name="private_flag_edit" value="true" checked><br>
+								</c:otherwise>
+							</c:choose>
+					<%int countStep = 0; %>
+					<c:forEach var="t" items="${pageList }" varStatus="step_status" >
+						<c:if test="${t.stepsDecId == e.id }">
+							ステップ:<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>">
+							<input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
+							<input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}">
+							<input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
+							<%countStep++; %>
+						</c:if>
+					</c:forEach>
+					<input type="hidden" name="step_count" value="<%=countStep %>">
+					<div id="target2${status.index}">
+						<input type="hidden" name="all_count" value="0" id="all_count${status.index}">
+					</div>
+					<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
+					<input type="submit" value="完了" name="bt"><br>
+				</div>
+			</div>
+		</div>
+	</form>
 </c:forEach>
 <a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
 
@@ -200,14 +288,13 @@ close.onclick = function() {
 var j = 0;
 function disp(indexNo){
 	j=0;
-	alert('押したやろ');
-	alert(indexNo);
+	//alert('押したやろ');アラート
+	//alert(indexNo);アラート
 	var modal2 = document.getElementById('edit_modal'+ indexNo);
 	//var btn2 = document.getElementById('open_modal2'+indexNo);
 	//var stId = document.getElementById('status_id'+indexNo);
-	alert(document.getElementById('edit_modal'+ indexNo));
+	//alert(document.getElementById('edit_modal'+ indexNo));アラート
 	if(indexNo == indexNo){
-		alert('if文にいるよん');
 		modal2.style.display = 'block';
 		event.preventDefault();
 	}else {
@@ -242,16 +329,16 @@ window.onclick = function (event)  {
 
 var num = 0;
 function addEditForm(indexNo, indexStep){
-	alert(indexStep);
+	//alert(indexStep);
 	num= indexStep + j;
-	alert(num);
+	//alert(num);
 	var input_data = document.createElement('input');
 	input_data.type = 'text';
 	input_data.id = 'edit_form' + j;
 	input_data.name='edit_form' + j;
-	alert(input_data.name);
+	//alert(input_data.name);
 	var step = document.createElement('span');
-	step.innerHTML = 'ステップ：';
+	step.innerHTML = 'ステップ:';
 	var br = document.createElement('br');
 	var parent = document.getElementById('target2'+ indexNo);
 	parent.appendChild(step);
@@ -261,7 +348,7 @@ function addEditForm(indexNo, indexStep){
 	//numが編集する際にプラスされたステップも含めたステップの個数
 	var count = document.getElementById('all_count' + indexNo);
 	count.value = j;
-	alert(document.getElementById('all_count' + indexNo).value);
+	//alert(document.getElementById('all_count' + indexNo).value);
 
 	return false;
 
@@ -278,7 +365,7 @@ function addForm(){
 	input_data.type = 'text';
 	input_data.id = 'inputform_' + i;
 	input_data.name='step' + i;
-	alert(input_data.name);
+	//alert(input_data.name);
 	var step = document.createElement('span');
 	step.innerHTML = 'ステップ：';
 	var br = document.createElement('br');
@@ -289,7 +376,7 @@ function addForm(){
 
 	var count = document.getElementById('count');
 	count.value = i;
-	alert(document.getElementById('count').value);
+	//alert(document.getElementById('count').value);
 
 	return false;
 }

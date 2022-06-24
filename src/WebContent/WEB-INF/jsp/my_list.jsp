@@ -109,12 +109,12 @@
 						<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
 						<c:if test="${t.stepsAchieveFlag == false }">
 							<div id="change${step_ac.index}">
-								<input type="image" src="/killerQueen/img/circle_icon/circle.png" width="30px" value="ステップ未達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" >
+								<img src="/killerQueen/img/circle_icon/circle.png" width="30px"  id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ未達成')" >
 							</div>
 						</c:if>
 						<c:if test="${t.stepsAchieveFlag == true }">
 							<div id="change${step_ac.index}">
-								<input type="image" src="/killerQueen/img/circle_icon/check.png" width="30px" value="ステップ達成" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}')" >
+								<img src="/killerQueen/img/circle_icon/check.png" width="30px" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ達成')" >
 							</div>
 						</c:if>
 						<span>ステップ：${t.stepsStep}<br></span>
@@ -419,16 +419,16 @@ function addForm(){
 
 </body>
 <script >
-function goAjax(indexNo){
+function goAjax(indexNo, imgStr){
 	//入力値を取得してくる
 	alert('Ajaxスタート');
 	let stepsAId = document.getElementById('steps_id' + indexNo).value;
-	let buttonStatus = document.getElementById('step_achieve_flag' + indexNo).value;
+	//let buttonStatus = document.getElementById('step_achieve_flag' + indexNo).value;
 	alert(stepsAId);
-	alert(buttonStatus);
+	alert(imgStr);
 
 	//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-	let postData = {data1:stepsAId,data2:buttonStatus}
+	let postData = {data1:stepsAId,data2:imgStr}
 	alert(postData);
 
 
@@ -455,18 +455,18 @@ function goAjax(indexNo){
 		if(data == "getAchieveTrue"){
 		$("#change" + indexNo).html("");
 		var htmltext = "";
-		htmltext = htmltext + `<input type="image" src="/killerQueen/img/circle_icon/check.png" value="ステップ達成" class="reaction_red" id="step_achieve_flag` + indexNo;
+		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/check.png" width="30px" value="ステップ達成" class="reaction_red" id="step_achieve_flag` + indexNo;
 		htmltext = htmltext + `" onclick="goAjax('` + indexNo;
-		htmltext = htmltext + `')">`;
+		htmltext = htmltext + `', 'ステップ達成')">`;
 		$("#change" + indexNo).append(htmltext);
 
 		}else if(data == "getAchieveFalse"){
 
 		$("#change" + indexNo).html("");
 		var htmltext = "";
-		htmltext = htmltext + `<input type="image" src="/killerQueen/img/circle_icon/circle.png" value="ステップ未達成" class="reaction_white" id="steps_achieve` + indexNo;
+		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/circle.png" width="30px" value="ステップ未達成" class="reaction_white" id="steps_achieve` + indexNo;
 		htmltext = htmltext + `" onclick="goAjax('` + indexNo;
-		htmltext = htmltext + `')">`;
+		htmltext = htmltext + `', 'ステップ未達成')">`;
 		$("#change" + indexNo).append(htmltext);
 
 		}else {

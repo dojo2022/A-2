@@ -1,10 +1,54 @@
 @charset "UTF-8";
 
-table {
+table.hee {
+	margin-top:20px;
+	margin-bottom:20px;
     margin-left: auto;
     margin-right: auto;
 }
-td{
+td.pro{
 	text-align: center;
-	height:30px;
+	height:20px;
+	width:60px;
 }
+td.haba{
+	width:120px;
+	height:50px;
+}
+
+td.user_name{
+	font-weight:600;/*文字の太さ*/
+	font-size: 18px;
+}
+td.comment{
+	font-size: 13px;
+}
+
+hr{
+    height: 1px;
+    width: 600px;
+    background-color:#c0c6c9;
+}
+
+progress {
+  width: 150px;
+  height: 15px;
+  background-color: #888e7e;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #888e7e;
+}
+
+progress::-webkit-progress-value {
+  background-color: #fcc800;
+}
+
+progress::-moz-progress-bar {
+  background-color: #fcc800;
+}
+
+progress::-ms-fill {
+  background-color: #fcc800;
+}
+

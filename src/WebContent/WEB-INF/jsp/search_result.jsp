@@ -25,7 +25,7 @@
 
 </head>
 <body id="top">
-<!-- 共通画面のインクルード -->>
+<!-- 共通画面のインクルード -->
 <%@ include file="/WEB-INF/jsp/common.jsp"%>
 <main>
 

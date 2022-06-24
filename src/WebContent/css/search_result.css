@@ -107,6 +107,13 @@ nav{
 }
 
 /* ブックマーク */
+.vvv {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
 .bookmark_button {
 	float		: right; /* 右に回り込み */
 	width 		: 30px;  /* サイズ */
@@ -115,6 +122,13 @@ nav{
 }
 
 /* リアクション白 */
+.ccc {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
 .reaction_white {
 	float		: right; /* 右に回り込み */
 	width 		: 30px;  /* サイズ */

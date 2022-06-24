@@ -15,7 +15,7 @@ function changeTheme2(){
 }
 
 
-
+/*
 // ハンバーガーメニューの作り方
 $(function() {
   function toggleNav() {
@@ -35,10 +35,13 @@ $(function() {
   }
   toggleNav();
 });
+*/
 
-
-
-
+// ハンバーガーメニュー新
+document.querySelector('.line-list').addEventListener('click', function(){
+   document.querySelector('.global-nav').classList.toggle('active');
+   document.querySelector('.menu-bg').classList.toggle('black');
+});
 
 
 

@@ -94,13 +94,13 @@ public class SearchServlet extends HttpServlet {
 			// 検索結果画面にフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 			dispatcher.forward(request, response);
+			} else {
+				//検索画面にフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");
+				dispatcher.forward(request, response);
 			}
 
-		//検索画面にフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");
-		dispatcher.forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

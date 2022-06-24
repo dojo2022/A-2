@@ -1,1 +1,40 @@
 @charset "UTF-8";
+
+
+body {
+	background-color: #E9E6E0;	/* 背景色 */
+	width: 700px;	/* コンテンツ範囲(横) */
+	margin : 0 auto;	/* コンテンツ外範囲(横：auto / 縦：0) */
+	text-align: center;/* 文章を中央揃え */
+}
+
+table {
+	margin : 0 auto;	/* tableタグの中身を中央揃え */
+}
+
+a {
+	text-decoration: none;	/* リンクの下線を消す */
+	padding-bottom: 0;
+	border-bottom: 1px solid #4b4b4b;	/* 下線 */
+}
+
+/* ユーザーアイコン */
+.icon {
+	width: 60px;
+}
+
+/* ログインボタン */
+.login_button {
+	background-color: #EBDBBD;
+	border: #4b4b4b 1px solid;
+	border-radius: 7px;
+	padding: 7px 10px;
+}
+
+.text-box {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #4b4b4b;
+	background-color: #E9E6E0;
+}

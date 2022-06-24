@@ -6,39 +6,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
+<link rel="stylesheet" type="text/css" href="/killerQueen/css/my_page.css">
+<!--  アコーディオンメニューのjs -->
+
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav').slideToggle();
+		});
+	});
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>他ユーザーマイページ</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
-<table>
+<main>
+<table class="hee">
 <tr>
-	<td rowspan="3">
+	<td rowspan="2" class="pro">
 		<div class="my_icon">
-		<c:if test="${userInfo.icon==0}">
-		<img src="/killerQueen/img/icon/userIcon.png" width="40px">
-		</c:if>
-		<c:if test="${userInfo.icon==1}">
-		<img src="/killerQueen/img/icon/man.png" width="40px">
-		</c:if>
-		<c:if test="${userInfo.icon==2}">
-		<img src="/killerQueen/img/icon/woman.png" width="40px">
-		</c:if>
+			<c:if test="${userInfo.icon == 0}">
+				<img src="/killerQueen/img/user_icon/user_boy.png" width="60px">
+			</c:if>
+			<c:if test="${userInfo.icon ==1}">
+				<img src="/killerQueen/img/user_icon/user_man1.png" width="60px">
+			</c:if>
+			<c:if test="${userInfo.icon == 2}">
+				<img src="/killerQueen/img/user_icon/user_man2.png" width="60px">
+			</c:if>
+			<c:if test="${userInfo.icon == 3}">
+				<img src="/killerQueen/img/user_icon/user_woman1.png" width="60px">
+			</c:if>
+			<c:if test="${userInfo.icon == 4}">
+				<img src="/killerQueen/img/user_icon/user_woman2.png" width="60px">
+			</c:if>
 		</div>
 	</td>
-	<td>${userInfo.name}</td>
-	<td></td>
-</tr>
-<tr>
-	<td colspan="2">
-		${userInfo.comment}
-	</td>
-</tr>
-<tr>
-	<td>
-
-	</td>
-	<td><c:if test="${countAchieve<=10}">
+	<td class ="user_name pro haba">${userInfo.name}</td>
+	<td class="pro">
+		<c:if test="${countAchieve<=10}">
 		<img src="/killerQueen/img/icon/beginner.png" width="30px">
 		</c:if>
 		<c:if test="${countAchieve>10 && countAchieve<=50}">
@@ -52,153 +64,167 @@
 		</c:if>
 	</td>
 </tr>
+<tr>
+	<td class="comment pro" colspan="2" >
+		${userInfo.comment}
+	</td>
+</tr>
+
 </table>
-<!-- ユーザー情報 -->
+
+<hr>
 
 
 
+<c:forEach var="t" items="${OtherPageList}" varStatus="status">
+<div class="list">
 
-<!-- 他ユーザーの宣言リストたち -->
-<c:forEach var="t" items="${OtherPageList}"  varStatus="status">
-<details>
-	<summary><%int step=0; %><%int achieve=0; %>
+	<!-- アコーディオン -->
+	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
 
+		<!-- 達成未達成 -->
+		<div class="user_botton">
+			<c:if test="${t.decsAchieveFlag==true}">
+			<img src="/killerQueen/img/icon/achievement.png" width="30px">
+			</c:if>
+			<c:if test="${t.decsAchieveFlag==false}">
+
+			</c:if>
+		</div>
 <!--
-		「
-		<c:if test="${icon==0}">
-		<img src="/killerQueen/img/icon/userIcon.png" width="20px">
-		</c:if>
-		<c:if test="${icon==1}">
-		<img src="/killerQueen/img/icon/man.png" width="20px">
-		</c:if>
-		<c:if test="${icon==2}">
-		<img src="/killerQueen/img/icon/woman.png" width="20px">
-		</c:if>」
+		<a href="/killerQueen/OtherPageServlet?${t.usersId}">
+			<c:if test="${t.usersIcon==0}">
+				<img src="/killerQueen/img/user_icon/user_boy.png">
+			</c:if>
+			<c:if test="${t.usersIcon==1}">
+				<img src="/killerQueen/img/user_icon/user_man1.png">
+			</c:if>
+			<c:if test="${t.usersIcon==2}">
+				<img src="/killerQueen/img/user_icon/user_man2.png">
+			</c:if>
+			<c:if test="${t.usersIcon==3}">
+				<img src="/killerQueen/img/user_icon/user_woman1.png">
+			</c:if>
+			<c:if test="${t.usersIcon==4}">
+				<img src="/killerQueen/img/user_icon/user_woman2.png">
+			</c:if>
+		</a>
  -->
 
 
-		「宣言：${t.decsDeclaration}」
+		<!-- タグと宣言のまとまり -->
+		<div class="decla_text">
+			<!-- タグ -->
+			<div class="decla_tag">
+				<a href="SearchServlet?${t.decsTag}">
+					<c:if test="${t.decsTag == 0}">#勉強</c:if>
+					<c:if test="${t.decsTag == 1}">#仕事</c:if>
+					<c:if test="${t.decsTag == 2}">#趣味</c:if>
+					<c:if test="${t.decsTag == 3}">#ダイエット</c:if>
+					<c:if test="${t.decsTag == 4}">#運動</c:if>
+					<c:if test="${t.decsTag == 5}">#健康</c:if>
+					<c:if test="${t.decsTag == 6}">#美容</c:if>
+					<c:if test="${t.decsTag == 7}">#日常</c:if>
+					<c:if test="${t.decsTag == 8}">#その他</c:if>
+				</a>
+			</div>
 
-<a href="SearchServlet?${t.decsTag}">
-		「タグ:
-		<c:if test="${t.decsTag == 0}">
-		#勉強
-		</c:if>
-		<c:if test="${t.decsTag == 1}">
-		#仕事
-		</c:if>
-		<c:if test="${t.decsTag == 2}">
-		#趣味
-		</c:if>
-		<c:if test="${t.decsTag == 3}">
-		#ダイエット
-		</c:if>
-		<c:if test="${t.decsTag == 4}">
-		#運動
-		</c:if>
-		<c:if test="${t.decsTag == 5}">
-		#健康
-		</c:if>
-		<c:if test="${t.decsTag == 6}">
-		#美容
-		</c:if>
-		<c:if test="${t.decsTag == 7}">
-		#日常
-		</c:if>
-		<c:if test="${t.decsTag == 8}">
-		#その他
-		</c:if>」
-</a>
+			<!-- 宣言 -->
+			<div class="decla_list">
+				${t.decsDeclaration}
+			</div>
+		</div>
 
-		<c:forEach var="v" items="${steper}" varStatus = "st">
-			<c:if test="${t.decsId == v.declarationId}">
-					<c:if test="${v.achieveFlag==true}">
-					<%achieve++; %>
-					</c:if>
-					<%step++; %>
-			</c:if>
-		</c:forEach>
-		「<%=achieve %>
-		/<%=step %>」
-
-
-
-		「
-		<c:if test="${t.decsAchieveFlag==true}">
-		<img src="/killerQueen/img/icon/achievement.png" width="30px">
-		</c:if>
-		<c:if test="${t.decsAchieveFlag==false}">
-		未達成（この文は消す）
-		</c:if>」
-
-
-		<c:forEach var="s" items="${reacter}" >
-			<c:if test="${s.decsId == t.decsId}">
-				「
-				<c:if test="${s.countReaction==0}">
-				<img src="/killerQueen/img/icon/whiteHeart.png" width="30px">
-				</c:if>
-				<c:if test="${s.countReaction>0 && s.countReaction<=4}">
-				<img src="/killerQueen/img/icon/yellowHeart.png" width="30px">
-				</c:if>
-				<c:if test="${s.countReaction>4 && s.countReaction<=9}">
-				<img src="/killerQueen/img/icon/gleenHeart.png" width="30px">
-				</c:if>
-				<c:if test="${s.countReaction>9}">
-				<img src="/killerQueen/img/icon/redHeart.png" width="30px">
-				</c:if>」
-			</c:if>
-		</c:forEach>
-
-				<!-- リアクションアイコン -->
-		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
-						<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
-						<c:if test="${t.reactionsId == 0}">
-				<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
-				</div>
-						</c:if>
-						<c:if test="${t.reactionsId != 0}">
-				<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
-				</div>
-						</c:if>
-
-				<!-- ブックマークアイコン -->
-						<c:if test="${t.bookmarksId == 0}">
+		<!-- ブックマークアイコン -->
+		<div>
+			<c:if test="${t.bookmarksId == 0}">
 				<div id="changeBook${status.index}">
-						<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" value="ブックマークしてない" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
 				</div>
-						</c:if>
-						<c:if test="${t.bookmarksId != 0}">
+			</c:if>
+			<c:if test="${t.bookmarksId != 0}">
 				<div id="changeBook${status.index}">
-						<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" value="ブックマークしてる" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+			</div>
+			</c:if>
+			<p id="test${status.index}"></p>
+		</div>
+
+		<!-- リアクションアイコン -->
+		<div>
+			<c:if test="${t.reactionsId == 0}">
+				<div id="change${status.index}">
+					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
+			</c:if>
+			<c:if test="${t.reactionsId != 0}">
+				<div id="change${status.index}">
+					<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+				</div>
+			</c:if>
+		</div>
+
+		<!-- ステップ達成率 -->
+		<div class="achieve_rate">
+			<c:forEach var="v" items="${steper}" varStatus = "st">
+				<c:if test="${t.decsId == v.declarationId}">
+				<c:if test="${v.step !='' }">
+						<c:if test="${v.achieveFlag==true}">
+							<%achieve++; %>
 						</c:if>
-				<p id="test${status.index}">"${t.decsId}"</p>
+							<%step++; %>
+				</c:if>
+			</c:if>
+			</c:forEach>
 
 
-	</summary>
+			「<%=achieve %>
+			/<%=step %>」
 
 
-		<c:forEach var="v" items="${steper}" varStatus = "st">
-			<c:if test="${t.decsId == v.declarationId}">
-					<c:if test="${v.achieveFlag==true}">
-					「達成」ステップ:${v.step}<br>
-					</c:if>
+		</div>
+	</div>
+	<!-- アコーディオン 閉じている状態ここまで -->
+
+	<!-- ステップリスト -->
+	<nav class="step_list">
+		<ul>
+			<c:forEach var="v" items="${steper}" varStatus = "st">
+				<c:if test="${t.decsId == v.declarationId}">
+					<c:if test="${v.step !='' }">
+
+			<li>
 					<c:if test="${v.achieveFlag==false}">
-					「未達成」ステップ:${v.step}<br>
+						<table>
+						<tr>
+							<th><img src="/killerQueen/img/circle_icon/add.png"></th>
+							<td>${v.step}</td>
+						</tr>
+						</table>
 					</c:if>
-			</c:if>
-		</c:forEach>
-
-
-</details>
+					<c:if test="${v.achieveFlag==true}">
+						<table class="step_achieve">
+						<tr>
+							<th><img src="/killerQueen/img/circle_icon/check.png"></th>
+							<td>${v.step}</td>
+						</tr>
+						</table>
+					</c:if>
+			</li>
+					</c:if>
+				</c:if>
+			</c:forEach>
+		</ul>
+	</nav>
+</div>
 </c:forEach>
 
 
 
 
+
+
+</main>
 
 </body>
 <script src="/killerQueen/js/timeline.js" charset="utf-8"></script>

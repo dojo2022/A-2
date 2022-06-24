@@ -171,10 +171,11 @@ public class MyListServlet extends HttpServlet {
 
 
 
-		String button = request.getParameter("bt");
+
 		//送信されたデータの取得
 		int stepsAId= Integer.parseInt(request.getParameter("data1"));
 		String buttonStatus = request.getParameter("data2");
+		System.out.println(stepsAId);
 		System.out.println(buttonStatus);
 		PrintWriter out = response.getWriter();
 		String resString;
@@ -202,13 +203,13 @@ public class MyListServlet extends HttpServlet {
 			boolean result= stepsDao.notAchieveStep(stepsAId);
 			if(result) {
 				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveTrue";
+				resString = "getAchieveFalse";
 				out.print(resString);
 				resString = "";
 				return;
 			}else {
 				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveFalse";
+				resString = "getAchieveTrue";
 				out.print(resString);
 				resString = "";
 				return;
@@ -217,7 +218,7 @@ public class MyListServlet extends HttpServlet {
 
 
 
-
+		String button = request.getParameter("bt");
 
 		//行われた処理によって①～④条件分岐
 		if (button.equals("新規登録")) {

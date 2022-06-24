@@ -43,8 +43,7 @@ public class SearchServlet extends HttpServlet {
 			int tagNumber = Integer.parseInt(request.getQueryString());
 
 			// ユーザーIDをセッションスコープから取得
-			String userId = (String)session.getAttribute("user_Id");
-
+			String userId = (String)session.getAttribute("id");
 
 			// 検索処理を行う
 			// DeclarationDaoのインスタンスを作成
@@ -63,12 +62,14 @@ public class SearchServlet extends HttpServlet {
 				//CommonTableからDeclarationsテーブルの内容だけ取得
 				//Declartionsビーンズに格納する
 				Steps st = new Steps();
+				if(ct.getStepsId() != 0) {
 				st.setStep(ct.getStepsStep());
 				st.setAchieveFlag(ct.isStepsAchieveFlag());
 				st.setDeclarationId(ct.getDecsId());
 				//stepsビーンズをArrayListに格納する
 				stepList.add(st);
 				}
+			}
 
 			//decListを選別する
 					int i = 0;
@@ -234,12 +235,14 @@ public class SearchServlet extends HttpServlet {
 			//CommonTableからDeclarationsテーブルの内容だけ取得
 			//Declartionsビーンズに格納する
 			Steps st = new Steps();
+			if(ct.getStepsId() != 0) {
 			st.setStep(ct.getStepsStep());
 			st.setAchieveFlag(ct.isStepsAchieveFlag());
 			st.setDeclarationId(ct.getDecsId());
 			//stepsビーンズをArrayListに格納する
 			stepList.add(st);
 			}
+		}
 
 		//decListを選別する
 				int i = 0;

@@ -107,13 +107,14 @@ nav{
 }
 
 /* ブックマーク */
-.vvv {
+.bookmark_div {
 	float		: right; /* 右に回り込み */
 	width 		: 30px;  /* サイズ */
 	height 		: 30px;  /* サイズ */
 	margin-left : 20px;  /* 間隔調整 */
 }
 
+/* ブックマークボタン */
 .bookmark_button {
 	float		: right; /* 右に回り込み */
 	width 		: 30px;  /* サイズ */
@@ -121,13 +122,15 @@ nav{
 	margin-left : 20px;  /* 間隔調整 */
 }
 
-/* リアクション白 */
-.ccc {
+/* リアクション */
+.reaction_div {
 	float		: right; /* 右に回り込み */
 	width 		: 30px;  /* サイズ */
 	height 		: 30px;  /* サイズ */
 	margin-left : 20px;  /* 間隔調整 */
 }
+
+/* リアクション白 */
 
 .reaction_white {
 	float		: right; /* 右に回り込み */

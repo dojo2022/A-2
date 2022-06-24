@@ -41,31 +41,31 @@
 			<div class="radio">
 				<input type="radio" <%=icon0 %> name="icon" value= 0 id="radio-1" class="display">
 				<label for="radio-1" class="radio-label">
-					<img src="/killerQueen/img/user_icon/user_boy.png" class="radio_icon">
+					<img src="/killerQueen/img/user_icon/user_boy.png" class="radio_circle">
 				</label>
 			</div>
 			<div class="radio">
 				<input type="radio" <%=icon1 %> name="icon" value= 1 id="radio-2" class="display">
 				<label for="radio-2" class="radio-label">
-					<img src="/killerQueen/img/user_icon/user_man1.png" class="radio_icon">
+					<img src="/killerQueen/img/user_icon/user_man1.png" class="radio_circle">
 				</label>
 			</div>
 			<div class="radio">
 				<input type="radio" <%=icon2 %> name="icon" value= 2 id="radio-3" class="display">
 				<label for="radio-3" class="radio-label">
-					<img src="/killerQueen/img/user_icon/user_man2.png" class="radio_icon">
+					<img src="/killerQueen/img/user_icon/user_man2.png" class="radio_circle">
 				</label>
 			</div>
 			<div class="radio">
 				<input type="radio" <%=icon3 %> name="icon" value= 3 id="radio-4" class="display">
 				<label for="radio-4" class="radio-label">
-					<img src="/killerQueen/img/user_icon/user_woman1.png" class="radio_icon">
+					<img src="/killerQueen/img/user_icon/user_woman1.png" class="radio_circle">
 				</label>
 			</div>
 			<div class="radio">
 				<input type="radio" <%=icon4 %> name="icon" value= 4 id="radio-5" class="display">
 				<label for="radio-5" class="radio-label">
-					<img src="/killerQueen/img/user_icon/user_woman2.png" class="radio_icon">
+					<img src="/killerQueen/img/user_icon/user_woman2.png" class="radio_circle">
 				</label>
 			</div>
 
@@ -92,19 +92,19 @@
 			<div class="color">
 				<input type="radio" <%=color0 %> name="themecolor" value= 0 id="color-1" class="display">
 				<label for="color-1" class="color-label">
-					<img src="/killerQueen/img/icon/gleenHeart.png">
+					<img src="/killerQueen/img/themecolor/themecolor0.png" class="radio_circle">
 				</label>
 			</div>
 			<div class="color">
 				<input type="radio" <%=color1 %> name="themecolor" value= 1 id="color-2" class="display">
 				<label for="color-2" class="color-label">
-					<img src="/killerQueen/img/icon/redHeart.png">
+					<img src="/killerQueen/img/themecolor/themecolor1.png" class="radio_circle">
 				</label>
 			</div>
 			<div class="color">
 				<input  type="radio" <%=color2 %> name="themecolor" value= 2 id="color-3" class="display">
 				<label for="color-3" class="color-label">
-					<img src="/killerQueen/img/icon/yellowHeart.png">
+					<img src="/killerQueen/img/themecolor/themecolor2.png" class="radio_circle">
 				</label>
 			</div>
 			<br>

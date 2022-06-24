@@ -47,14 +47,15 @@ function goAjax(indexNo){
 				$("#change" + indexNo).append(htmltext);
 
 				}else {
-				document.getElementById("test" + indexNo).innerText = "失敗";
+				alert("登録に失敗しています。ページを更新してください。");
 				}
 			  })
 			   //非同期通信が失敗したときの処理
 			  .fail(function() {
 				//失敗とアラートを出す
-				alert("失敗！");
+				alert("登録に失敗しています。ページを更新してください。");
 			  });
+			  event.stopPropagation();
 		}
 
 
@@ -106,12 +107,13 @@ function goBook(indexNo){
 				$("#changeBook" + indexNo).append(htmltext);
 
 				}else {
-				document.getElementById("test" + indexNo).innerText = "失敗";
+				alert("登録に失敗しています。ページを更新してください。");
 				}
 			  })
 			   //非同期通信が失敗したときの処理
 			  .fail(function() {
 				//失敗とアラートを出す
-				alert("失敗！");
+				alert("登録に失敗しています。ページを更新してください。");
 			  });
+			  event.stopPropagation();
 		}

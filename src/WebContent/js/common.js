@@ -1,7 +1,7 @@
 
 
 
-
+// テーマカラーの切り替え
 function changeTheme0() {
       document.documentElement.setAttribute('theme', '0');
 }
@@ -24,14 +24,25 @@ $(function() {
     var blackBg = document.getElementById("js-menu-bg");
     // クリックしたときにクラス付与
     hamburger.addEventListener("click", function() {
-      body.classList.toggle("nav-open");
+      body.classList.toggle("menu-open");
       hamburger.classList.toggle("active");
     });
     // クリックしたときにクラス付与
     blackBg.addEventListener("click", function() {
-      body.classList.remove("nav-open");
+      body.classList.remove("menu-open");
       hamburger.classList.remove("active");
     });
   }
   toggleNav();
 });
+
+
+
+
+
+
+
+
+
+
+

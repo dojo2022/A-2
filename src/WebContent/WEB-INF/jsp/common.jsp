@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 <title>共通画面</title>
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/common.css">
 </head>
@@ -26,9 +26,7 @@
 
 <header>
     <div class="my_list_logo">
-      <a href="/killerQueen/MyListServlet">
-        <img src="/killerQueen/img/logo/logo.png" class="logo">
-      </a>
+      <a href="/killerQueen/MyListServlet"><img src="/killerQueen/img/logo/logo.png" class="logo"></a>
     </div>
 </header>
 

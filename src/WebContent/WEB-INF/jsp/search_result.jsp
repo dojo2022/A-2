@@ -16,9 +16,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
 	$(function(){
-		$('.nav-open').click(function(){
-			$(this).toggleClass('active');
-			$(this).next('nav').slideToggle();
+		$('.nnnn').click(function(){
+			$('.nav-open').toggleClass('active');
+			$('.nav-open').next('nav').slideToggle();
 		});
 	});
 </script>
@@ -52,7 +52,7 @@
 
 	<!-- アコーディオン -->
 	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
-
+		<div class ="nnnn">
 		<!-- ユーザーアイコン -->
 		<div class="user_botton">
 		<a href="/killerQueen/OtherPageServlet?${t.usersId}">
@@ -96,32 +96,33 @@
 				${t.decsDeclaration}
 			</div>
 		</div>
-
+</div>
 		<!-- ブックマークアイコン -->
-		<div>
+		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
+		<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
+		<div class = "vvv">
 			<c:if test="${t.bookmarksId == 0}">
-				<div id="changeBook${status.index}">
-					<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" value="ブックマークしてない" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
-				</div>
-			</c:if>
-			<c:if test="${t.bookmarksId != 0}">
-				<div id="changeBook${status.index}">
-					<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" value="ブックマークしてる" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
-			</div>
-			</c:if>
-			<p id="test${status.index}"></p>
+					<div id="changeBook${status.index}">
+							<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+					</div>
+							</c:if>
+							<c:if test="${t.bookmarksId != 0}">
+					<div id="changeBook${status.index}">
+							<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+					</div>
+							</c:if>
 		</div>
 
 		<!-- リアクションアイコン -->
-		<div>
+		<div class ="ccc">
 			<c:if test="${t.reactionsId == 0}">
 				<div id="change${status.index}">
-					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 			</c:if>
 			<c:if test="${t.reactionsId != 0}">
 				<div id="change${status.index}">
-					<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 			</c:if>
 		</div>

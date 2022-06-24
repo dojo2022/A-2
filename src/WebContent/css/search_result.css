@@ -48,6 +48,7 @@
 	border-color	: var(--mono-color);;/* 枠線の色 */
 	border-radius	: 20px;   /* 枠線に丸み */
 	box-shadow		: 6px 6px 5px var(--sub-color); /* 影 */
+	z-index:100;
 }
 
 /* 宣言リストをhover */
@@ -58,7 +59,7 @@
 
 /* ---------アコーディオンメニュ---------- */
 
-nav{
+nav.step_list{
 	display	: none; /* ステップリストを隠す */
 }
 
@@ -79,7 +80,10 @@ nav{
 	float	: left; /* 左に回り込み */
 	width 	: 70px; /* サイズ */
 	height 	: 70px; /* サイズ */
+	z-index:2;
 }
+
+
 
 /* タグと宣言の二行 */
 .decla_text {

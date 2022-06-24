@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -306,33 +307,78 @@ public class MyListServlet extends HttpServlet {
 
 			 */
 
-	//④削除
-	if(button.equals("削除")) {
-		//選択されたデータを受け取る
-		String userId = (String) session.getAttribute("id");
-		request.setCharacterEncoding("UTF-8");
-		int decId = Integer.parseInt(request.getParameter("declaration_id"));
+		//④削除
+		if(button.equals("削除")) {
+			//選択されたデータを受け取る
+			String userId = (String) session.getAttribute("id");
+			request.setCharacterEncoding("UTF-8");
+			int decId = Integer.parseInt(request.getParameter("declaration_id"));
 
-		//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
-		//宣言を削除する処理
-		DeclarationsDao decDao = new DeclarationsDao();
-		boolean decResult = decDao.deleteDec(decId);
-        //L変数を用意してT/Fを用意する必要がある
+			//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
+			//宣言を削除する処理
+			DeclarationsDao decDao = new DeclarationsDao();
+			boolean decResult = decDao.deleteDec(decId);
+	        //L変数を用意してT/Fを用意する必要がある
 
-		//削除に失敗した場合
-		if(decResult==false) {
-			// リクエストスコープ(attribute区画)にエラーメッセージを格納する
-        //beansに入っているエラーメッセージのデータをjspに送りたい
-			Result result = new Result();
-			result.setMessage("宣言の削除に失敗しました。");
-			request.setAttribute("result",result);
+			//削除に失敗した場合
+			if(decResult==false) {
+				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+	        //beansに入っているエラーメッセージのデータをjspに送りたい
+				Result result = new Result();
+				result.setMessage("宣言の削除に失敗しました。");
+				request.setAttribute("result",result);
 
+			}
+			response.sendRedirect("/killerQueen/MyListServlet");
+	        //MyListservletでフォワードする
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+			//dispatcher.forward(request, response);
 		}
-		response.sendRedirect("/killerQueen/MyListServlet");
-        //MyListservletでフォワードする
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
-		//dispatcher.forward(request, response);
-	}
+
+
+		//⑤goAjax
+		if(button.equals("ステップ未達成")) {
+			int stepsId= Integer.parseInt(request.getParameter("data1"));
+			boolean stepsAchieveF = Boolean.parseBoolean(request.getParameter("data2"));
+			PrintWriter out = response.getWriter();
+			String resString;
+
+			StepsDao stepsDao = new StepsDao();
+			boolean result= stepsDao.achieveStep(stepsId);
+			if(result) {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveTrue";
+				out.print(resString);
+				resString = "";
+			}else {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveFalse";
+				out.print(resString);
+				resString = "";
+			}
+
+		} else if(button.equals("ステップ達成")) {
+			int stepsId= Integer.parseInt(request.getParameter("data1"));
+			boolean stepsAchieveF = Boolean.parseBoolean(request.getParameter("data2"));
+			PrintWriter out = response.getWriter();
+			String resString;
+
+			StepsDao stepsDao = new StepsDao();
+			boolean result= stepsDao.notAchieveStep(stepsId);
+			if(result) {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveTrue";
+				out.print(resString);
+				resString = "";
+			}else {
+				//JSPに返却する値を作成する。値はoutの中に格納する
+				resString = "getAchieveFalse";
+				out.print(resString);
+				resString = "";
+			}
+		}
+
+
 
 
 	}

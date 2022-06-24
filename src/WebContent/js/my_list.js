@@ -1,94 +1,61 @@
 /**
  *
  */
- 'use strict;'
-
-var modal = document.getElementById('resist_modal');
-var btn = document.getElementById('open_modal');
-var close = modal.getElementsByClassName('close')[0];
-//新規登録へを押したらモーダルを表示する
-btn.onclick = function() {
-	  modal.style.display = 'block';
-};
-//×を押したらモーダルを閉じる
-close.onclick = function() {
-		  modal.style.display = 'none';
-};
-
-
-//編集画面用のモーダル
-//var modal2 = document.getElementById('edit_modal');
-//var btn2 = document.getElementById('open_modal2');
-var close_btn = modal2.getElementsByClassName('close2')[0];//クラスは配列みたいになっている
-
-
-//function disp()
-function disp(indexNo){
-	var modal2 = document.getElementById('edit_modal');
-	var btn2 = document.getElementById('open_modal2'+indexNo);
-	if(btn2.onclick){
-		modal2.style.display = 'block';
-	}
-}
-
-//新規登録へを押したらモーダルを表示する
-//btn2.onclick = function() {
-	//  modal2.style.display = 'block';
-//};
-
-
-//×を押したらモーダルを閉じる
-close_btn.onclick = function() {
-		  modal2.style.display = 'none';
-};
-
-window.onclick = function (event)  {
-	if (event.target == modal) {
-
-		modal.style.display = 'none';
-
-	}else if(event.target == modal2){
-		modal2.style.display = 'none';
-	}
-};
-
-
-
-// When the user clicks outside the modal -- close it.
-//window.onclick = function(event) {
-//	if (event.target == modal2) {
-//
-//		modal2.style.display = 'none';
-//	}
-//};
-
-
-</script>
-<!-- テキストボックス追加のjs -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
 'use strict'
 
-var i = 1;
-function addForm(){
-	var input_data = document.createElement('input');
-	input_data.type = 'text';
-	input_data.id = 'inputform_' + i;
-	var step = document.createElement('span');
-	step.innerHTML = 'ステップ：';
-	var br = document.createElement('br');
-	var parent = document.getElementById('target');
-	parent.appendChild(step);
-	parent.appendChild(input_data);
-	parent.appendChild(br);
-	i++;
-	return false;
-}
+function goAjax(indexNo){
+			//入力値を取得してくる
+			let stepsId = document.getElementById('steps_id' + indexNo).value;
+			let stepsAchieveF = document.getElementById('steps_achieve' + indexNo).value;
 
-//jQueryのやり方
-//$(document).on("click", ".add", function() {
-//    $(this).parent().clone(true).insertAfter($(this).parent());
-//
-//});
+			//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+			let postData = {data1:stepsId,data2:stepsAchieveF}
 
-</script>
+
+			//非同期通信始めるよ
+			$.ajaxSetup({scriptCharset:'utf-8'});
+			$.ajax({
+				//どのサーブレットに送るか
+				//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+				url: '/killerQueen/MyListServlet',
+				//どのメソッドを使用するか
+				type:"POST",
+				//ここは今回は決まりの書き方　→　受け取る型
+				dataType:"text",
+				//何をサーブレットに飛ばすか（変数を記述）
+				data: postData,
+				//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+				processDate:false,
+				timeStamp: new Date().getTime()
+			   //非同期通信が成功したときの処理
+			})
+            .done(function(data) {
+            	alert("成功");
+
+				if(data == "getAchieveTrue"){
+				$("#change" + indexNo).html("");
+				var htmltext = "";
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/circle_icon/check.png" value="ステップ達成" class="reaction_red" id="step_achieve_flag` + indexNo;
+				htmltext = htmltext + `" onclick="goAjax('` + indexNo;
+				htmltext = htmltext + `')">`;
+				$("#change" + indexNo).append(htmltext);
+
+				}else if(data == "getAchieveFalse"){
+
+				$("#change" + indexNo).html("");
+				var htmltext = "";
+				htmltext = htmltext + `<input type="image" src="/killerQueen/img/circle_icon/circle.png" value="ステップ未達成" class="reaction_white" id="steps_achieve` + indexNo;
+				htmltext = htmltext + `" onclick="goAjax('` + indexNo;
+				htmltext = htmltext + `')">`;
+				$("#change" + indexNo).append(htmltext);
+
+				}else {
+				document.getElementById("test" + indexNo).innerText = "失敗";
+				}
+			  })
+			   //非同期通信が失敗したときの処理
+			  .fail(function() {
+				//失敗とアラートを出す
+				alert("失敗！");
+			  });
+		}

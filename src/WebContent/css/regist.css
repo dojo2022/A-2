@@ -1,1 +1,109 @@
 @charset "UTF-8";
+
+body {
+	background-color: #ebdbbdff;		/* 背景色 */
+	/* width: 800px; */					/* コンテンツ範囲(横) */
+	margin : 0 auto;				/*コンテンツ外範囲(横：auto / 縦：0) */
+	text-align: center;
+}
+
+table {
+	margin : 0 auto;				/* tableタグの中身を中央揃え */
+}
+
+/* ロゴ下の線(空間の中身に色を付けているよ) */
+hr {
+	height: 1px;					/* 太さ */
+	width: 450px;					/* 長さ */
+	background-color: #4b4b4b;	/* 色 */
+	border: none;					/* 枠線をなし */
+}
+
+tr {
+	height: 30px;					/* id / password の縦 */
+}
+
+a {
+	font-weight: bold;				/* 「こちら」を太く */
+	text-decoration: none;			/* リンクの下線をなくす */
+}
+	a:hover {
+		color: #4b4b4b;			/* カーソルを乗せた時 */
+	}
+
+	a:visited {
+		color: black;				/* クリック済みの時 */
+	}
+
+	a:active {
+		color: #4b4b4b;			/* クリック時 */
+	}
+
+.main {
+	display: inline-block;
+	text-align: center;				/* 文章を中央揃え */
+}
+
+/* ロゴ */
+.login_logo {
+	width: 220px;					/* 横 */
+}
+
+/* ユーザーアイコン */
+.login_icon {
+	width: 60px;					/* 横 */
+	margin-top: 20px;				/* アイコン上の空間 */
+	margin-bottom: 20px;			/* アイコン下の空間 */
+}
+
+/* id / password の下線 */
+.under_line {
+	border-bottom: 1.5px solid #4b4b4b;		/* 下線の太さ、実線、色 */
+	width: 270px;								/* 長さ */
+}
+
+/* ログインボタン */
+.login_button {
+	background-color: #E9E6E0;		/* 色 */
+	border: #4b4b4b 1px solid;		/* 枠線の色、太さ、実線 */
+	border-radius: 7px;					/* 枠線の丸み */
+	padding: 7px 10px;					/* 大きさ(上下、左右) */
+	margin-top: 35px;					/* 下線の太さ、実線、色 */
+}
+
+/* inputタグ */
+.text-box {
+	border: none;					/* 通常時の枠をなくす */
+	outline: none;					/* 選択時の枠をなくす */
+	background-color: #ebdbbdff;	/* 背景色 */
+	height: 35px;					/* 入力欄の縦 */
+	width: 150px;					/* 入力欄の横 */
+}
+
+/* 新規登録はこちら */
+.p {
+	margin-top: 20px;		/* ログインボタンとの距離 */
+}
+
+.left {
+	display: inline-block;
+	margin-right: 10%;
+}
+
+.img1 {
+	width: 120px;
+}
+
+.right {
+	display: inline-block;
+	margin-left: 5%;
+}
+
+.img2 {
+	width: 140px;
+}
+
+
+
+
+

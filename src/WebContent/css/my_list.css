@@ -2,15 +2,106 @@
 
 
 /* 表示関連のCSS */
+/* ハートマーク */
 .user_reaction img {
 	float	: left; /* 左に回り込み */
 	width 	: 55px; /* サイズ */
 	height 	: 55px; /* サイズ */
 }
 
+#white_heart {
+	opacity	: 0.7;
+}
+
+/*非公開表示  */
+.private_button{
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+
+}
+
+.private_button img {
+	width: 30px;
+}
+
+/* 編集ボタン */
+.edit_button {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+
+
+/*達成・削除ボタンの位置調整  */
+.step_submit input{
+	float : right;
+	padding: 5px;
+	margin: 10px;
+	width: 80px;
+    height: 40px;
+    font-size: 15px;
+    background-color: var(--header-color);
+    border-radius: 10px;
+    border: 1.5px solid var(--mono-color);
+    position: relative;
+    bottom: 30px;
+}
+
+.step_submit {
+	margin-bottom: 50px;
+}
+
 #step_achieve td {
 	opacity	: 0.7;
 }
+
+
+
+/* 新規登録画面のCSS */
+/* 登録ボタン */
+ /*.new_resist {
+	position: fixed;
+    right: 120px;
+    bottom: 125px;
+}*/
+
+.new_resist input {
+	float : right;
+	padding: 5px;
+	margin: 10px;
+	width: 80px;
+    height: 40px;
+    font-size: 15px;
+    background-color: var(--header-color);
+    border-radius: 10px;
+    border: 1.5px solid var(--mono-color);
+    position: absolute;
+    left: auto;
+    right: 60px;
+    bottom: 10px;
+    top: auto;
+}
+
+
+/* 非公開ボタンの調整 */
+.private_edit {
+	float: right;
+	position: absolute;
+	right: 80px;
+	top: 60px;
+	left: atuo;
+	bottom: auto;
+}
+
+.private_edit img {
+	width: 50px;
+}
+
+
 
                   	/*モーダル関係のCSS*/
 .modal {
@@ -21,7 +112,7 @@
   bottom: 0;
   left: 0;
   overflow: auto;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 99999;
   animation-name: show;
   animation-duration: 0.5s
@@ -36,7 +127,83 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   height: 70%;
   border-radius	: 20px;
+  height: fit-content;
 }
+
+/* タグの調整 */
+.tag_bt {
+	margin-left: 70px;
+	margin-top: 40px;
+
+}
+.tag_bt select {
+	width: 131px;
+    height: 35px;
+    font-size: 15px;
+}
+
+/* 宣言の調整 */
+.input_dec {
+	margin-left: 70px;
+	margin-top: 30px;
+}
+
+.input_dec input {
+	width: 600px;
+    height: 35px;
+    font-size: 22px;
+    border: none;
+    outline: none;
+}
+
+/* ステップの調整 */
+#target {
+	margin-left: 70px;
+	margin-top: 30px;
+}
+
+#target img{
+	width: 30px;
+    margin-top: 5px;
+    margin-bottom: -9px;
+    margin-right: 26px;
+
+}
+
+#target input {
+	margin-bottom: 12px;
+    height: 30px;
+    font-size: 18px;
+    width: 545px;
+    border:none;
+    outline: none;
+
+}
+
+/* ×の調整 */
+.close img {
+	width: 20px;
+}
+
+/* プラスボタンの調整 */
+.step_add {
+	margin-left: 70px;
+    margin-bottom: 60px;
+}
+
+.step_add img {
+	width: 30px;
+    margin-top: 5px;
+    margin-bottom: -9px;
+    margin-right: 26px;
+}
+
+/*#new_decla_text {
+	margin-left : 30px; /* 間隔調整
+	margin-top : 50px;
+}*/
+
+
 
 @keyframes show {
   0% {
@@ -68,6 +235,8 @@
 }*/
 
 .close {
+  margin-right: 30px;
+  margin-top: 25px;
   color: #aaa;
   float: right;
   font-size: 16px;
@@ -92,9 +261,4 @@
   cursor: pointer;
 }
 
-/* 新規登録画面のCSS */
-#new_decla_text {
-	margin-left : 30px; /* 間隔調整 */
-	margin-top : 50px;
-}
 

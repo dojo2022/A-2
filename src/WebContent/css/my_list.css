@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+
+/* 表示関連のCSS */
+.user_reaction img {
+	float	: left; /* 左に回り込み */
+	width 	: 55px; /* サイズ */
+	height 	: 55px; /* サイズ */
+}
+
 #step_achieve td {
 	opacity	: 0.7;
 }
@@ -26,6 +34,8 @@
   border: 1px solid #888;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height: 70%;
+  border-radius	: 20px;
 }
 
 @keyframes show {
@@ -46,7 +56,8 @@
 }*/
 
 .modal-body {
-  padding: 12px;
+	margin: auto;
+    padding: 12px;
 }
 
 /*.modal-footer {
@@ -80,3 +91,10 @@
   color: black;
   cursor: pointer;
 }
+
+/* 新規登録画面のCSS */
+#new_decla_text {
+	margin-left : 30px; /* 間隔調整 */
+	margin-top : 50px;
+}
+

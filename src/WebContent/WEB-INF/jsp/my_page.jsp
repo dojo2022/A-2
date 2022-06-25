@@ -220,7 +220,7 @@
 				<c:if test="${t.decsId == v.declarationId}">
 					<c:if test="${v.step !='' }">
 
-			<li>
+						<li>
 					<c:if test="${v.achieveFlag==false}">
 						<table>
 						<tr>

@@ -1,16 +1,10 @@
 @charset "UTF-8";
-/*summaryタグの削除*/
-summary {
-  display: block;
-  list-style: none;
+
+#step_achieve td {
+	opacity	: 0.7;
 }
 
-						/*ステップの表示関係のCSS*/
-#disp_steps div {
-	display: inline;
-}
-
-                        	/*モーダル関係のCSS*/
+                  	/*モーダル関係のCSS*/
 .modal {
   display: none;
   position: fixed;

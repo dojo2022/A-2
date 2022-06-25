@@ -3,7 +3,7 @@
 
 body {
 	background-color: #E9E6E0;	/* 背景色 */
-	width: 800px;					/* コンテンツ範囲(横) */
+	/* width: 800px; */					/* コンテンツ範囲(横) */
 	margin : 0 auto;				/*コンテンツ外範囲(横：auto / 縦：0) */
 	text-align: center;
 }

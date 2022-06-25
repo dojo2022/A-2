@@ -25,7 +25,7 @@
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
 <p>マイリストの表示</p>
-<h1>${result.message}</h1>
+<!-- リストのひとかたまり -->
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div class="list">
 	<form method="POST" action="/killerQueen/MyListServlet">
@@ -53,6 +53,7 @@
 			</div>
 			</c:forEach>
 
+			<!-- タグと宣言のまとまり -->
 			<div class="decla_text">
 				<input type="hidden" name="declaration_id" value="${e.id }">
 
@@ -107,7 +108,7 @@
 				</c:if>
 			</div>
 
-			<!--達成/ステップ数の表示  -->
+			<!--ステップ達成率の表示  -->
 			<div class="achieve_rate">
 				<c:forEach var="v" items="${pageList }" >
 						<c:if test="${e.id  == v.stepsDecId}">
@@ -123,42 +124,65 @@
 				/<%=step %>
 			</div>
 		</div>
+		<!-- アコーディオン 閉じている状態 -->
 
 
 		<!-- ステップの表示 -->
-		<c:forEach var="t" items="${pageList }" varStatus="step_ac" >
-			<c:if test="${t.stepsDecId == e.id }">
-				<!--
-					 ユーザーID：${t.usersId}
-					ステップID：${t.stepsId}
-					ステップ達成：${t.stepsAchieveFlag}
-					ステップ外部キー:${t.stepsDecId }<br>
-				-->
-				<c:if test="${t.stepsStep != ''}">
-					<input type="hidden" value="${t.stepsId }" id="steps_id${step_ac.index}" name="steps_id${step_ac.index}">
-					<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
-					<nav id="disp_steps">
-						<c:if test="${t.stepsAchieveFlag == false }">
-							<div id="change${step_ac.index}">
-								<img src="/killerQueen/img/circle_icon/circle.png" width="20px"  id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ未達成')" >
-							</div>
+		<nav class="step_lsit">
+			<ul>
+				<c:forEach var="t" items="${pageList }" varStatus="step_ac" >
+					<c:if test="${t.stepsDecId == e.id }">
+						<!--
+							 ユーザーID：${t.usersId}
+							ステップID：${t.stepsId}
+							ステップ達成：${t.stepsAchieveFlag}
+							ステップ外部キー:${t.stepsDecId }<br>
+						-->
+						<c:if test="${t.stepsStep != ''}">
+							<input type="hidden" value="${t.stepsId }" id="steps_id${step_ac.index}" name="steps_id${step_ac.index}">
+							<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
+
+							<li>
+								<c:if test="${t.stepsAchieveFlag == false }">
+									<table>
+										<tr>
+											<th>
+												<div id="change${step_ac.index}">
+													<img src="/killerQueen/img/circle_icon/circle.png" width="20px"  id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ未達成')" >
+												</div>
+											</th>
+											<td>
+												ステップ：${t.stepsStep}
+											</td>
+										</tr>
+									</table>
+								</c:if>
+								<c:if test="${t.stepsAchieveFlag == true }">
+									<table id="step_achieve">
+										<tr>
+											<th>
+												<div id="change${step_ac.index}">
+													<img src="/killerQueen/img/circle_icon/check.png" width="20px" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ達成')" >
+												</div>
+											</th>
+											<td>
+												ステップ：${t.stepsStep}
+											</td>
+										</tr>
+									</table>
+								</c:if>
+							</li>
 						</c:if>
-						<c:if test="${t.stepsAchieveFlag == true }">
-							<div id="change${step_ac.index}">
-								<img src="/killerQueen/img/circle_icon/check.png" width="20px" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ達成')" >
-							</div>
-						</c:if>
-						<div>ステップ：${t.stepsStep}<br></div>
-					</nav>
-				</c:if>
-			</c:if>
-		</c:forEach>
+					</c:if>
+				</c:forEach>
+			</ul>
+		</nav>
 		<button id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
 		<input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
 	</form>
 </div>
 </c:forEach>
-
+<!-- リストのひとかたまり -->
 
 
 <!-- 宣言＆ステップの新規登録 -->

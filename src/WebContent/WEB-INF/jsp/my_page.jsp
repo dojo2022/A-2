@@ -61,13 +61,13 @@
 <tr>
 	<td class="pro">
 		<c:if test="${countAchieve<=10}">
-		<progress id="myProgress" value="${countAchieve}" max="10">${countAchieve}</progress>
+		<progress id="myProgress" value="${countAchieve}" max="11">${countAchieve}</progress>
 		</c:if>
 		<c:if test="${countAchieve>10 && countAchieve<=50}">
-		<progress id="myProgress" value="${countAchieve-10}" max="40">${countAchieve}</progress>
+		<progress id="myProgress" value="${countAchieve-10}" max="41">${countAchieve}</progress>
 		</c:if>
 		<c:if test="${countAchieve>50 && countAchieve<=99}">
-		<progress id="myProgress" value="${countAchieve-50}" max="50">${countAchieve}</progress>
+		<progress id="myProgress" value="${countAchieve-50}" max="51">${countAchieve}</progress>
 		</c:if>
 		<c:if test="${countAchieve>99}">
 		<progress id="myProgress" value="100" max="100">${countAchieve}</progress>
@@ -200,8 +200,8 @@
 			</c:forEach>
 
 
-			「<%=achieve %>
-			/<%=step %>」
+			<%=achieve %>
+			/<%=step %>
 
 			<c:if test="${t.decsPrivateFlag==true}">
 				<img src="/killerQueen/img/icon/close.png" width="30px">

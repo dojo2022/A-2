@@ -24,7 +24,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>他ユーザーマイページ</title>
 </head>
-<body>
+<body id="top">
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
 <main>
 <table class="hee">
@@ -85,7 +85,7 @@
 		<!-- 達成未達成 -->
 		<div class="user_botton">
 			<c:if test="${t.decsAchieveFlag==true}">
-			<img src="/killerQueen/img/icon/achievement.png" width="30px">
+			<img src="/killerQueen/img/icon/achievement.png">
 			</c:if>
 			<c:if test="${t.decsAchieveFlag==false}">
 
@@ -135,38 +135,40 @@
 			</div>
 		</div>
 
+
 		<!-- ブックマークアイコン -->
-		<div>
+		<input type="hidden" value="${t.decsId}" name="decsId" id="decsId${status.index}">
+		<input type="hidden" value="${t.usersId}" name="usersId" id="usersId${status.index}">
+		<div class = "bookmark_div">
 			<c:if test="${t.bookmarksId == 0}">
-				<div id="changeBook${status.index}">
-					<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" value="ブックマークしてない" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
-				</div>
-			</c:if>
-			<c:if test="${t.bookmarksId != 0}">
-				<div id="changeBook${status.index}">
-					<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" value="ブックマークしてる" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
-			</div>
-			</c:if>
-			<p id="test${status.index}"></p>
+					<div id="changeBook${status.index}">
+							<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+					</div>
+							</c:if>
+							<c:if test="${t.bookmarksId != 0}">
+					<div id="changeBook${status.index}">
+							<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+					</div>
+							</c:if>
 		</div>
 
 		<!-- リアクションアイコン -->
-		<div>
+		<div class ="reaction_div">
 			<c:if test="${t.reactionsId == 0}">
 				<div id="change${status.index}">
-					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 			</c:if>
 			<c:if test="${t.reactionsId != 0}">
 				<div id="change${status.index}">
-					<input type="image" src="/killerQueen/img/icon/redHeart.png" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 			</c:if>
 		</div>
 
 		<!-- ステップ達成率 -->
 		<div class="achieve_rate">
-			<c:forEach var="v" items="${steper}" varStatus = "st">
+			<c:forEach var="v" items="${steper}">
 				<c:if test="${t.decsId == v.declarationId}">
 				<c:if test="${v.step !='' }">
 						<c:if test="${v.achieveFlag==true}">
@@ -176,12 +178,7 @@
 				</c:if>
 			</c:if>
 			</c:forEach>
-
-
-			「<%=achieve %>
-			/<%=step %>」
-
-
+			<%=achieve %>/<%=step %>
 		</div>
 	</div>
 	<!-- アコーディオン 閉じている状態ここまで -->
@@ -193,7 +190,7 @@
 				<c:if test="${t.decsId == v.declarationId}">
 					<c:if test="${v.step !='' }">
 
-			<li>
+		<li>
 					<c:if test="${v.achieveFlag==false}">
 						<table>
 						<tr>
@@ -210,7 +207,7 @@
 						</tr>
 						</table>
 					</c:if>
-			</li>
+		</li>
 					</c:if>
 				</c:if>
 			</c:forEach>
@@ -218,9 +215,6 @@
 	</nav>
 </div>
 </c:forEach>
-
-
-
 
 
 

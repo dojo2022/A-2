@@ -1,1 +1,82 @@
 @charset "UTF-8";
+
+/* ----------あいまい検索機能---------- */
+
+/* あいまい検索 */
+.search {
+	margin-top  : 30px; /* 間隔調整 */
+	margin-left	: auto; /* 中央揃え */
+ 	margin-right: auto; /* 中央揃え */
+}
+
+/* 検索ボックス */
+.search_box {
+	width		  : 450px; /* サイズ */
+	height		  : 30px;  /* サイズ */
+	border		  : 1.5px solid; /* 枠線 */
+	border-color  : var(--mono-color);/* 枠線の色 */
+	border-radius : 8px; /* 枠線の丸み */
+	font-size	  : 100%; /* 入力文字サイズ */
+}
+
+/* 検索ボタン */
+.search_button {
+ 	width		: 35px; /* サイズ */
+	height		: 35px; /* サイズ */
+	margin-left : 20px; /* 間隔調整 */
+}
+
+/* ----------タグ検索機能---------- */
+
+/* タグ検索 */
+.tag_search {
+	margin-top		: 35px;  /* 間隔調整 */
+	margin-left		: auto;  /* 中央揃え */
+	margin-right	: auto;  /* 中央揃え */
+}
+
+/* タグ検索ボタン */
+.tag_search button {
+	width			: 250px; /* サイズ */
+	height			: 110px; /* サイズ */
+	margin			: 10px 10px 10px 10px; /* 間隔調整 */
+	background-color: #FFFFFF; /* 背景を白 */
+	border			: 1px solid; /* 枠線 */
+	border-color	: var(--mono-color);;/* 枠線の色 */
+	border-radius	: 20px;   /* 枠線に丸み */
+	box-shadow		: 6px 6px 5px var(--sub-color); /* 影 */
+}
+
+/* タグ検索ボタンをhover */
+.tag_search button:hover {
+	box-shadow		: 0 2px 3px rgba(0, 0, 0, 0.3); /* 影の色変わる */
+}
+
+/* タグ検索ボタンの画像 */
+.tag_search img {
+	float		: left;	/* 左に回り込み */
+	width		: 60px; /* サイズ */
+	height		: 60px; /* サイズ */
+	margin-top	: 15px; /* 間隔調整 */
+	margin-left	: 20px; /* 間隔調整 */
+	margin-right: 5px;  /* 間隔調整 */
+}
+
+.tag_img img {
+	width		: 50px; /* サイズ */
+	height		: 50px; /* サイズ */
+}
+
+.tag_img {
+	margin-top	: 5px; /* 間隔調整 */
+	margin-left	: 5px; /* 間隔調整 */
+	margin-right: 5px; /* 間隔調整 */
+}
+
+/* タグ検索ボタンの文字 */
+.tag_search p{
+	font-size		: 20px;   /* 文字サイズ */
+	font-style		: italic; /* 文字の種類 */
+	margin-top		: 35px;   /* 間隔調整 */
+}
+

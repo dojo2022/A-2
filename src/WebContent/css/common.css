@@ -33,7 +33,7 @@ header {
 	background-color:var(--header-color);
 }
 
-a {
+ a {
 	text-decoration: none;
 }
 
@@ -50,28 +50,30 @@ a {
 	height: 120px;
 }
 
-/* メニュー固定 */
+/* メニュー全体 */
 .menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 40px;
+	display: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 40px;
 }
 
+/* ハンバーガーメニューの三本線の位置 */
 .line-list {
 	display: inline-block;
 	transition: all 0.4s;
 	box-sizing: border-box;
-	position: relative;
+	position: absolute;
+	top: 0;
 	width: 40px;
 	height: 40px;
 	margin-right: 0;
 	margin-left: auto;
-	z-index: 300;
+	z-index: 9999;
 }
 
-/* ハンバーガーメニューの棒 */
+/* ハンバーガーメニューの三本線 */
 .line-list span {
   display: block;
   transition: all 0.4s;
@@ -92,7 +94,7 @@ a {
   margin-top: 6px;
 }
 
-/* ハンバーガーメニューが開くときに×にする */
+/* ハンバーガーメニューの三本線を×にする */
 .line-list.active span:nth-child(1) {
   -webkit-transform: translateY(6px) rotate(-45deg);
   transform: translateY(6px) rotate(-45deg);
@@ -109,59 +111,61 @@ a {
 
 /* メニューが開いたときの黒い半透明の背景 */
 .menu-bg {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 100;
-  background: var(--mono-color);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.6s;
-  cursor: pointer;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9997;
+	background: var(--mono-color);
+	opacity: 0.6;
+	visibility: hidden;
+	transition: all 0.6s;
+	cursor: auto;
 }
 
 /* メニューの中身 */
 .global-nav {
-  position: fixed;
-  left: -320px;
-  top: 0;
-  width: 300px;
-  height: 100vh;
-  padding-top: 40px;
-  background: var(--header-color);
-  transition: all 0.6s;
-  z-index: 200;
-  overflow-y: auto;
+	position: fixed;
+	left: -320px;
+	top: 0;
+	width: 300px;
+	height: 100vh;
+	padding-top: 40px;
+	background: var(--header-color);
+	transition: all 0.6s;
+	z-index: 9998;
+	overflow-y: auto;
 }
 .link-list {
   display: block;
   margin: 0;
   padding: 0;
 }
+
+
 .link-list li {
-  text-align: center;
-  padding: 0 14px;
+	text-align: center;
+	padding: 0 14px;
 }
 .link-list li a {
-  display: block;
-  padding: 20px 0;
-  color: var(--mono-color);
+	display: block;
+	padding: 20px 0;
+	color: var(--mono-color);
 }
 .link-list li:hover {
-  background: var(--sub-color);
+	background: var(--sub-color);
 }
 
 /* メニューが横から開く */
 .global-nav.active {
-  left: 0;
+	left: 0;
 }
 
 /* メニューが横から開いた時の背景 */
 .menu-bg.black {
-  opacity: 0.8;
-  visibility: visible;
+	opacity: 0.6;
+	visibility: visible;
 }
 
 

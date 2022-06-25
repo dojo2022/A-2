@@ -40,6 +40,7 @@ $(function() {
 // ハンバーガーメニュー新
 document.querySelector('.line-list').addEventListener('click', function(){
    document.querySelector('.global-nav').classList.toggle('active');
+   document.querySelector('.line-list').classList.toggle('active');
    document.querySelector('.menu-bg').classList.toggle('black');
 });
 

@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -165,61 +164,12 @@ public class MyListServlet extends HttpServlet {
 
 
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-		response.setHeader("Cache-Control", "nocache");
-		response.setCharacterEncoding("utf-8");
 
 
-
-
-		//送信されたデータの取得
-		int stepsAId= Integer.parseInt(request.getParameter("data1"));
-		String buttonStatus = request.getParameter("data2");
-		System.out.println(stepsAId);
-		System.out.println(buttonStatus);
-		PrintWriter out = response.getWriter();
-		String resString;
-
-		//⑤goAjax
-		if(buttonStatus.equals("ステップ未達成")) {
-			StepsDao stepsDao = new StepsDao();
-			boolean result= stepsDao.achieveStep(stepsAId);
-			if(result) {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveTrue";
-				out.print(resString);
-				resString = "";
-				return;
-			}else {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveFalse";
-				out.print(resString);
-				resString = "";
-				return;
-			}
-
-		} else if(buttonStatus.equals("ステップ達成")) {
-			StepsDao stepsDao = new StepsDao();
-			boolean result= stepsDao.notAchieveStep(stepsAId);
-			if(result) {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveFalse";
-				out.print(resString);
-				resString = "";
-				return;
-			}else {
-				//JSPに返却する値を作成する。値はoutの中に格納する
-				resString = "getAchieveTrue";
-				out.print(resString);
-				resString = "";
-				return;
-			}
-		}
 
 
 
 		String button = request.getParameter("bt");
-
 		//行われた処理によって①～④条件分岐
 		if (button.equals("新規登録")) {
 			//①新規作成
@@ -391,6 +341,7 @@ public class MyListServlet extends HttpServlet {
 
 
 	}
+
 
 }
 

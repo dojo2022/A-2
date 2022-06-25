@@ -1,4 +1,16 @@
 @charset "UTF-8";
+/*summaryタグの削除*/
+summary {
+  display: block;
+  list-style: none;
+}
+
+						/*ステップの表示関係のCSS*/
+#disp_steps div {
+	display: inline;
+}
+
+                        	/*モーダル関係のCSS*/
 .modal {
   display: none;
   position: fixed;

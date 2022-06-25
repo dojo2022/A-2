@@ -7,51 +7,108 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>マイリスト</title>
+<!-- 全体的なCSSby藤井さん -->
+<link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_list.css">
+<!--  アコーディオンメニューのjs -->
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('.nav-open').click(function(){
+			$(this).toggleClass('active');
+			$(this).next('nav.step_list').slideToggle();
+		});
+	});
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
 <p>マイリストの表示</p>
 <h1>${result.message}</h1>
 <c:forEach var="e" items="${decList }" varStatus="status">
+<div class="list">
 	<form method="POST" action="/killerQueen/MyListServlet">
-		<details>
-			<summary><%int step=0; %><%int achieve=0; %>
+		<!-- アコーディオン -->
+		<div class="nav-open">
+			<%int step=0; %><%int achieve=0; %>
+			<!-- リアクション数に応じてハートマーク -->
+			<c:forEach var="s" items="${reacter}" >
+			<div class="user_botton">
+					<c:if test="${s.decsId == e.id}">
+						<!--  リアクションに応じて画像を変えるよ:${s.countReaction}-->
+						<c:if test="${s.countReaction==0}">
+							<img src="/killerQueen/img/icon/whiteHeart.png" width="30px">
+						</c:if>
+						<c:if test="${s.countReaction>0 && s.countReaction<=4}">
+							<img src="/killerQueen/img/icon/yellowHeart.png" width="30px">
+						</c:if>
+						<c:if test="${s.countReaction>4 && s.countReaction<=9}">
+							<img src="/killerQueen/img/icon/gleenHeart.png" width="30px">
+						</c:if>
+						<c:if test="${s.countReaction>9}">
+							<img src="/killerQueen/img/icon/redHeart.png" width="30px">
+						</c:if>
+					</c:if>
+			</div>
+			</c:forEach>
+
+			<div class="decla_text">
 				<input type="hidden" name="declaration_id" value="${e.id }">
 
 				<!-- タグの表示：${e.tag } -->
-				<c:if test="${e.tag == 0}">
-					#勉強
-				</c:if>
-				<c:if test="${e.tag == 1}">
-					#仕事
-				</c:if>
-				<c:if test="${e.tag == 2}">
-					#趣味
-				</c:if>
-				<c:if test="${e.tag == 3}">
-					#ダイエット
-				</c:if>
-				<c:if test="${e.tag == 4}">
-					#運動
-				</c:if>
-				<c:if test="${e.tag == 5}">
-					#健康
-				</c:if>
-				<c:if test="${e.tag == 6}">
-					#美容
-				</c:if>
-				<c:if test="${e.tag == 7}">
-					#日常
-				</c:if>
-				<c:if test="${e.tag == 8}">
-					#その他
-				</c:if>
+				<div class="decla_tag">
+					<c:if test="${e.tag == 0}">
+						#勉強
+					</c:if>
+					<c:if test="${e.tag == 1}">
+						#仕事
+					</c:if>
+					<c:if test="${e.tag == 2}">
+						#趣味
+					</c:if>
+					<c:if test="${e.tag == 3}">
+						#ダイエット
+					</c:if>
+					<c:if test="${e.tag == 4}">
+						#運動
+					</c:if>
+					<c:if test="${e.tag == 5}">
+						#健康
+					</c:if>
+					<c:if test="${e.tag == 6}">
+						#美容
+					</c:if>
+					<c:if test="${e.tag == 7}">
+						#日常
+					</c:if>
+					<c:if test="${e.tag == 8}">
+						#その他
+					</c:if>
+				</div>
+
 
 				<!-- 宣言の表示 -->
-				宣言：${e.declaration}
+				<div class="decla_list">
+					宣言：${e.declaration}
+				</div>
+			</div>
 
-				<!--達成/ステップ数の表示  -->
+
+			<!--  非公開：${e.privateFlag }-->
+			<div class ="reaction_div">
+				<c:if test="${e.privateFlag ==true}">
+					<img src="/killerQueen/img/icon/close.png" width="30px">
+				</c:if>
+				<c:if test="${e.privateFlag ==false}">
+					<span>
+						<!-- <img src="/killerQueen/img/icon/open.png" width="30px"> -->
+					</span>
+				</c:if>
+			</div>
+
+			<!--達成/ステップ数の表示  -->
+			<div class="achieve_rate">
 				<c:forEach var="v" items="${pageList }" >
 						<c:if test="${e.id  == v.stepsDecId}">
 							<c:if test="${v.stepsStep !='' }">
@@ -64,67 +121,42 @@
 				</c:forEach>
 				<%=achieve %>
 				/<%=step %>
+			</div>
+		</div>
 
-				<!--  非公開：${e.privateFlag }-->
-				<c:if test="${e.privateFlag ==true}">
-					<img src="/killerQueen/img/icon/close.png" width="30px">
-				</c:if>
-				<c:if test="${e.privateFlag ==false}">
-					<span>
-						<!-- <img src="/killerQueen/img/icon/open.png" width="30px"> -->
-					</span>
-				</c:if>
 
-				<!-- リアクション数に応じてハートマーク -->
-				<c:forEach var="s" items="${reacter}" >
-						<c:if test="${s.decsId == e.id}">
-							<!--  リアクションに応じて画像を変えるよ:${s.countReaction}-->
-							<c:if test="${s.countReaction==0}">
-								<img src="/killerQueen/img/icon/whiteHeart.png" width="30px">
-							</c:if>
-							<c:if test="${s.countReaction>0 && s.countReaction<=4}">
-								<img src="/killerQueen/img/icon/yellowHeart.png" width="30px">
-							</c:if>
-							<c:if test="${s.countReaction>4 && s.countReaction<=9}">
-								<img src="/killerQueen/img/icon/gleenHeart.png" width="30px">
-							</c:if>
-							<c:if test="${s.countReaction>9}">
-								<img src="/killerQueen/img/icon/redHeart.png" width="30px">
-							</c:if>
-						</c:if>
-				</c:forEach>
-			</summary>
-
-			<!-- ステップの表示 -->
-			<c:forEach var="t" items="${pageList }" varStatus="step_ac" >
-				<c:if test="${t.stepsDecId == e.id }">
-					<!--
-						 ユーザーID：${t.usersId}
-						ステップID：${t.stepsId}
-						ステップ達成：${t.stepsAchieveFlag}
-						ステップ外部キー:${t.stepsDecId }<br>
-					-->
-					<c:if test="${t.stepsStep != ''}">
-						<input type="hidden" value="${t.stepsId }" id="steps_id${step_ac.index}" name="steps_id${step_ac.index}">
-						<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
+		<!-- ステップの表示 -->
+		<c:forEach var="t" items="${pageList }" varStatus="step_ac" >
+			<c:if test="${t.stepsDecId == e.id }">
+				<!--
+					 ユーザーID：${t.usersId}
+					ステップID：${t.stepsId}
+					ステップ達成：${t.stepsAchieveFlag}
+					ステップ外部キー:${t.stepsDecId }<br>
+				-->
+				<c:if test="${t.stepsStep != ''}">
+					<input type="hidden" value="${t.stepsId }" id="steps_id${step_ac.index}" name="steps_id${step_ac.index}">
+					<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
+					<nav id="disp_steps">
 						<c:if test="${t.stepsAchieveFlag == false }">
 							<div id="change${step_ac.index}">
-								<img src="/killerQueen/img/circle_icon/circle.png" width="30px"  id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ未達成')" >
+								<img src="/killerQueen/img/circle_icon/circle.png" width="20px"  id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ未達成')" >
 							</div>
 						</c:if>
 						<c:if test="${t.stepsAchieveFlag == true }">
 							<div id="change${step_ac.index}">
-								<img src="/killerQueen/img/circle_icon/check.png" width="30px" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ達成')" >
+								<img src="/killerQueen/img/circle_icon/check.png" width="20px" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ達成')" >
 							</div>
 						</c:if>
-						<span>ステップ：${t.stepsStep}<br></span>
-					</c:if>
+						<div>ステップ：${t.stepsStep}<br></div>
+					</nav>
 				</c:if>
-			</c:forEach>
-			<button id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
-			<input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
-		</details>
+			</c:if>
+		</c:forEach>
+		<button id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">編集</button>
+		<input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
 	</form>
+</div>
 </c:forEach>
 
 
@@ -437,7 +469,7 @@ function goAjax(indexNo, imgStr){
 	$.ajax({
 		//どのサーブレットに送るか
 		//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-		url: '/killerQueen/MyListServlet',
+		url: '/killerQueen/StepAjaxServlet',
 		//どのメソッドを使用するか
 		type:"POST",
 		//ここは今回は決まりの書き方　→　受け取る型
@@ -455,7 +487,7 @@ function goAjax(indexNo, imgStr){
 		if(data == "getAchieveTrue"){
 		$("#change" + indexNo).html("");
 		var htmltext = "";
-		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/check.png" width="30px" value="ステップ達成" class="reaction_red" id="step_achieve_flag` + indexNo;
+		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/check.png" width="20px" value="ステップ達成" class="reaction_red" id="step_achieve_flag` + indexNo;
 		htmltext = htmltext + `" onclick="goAjax('` + indexNo;
 		htmltext = htmltext + `', 'ステップ達成')">`;
 		$("#change" + indexNo).append(htmltext);
@@ -464,7 +496,7 @@ function goAjax(indexNo, imgStr){
 
 		$("#change" + indexNo).html("");
 		var htmltext = "";
-		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/circle.png" width="30px" value="ステップ未達成" class="reaction_white" id="steps_achieve` + indexNo;
+		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/circle.png" width="20px" value="ステップ未達成" class="reaction_white" id="steps_achieve` + indexNo;
 		htmltext = htmltext + `" onclick="goAjax('` + indexNo;
 		htmltext = htmltext + `', 'ステップ未達成')">`;
 		$("#change" + indexNo).append(htmltext);

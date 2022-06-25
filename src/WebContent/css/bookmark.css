@@ -1,1 +1,218 @@
 @charset "UTF-8";
+
+
+
+/* ----------あいまい検索機能---------- */
+
+/* あいまい検索 */
+.search {
+	margin-top  : 30px; /* 間隔調整 */
+	margin-left	: auto; /* 中央揃え */
+ 	margin-right: auto; /* 中央揃え */
+}
+
+/* 検索ボックス */
+.search_box {
+	width		  : 450px; /* サイズ */
+	height		  : 30px;  /* サイズ */
+	border		  : 1.5px solid; /* 枠線 */
+	border-color  : var(--mono-color);/* 枠線の色 */
+	border-radius : 8px; /* 枠線の丸み */
+	font-size	  : 100%; /* 入力文字サイズ */
+}
+
+/* 検索ボタン */
+.search_button {
+ 	width		: 35px; /* サイズ */
+	height		: 35px; /* サイズ */
+	margin-left : 20px; /* 間隔調整 */
+}
+
+.search_count {
+	margin-left : 20px; /* 間隔調整 */
+	font-size	: 20px;	/* 文字サイズ */
+}
+
+/* ---------宣言リストのひとかたまり--------- */
+
+/* 宣言リスト */
+.list {
+	display			: block; /*ブロック要素*/
+	margin-top		: 40px;  /* 間隔調整 */
+	margin-left		: auto;  /* 中央揃え */
+	margin-right	: auto;  /* 中央揃え */
+	margin-bottom	: 40px;  /* 間隔調整 */
+	padding			: 30px 40px 40px 40px; /*間隔調整*/
+	width			: 700px;  /* 幅を700px */
+	background-color: #FFFFFF;/* 背景を白 */
+	border			: 1px solid; /* 枠線 */
+	border-color	: var(--mono-color);;/* 枠線の色 */
+	border-radius	: 20px;   /* 枠線に丸み */
+	box-shadow		: 6px 6px 5px var(--sub-color); /* 影 */
+	z-index:100;
+}
+
+/* 宣言リストをhover */
+.list:hover {
+	box-shadow		: 0 2px 3px rgba(0, 0, 0, 0.3); /* 影の色変わる */
+}
+
+
+/* ---------アコーディオンメニュ---------- */
+
+nav.step_list{
+	display	: none; /* ステップリストを隠す */
+}
+
+/* 開いているとき */
+.nav-open{
+	position		: relative; /* 相対位置 */
+	padding-bottom  : 70px;	/* 間隔調整 */
+}
+
+/* 閉じているとき */
+.nav-open::before{
+	position		: absolute; /* 絶対位置 */
+}
+
+
+/* ユーザーアイコン画像 */
+.user_botton img {
+	float	: left; /* 左に回り込み */
+	width 	: 70px; /* サイズ */
+	height 	: 70px; /* サイズ */
+	z-index:2;
+}
+
+
+
+/* タグと宣言の二行 */
+.decla_text {
+	float		: left; /* 左に回り込み */
+	margin-left : 30px; /* 間隔調整 */
+}
+
+/* タグ */
+.decla_tag a:link {
+	font-size		: 18px; /* 文字サイズ */
+	font-style		: italic; /* 文字の種類 */
+	color		   	: var(--mono-color); /* 文字の色 */
+	text-decoration	: none; /* 下線を消す */
+}
+.decla_tag a:visited {
+	color		   	: var(--mono-color); /* 文字の色 */
+	text-decoration	: none; /* 下線を消す */
+}
+
+/* 宣言 */
+.decla_list{
+	font-weight	: bold; /* 文字太さ */
+	font-size	: 22px; /* 文字サイズ */
+	margin-left : 10px;	/* 間隔調整 */
+}
+
+/* ブックマーク */
+.bookmark_div {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+/* ブックマークボタン */
+.bookmark_button {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+/* リアクション */
+.reaction_div {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+/* リアクション白 */
+
+.reaction_white {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+	opacity		: 0.7;   /* 画像の色を薄く調整 */
+}
+
+/* リアクション赤 */
+.reaction_red {
+	float		: right; /* 右に回り込み */
+	width 		: 30px;  /* サイズ */
+	height 		: 30px;  /* サイズ */
+	margin-left : 20px;  /* 間隔調整 */
+}
+
+/* ステップ達成率 */
+.achieve_rate {
+	float		: right; /* 右に回り込み */
+	font-size	: 20px; /* 文字サイズ */
+}
+
+/* ---アコーディオンメニュ閉じている状態ここまで--- */
+
+
+/* ステップリスト */
+.step_list {
+	clear		: both; /*回り込み解除*/
+	font-size	: 18px; /* 文字サイズ */
+	color		:rgb(75, 75, 75); /* 文字の色 */
+	font-weight	: bold; /* 文字太さ */
+	margin-top 	: 40px; /* 間隔調整 */
+}
+
+/* リストの黒丸を消す */
+ul	{ list-style: none; }
+
+/* チェックボックス */
+.step_list img {
+	width			: 25px; /* サイズ */
+	height			: 25px; /* サイズ */
+	margin-top		: 10px; /* 間隔調整 */
+	margin-right	: 15px; /* 間隔調整 */
+	padding-bottom	: 5px ; /* 間隔調整 */
+}
+
+/* 達成したステップ */
+.step_achieve td {
+	opacity			: 0.7; 	/* 画像の色を薄く調整 */
+	text-decoration	: line-through; /* 訂正線 */
+}
+
+/* ----------宣言リストここまで---------- */
+
+/* 上に戻るボタン */
+.top_back img {
+	display		: block; /*ブロック要素*/
+	position	: fixed; /* 固定 */
+	width		: 50px;  /* サイズ */
+	height		: 50px;  /* サイズ */
+	right		: 85px;  /* 間隔調整 */
+	bottom		: 50px;  /* 間隔調整 */
+}
+
+/*-------------タイムラインボタンのデザイン-----------------*/
+#select_tag {
+	margin-top:auto;
+	margin-left: auto;
+    margin-right: auto;
+    margin-bottom:auto;
+}
+
+#at{
+	color:#ffffff;
+}
+
+#ab{
+	color:#ffffff;
+}

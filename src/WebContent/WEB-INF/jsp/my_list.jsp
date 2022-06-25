@@ -38,7 +38,7 @@
 					<c:if test="${s.decsId == e.id}">
 						<!--  リアクションに応じて画像を変えるよ:${s.countReaction}-->
 						<c:if test="${s.countReaction==0}">
-							<img src="/killerQueen/img/icon/whiteHeart.png" width="30px">
+							<img src="/killerQueen/img/icon/whiteHeart.png" width="30px" id="white_heart">
 						</c:if>
 						<c:if test="${s.countReaction>0 && s.countReaction<=4}">
 							<img src="/killerQueen/img/icon/yellowHeart.png" width="30px">
@@ -97,15 +97,19 @@
 
 
 			<!--  非公開：${e.privateFlag }-->
-			<div class ="reaction_div">
+			<div class ="private_button">
 				<c:if test="${e.privateFlag ==true}">
-					<img src="/killerQueen/img/icon/close.png" width="30px">
+					<img src="/killerQueen/img/icon/close.png" >
 				</c:if>
 				<c:if test="${e.privateFlag ==false}">
 					<span>
 						<!-- <img src="/killerQueen/img/icon/open.png" width="30px"> -->
 					</span>
 				</c:if>
+			</div>
+			<!-- 編集ボタン -->
+			<div class="edit_button">
+			<img src="/killerQueen/img/icon/edit.png" width="30px" id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">
 			</div>
 
 			<!--ステップ達成率の表示  -->
@@ -123,6 +127,7 @@
 				<%=achieve %>
 				/<%=step %>
 			</div>
+
 		</div>
 		<!-- アコーディオン 閉じている状態 -->
 
@@ -176,8 +181,10 @@
 					</c:if>
 				</c:forEach>
 			</ul>
-			<img src="/killerQueen/img/icon/edit.png" width="20" id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">
-			<input type="submit" value="削除" name="bt"><input type="submit" value="達成" name="bt"><br>
+			<div class="step_submit">
+				<input type="submit" value="達成" name="bt">
+				<input type="submit" value="削除" name="bt">
+			</div>
 		</nav>
 	</form>
 </div>
@@ -190,40 +197,47 @@
 <form method="POST" action="/killerQueen/MyListServlet">
 	<div id="resist_modal" class="modal">
 		 <div class="modal_content">
-		 	<span class="close">X</span>
+		 	<span class="close"><img src="/killerQueen/img/icon/batsu.png"></span>
 		 	<div class="modal_body">
 		 		<!-- タグ選択のプルダウン -->
 		 		<div id="new_decla_text">
-		 			<select name="tag">
-		 				<option value="0">#勉強</option>
-		 				<option value="1">#仕事</option>
-		 				<option value="2">#趣味</option>
-		 				<option value="3">#ダイエット</option>
-		 				<option value="4">#運動</option>
-		 				<option value="5">#健康</option>
-		 				<option value="6">#美容</option>
-		 				<option value="7">#日常</option>
-		 				<option value="8">#その他</option>
-		 			  </select>
+		 			<div class="tag_bt">
+			 			<select name="tag">
+			 				<option value="0">#勉強</option>
+			 				<option value="1">#仕事</option>
+			 				<option value="2">#趣味</option>
+			 				<option value="3">#ダイエット</option>
+			 				<option value="4">#運動</option>
+			 				<option value="5">#健康</option>
+			 				<option value="6">#美容</option>
+			 				<option value="7">#日常</option>
+			 				<option value="8">#その他</option>
+			 			  </select>
+		 			  </div>
 			 		<!--  <input type = "text" name="tag">-->
 			 		<!-- 宣言の入力 -->
-					<div>
-						<input type = "text" name="declaration" placeholder="宣言を入力してね">
+					<div class="input_dec">
+						<input type = "text" name="declaration" placeholder="宣言を入力してね" required maxlength="20">
 					</div>
-					<!-- 非公開選択ボタン -->
 
-					<input type = "checkbox" name="private_flag" value="true" id="pvf">
-					<label for="pvf">
-						<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img" onclick="change()">
-					</label>
+					<!-- 非公開選択ボタン -->
+					<div class="private_edit">
+						<input type = "checkbox" name="private_flag" value="true" id="pvf">
+						<label for="pvf">
+							<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img" onclick="change()">
+						</label>
+					</div>
 
 					<div id="target">
-						<img src="/killerQueen/img/circle_icon/circle.png" width="20px">
-						<input type = "text" name="step1" id="inputform_1" placeholder="ステップを入力してね(任意)"><br>
+						<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step1" id="inputform_1" placeholder="ステップを入力してね(任意)"><br>
 					</div>
 					<input type="hidden" name="count" value="1" id="count">
-					<input type="button" value="+" onclick="addForm()">
-					<input type="submit" value="新規登録" name="bt"><br>
+					<div class="step_add">
+						<img src="/killerQueen/img/circle_icon/add.png"onclick="addForm()">
+					</div>
+					<div class="new_resist">
+						<input type="submit" value="新規登録" name="bt">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -447,10 +461,11 @@ function addForm(){
 	input_data.type = 'text';
 	input_data.id = 'inputform_' + i;
 	input_data.name='step' + i;
+	input_data.placeholder='ステップを追加してね(任意)';
 	//alert(input_data.name);
 	var step = document.createElement('img');
 	step.src = '/killerQueen/img/circle_icon/circle.png';
-	step.style.width='20px';
+	//step.style.width='20px';
 	var br = document.createElement('br');
 	var parent = document.getElementById('target');
 	parent.appendChild(step);

@@ -82,7 +82,7 @@ public class RegistServlet extends HttpServlet {
 				session.setAttribute("themecolor", themecolor);
 
 				// リクエストスコープ(attribute区画)にエラーメッセージを格納する
-				result.setMessage("<a href=\"/killerQueen/MyListServlet\">ここをクリックしてください</a>");
+				result.setMessage("登録完了です！<br><a href=\"/killerQueen/MyListServlet\">ここをクリックしてアプリを始めましょう！</a>");
 				request.setAttribute("result", result);
 
 				// 新規登録画面にフォワードする

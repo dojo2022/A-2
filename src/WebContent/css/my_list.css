@@ -2,6 +2,10 @@
 
 
 /* 表示関連のCSS */
+/* Ajaxのホバー */
+.aj img:hover {
+	cursor: pointer;
+}
 /* ハートマーク */
 .user_reaction img {
 	float	: left; /* 左に回り込み */
@@ -34,6 +38,10 @@
 	margin-left : 20px;  /* 間隔調整 */
 }
 
+.edit_button:hover {
+	cursor: pointer;
+}
+
 
 
 /*達成・削除ボタンの位置調整  */
@@ -51,6 +59,10 @@
     bottom: 30px;
 }
 
+.step_submit input:hover {
+	cursor: pointer;
+}
+
 .step_submit {
 	margin-bottom: 50px;
 }
@@ -65,11 +77,14 @@
     float: right;
     right: 70px;
     bottom: 20px;
-    z-index: -1;
 }
 
 .regist_bt_m img {
 	width:70px;
+}
+
+.regist_bt_m img:hover {
+	cursor: pointer;
 }
 
 /* 新規登録画面のCSS */
@@ -97,6 +112,9 @@
     top: auto;
 }
 
+.new_resist input:hover {
+	cursor: pointer;
+}
 
 /* 非公開ボタンの調整 */
 .private_edit {
@@ -110,6 +128,10 @@
 
 .private_edit img {
 	width: 50px;
+}
+
+.private_edit img:hover {
+	cursor: pointer;
 }
 
 
@@ -128,7 +150,8 @@
 /* 宣言の調整 */
 .input_dec {
 	margin-left: 70px;
-	margin-top: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .input_dec input {
@@ -139,10 +162,19 @@
     outline: none;
 }
 
+.input_dec input:hover {
+	border-bottom : 2px solid black;
+	/*cursor: pointer;*/
+}
+
+.input_dec input:focus {
+	border-bottom : 2px solid black;
+}
+
 /* ステップの調整 */
 .target {
 	margin-left: 70px;
-	margin-top: 30px;
+	/*margin-top: 10px;*/
 }
 
 .target img{
@@ -153,7 +185,7 @@
 
 }
 
-#target input {
+.target input {
 	margin-bottom: 12px;
     height: 30px;
     font-size: 18px;
@@ -161,6 +193,15 @@
     border:none;
     outline: none;
 
+}
+
+.target input:hover {
+	border-bottom : 2px solid black;
+	/*cursor: pointer;*/
+}
+
+.target input:focus {
+	border-bottom : 2px solid black;
 }
 
 /* ×の調整 */
@@ -179,6 +220,10 @@
     margin-top: 5px;
     margin-bottom: -9px;
     margin-right: 26px;
+}
+
+.step_add img:hover {
+	cursor: pointer;
 }
 
 
@@ -219,9 +264,6 @@
 .already_step input:focus {
 	border-bottom : 2px solid black;
 }
-/*.already_step input:hover::after {
-	transform: scale(1, 1);
-}*/
 
 
 
@@ -306,6 +348,8 @@
 }
 
 .close2 {
+	margin-right: 30px;
+    margin-top: 25px;
   color: #aaa;
   float: right;
   font-size: 16px;

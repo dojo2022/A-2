@@ -193,7 +193,9 @@
 
 
 <!-- 宣言＆ステップの新規登録 -->
-<button id="open_modal" name="open_modal_btn">新規登録へ</button>
+<div class="regist_bt_m">
+	<img src="/killerQueen/img/circle_icon/regist.png" id="open_modal" name="open_modal_btn">
+</div>
 <form method="POST" action="/killerQueen/MyListServlet">
 	<div id="resist_modal" class="modal">
 		 <div class="modal_content">
@@ -228,7 +230,7 @@
 						</label>
 					</div>
 
-					<div id="target">
+					<div id="target" class="target">
 						<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step1" id="inputform_1" placeholder="ステップを入力してね(任意)"><br>
 					</div>
 					<input type="hidden" name="count" value="1" id="count">
@@ -253,109 +255,130 @@
 	<form method="POST" action="/killerQueen/MyListServlet">
 		<div id="edit_modal${status.index}" class="modal">
 			<div class="modal_content">
-				<span class="close2" onclick="batten('${status.index}')" id="close${status.index}">X</span>
+				<span class="close2" onclick="batten('${status.index}')" id="close${status.index}"><img src="/killerQueen/img/icon/batsu.png"></span>
 				<div class="modal_body">
 					<input type="hidden" value="${status.index}" id="status_id${status.index}">
 					<input type ="hidden" name="declaration_id_edit" value="${e.id }">
-					タグ：<select name="tag_edit" >
+					<!-- タグの編集 -->
+					<div id="new_decla_text">
+						<div class="tag_bt">
+							<select name="tag_edit" >
+								<c:choose>
+									<c:when test="${e.tag == 0 }">
+				 						<option value="0" selected>#勉強</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="0">#勉強</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 1 }">
+				 						<option value="1" selected>#仕事</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="1">#仕事</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 2 }">
+				 						<option value="2" selected>#趣味</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="2">#趣味</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 3 }">
+				 						<option value="3" selected>#ダイエット</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="3">#ダイエット</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 4 }">
+				 						<option value="4" selected>#運動</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="4">#運動</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 5 }">
+				 						<option value="5" selected>#健康</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="5">#健康</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 6 }">
+				 						<option value="6" selected>#美容</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="6">#美容</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 7 }">
+				 						<option value="7" selected>#日常</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="7">#日常</option>
+				 					</c:otherwise>
+				 				</c:choose>
+				 				<c:choose>
+									<c:when test="${e.tag == 8 }">
+				 						<option value="8" selected>#その他</option>
+				 					</c:when>
+				 					<c:otherwise>
+				 						<option value="8">#その他</option>
+				 					</c:otherwise>
+				 				</c:choose>
+			 			    </select>
+						</div>
+						<!-- 宣言の編集 -->
+						<div class="input_dec">
+							<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
+						</div>
+						<!-- 非公開の編集 -->
+						<div class="private_edit">
 							<c:choose>
-								<c:when test="${e.tag == 0 }">
-			 						<option value="0" selected>#勉強</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="0">#勉強</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 1 }">
-			 						<option value="1" selected>#仕事</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="1">#仕事</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 2 }">
-			 						<option value="2" selected>#趣味</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="2">#趣味</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 3 }">
-			 						<option value="3" selected>#ダイエット</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="3">#ダイエット</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 4 }">
-			 						<option value="4" selected>#運動</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="4">#運動</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 5 }">
-			 						<option value="5" selected>#健康</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="5">#健康</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 6 }">
-			 						<option value="6" selected>#美容</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="6">#美容</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 7 }">
-			 						<option value="7" selected>#日常</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="7">#日常</option>
-			 					</c:otherwise>
-			 				</c:choose>
-			 				<c:choose>
-								<c:when test="${e.tag == 8 }">
-			 						<option value="8" selected>#その他</option>
-			 					</c:when>
-			 					<c:otherwise>
-			 						<option value="8">#その他</option>
-			 					</c:otherwise>
-			 				</c:choose>
-		 			      </select>
-					宣言：<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
-					非公開:<c:choose>
 								<c:when test="${e.privateFlag == false }">
-									<input type = "checkbox" name="private_flag_edit" value="true"><br>
+									<input type = "checkbox" name="private_flag_edit" value="true" id="pv_edit${status.index }"><br>
+									<label for="pv_edit${status.index }">
+										<img src="/killerQueen/img/icon/close.png" width="30px" id="pv_img${status.index }" onclick="change()">
+									</label>
 								</c:when>
 								<c:otherwise>
 									<input type = "checkbox" name="private_flag_edit" value="true" checked><br>
+									<label for="pv_edit${status.index }">
+										<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img${status.index }" onclick="change()">
+									</label>
 								</c:otherwise>
 							</c:choose>
-					<%int countStep = 0; %>
-					<c:forEach var="t" items="${pageList }" varStatus="step_status" >
-						<c:if test="${t.stepsDecId == e.id }">
-							ステップ:<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>">
-							<input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
-							<input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}">
-							<input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
-							<%countStep++; %>
-						</c:if>
-					</c:forEach>
-					<input type="hidden" name="step_count" value="<%=countStep %>">
-					<div id="target2${status.index}">
-						<input type="hidden" name="all_count" value="0" id="all_count${status.index}">
+						</div>
+						<!-- ステップの編集 -->
+						<%int countStep = 0; %>
+						<c:forEach var="t" items="${pageList }" varStatus="step_status" >
+							<div class="already_step">
+							<c:if test="${t.stepsDecId == e.id }">
+								<img src="/killerQueen/img/circle_icon/circle.png">
+								<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>">
+								<input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
+								<input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}">
+								<input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
+								<%countStep++; %>
+							</c:if>
+							</div>
+						</c:forEach>
+						<input type="hidden" name="step_count" value="<%=countStep %>">
+						<div id="target2${status.index}" class="target">
+							<input type="hidden" name="all_count" value="0" id="all_count${status.index}">
+						</div>
+						<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
+						<input type="submit" value="完了" name="bt"><br>
 					</div>
-					<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
-					<input type="submit" value="完了" name="bt"><br>
 				</div>
 			</div>
 		</div>
@@ -551,7 +574,7 @@ function goAjax(indexNo, imgStr){
 		if(data == "getAchieveTrue"){
 		$("#change" + indexNo).html("");
 		var htmltext = "";
-		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/check.png" width="20px" value="ステップ達成" class="reaction_red" id="step_achieve_flag` + indexNo;
+		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/check.png" width="20px" value="ステップ達成" id="step_achieve_flag` + indexNo;
 		htmltext = htmltext + `" onclick="goAjax('` + indexNo;
 		htmltext = htmltext + `', 'ステップ達成')">`;
 		$("#change" + indexNo).append(htmltext);
@@ -560,7 +583,7 @@ function goAjax(indexNo, imgStr){
 
 		$("#change" + indexNo).html("");
 		var htmltext = "";
-		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/circle.png" width="20px" value="ステップ未達成" class="reaction_white" id="steps_achieve` + indexNo;
+		htmltext = htmltext + `<img src="/killerQueen/img/circle_icon/circle.png" width="20px" value="ステップ未達成" id="steps_achieve` + indexNo;
 		htmltext = htmltext + `" onclick="goAjax('` + indexNo;
 		htmltext = htmltext + `', 'ステップ未達成')">`;
 		$("#change" + indexNo).append(htmltext);

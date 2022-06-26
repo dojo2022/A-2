@@ -41,7 +41,7 @@
 				</tr>
 			</table>
 			<p>${result.message}</p>
-			<input type="submit" value="登録" class="main login_button">
+			<input type="submit" value="登録" class="main regist_button">
 
 		</form>
 

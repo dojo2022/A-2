@@ -1,26 +1,94 @@
 @charset "UTF-8";
 
-.radio {
-	display: inline;
+
+main {
+	/* width: 800px; */					/* コンテンツ範囲(横) */
+	margin : 0 auto;				/*コンテンツ外範囲(横：auto / 縦：0) */
+	text-align: center;
 }
 
-.color {
-	display: inline;
+table {
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+tr {
+	height: 20px;
+}
+
+td {
+	text-align: left;
+	padding-left: 50px;
 }
 
 .display {
       display: none;
     }
 
-    input:checked + label img {
+    input:checked  + label img {
       border: 3px solid var(--mono-color);
       border-radius: 50px;
     }
 
 .radio_circle {
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 
 }
+
+.color {
+	width: 60px;
+	height: 60px;
+	margin-right: 10px;
+}
+
+.text-box {
+	outline: none;
+	border: #4b4b4b 1px solid;
+	border-radius: 5px;
+}
+
+	.name{
+		width: 400px;
+		height: 30px;
+	}
+
+	.comment {
+		width: 400px;
+		height: 50px;
+	}
+
+.button {
+	background-color: var(--header-color);		/* 色 */
+	border: #4b4b4b 1px solid;		/* 枠線の色、太さ、実線 */
+	border-radius: 7px;					/* 枠線の丸み */
+	padding: 8px 20px;					/* 大きさ(上下、左右) */
+	color: black;
+}
+	.button a {
+		text-decoration: none;
+	}
+
+ 		.button a:hover {
+			color: black;			/* カーソルを乗せた時 */
+		}
+
+		.button a:visited {
+			color: black;				/* クリック済みの時 */
+		}
+
+		.button a:active {
+			color: black;			/* クリック時 */
+		}
+
+ 	.back {
+		margin-left: 420px;
+	}
+
+ 	.change {
+	margin-left: 10px;
+}
+
 
 

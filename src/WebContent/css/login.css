@@ -1,9 +1,9 @@
+
 @charset "UTF-8";
 
 
 body {
 	background-color: #E9E6E0;	/* 背景色 */
-	/* width: 800px; */					/* コンテンツ範囲(横) */
 	margin : 0 auto;				/*コンテンツ外範囲(横：auto / 縦：0) */
 	text-align: center;
 }
@@ -88,20 +88,20 @@ a {
 
 .left {
 	display: inline-block;
-	margin-right: 10%;
+	margin-right: 80px;
 }
 
 .img1 {
-	width: 120px;
+	width: 130px;
 }
 
 .right {
 	display: inline-block;
-	margin-left: 5%;
+	margin-left: 80px;
 }
 
 .img2 {
-	width: 140px;
+	width: 160px;
 }
 
 

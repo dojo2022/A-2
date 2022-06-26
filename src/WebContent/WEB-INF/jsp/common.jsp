@@ -20,6 +20,13 @@
 	<c:if test="${themecolor == 2}">
 		<% js = "changeTheme2()"; %>
 	</c:if>
+	<c:if test="${themecolor == 3}">
+		<% js = "changeTheme3()"; %>
+	</c:if>
+	<c:if test="${themecolor == 4}">
+		<% js = "changeTheme4()"; %>
+	</c:if>
+
 
 <body onLoad="<%=js %>">
 

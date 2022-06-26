@@ -14,6 +14,14 @@ function changeTheme2(){
       document.documentElement.setAttribute('theme', '2');
 }
 
+function changeTheme3(){
+      document.documentElement.setAttribute('theme', '3');
+}
+
+function changeTheme4(){
+      document.documentElement.setAttribute('theme', '4');
+}
+
 
 /*
 // ハンバーガーメニューの作り方

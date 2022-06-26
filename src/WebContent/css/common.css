@@ -30,6 +30,23 @@
 		--mono-color: #4b4b4b;
 	}
 
+	/* テーマカラー3 */
+	:root[theme='3'] {
+		--back-color: #E0DCD1;
+		--header-color: #514963;
+		--sub-color: #F5EEDF;
+		--mono-color: #4b4b4b;
+	}
+
+	/* テーマカラー4 */
+	:root[theme='4'] {
+		--back-color: #F5DFBD;
+		--header-color: #6D9384;
+		--sub-color: #F4F0E4;
+		--mono-color: #4b4b4b;
+	}
+
+
 body {
 	background-color:var(--back-color);
 	margin: 0;

@@ -88,7 +88,9 @@
 						<td>
 							<% String color0 = "";
 							String color1 = "";
-							String color2 = "";%>
+							String color2 = "";
+							String color3 = "";
+							String color4 = "";%>
 
 							<c:if test="${themecolor == 0}">
 								<% color0 = "checked"; %>
@@ -99,21 +101,39 @@
 							<c:if test="${themecolor == 2}">
 								<% color2 = "checked"; %>
 							</c:if>
+							<c:if test="${themecolor == 3}">
+								<% color3 = "checked"; %>
+							</c:if>
+							<c:if test="${themecolor == 4}">
+								<% color4 = "checked"; %>
+							</c:if>
 
-							<input type="radio" <%=color0 %> name="themecolor" value= 0 id="color-1" class="display">
-							<label for="color-1" class="color-label">
+
+							<input type="radio" <%=color0 %> name="themecolor" value= 0 id="color-0" class="display">
+							<label for="color-0" class="color-label">
 								<img src="/killerQueen/img/themecolor/themecolor0.png" class="color">
 							</label>
 
-							<input type="radio" <%=color1 %> name="themecolor" value= 1 id="color-2" class="display">
-							<label for="color-2" class="color-label">
+							<input type="radio" <%=color1 %> name="themecolor" value= 1 id="color-1" class="display">
+							<label for="color-1" class="color-label">
 								<img src="/killerQueen/img/themecolor/themecolor1.png" class="color">
 							</label>
 
-							<input  type="radio" <%=color2 %> name="themecolor" value= 2 id="color-3" class="display">
-							<label for="color-3" class="color-label">
+							<input  type="radio" <%=color2 %> name="themecolor" value= 2 id="color-2" class="display">
+							<label for="color-2" class="color-label">
 								<img src="/killerQueen/img/themecolor/themecolor2.png" class="color">
 							</label>
+
+							<input  type="radio" <%=color3 %> name="themecolor" value= 3 id="color-3" class="display">
+							<label for="color-3" class="color-label">
+								<img src="/killerQueen/img/themecolor/themecolor3.png" class="color">
+							</label>
+
+							<input  type="radio" <%=color4 %> name="themecolor" value= 4 id="color-4" class="display">
+							<label for="color-4" class="color-label">
+								<img src="/killerQueen/img/themecolor/themecolor4.png" class="color">
+							</label>
+
 						</td>
 					</tr>
 				</table>

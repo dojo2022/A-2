@@ -65,84 +65,87 @@ header {
 	height: 90%;			/*画像の高さ*/
 }
 
-/* ユーザーアイコン(ユーザ情報に左右されないよ) */
+/* ユーザーアイコン */
 .user_icon {
 	width: 120px;		/* 横 */
 	height: 120px;		/* 縦 */
 }
 
-/* メニュー全体 */
+/* ハンバーガーメニュー全体 */
 .menu {
-	display: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 40px;
+	display: absolute;		/* 絶対位置 */
+	top: 0;					/* 上からの位置 */
+	right: 0;				/* 右からの位置 */
+	width: 100%;			/* 横 */
+	height: 40px;			/* 縦 */
 }
 
 /* ハンバーガーメニューの三本線(全体について) */
 .line-list {
-	display: inline-block;
-	transition: all 0.4s;
-	box-sizing: border-box;
-	position: absolute;
-	top: 0;
-	width: 40px;
-	height: 40px;
-	margin-right: 0;
-	margin-left: auto;
-	z-index: 9999;
+	display: inline-block;		/* 横に積み重ね */
+	transition: all 0.4s;		/* 三本線に戻るときにかかる秒数 */
+	box-sizing: border-box;		/*  */
+	position: absolute;			/* 絶対位置 */
+	top: 0;						/* 上からの位置 */
+	width: 40px;				/* 横 */
+	height: 40px;				/* 縦 */
+	margin-right: 0;			/* 右側の余白 */
+	margin-left: auto;			/* 左側の余白 */
+	z-index: 9999;				/* 階層(数字が大きい方が上) */
 }
 
-/* ハンバーガーメニューの三本線(それぞれの棒について) */
-.line-list span {
-  display: block;
-  transition: all 0.4s;
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  transform: translateY(50%);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 1px;
-  background: var(--mono-color);
-}
-.line-list span:nth-child(1) {
-  margin-top: -6px;
-}
-.line-list span:nth-child(3) {
-  margin-top: 6px;
-}
+	/* ハンバーガーメニューの三本線(それぞれの棒について) */
+	.line-list span {
+	  display: block;					/* 表示方法 */
+	  transition: all 0.4s;				/*  */
+	  box-sizing: border-box;			/* 親要素に合わせた大きさ設定 */
+	  position: absolute;				/* 絶対位置 */
+	  top: 50%;							/* 上からの距離 */
+	  transform: translateY(50%);		/* Y軸方向の動き方 */
+	  left: 50%;						/* 左からの距離 */
+	  transform: translateX(-50%);		/* X軸方向の動き方 */
+	  width: 20px;						/* 横 (長さ) */
+	  height: 2px;						/* 縦 (太さ) */
+	  background: var(--mono-color);	/* 色 */
+	}
+		.line-list span:nth-child(1) {
+		  margin-top: -6px;		/* 一本目の線に関して */
+		}
+		.line-list span:nth-child(3) {
+		  margin-top: 6px;		/* 三本目の線に関して */
+		}
 
-/* ハンバーガーメニューの三本線を×にする */
-.line-list.active span:nth-child(1) {
-  -webkit-transform: translateY(6px) rotate(-45deg);
-  transform: translateY(6px) rotate(-45deg);
-  left: 10px;
-}
-.line-list.active span:nth-child(2) {
-  opacity: 0;
-}
-.line-list.active span:nth-child(3) {
-  -webkit-transform: translateY(-6px) rotate(45deg);
-  transform: translateY(-6px) rotate(45deg);
-  left: 10px;
-}
+		/* ハンバーガーメニューの三本線を×にする */
+		/* 一本目の線に関して */
+		.line-list.active span:nth-child(1) {
+		  -webkit-transform: translateY(6px) rotate(-45deg);
+		  transform: translateY(6px) rotate(-45deg);
+		  left: 10px;
+		}
+		/* 二本目の線に関して */
+		.line-list.active span:nth-child(2) {
+		  opacity: 0;		/* 透明にする */
+		}
+		/* 三本目の線に関して */
+		.line-list.active span:nth-child(3) {
+		  -webkit-transform: translateY(-6px) rotate(45deg);
+		  transform: translateY(-6px) rotate(45deg);
+		  left: 10px;
+		}
 
-/* メニューが開いたときの黒い半透明の背景 */
+/* 黒い半透明の背景 */
 .menu-bg {
 	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100vw;
 	height: 100vh;
-	z-index: 9997;
+	z-index: 9997;					/* 階層 */
 	background: var(--mono-color);
-	opacity: 0.6;
-	visibility: hidden;
-	transition: all 0.6s;
-	cursor: auto;
+	opacity: 0.45;
+	visibility: hidden;				/* 見えないようにする */
+	transition: all 0.1s;
+	cursor: auto;					/* カーソルの種類 */
 }
 
 /* メニューの中身 */
@@ -152,42 +155,47 @@ header {
 	top: 0;
 	width: 300px;
 	height: 100vh;
-	padding-top: 40px;
+	padding-top: 40px;					/* コンテンツ内の上の余白 */
 	background: var(--header-color);
-	transition: all 0.6s;
-	z-index: 9998;
-	overflow-y: auto;
+	transition: all 0.6s;				/* 動く速度 */
+	z-index: 9998;						/* 階層 */
+	overflow-y: auto;					/* スクロールバー */
 }
+
+/* メニューの項目全体 */
 .link-list {
   display: block;
   margin: 0;
   padding: 0;
 }
 
+	/* メニューの項目それぞれ */
+	.link-list li {
+		text-align: center;
+		padding: 0 14px;
+	}
 
-.link-list li {
-	text-align: center;
-	padding: 0 14px;
-}
-.link-list li a {
-	display: block;
-	padding: 20px 0;
-	color: var(--mono-color);
-	text-decoration: none;
-}
-.link-list li:hover {
-	background: var(--sub-color);
-}
+	/* メニューの項目それぞれのaタグ */
+	.link-list li a {
+		display: block;
+		padding: 20px 0;
+		color: var(--mono-color);
+		text-decoration: none;		/* リンクの下線 */
+	}
+	/* メニューの項目それぞれにカーソルが乗ったとき */
+	.link-list li:hover {
+		background: var(--sub-color);
+	}
 
-/* メニューが横から開く */
+/* 三本線がクリックされると「global-nav」クラスが以下に変わる */
 .global-nav.active {
-	left: 0;
+	left: 0;		/* 左からの位置 */
 }
 
-/* メニューが横から開いた時の背景 */
+/* 三本線がクリックされると「menu-bg」クラスが以下に変わる */
 .menu-bg.black {
-	opacity: 0.6;
-	visibility: visible;
+	opacity: 0.6;			/* 透明度 */
+	visibility: visible;	/* 可視化 */
 }
 
 

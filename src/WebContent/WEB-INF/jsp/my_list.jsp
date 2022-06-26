@@ -24,7 +24,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
-<p>マイリストの表示</p>
 <!-- リストのひとかたまり -->
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div class="list">
@@ -152,7 +151,7 @@
 									<table>
 										<tr>
 											<th>
-												<div id="change${step_ac.index}">
+												<div id="change${step_ac.index}" class="aj">
 													<img src="/killerQueen/img/circle_icon/circle.png" width="20px"  id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ未達成')" >
 												</div>
 											</th>
@@ -166,7 +165,7 @@
 									<table id="step_achieve">
 										<tr>
 											<th>
-												<div id="change${step_ac.index}">
+												<div id="change${step_ac.index}" class="aj">
 													<img src="/killerQueen/img/circle_icon/check.png" width="20px" id="step_achieve_flag${step_ac.index}" onclick="goAjax('${step_ac.index}', 'ステップ達成')" >
 												</div>
 											</th>
@@ -360,31 +359,31 @@
 						</div>
 						<!-- ステップの編集 -->
 						<%int countStep = 0; %>
-						<c:forEach var="t" items="${pageList }" varStatus="step_status" >
-							<div class="already_step">
-							<c:if test="${t.stepsDecId == e.id }">
-								<img src="/killerQueen/img/circle_icon/circle.png">
-								<input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>">
-								<input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}">
-								<input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}">
-								<input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
-								<%countStep++; %>
-							</c:if>
-							</div>
-						</c:forEach>
+						<div class="target">
+							<c:forEach var="t" items="${pageList }" varStatus="step_status" >
+								<c:if test="${t.stepsDecId == e.id }">
+									<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>"><input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}"><input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
+									<%countStep++; %>
+								</c:if>
+							</c:forEach>
+						</div>
 						<input type="hidden" name="step_count" value="<%=countStep %>">
 						<div id="target2${status.index}" class="target">
 							<input type="hidden" name="all_count" value="0" id="all_count${status.index}">
 						</div>
-						<input type="button" value="+" onclick="return addEditForm('${status.index}', <%=countStep%>)">
-						<input type="submit" value="完了" name="bt"><br>
+						<div class="step_add">
+							<img src="/killerQueen/img/circle_icon/add.png" onclick="return addEditForm('${status.index}', <%=countStep%>)">
+						</div>
+						<div class="new_resist">
+							<input type="submit" value="完了" name="bt"><br>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
 </c:forEach>
-<a href="/killerQueen/SettingServlet">設定へ(ごめん書かせて)</a>
+
 
 <script>
 //新規登録へを押したらモーダルを表示する
@@ -455,9 +454,10 @@ function addEditForm(indexNo, indexStep){
 	input_data.type = 'text';
 	input_data.id = 'edit_form' + j;
 	input_data.name='edit_form' + j;
+	input_data.placeholder='ステップを追加してね(任意)';
 	//alert(input_data.name);
-	var step = document.createElement('span');
-	step.innerHTML = 'ステップ:';
+	var step = document.createElement('img');
+	step.src = '/killerQueen/img/circle_icon/circle.png';
 	var br = document.createElement('br');
 	var parent = document.getElementById('target2'+ indexNo);
 	parent.appendChild(step);

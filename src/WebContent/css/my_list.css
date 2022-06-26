@@ -42,7 +42,10 @@
 	cursor: pointer;
 }
 
-
+/*checkboxを隠す*/
+input[type=checkbox]#pvf{
+	display:none;
+}
 
 /*達成・削除ボタンの位置調整  */
 .step_submit input{

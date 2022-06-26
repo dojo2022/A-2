@@ -518,7 +518,19 @@ function change(){
 
 
 //編集画面のテキストボックスの追加
+function change(){
+	var im = document.getElementById('pv_img');
+	im.src = "/killerQueen/img/icon/close.png";
+	im.removeAttribute("onclick");
+	im.setAttribute('onclick', 'changeman()');
+}
 
+function changeman(){
+	var im = document.getElementById('pv_img');
+	im.src = "/killerQueen/img/icon/open.png";
+	im.removeAttribute("onclick");
+	im.setAttribute('onclick', 'change()');
+}
 
 //jQueryのやり方
 //$(document).on("click", ".add", function() {

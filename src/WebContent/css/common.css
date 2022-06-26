@@ -22,8 +22,8 @@
 		--mono-color: #4b4b4b;
 	}
 
-	/* テーマカラー2 */
-	:root[theme='2'] {
+ 	/* テーマカラー2 */
+ 	:root[theme='2'] {
 		--back-color: #F5E1BF;
 		--header-color: #D4AF92;
 		--sub-color: #DDC7AF;
@@ -32,9 +32,9 @@
 
 	/* テーマカラー3 */
 	:root[theme='3'] {
-		--back-color: #E0DCD1;
-		--header-color: #514963;
-		--sub-color: #F5EEDF;
+		--back-color: #F5F8F3;
+		--header-color: #8CBDBD;
+		--sub-color:  #D1E6D5;
 		--mono-color: #4b4b4b;
 	}
 

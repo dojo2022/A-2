@@ -59,10 +59,21 @@
 	opacity	: 0.7;
 }
 
+/* 新規登録モーダルを開くボタンの調整 */
+.regist_bt_m {
+	position: fixed;
+    float: right;
+    right: 70px;
+    bottom: 20px;
+    z-index: -1;
+}
 
+.regist_bt_m img {
+	width:70px;
+}
 
 /* 新規登録画面のCSS */
-/* 登録ボタン */
+/* 新規登録ボタン */
  /*.new_resist {
 	position: fixed;
     right: 120px;
@@ -102,34 +113,6 @@
 }
 
 
-
-                  	/*モーダル関係のCSS*/
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 99999;
-  animation-name: show;
-  animation-duration: 0.5s
-}
-
-.modal_content {
-  position: relative;
-  background-color: #fff;
-  margin: 10% auto;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  height: 70%;
-  border-radius	: 20px;
-  height: fit-content;
-}
-
 /* タグの調整 */
 .tag_bt {
 	margin-left: 70px;
@@ -157,12 +140,12 @@
 }
 
 /* ステップの調整 */
-#target {
+.target {
 	margin-left: 70px;
 	margin-top: 30px;
 }
 
-#target img{
+.target img{
 	width: 30px;
     margin-top: 5px;
     margin-bottom: -9px;
@@ -197,6 +180,79 @@
     margin-bottom: -9px;
     margin-right: 26px;
 }
+
+
+/* 編集画面のCSS */
+/* ×ボタンの調整 */
+.close2 img {
+	width: 20px;
+}
+
+/* 既存のステップの調整 */
+.already_step {
+	margin-left: 70px;
+	margin-top: 30px;
+}
+
+.already_step img {
+	width: 30px;
+    margin-top: 5px;
+    margin-bottom: -9px;
+    margin-right: 26px;
+}
+
+
+.already_step input {
+	margin-bottom: 12px;
+    height: 30px;
+    font-size: 18px;
+    width: 545px;
+    border:none;
+    outline: none;
+}
+
+.already_step input:hover {
+	border-bottom : 2px solid black;
+
+}
+
+.already_step input:focus {
+	border-bottom : 2px solid black;
+}
+/*.already_step input:hover::after {
+	transform: scale(1, 1);
+}*/
+
+
+
+
+/*モーダル関係のCSS*/
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 99999;
+  animation-name: show;
+  animation-duration: 0.5s
+}
+
+.modal_content {
+  position: relative;
+  background-color: #fff;
+  margin: 10% auto;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height: 70%;
+  border-radius	: 20px;
+  height: fit-content;
+}
+
 
 /*#new_decla_text {
 	margin-left : 30px; /* 間隔調整

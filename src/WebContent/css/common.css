@@ -183,8 +183,11 @@ header {
 		text-decoration: none;		/* リンクの下線 */
 	}
 	/* メニューの項目それぞれにカーソルが乗ったとき */
-	.link-list li:hover {
+	.link-list .li:hover {
 		background: var(--sub-color);
+	}
+	.link-list .user_icon:hover {
+		opacity: 0.8;
 	}
 
 /* 三本線がクリックされると「global-nav」クラスが以下に変わる */

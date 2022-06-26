@@ -62,12 +62,12 @@
 				<li><a href="/killerQueen/MyPageServlet"><img src="/killerQueen/img/user_icon/user_woman2.png" class="user_icon"></a></li>
 			</c:if>
 
-			<li><a href="/killerQueen/MyListServlet">マイリスト</a></li>
-			<li><a href="/killerQueen/TimelineServlet">タイムライン</a></li>
-			<li><a href="/killerQueen/BookmarkServlet">ブックマーク</a></li>
-			<li><a href="/killerQueen/SearchServlet">検索</a></li>
-			<li><a href="/killerQueen/HelpServlet">ヘルプ</a></li>
-			<li><a href="/killerQueen/LogoutServlet">ログアウト</a></li>
+			<li class="li"><a href="/killerQueen/MyListServlet">マイリスト</a></li>
+			<li class="li"><a href="/killerQueen/TimelineServlet">タイムライン</a></li>
+			<li class="li"><a href="/killerQueen/BookmarkServlet">ブックマーク</a></li>
+			<li class="li"><a href="/killerQueen/SearchServlet">検索</a></li>
+			<li class="li"><a href="/killerQueen/HelpServlet">ヘルプ</a></li>
+			<li class="li"><a href="/killerQueen/LogoutServlet">ログアウト</a></li>
 		</ul>
 	</nav>
 </div>

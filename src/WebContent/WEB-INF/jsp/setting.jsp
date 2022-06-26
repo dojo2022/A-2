@@ -111,27 +111,27 @@
 
 							<input type="radio" <%=color0 %> name="themecolor" value= 0 id="color-0" class="display">
 							<label for="color-0" class="color-label">
-								<img src="/killerQueen/img/themecolor/themecolor0.png" class="color">
+								<img src="/killerQueen/img/themecolor/themecolor0.png" class="color" onclick="changeTheme0()">
 							</label>
 
 							<input type="radio" <%=color1 %> name="themecolor" value= 1 id="color-1" class="display">
 							<label for="color-1" class="color-label">
-								<img src="/killerQueen/img/themecolor/themecolor1.png" class="color">
+								<img src="/killerQueen/img/themecolor/themecolor1.png" class="color" onclick="changeTheme1()">
 							</label>
 
 							<input  type="radio" <%=color2 %> name="themecolor" value= 2 id="color-2" class="display">
 							<label for="color-2" class="color-label">
-								<img src="/killerQueen/img/themecolor/themecolor2.png" class="color">
+								<img src="/killerQueen/img/themecolor/themecolor2.png" class="color" onclick="changeTheme2()">
 							</label>
 
 							<input  type="radio" <%=color3 %> name="themecolor" value= 3 id="color-3" class="display">
 							<label for="color-3" class="color-label">
-								<img src="/killerQueen/img/themecolor/themecolor3.png" class="color">
+								<img src="/killerQueen/img/themecolor/themecolor3.png" class="color" onclick="changeTheme3()">
 							</label>
 
 							<input  type="radio" <%=color4 %> name="themecolor" value= 4 id="color-4" class="display">
 							<label for="color-4" class="color-label">
-								<img src="/killerQueen/img/themecolor/themecolor4.png" class="color">
+								<img src="/killerQueen/img/themecolor/themecolor4.png" class="color" onclick="changeTheme4()">
 							</label>
 
 						</td>

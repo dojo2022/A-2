@@ -1,8 +1,9 @@
+
 @charset "UTF-8";
+
 
 body {
 	background-color: #ebdbbdff;		/* 背景色 */
-	/* width: 800px; */					/* コンテンツ範囲(横) */
 	margin : 0 auto;				/*コンテンツ外範囲(横：auto / 縦：0) */
 	text-align: center;
 }
@@ -20,7 +21,7 @@ hr {
 }
 
 tr {
-	height: 30px;					/* id / password の縦 */
+	height: 23px;					/* id / password の縦 */
 }
 
 a {
@@ -53,7 +54,7 @@ a {
 .login_icon {
 	width: 60px;					/* 横 */
 	margin-top: 20px;				/* アイコン上の空間 */
-	margin-bottom: 20px;			/* アイコン下の空間 */
+	margin-bottom: 10px;			/* アイコン下の空間 */
 }
 
 /* id / password の下線 */
@@ -62,13 +63,13 @@ a {
 	width: 270px;								/* 長さ */
 }
 
-/* ログインボタン */
-.login_button {
+/* 登録ボタン */
+.regist_button {
 	background-color: #E9E6E0;		/* 色 */
 	border: #4b4b4b 1px solid;		/* 枠線の色、太さ、実線 */
 	border-radius: 7px;					/* 枠線の丸み */
-	padding: 7px 10px;					/* 大きさ(上下、左右) */
-	margin-top: 35px;					/* 下線の太さ、実線、色 */
+	padding: 7px 20px;					/* 大きさ(上下、左右) */
+	margin-top: 15px;					/* 下線の太さ、実線、色 */
 }
 
 /* inputタグ */
@@ -87,16 +88,18 @@ a {
 
 .left {
 	display: inline-block;
-	margin-right: 10%;
+	margin-right: 80px;
+	margin-bottom: 35px;
 }
 
 .img1 {
-	width: 120px;
+	width: 150px;
 }
 
 .right {
 	display: inline-block;
-	margin-left: 5%;
+	margin-left: 100px;
+	margin-bottom: 35px;
 }
 
 .img2 {

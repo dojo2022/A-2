@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="icon" href="/killerQueen/img/webicon.png">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/login.css">
 </head>
 

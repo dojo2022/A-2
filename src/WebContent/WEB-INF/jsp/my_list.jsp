@@ -346,13 +346,13 @@
 								<c:when test="${e.privateFlag == false }">
 									<input type = "checkbox" name="private_flag_edit" value="true" id="pv_edit${status.index }"><br>
 									<label for="pv_edit${status.index }">
-										<img src="/killerQueen/img/icon/close.png" width="30px" id="pv_img${status.index }" onclick="change()">
+										<img src="/killerQueen/img/icon/close.png" width="30px" id="pv_img${status.index }" onclick="changechild(${status.index })">
 									</label>
 								</c:when>
 								<c:otherwise>
-									<input type = "checkbox" name="private_flag_edit" value="true" checked><br>
+									<input type = "checkbox" name="private_flag_edit" value="true" checked id="pv_edit${status.index }"><br>
 									<label for="pv_edit${status.index }">
-										<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img${status.index }" onclick="change()">
+										<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img${status.index }" onclick="changewoman(${status.index })">
 									</label>
 								</c:otherwise>
 							</c:choose>
@@ -518,6 +518,7 @@ function change(){
 
 
 //編集画面のテキストボックスの追加
+//新規登録の非公開ボタン切り替え
 function change(){
 	var im = document.getElementById('pv_img');
 	im.src = "/killerQueen/img/icon/close.png";
@@ -530,6 +531,24 @@ function changeman(){
 	im.src = "/killerQueen/img/icon/open.png";
 	im.removeAttribute("onclick");
 	im.setAttribute('onclick', 'change()');
+}
+
+
+//編集画面の非公開ボタンの切り替え
+function changewoman(indexNo){
+	var im = document.getElementById('pv_img' + indexNo);
+	im.src = "/killerQueen/img/icon/close.png";
+	im.removeAttribute("onclick");
+	var str = 'changechild(' + indexNo + ')';
+	im.setAttribute('onclick', str);
+}
+
+function changechild(indexNo){
+	var im = document.getElementById('pv_img' + indexNo);
+	im.src = "/killerQueen/img/icon/open.png";
+	im.removeAttribute("onclick");
+	var str = 'changewoman(' + indexNo + ')';
+	im.setAttribute('onclick', str);
 }
 
 //jQueryのやり方

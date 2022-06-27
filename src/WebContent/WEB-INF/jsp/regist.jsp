@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー登録</title>
+<title>新規登録</title>
+<link rel="stylesheet" type="text/css" href="/killerQueen/css/login.css">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/regist.css">
 </head>
 

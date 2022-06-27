@@ -104,6 +104,17 @@ a {
 	width: 160px;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: rgba(0,0,0,0);
+    border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#D4AF92;
+    border-radius: 100px;
+}
 
 
 

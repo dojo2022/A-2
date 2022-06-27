@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>マイページ</title>
+<link rel="icon" href="/killerQueen/img/webicon.png">
 <!-- 全体的なCSS -->
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_page.css">
@@ -32,7 +33,7 @@
 			<c:if test="${icon == 0}">
 				<img src="/killerQueen/img/user_icon/user_boy.png" width="60px">
 			</c:if>
-			<c:if test="${icon ==10}">
+			<c:if test="${icon == 1}">
 				<img src="/killerQueen/img/user_icon/user_man1.png" width="60px">
 			</c:if>
 			<c:if test="${icon == 2}">
@@ -220,7 +221,7 @@
 				<c:if test="${t.decsId == v.declarationId}">
 					<c:if test="${v.step !='' }">
 
-						<li>
+		<li>
 					<c:if test="${v.achieveFlag==false}">
 						<table>
 						<tr>

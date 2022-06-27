@@ -667,6 +667,89 @@ public class DeclarationsDao {
 		return pageList;
 	}
 
+	public ArrayList<CommonTable> searchAResultDec(String userId,String[] str){
+		Connection conn = null;
+		ArrayList<CommonTable> pageList = new ArrayList<CommonTable>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する
+			String sqlA = "SELECT *"
+					+ " FROM declarations LEFT JOIN users ON declarations.user_id = users.id LEFT JOIN steps ON declarations.id = steps.declaration_id LEFT JOIN reactions ON reactions.declaration_id = declarations.id and reactions.user_id = ? LEFT JOIN bookmarks ON bookmarks.declaration_id = declarations.id and bookmarks.user_id = ? "
+					+ "WHERE declarations.achieve_flag = 0  and declarations.private_flag = 0 and declarations.delete_flag = 0  ";
+			String sqlB = " and (declarations.declaration LIKE ?  or steps.step LIKE ?) ";
+			String sqlC = "ORDER BY declarations.id , steps.achieve_flag";
+			String sql;
+			sql = "";
+			for(int i= 0; i < str.length; i++) {
+				sqlA = sqlA + sqlB;
+			}
+			sql = sqlA + sqlC;
+
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 1,2の?が自分のID、3,4の?が入力フォームに入力された値
+				pStmt.setString(1,userId);
+				pStmt.setString(2,userId);
+				int num = 3;
+				for(int i =0;i <str.length; i++) {
+				pStmt.setString(num,"%" + str[i] + "%");
+				pStmt.setString(num+1,"%" + str[i] + "%");
+					num = num + 2;
+				}
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {//.next() ← rsインスタンスの内容を全て取り出す
+				CommonTable ct = new CommonTable();
+				ct.setDecsId(rs.getInt("declarations.id"));
+				ct.setDecsDeclaration(rs.getString("declarations.declaration"));
+				ct.setDecsTag(rs.getInt("declarations.tag"));
+				ct.setDecsAchieveFlag(rs.getBoolean("declarations.achieve_flag"));
+				ct.setUsersId(rs.getString("users.id"));
+				ct.setUsersIcon(rs.getInt("users.icon"));
+				ct.setStepsId(rs.getInt("steps.id"));
+				ct.setStepsStep(rs.getString("steps.step"));
+				ct.setStepsAchieveFlag(rs.getBoolean("steps.achieve_flag"));
+				ct.setReactionsId(rs.getInt("reactions.id"));
+				ct.setBookmarksId(rs.getInt("bookmarks.id"));
+
+				pageList.add(ct);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			pageList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			pageList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					pageList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return pageList;
+	}
+
 	//タグ検索結果に表示するための表取得
 	public ArrayList<CommonTable> tagSearchDec(String userId,int tagNumber){
 		Connection conn = null;

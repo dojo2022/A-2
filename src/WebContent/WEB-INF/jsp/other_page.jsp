@@ -7,26 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="/killerQueen/img/webicon.png">
-<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="js/jquery-1.12.4.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_page.css">
-<!--  アコーディオンメニューのjs -->
-
-<!--
-<script>
-	$(function(){
-		$('.nav-open').click(function(){
-			$(this).toggleClass('active');
-			$(this).next('nav.step_list').slideToggle();
-		});
-	});
-</script> -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>他ユーザーマイページ</title>
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
@@ -36,35 +25,35 @@
 	<td rowspan="2" class="pro">
 		<div class="my_icon">
 			<c:if test="${userInfo.icon == 0}">
-				<img src="/killerQueen/img/user_icon/user_boy.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_boy.png" width="95px">
 			</c:if>
 			<c:if test="${userInfo.icon ==1}">
-				<img src="/killerQueen/img/user_icon/user_man1.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_man1.png" width="95px">
 			</c:if>
 			<c:if test="${userInfo.icon == 2}">
-				<img src="/killerQueen/img/user_icon/user_man2.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_man2.png" width="95px">
 			</c:if>
 			<c:if test="${userInfo.icon == 3}">
-				<img src="/killerQueen/img/user_icon/user_woman1.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_woman1.png" width="95px">
 			</c:if>
 			<c:if test="${userInfo.icon == 4}">
-				<img src="/killerQueen/img/user_icon/user_woman2.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_woman2.png" width="95px">
 			</c:if>
 		</div>
 	</td>
 	<td class ="user_name pro haba">${userInfo.name}</td>
 	<td class="pro">
 		<c:if test="${countAchieve<=10}">
-		<img src="/killerQueen/img/icon/beginner.png" width="30px">
+		<img src="/killerQueen/img/icon/beginner.png" width="35px">
 		</c:if>
 		<c:if test="${countAchieve>10 && countAchieve<=50}">
-		<img src="/killerQueen/img/icon/bronze.png" width="30px">
+		<img src="/killerQueen/img/icon/bronze.png" width="35px">
 		</c:if>
 		<c:if test="${countAchieve>50 && countAchieve<=99}">
-		<img src="/killerQueen/img/icon/silver.png" width="30px">
+		<img src="/killerQueen/img/icon/silver.png" width="35px">
 		</c:if>
 		<c:if test="${countAchieve>99}">
-		<img src="/killerQueen/img/icon/gold.png" width="30px">
+		<img src="/killerQueen/img/icon/gold.png" width="35px">
 		</c:if>
 	</td>
 </tr>
@@ -92,7 +81,7 @@
 			<img src="/killerQueen/img/icon/achievement.png" width="30px">
 			</c:if>
 			<c:if test="${t.decsAchieveFlag==false}">
-
+			<img src="/killerQueen/img/icon/achievement.png" class="kura" width="30px">
 			</c:if>
 		</div>
 <!--

@@ -32,26 +32,26 @@
 	<td rowspan="3" class="pro">
 		<div class="my_icon">
 			<c:if test="${icon == 0}">
-				<img src="/killerQueen/img/user_icon/user_boy.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_boy.png" width="90px">
 			</c:if>
 			<c:if test="${icon == 1}">
-				<img src="/killerQueen/img/user_icon/user_man1.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_man1.png" width="90px">
 			</c:if>
 			<c:if test="${icon == 2}">
-				<img src="/killerQueen/img/user_icon/user_man2.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_man2.png" width="90px">
 			</c:if>
 			<c:if test="${icon == 3}">
-				<img src="/killerQueen/img/user_icon/user_woman1.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_woman1.png" width="90px">
 			</c:if>
 			<c:if test="${icon == 4}">
-				<img src="/killerQueen/img/user_icon/user_woman2.png" width="60px">
+				<img src="/killerQueen/img/user_icon/user_woman2.png" width="90px">
 			</c:if>
 		</div>
 	</td>
 	<td class ="user_name pro">${name}</td>
 	<td class="pro">
 		<a href="SettingServlet">
-			<img src="/killerQueen/img/icon/setting.png" width="20px">
+			<img src="/killerQueen/img/icon/setting.png" width="28px">
 		</a>
 	</td>
 </tr>
@@ -79,16 +79,16 @@
 	</td>
 	<td class="pro">
 		<c:if test="${countAchieve<=10}">
-		<img src="/killerQueen/img/icon/beginner.png" width="30px">
+		<img src="/killerQueen/img/icon/beginner.png" width="35px">
 		</c:if>
 		<c:if test="${countAchieve>10 && countAchieve<=50}">
-		<img src="/killerQueen/img/icon/bronze.png" width="30px">
+		<img src="/killerQueen/img/icon/bronze.png" width="35px">
 		</c:if>
 		<c:if test="${countAchieve>50 && countAchieve<=99}">
-		<img src="/killerQueen/img/icon/silver.png" width="30px">
+		<img src="/killerQueen/img/icon/silver.png" width="35px">
 		</c:if>
 		<c:if test="${countAchieve>99}">
-		<img src="/killerQueen/img/icon/gold.png" width="30px">
+		<img src="/killerQueen/img/icon/gold.png" width="35px">
 		</c:if>
 	</td>
 
@@ -110,7 +110,7 @@
 			<img src="/killerQueen/img/icon/achievement.png" width="30px">
 			</c:if>
 			<c:if test="${t.decsAchieveFlag==false}">
-
+			<img src="/killerQueen/img/icon/achievement.png" class="kura" width="30px">
 			</c:if>
 		</div>
 <!--
@@ -205,13 +205,13 @@
 
 
 			<%=achieve %>
-			/<%=step %>
+			/<%=step %>&nbsp;&nbsp;
 
 			<c:if test="${t.decsPrivateFlag==true}">
 				<img src="/killerQueen/img/icon/close.png" width="30px">
 			</c:if>
 			<c:if test="${t.decsPrivateFlag==false}">
-				<img src="/killerQueen/img/icon/open.png" width="30px">
+				<img src="/killerQueen/img/icon/open.png" width="30px" class="kura">
 			</c:if>
 		</div>
 	</div>
@@ -228,7 +228,7 @@
 					<c:if test="${v.achieveFlag==false}">
 						<table>
 						<tr>
-							<th><img src="/killerQueen/img/circle_icon/add.png"></th>
+							<th><img src="/killerQueen/img/circle_icon/circle.png"></th>
 							<td>${v.step}</td>
 						</tr>
 						</table>

@@ -2,6 +2,14 @@
 
 
 /* 表示関連のCSS */
+
+/* 宣言が0個の時のメッセージ文 */
+.result_message {
+	    margin-top: 200px;
+    margin-left: 600px;
+}
+
+
 /* Ajaxのホバー */
 .aj img:hover {
 	cursor: pointer;

@@ -46,8 +46,10 @@ public class MyListServlet extends HttpServlet {
 
 
 		//登録内容が0件の場合
+		Result result = new Result();
+		result.setMessage("");
+		request.setAttribute("result", result);
 		if (pageList.size() == 0) {
-			Result result = new Result();
 			result.setMessage("新しく宣言してみましょう☆彡");
 			request.setAttribute("result", result);
 			//my_list.jspにフォワードする

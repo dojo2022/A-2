@@ -70,6 +70,11 @@ textarea {
 	padding: 8px 20px;					/* 大きさ(上下、左右) */
 	color: black;
 }
+
+	.button:hover {
+		opacity: 0.8;
+	}
+
 	.button a {
 		text-decoration: none;
 	}

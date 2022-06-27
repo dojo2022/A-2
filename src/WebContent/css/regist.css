@@ -1,6 +1,9 @@
 
 @charset "UTF-8";
 
+html {
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 
 body {
 	background-color: #ebdbbdff;		/* 背景色 */

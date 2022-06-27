@@ -10,6 +10,7 @@
 		<title>設定</title>
 		<link rel="icon" href="/killerQueen/img/webicon.png">
 		<link rel="stylesheet" href="/killerQueen/css/setting.css">
+		<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/common.jsp" %>

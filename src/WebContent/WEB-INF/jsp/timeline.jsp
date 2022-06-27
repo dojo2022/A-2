@@ -120,7 +120,7 @@
 		<ul>
 			<c:forEach var="s" items="${steper}" >
 			<c:if test="${t.decsId == s.declarationId }">
-<c:if test="${s.step != ''}">
+<c:if test="${s.step != '' && s.step != null}">
 
 		<li>
 			<c:if test="${s.achieveFlag==false}">

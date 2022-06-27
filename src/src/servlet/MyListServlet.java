@@ -36,118 +36,135 @@ public class MyListServlet extends HttpServlet {
 					return;
 				}
 
+
+
 		//DeclarationsDaoから宣言とステップのデータを取ってくる.
 		String id = (String) session.getAttribute("id");
 		DeclarationsDao decDao = new DeclarationsDao();
 		//引数をidとしてdecDAOのmypagedecメゾット呼び出し
 		ArrayList<CommonTable> pageList = decDao.myListDec(id);
 
-		//for文でインスタンスで取り出す
-		//宣言が入るArrayListとステップが入るArrayListを作成
-		ArrayList<Declarations> decList = new ArrayList<Declarations>();
 
-		//リアクション数を取ってくる
-		//宣言IDをもってきて
-		ArrayList<CommonTable> reacter = new ArrayList<CommonTable>();
-		for(int i = 0; i < pageList.size(); i++) {
-			CommonTable ct = pageList.get(i);
-			int decId = ct.getDecsId();
-			CommonTable st = new CommonTable();
-			st.setDecsId(ct.getDecsId());
-			st.setCountReaction(decDao.countReaction(decId));
-			reacter.add(st);
-		}
-		int r = 0;
-		int t = 1;
-		while(r < reacter.size()) { //リストが０行以上だったら
-			while(t < reacter.size()) { //リストが１行以上
-				//マイリストのi行目とi+1行目のDecsidが同じだったら行削除、違えばプラス１
-				if(reacter.get(r).getDecsId() == reacter.get(t).getDecsId()) {
-					reacter.remove(t);
-				}else {
-					r++;
-					t++;
-				}
+		//登録内容が0件の場合
+		if (pageList.size() == 0) {
+			Result result = new Result();
+			result.setMessage("新しく宣言してみましょう☆彡");
+			request.setAttribute("result", result);
+			//my_list.jspにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
+
+
+
+			//for文でインスタンスで取り出す
+			//宣言が入るArrayListとステップが入るArrayListを作成
+			ArrayList<Declarations> decList = new ArrayList<Declarations>();
+
+			//リアクション数を取ってくる
+			//宣言IDをもってきて
+			ArrayList<CommonTable> reacter = new ArrayList<CommonTable>();
+			for(int i = 0; i < pageList.size(); i++) {
+				CommonTable ct = pageList.get(i);
+				int decId = ct.getDecsId();
+				CommonTable st = new CommonTable();
+				st.setDecsId(ct.getDecsId());
+				st.setCountReaction(decDao.countReaction(decId));
+				reacter.add(st);
 			}
-			break;
-		}
-
-
-		//pageListから宣言関係のデータのみをdecListに入れる
-		for (int i = 0; i < pageList.size(); i++) {
-			CommonTable ct = pageList.get(i);
-			//CommonTableからDeclarationsテーブルの内容だけ取得
-			//Declartionsビーンズに格納する
-			Declarations dec = new Declarations();
-			dec.setId(ct.getDecsId());
-			dec.setDeclaration(ct.getDecsDeclaration());
-			dec.setTag(ct.getDecsTag());
-			dec.setPrivateFlag(ct.isDecsPrivateFlag());
-			//DeclarationsビーンズをArrayListに格納する
-			decList.add(dec);
-		}
-		//decListを選別する
-		int i = 0;
-		int k = 1;
-		while(i < decList.size()) {
-			while(k < decList.size()) {
-				if(decList.get(i).getDeclaration() == decList.get(k).getDeclaration()) {
-					decList.remove(k);
-				}else {
-					i++;
-					k++;
-
+			int r = 0;
+			int t = 1;
+			while(r < reacter.size()) { //リストが０行以上だったら
+				while(t < reacter.size()) { //リストが１行以上
+					//マイリストのi行目とi+1行目のDecsidが同じだったら行削除、違えばプラス１
+					if(reacter.get(r).getDecsId() == reacter.get(t).getDecsId()) {
+						reacter.remove(t);
+					}else {
+						r++;
+						t++;
+					}
 				}
-			}
-			break;
-		}
-
-		/*for (int i = 0; i < decList.size(); i++) {
-			for (int j = 1; j < decList.size(); j++) {
-				if (decList.get(i).getDeclaration() == decList.get(j).getDeclaration()) {
-					decList.remove(j);
-				}
-			}
-			System.out.println(decList.get(i).getDeclaration());
-		}*/
-
-		/*CommonTable ct = pageList.get(0);//一個目のArrayListを取得
-
-		String dec = ct.getDecsDeclaration();//一個目に入っている宣言取得
-		System.out.println(dec);
-		for (int i = 1; i < pageList.size(); i++) {
-			ct = pageList.get(i);
-			String dec2 = ct.getDecsDeclaration();
-			if (dec == dec2) {
-				for (int j = 0; j < pageList.size(); j++) {
-					String step = ct.getStepsStep();
-					System.out.println(step);
-				}
-			} else {
-				System.out.println(dec2);
+				break;
 			}
 
-		}*/
 
-		/*for(int i=1; i<pageList.size(); i++) {
-			if(dec!= de)
-			pageList.get(i);
-			String de= ct.getDecsDeclaration();
-			System.out.println(de);
+			//pageListから宣言関係のデータのみをdecListに入れる
+			for (int i = 0; i < pageList.size(); i++) {
+				CommonTable ct = pageList.get(i);
+				//CommonTableからDeclarationsテーブルの内容だけ取得
+				//Declartionsビーンズに格納する
+				Declarations dec = new Declarations();
+				dec.setId(ct.getDecsId());
+				dec.setDeclaration(ct.getDecsDeclaration());
+				dec.setTag(ct.getDecsTag());
+				dec.setPrivateFlag(ct.isDecsPrivateFlag());
+				//DeclarationsビーンズをArrayListに格納する
+				decList.add(dec);
+			}
+			//decListを選別する
+			int i = 0;
+			int k = 1;
+			while(i < decList.size()) {
+				while(k < decList.size()) {
+					if(decList.get(i).getDeclaration() == decList.get(k).getDeclaration()) {
+						decList.remove(k);
+					}else {
+						i++;
+						k++;
 
-			String step = ct.getStepsStep();
-			System.out.println(step);
+					}
+				}
+				break;
+			}
+
+			/*for (int i = 0; i < decList.size(); i++) {
+				for (int j = 1; j < decList.size(); j++) {
+					if (decList.get(i).getDeclaration() == decList.get(j).getDeclaration()) {
+						decList.remove(j);
+					}
+				}
+				System.out.println(decList.get(i).getDeclaration());
+			}*/
+
+			/*CommonTable ct = pageList.get(0);//一個目のArrayListを取得
+
+			String dec = ct.getDecsDeclaration();//一個目に入っている宣言取得
+			System.out.println(dec);
+			for (int i = 1; i < pageList.size(); i++) {
+				ct = pageList.get(i);
+				String dec2 = ct.getDecsDeclaration();
+				if (dec == dec2) {
+					for (int j = 0; j < pageList.size(); j++) {
+						String step = ct.getStepsStep();
+						System.out.println(step);
+					}
+				} else {
+					System.out.println(dec2);
+				}
+
+			}*/
+
+			/*for(int i=1; i<pageList.size(); i++) {
+				if(dec!= de)
+				pageList.get(i);
+				String de= ct.getDecsDeclaration();
+				System.out.println(de);
+
+				String step = ct.getStepsStep();
+				System.out.println(step);
 
 
-		}*/
+			}*/
 
-		//取ってきたデータをリクエストスコープへ保存
-		request.setAttribute("pageList", pageList);
-		request.setAttribute("decList", decList);
-		request.setAttribute("reacter", reacter);
-		//my_list.jspにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
-		dispatcher.forward(request, response);
+			//取ってきたデータをリクエストスコープへ保存
+			request.setAttribute("pageList", pageList);
+			request.setAttribute("decList", decList);
+			request.setAttribute("reacter", reacter);
+			//my_list.jspにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/my_list.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	/**
@@ -171,7 +188,7 @@ public class MyListServlet extends HttpServlet {
 
 		String button = request.getParameter("bt");
 		//行われた処理によって①～④条件分岐
-		if (button.equals("新規登録")) {
+		if (button.equals("登録")) {
 			//①新規作成
 
 			//セッションスコープの取得

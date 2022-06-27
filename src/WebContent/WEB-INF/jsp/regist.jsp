@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>新規登録</title>
-<link rel="stylesheet" type="text/css" href="/killerQueen/css/login.css">
+<link rel="icon" href="/killerQueen/img/webicon.png">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/regist.css">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 </head>
 
 <body>

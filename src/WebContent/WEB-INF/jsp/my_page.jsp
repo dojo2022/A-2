@@ -56,8 +56,10 @@
 	</td>
 </tr>
 <tr>
-	<td class="comment pro" colspan="2" >
+	<td class="comment pro" >
 		${comment}
+	</td>
+	<td>
 	</td>
 </tr>
 <tr>

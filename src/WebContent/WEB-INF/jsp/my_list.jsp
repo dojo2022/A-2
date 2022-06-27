@@ -119,7 +119,8 @@
 			</div>
 			<!-- 編集ボタン -->
 			<div class="edit_button">
-			<img src="/killerQueen/img/icon/edit.png" width="30px" id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')">
+				<img src="/killerQueen/img/icon/edit.png" width="30px" id="open_modal2${status.index}" name="open_modal_btn2" onclick="disp('${status.index}')" class="edit_text">
+				<p class="edit_h">編集画面を表示</p>
 			</div>
 
 			<!--ステップ達成率の表示  -->
@@ -192,8 +193,8 @@
 				</c:forEach>
 			</ul>
 			<div class="step_submit">
-				<input type="submit" value="達成" name="bt" onclick="return confirm('この宣言達成します。よろしいですか？(達成済み宣言はマイページに表示されます。)');">
-				<input type="submit" value="削除" name="bt" onclick="return confirm('この宣言を削除します。(どこにも残りません)');">
+				<input type="submit" value="達成" name="bt" onclick="return confirm('この宣言とステップを達成します。よろしいですか？(達成済み宣言はマイページに表示されます。)');">
+				<input type="submit" value="削除" name="bt" onclick="return confirm('この宣言とステップを削除します。よろしいですか？(どこにも残りません)');">
 			</div>
 		</nav>
 	</form>
@@ -204,7 +205,8 @@
 
 <!-- 宣言＆ステップの新規登録 -->
 <div class="regist_bt_m">
-	<img src="/killerQueen/img/circle_icon/regist.png" id="open_modal" name="open_modal_btn">
+	<img src="/killerQueen/img/circle_icon/regist.png" id="open_modal" name="open_modal_btn" class="regist_text">
+	<p class="regist_h">新規登録画面へ</p>
 </div>
 <form method="POST" action="/killerQueen/MyListServlet">
 	<div id="resist_modal" class="modal">

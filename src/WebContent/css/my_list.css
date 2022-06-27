@@ -58,6 +58,41 @@ h3 {
 	cursor: pointer;
 }
 
+
+/* 編集ボタンにホバーした時に表示する */
+.edit_h {
+	display: none;
+    width: 112px;
+    position: absolute;
+    left: 610px;
+    top: -66px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #a9a9a9;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.edit_h:after {
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 0;
+      bottom: -19px;
+      margin-left: 10px;
+      border: solid transparent;
+      border-color: rgba(0, 0, 0, 0);
+      border-top-color: #a9a9a9;
+      border-width: 10px;
+      pointer-events: none;
+      content: " ";
+ }
+
+.edit_text:hover + .edit_h {
+      display: block;
+}
+
 /*checkboxを隠す*/
 input[type=checkbox]#pvf{
 	display:none;
@@ -109,6 +144,40 @@ input[type=checkbox]#pvf{
 
 .regist_bt_m img:hover {
 	cursor: pointer;
+}
+
+/* 新規登録ボタンをホバーしたとき */
+.regist_h {
+	display: none;
+    width: 112px;
+    position: fixed;
+    right: 1px;
+    bottom: 90px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #a9a9a9;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.regist_h:after {
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 0;
+      bottom: -19px;
+      margin-left: 10px;
+      border: solid transparent;
+      border-color: rgba(0, 0, 0, 0);
+      border-top-color: #a9a9a9;
+      border-width: 10px;
+      pointer-events: none;
+      content: " ";
+ }
+
+.regist_text:hover + .regist_h {
+      display: block;
 }
 
 /* 新規登録画面のCSS */

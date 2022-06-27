@@ -8,6 +8,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>設定</title>
+		<link rel="stylesheet" type="text/css" href="/killerQueen/css/login.css">
 		<link rel="stylesheet" href="/killerQueen/css/setting.css">
 	</head>
 	<body>

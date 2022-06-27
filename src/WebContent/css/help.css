@@ -23,17 +23,27 @@ body {
 	text-align: center;
 }
 
-/*ヘッダー
----------------------------------------------------------------------------*/
-header {
-	overflow: auto;
-	position: relative;
-	background: #E9E6E0; /*背景色*/
-}
-
 /*ボディ
 ---------------------------------------------------------------------------*/
 /*目次*/
+
+a {
+	font-weight: bold;				/* 「こちら」を太く */
+	text-decoration: none;			/* リンクの下線をなくす */
+	color: black;
+}
+	a:hover {
+		color: #4b4b4b;			/* カーソルを乗せた時 */
+	}
+
+	a:visited {
+		color: black;				/* クリック済みの時 */
+	}
+
+	a:active {
+		color: #4b4b4b;			/* クリック時 */
+	}
+
 #menu
 .toc_container {
 	margin-left: 0;
@@ -83,6 +93,16 @@ header {
 	font-weight: normal;
 	text-align: center;
 }
+
+/* hrタグ */
+hr {
+	height: 1px;					/* 太さ */
+	background-color: #4b4b4b;	/* 色 */
+	border: none;					/* 枠線をなし */
+
+}
+
+
 /*アイコンの配置
 ---------------------------------------------------------------------------*/
 .icon img {
@@ -103,15 +123,17 @@ display:inline-block;
 
 /*ブロック内
 ---------------------------------------------------------------------------*/
-.parent {
+  .parent {
     text-align: center;         /* 子要素を左右中央揃えにする */
-    border: solid 2px;          /* 枠線指定 */
+    border: solid 2px black;    /* 枠線指定 */
     padding:  20px;             /* 余白指定 */
+    border-radius: 7px;			/* 枠線の丸み */
 }
 
 .inline-block_test {
     display: inline-block;      /* インラインブロック要素にする */
-    background-color:  #ccc;    /* 背景色指定 */
+    background-color:var(--header-color);    /* 背景色指定 */
     padding:  20px;             /* 余白指定 */
+    border-radius: 7px;
 }
 

@@ -10,7 +10,7 @@
 
 <title>ヘルプ</title>
 </head>
-<header> </header>
+
 <body>
 	<%@ include file="/WEB-INF/jsp/common.jsp"%>
 	<main>
@@ -29,7 +29,7 @@
 		</div>
 		<br>
 
-
+		<hr width="800％"></hr>
 		<p></p>
 
 
@@ -147,7 +147,7 @@
 								<div class="inline-block_test">
 									<table>
 										<tr>
-											<td><img src="/killerQueen/img/icon/regist.png"
+											<td><img src="/killerQueen/img/circle_icon/regist.png"
 												width="60" height="60">
 												<h6 class="heading">宣言の追加</h6> マイリストに宣言を追加することが出来ます。<br></td>
 										</tr>
@@ -158,7 +158,7 @@
 									<tr>
 										<td><img src="/killerQueen/img/icon/select.png"
 											width="60" height="60">
-											<h6 class="heading">検索</h6> d検索が出来ます。<br></td>
+											<h6 class="heading">検索</h6> 検索が出来ます。<br></td>
 									</tr>
 								</table>
 								</div>
@@ -174,7 +174,7 @@
 								<div class="inline-block_test">
 								<table>
 									<tr>
-										<td><img src="/killerQueen/img/icon/add.png" width="60"
+										<td><img src="/killerQueen/img/circle_icon/add.png" width="60"
 											height="60">
 											<h6 class="heading">ステップの追加</h6> ステップを追加することが出来ます。<br></td>
 									</tr>

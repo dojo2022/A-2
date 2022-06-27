@@ -71,7 +71,7 @@ header {
 	display: block;			/* 表示方法(積み上げ) */
  	margin-right: auto;		/* 右の余白 */
 	margin-left: auto;		/* 左の余白 */
-	width: 150px;				/*画像の幅*/
+	width: 155px;				/*画像の幅*/
 	height: 60px;			/*画像の高さ*/
 }
 

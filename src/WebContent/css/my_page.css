@@ -60,3 +60,29 @@ progress::-ms-fill {
 main{
 	z-index:1;
 }
+.step_submit input{
+	float : right;
+	padding: 5px;
+	margin: 10px;
+	width: 80px;
+    height: 40px;
+    font-size: 15px;
+    background-color: var(--header-color);
+    border-radius: 10px;
+    border: 1.5px solid var(--mono-color);
+    position: relative;
+    bottom: 30px;
+}
+
+.step_submit input:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.step_submit {
+	margin-bottom: 50px;
+}
+
+#step_achieve td {
+	opacity	: 0.7;
+}

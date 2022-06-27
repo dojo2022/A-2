@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DeclarationsDao;
 import model.CommonTable;
+import model.Result;
 import model.Steps;
 
 /**
@@ -139,7 +140,36 @@ session.setAttribute("comment", "頑張ろう～！");*/
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+		response.sendRedirect("/killerQueen/LoginServlet");
+		return;
+	}
+
+		String userId = (String) session.getAttribute("id");
+		request.setCharacterEncoding("UTF-8");
+		int decId = Integer.parseInt(request.getParameter("declaration_id"));
+
+		//データをDeclarationsDao.javaにもっていき、データベースにアクセスする
+		//宣言を編集する処理
+		DeclarationsDao decDao = new DeclarationsDao();
+		boolean decResult = decDao.noAchiveDec(decId);
+//		L変数を用意してT/Fを用意する必要がある
+
+		//登録に失敗した場合
+		if(decResult==false) {
+			// リクエストスコープ(attribute区画)にエラーメッセージを格納する
+//			beansに入っているエラーメッセージのデータをjspに送りたい
+			Result result = new Result();
+			result.setMessage("宣言の達成登録に失敗しました。");
+			request.setAttribute("result",result);
+
+		}
+
+		response.sendRedirect("/killerQueen/MyListServlet");
+        //MyListservletでフォワードする
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/killerQueen/MyListServlet");
+		//dispatcher.forward(request, response);
 	}
 
 }

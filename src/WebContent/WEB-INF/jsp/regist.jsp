@@ -26,19 +26,19 @@
 			<table>
 				<tr>
 					<td class="main under_line">
-						<span>name　　</span><input type="text" name="name" id="regist_name" required minlength="1" maxlength="10" class="main text-box">
+						<span>name　　</span><input type="text" name="name" id="regist_name" required minlength="1" maxlength="10" class="main text-box" value="${name}">
 					</td>
 				</tr>
 				<tr></tr>
 				<tr>
 					<td class="under_line">
-						<span>　  id　　　  </span><input type="text" name="id" id="regist_id" required minlength="1" maxlength="10" class="main text-box">
+						<span>　  id　　　  </span><input type="text" name="id" id="regist_id" required minlength="1" maxlength="10" class="main text-box" value="${id}">
 					</td>
 				</tr>
 				<tr></tr>
 				<tr>
 					<td class="under_line">
-						<span>password　</span><input type="text" name="pw" id="regist_password" required minlength="4" maxlength="10" class="main text-box">
+						<span>password　</span><input type="text" name="pw" id="regist_password" required minlength="4" maxlength="10" class="main text-box" value="${pw}">
 					</td>
 				</tr>
 			</table>

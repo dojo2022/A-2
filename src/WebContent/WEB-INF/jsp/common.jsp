@@ -63,7 +63,7 @@
 			<li class="li"><a href="/killerQueen/BookmarkServlet">ブックマーク</a></li>
 			<li class="li"><a href="/killerQueen/SearchServlet">検索</a></li>
 			<li class="li"><a href="/killerQueen/HelpServlet">ヘルプ</a></li>
-			<li class="li"><a href="/killerQueen/LogoutServlet">ログアウト</a></li>
+			<li class="li"><a href="/killerQueen/LogoutServlet" onclick="return confirm('ログアウトします。よろしいですか？');">ログアウト</a></li>
 		</ul>
 	</nav>
 </div>

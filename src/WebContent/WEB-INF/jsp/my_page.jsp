@@ -100,7 +100,6 @@
 
 <c:forEach var="t" items="${myPageList}" varStatus="status">
 <div class="list">
-
 	<!-- アコーディオン -->
 	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
 
@@ -246,7 +245,28 @@
 				</c:if>
 			</c:forEach>
 		</ul>
+		<c:if test="${t.decsAchieveFlag==true}">
+		<form method="POST" action="/killerQueen/MyPageServlet">
+	<div class="step_submit">
+				<input type="hidden" value="${t.decsId}" name = "declaration_id" >
+ 				<input type="submit" value="未達成" name="bt" onclick="return confirm('この宣言とステップを未達成にします。よろしいですか？');">
+	</div>
+	</form>
+
+	</c:if>
+	<c:if test="${t.decsAchieveFlag==false}">
+	<div class="step_submit">
+	<form method="POST" action="/killerQueen/MyListServlet">
+				<input type="hidden" value="${t.decsId}" name = "declaration_id" >
+ 				<input type="submit" value="達成" name="bt" onclick="return confirm('この宣言とステップを達成します。よろしいですか？(達成済み宣言はマイページに表示されます。)');">
+				</div>
+	</form>
+	</c:if>
+
 	</nav>
+
+
+
 </div>
 </c:forEach>
 <!-- リストのひとかたまりここまで -->

@@ -163,6 +163,54 @@ public class DeclarationsDao {
 		return result;
 	}
 
+	public boolean noAchiveDec(int decId) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する
+			String sql = "UPDATE declarations  SET achieve_flag = 0 WHERE id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を作成する
+			pStmt.setInt(1,decId);
+
+			// SQL文の成功/失敗を変数に入れる
+			int ans = pStmt.executeUpdate();
+
+			// SQL文を実行する
+			if (ans == 1) {//executeUpdate()　← 更新した値が変える「1」なら成功
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
+	}
+
 	//宣言リストの削除
 	public boolean deleteDec(int decId) {
 		Connection conn = null;

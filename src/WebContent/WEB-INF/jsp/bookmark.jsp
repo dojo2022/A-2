@@ -14,6 +14,9 @@
 <body id="top">
 <%@ include file="/WEB-INF/jsp/common.jsp"%>
 
+<!-- 宣言の数が0件の場合 -->
+
+
 <table id="select_tag">
 <tr>
 	<!-- タイムラインとブックマークのリンク -->
@@ -22,9 +25,17 @@
 </tr>
 </table>
 
+
+
 <main>
 
 <!-- リストのひとかたまり -->
+<c:if test="${result.message != ''}">
+	<div class="result_message">
+		<p>${result.message}</p>
+	</div>
+</c:if>
+
 <c:forEach var="t" items="${timelineList}" varStatus="status">
 	<div class ="list">
 

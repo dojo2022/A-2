@@ -16,6 +16,7 @@ import dao.BookmarksDao;
 import dao.DeclarationsDao;
 import dao.ReactionsDao;
 import model.CommonTable;
+import model.Result;
 import model.Steps;
 
 /**
@@ -34,7 +35,7 @@ public class BookmarkServlet extends HttpServlet {
 
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/killerQueen/loginServlet");
+			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
 		}
 
@@ -48,6 +49,17 @@ public class BookmarkServlet extends HttpServlet {
 		//ArrayList<CommonTable>のインスタンスを作成
 		ArrayList<CommonTable> timelineList = decdao.bookmarkDec(userId);
 
+		Result result = new Result();
+		result.setMessage("");
+		request.setAttribute("result", result);
+		if (timelineList.size() == 0) {
+			result.setMessage("新しくブックマークしてみましょう☆彡");
+			request.setAttribute("result", result);
+			//my_list.jspにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/bookmark.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
 
 		//timelineListからstep項目を抽出する
 		ArrayList<Steps> steper = new ArrayList<Steps>();
@@ -82,7 +94,7 @@ public class BookmarkServlet extends HttpServlet {
 		//timeline.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/bookmark.jsp");
 		dispatcher.forward(request, response);
-
+		}
 	}
 
 	/**

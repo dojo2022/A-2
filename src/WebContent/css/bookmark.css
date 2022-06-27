@@ -35,6 +35,12 @@
 
 /* ---------宣言リストのひとかたまり--------- */
 
+.result_message {
+		text-align: center;
+	    margin-top: 200px;
+    margin-left: auto;
+}
+
 /* 宣言リスト */
 .list {
 	display			: block; /*ブロック要素*/

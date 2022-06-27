@@ -209,12 +209,6 @@ ul	{ list-style: none; }
     margin-bottom:auto;
 }
 
-#at{
+.thclass{
 	color:#ffffff;
-	text-decoration: none;
-}
-
-#ab{
-	color:#ffffff;
-	text-decoration: none;
 }

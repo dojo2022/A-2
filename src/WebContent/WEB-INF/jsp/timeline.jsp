@@ -120,6 +120,7 @@
 		<ul>
 			<c:forEach var="s" items="${steper}" >
 			<c:if test="${t.decsId == s.declarationId }">
+<c:if test="${s.step != ''}">
 
 		<li>
 			<c:if test="${s.achieveFlag==false}">
@@ -139,6 +140,7 @@
 				</table>
 			</c:if>
 		</li>
+</c:if>
 			</c:if>
 			</c:forEach>
 		</ul>

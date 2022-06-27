@@ -51,7 +51,7 @@
 		--mono-color: #4b4b4b;
 	}
 
-html {
+html input textarea{
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 

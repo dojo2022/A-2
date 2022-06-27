@@ -21,9 +21,15 @@
 		});
 	});
 </script>
+<link rel="icon" href="/killerQueen/img/webicon.png">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
+<!-- 宣言の数が0件の場合 -->
+<div class="result_message">
+<p>${result.message}</p>
+</div>
 <!-- リストのひとかたまり -->
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div class="list">
@@ -237,7 +243,7 @@
 						<img src="/killerQueen/img/circle_icon/add.png"onclick="addForm()">
 					</div>
 					<div class="new_resist">
-						<input type="submit" value="新規登録" name="bt">
+						<input type="submit" value="登録" name="bt">
 					</div>
 				</div>
 			</div>
@@ -346,13 +352,13 @@
 								<c:when test="${e.privateFlag == false }">
 									<input type = "checkbox" name="private_flag_edit" value="true" id="pv_edit${status.index }"><br>
 									<label for="pv_edit${status.index }">
-										<img src="/killerQueen/img/icon/close.png" width="30px" id="pv_img${status.index }" onclick="changechild(${status.index })">
+										<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img${status.index }" onclick="changewoman(${status.index })">
 									</label>
 								</c:when>
 								<c:otherwise>
 									<input type = "checkbox" name="private_flag_edit" value="true" checked id="pv_edit${status.index }"><br>
 									<label for="pv_edit${status.index }">
-										<img src="/killerQueen/img/icon/open.png" width="30px" id="pv_img${status.index }" onclick="changewoman(${status.index })">
+										<img src="/killerQueen/img/icon/close.png" width="30px" id="pv_img${status.index }" onclick="changechild(${status.index })">
 									</label>
 								</c:otherwise>
 							</c:choose>
@@ -571,18 +577,18 @@ function changechild(indexNo){
 <script >
 function goAjax(indexNo, imgStr){
 	//入力値を取得してくる
-	alert('Ajaxスタート');
+	//alert('Ajaxスタート');
 	let stepsAId = document.getElementById('steps_id' + indexNo).value;
 	//let buttonStatus = document.getElementById('step_achieve_flag' + indexNo).value;
-	alert(stepsAId);
-	alert(imgStr);
+	//alert(stepsAId);
+	//alert(imgStr);
 
 	//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
 	let postData = {data1:stepsAId,data2:imgStr}
-	alert(postData);
+	//alert(postData);
 
 
-	alert('非同期通信始めるよ');
+	//alert('非同期通信始めるよ');
 	$.ajaxSetup({scriptCharset:'utf-8'});
 	$.ajax({
 		//どのサーブレットに送るか
@@ -600,7 +606,7 @@ function goAjax(indexNo, imgStr){
 	   //非同期通信が成功したときの処理
 	})
     .done(function(data) {
-    	alert("成功");
+    	//alert("成功");
 
 		if(data == "getAchieveTrue"){
 		$("#change" + indexNo).html("");
@@ -626,7 +632,7 @@ function goAjax(indexNo, imgStr){
 	   //非同期通信が失敗したときの処理
 	  .fail(function() {
 		//失敗とアラートを出す
-		alert("失敗！");
+		alert("ステップの登録に失敗しました。更新してやり直してください。");
 	  });
 }
 </script>

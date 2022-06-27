@@ -73,14 +73,14 @@
 
 					<tr>
 						<th>名前</th>
-						<td><input type="text" name="name" required value="${name}" minlength="1" maxlength="10" class="text-box name"></td>
+						<td><input type="text" name="name" required value="${name}" minlength="1" maxlength="10" class="text-box"></td>
 					</tr>
 
 					<tr></tr>
 
 					<tr>
 						<th>ひとこと</th>
-						<td><textarea name="comment" maxlength="10" class="text-box comment">${comment}</textarea></td>
+						<td><input type="text" name="comment" value="${comment}>" maxlength="10" class="text-box"></td>
 					</tr>
 
 					<tr></tr>

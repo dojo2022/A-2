@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>検索</title>
 
+<!-- 文字フォント -->
+<link rel="icon" href="/killerQueen/img/webicon.png">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+
 <!-- 検索結果画面のCSS -->
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search.css">
 

@@ -8,6 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="js/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" href="/killerQueen/css/timeline.css">
+<link rel="icon" href="/killerQueen/img/webicon.png">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 <title>タイムライン</title>
 </head>
 <body id="top">

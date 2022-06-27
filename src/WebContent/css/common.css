@@ -54,15 +54,16 @@ body {
 
 header {
 	background-color:var(--header-color);
+	height: 70px;
 }
 
 /* ロゴ */
 .logo {
 	display: block;			/* 表示方法(積み上げ) */
-	margin-right: auto;		/* 右の余白 */
+ 	margin-right: auto;		/* 右の余白 */
 	margin-left: auto;		/* 左の余白 */
-	width: 13%;				/*画像の幅*/
-	height: 90%;			/*画像の高さ*/
+	width: 150px;				/*画像の幅*/
+	height: 60px;			/*画像の高さ*/
 }
 
 /* ユーザーアイコン */
@@ -200,5 +201,21 @@ header {
 	opacity: 0.6;			/* 透明度 */
 	visibility: visible;	/* 可視化 */
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: rgba(0,0,0,0);
+    border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--sub-color);
+    border-radius: 100px;
+}
+
+
+
+
 
 

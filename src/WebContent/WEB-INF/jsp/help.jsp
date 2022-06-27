@@ -45,18 +45,16 @@
 						<div class="text">
 							<p>
 								●宣言とステップの追加方法<br> ①<img
-									src="/killerQueen/img/icon/regist.png" width="15" height="15">を押すと宣言を登録、編集できる画面が表示されます。<br>
+									src="/killerQueen/img/circle_icon/regist.png" width="15" height="15">を押すと宣言を登録、編集できる画面が表示されます。<br>
 								②大きい目標である宣言とそれを達成するための小さい目標であるステップを追加することができます。<br> ③<img
-									src="/killerQueen/img/icon/add.png" width="15" height="15">を押すとさらにステップを追加することができます。<br>
+									src="/killerQueen/img/circle_icon/add.png" width="15" height="15">を押すとさらにステップを追加することができます。<br>
 								④<img src="/killerQueen/img/icon/close.png" width="15"
 									height="15">でその宣言のタイムラインへの公開、非公開を選択できます。<br>
 								⑤[▼カテゴリを選ぶ]で宣言をカテゴライズすることができます。<br>
 								⑥[完了ボタン]を押すと入力した宣言がマイリストに追加されます。<br>
 							<p>
 								●既存宣言、ステップの編集方法<br> ①<img
-									src="/killerQueen/img/icon/add.png" width="15" height="15">を押すと宣言、ステップの編集画面が表示されます。<br>
-								②<img src="/killerQueen/img/icon/delete.png" width="15"
-									height="15">を押すと表示されているステップが削除されます。<br>
+									src="/killerQueen/img/circle_icon/add.png" width="15" height="15">を押すと宣言、ステップの編集画面が表示されます。<br>
 							<p>
 								●宣言の達成、削除について<br> ①宣言をクリックすると宣言とそのステップの一覧が表示されます。<br>
 								②削除を押すと宣言とステップがマイリストから削除されます。<br> ※マイページの軌跡からも完全に削除されます。<br>

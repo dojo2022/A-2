@@ -80,7 +80,7 @@
 
 					<tr>
 						<th>ひとこと</th>
-						<td><textarea name="comment" maxlength="30" class="text-box comment">${comment}</textarea></td>
+						<td><textarea name="comment" maxlength="10" class="text-box comment">${comment}</textarea></td>
 					</tr>
 
 					<tr></tr>

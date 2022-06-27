@@ -267,6 +267,8 @@ public class MyListServlet extends HttpServlet {
 			System.out.println(stepCount);
 			for(int i = 0; i < stepCount; i++) {
 				String step = request.getParameter("step_edit" + i);
+				//replaceをする
+				step = step.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
 				int stepId = Integer.parseInt(request.getParameter("step_id_edit" + i));
 				StepsDao stepsDao = new StepsDao();
 				stepResult = stepsDao.editStep(step, stepId);
@@ -278,6 +280,8 @@ public class MyListServlet extends HttpServlet {
 				for(int i = 0; i < allStepCount; i++) {
 					int stepForeignId = Integer.parseInt(request.getParameter("declaration_id_edit"));
 					String step = request.getParameter("edit_form" + i);
+					//replaceをする
+					step = step.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
 					System.out.println(step);
 					StepsDao stepsDao = new StepsDao();
 					stepResult = stepsDao.editInsertStep(step, stepForeignId);

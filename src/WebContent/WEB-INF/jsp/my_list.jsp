@@ -156,7 +156,7 @@
 						<c:if test="${t.stepsStep != ''}">
 							<input type="hidden" value="${t.stepsId }" id="steps_id${step_ac.index}" name="steps_id${step_ac.index}">
 							<input type="hidden" value="${t.stepsAchieveFlag }" id="steps_achieve${step_ac.index}" name="steps_achieve${step_ac.index}">
-
+							<!-- 非公開選択ボタン -->
 							<li>
 								<c:if test="${t.stepsAchieveFlag == false }">
 									<table>
@@ -374,8 +374,10 @@
 						<div class="target">
 							<c:forEach var="t" items="${pageList }" varStatus="step_status" >
 								<c:if test="${t.stepsDecId == e.id }">
+									<c:if test="${t.stepsStep!='' }">
 									<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>" maxlength="100"><input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}"><input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
 									<%countStep++; %>
+									</c:if>
 								</c:if>
 							</c:forEach>
 						</div>

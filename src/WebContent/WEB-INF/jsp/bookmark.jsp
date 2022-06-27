@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/killerQueen/css/bookmark.css">
+<link rel="icon" href="/killerQueen/img/webicon.png">
 <title>ブックマーク</title>
 </head>
 <body id="top">

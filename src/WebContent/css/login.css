@@ -77,6 +77,12 @@ a {
 	margin-top: 35px;					/* 下線の太さ、実線、色 */
 }
 
+	.login_button:hover {
+		opacity: 0.8;
+		cursor: pointer;
+	}
+
+
 /* inputタグ */
 .text-box {
 	border: none;					/* 通常時の枠をなくす */

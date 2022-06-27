@@ -121,12 +121,12 @@
 		<div class ="reaction_div">
 			<c:if test="${t.reactionsId == 0}">
 				<div id="change${status.index}">
-					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/whiteHeart.png" class="reaction_white" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 			</c:if>
 			<c:if test="${t.reactionsId != 0}">
 				<div id="change${status.index}">
-					<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+					<input type="image" src="/killerQueen/img/icon/redHeart.png" class="reaction_red" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 				</div>
 			</c:if>
 		</div>

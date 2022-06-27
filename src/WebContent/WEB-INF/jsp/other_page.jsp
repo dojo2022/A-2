@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/killerQueen/img/webicon.png">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="js/jquery-1.12.4.min.js"></script>
 

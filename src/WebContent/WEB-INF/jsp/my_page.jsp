@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>マイページ</title>
 <link rel="icon" href="/killerQueen/img/webicon.png">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 <!-- 全体的なCSS -->
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_page.css">

@@ -51,7 +51,7 @@
 		--mono-color: #4b4b4b;
 	}
 
-html input textarea{
+html input{
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -182,6 +182,7 @@ header {
 	/* メニューの項目それぞれ */
 	.link-list li {
 		text-align: center;
+		font-weight: bold;
 		padding: 0 14px;
 	}
 

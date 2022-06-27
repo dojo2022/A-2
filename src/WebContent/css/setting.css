@@ -22,10 +22,6 @@ td {
 	padding-left: 50px;
 }
 
-textarea {
-	color: var(--mono-color);
-}
-
 .display {
       display: none;
     }
@@ -51,28 +47,21 @@ textarea {
 	outline: none;
 	border: #4b4b4b 1px solid;
 	border-radius: 5px;
+	width: 400px;
+	height: 30px;
 }
-
-	.name{
-		width: 400px;
-		height: 30px;
-	}
-
-	.comment {
-		width: 400px;
-		height: 50px;
-	}
 
 .button {
 	background-color: var(--header-color);		/* 色 */
-	border: #4b4b4b 1px solid;		/* 枠線の色、太さ、実線 */
-	border-radius: 7px;					/* 枠線の丸み */
-	padding: 8px 20px;					/* 大きさ(上下、左右) */
+	border: #4b4b4b 1px solid;				/* 枠線の色、太さ、実線 */
+	border-radius: 7px;							/* 枠線の丸み */
+	padding: 8px 20px;							/* 大きさ(上下、左右) */
 	color: black;
 }
 
 	.button:hover {
 		opacity: 0.8;
+		cursor: pointer;
 	}
 
 	.button a {

@@ -4,7 +4,7 @@
 
 /* あいまい検索 */
 .search {
-	margin-top  : 30px; /* 間隔調整 */
+	margin-top  : 0px; /* 間隔調整 */
 	margin-left	: auto; /* 中央揃え */
  	margin-right: auto; /* 中央揃え */
 }
@@ -17,6 +17,7 @@
 	border-color  : var(--mono-color);/* 枠線の色 */
 	border-radius : 8px; /* 枠線の丸み */
 	font-size	  : 100%; /* 入力文字サイズ */
+	/*background-color: var(--sub-color);*/
 }
 
 /* 検索ボタン */
@@ -40,11 +41,10 @@
 	width			: 250px; /* サイズ */
 	height			: 110px; /* サイズ */
 	margin			: 10px 10px 10px 10px; /* 間隔調整 */
-	background-color: #FFFFFF; /* 背景を白 */
+	background-color: var(--sub-color); /* 背景を白 */
 	border			: 1px solid; /* 枠線 */
 	border-color	: var(--mono-color);;/* 枠線の色 */
 	border-radius	: 20px;   /* 枠線に丸み */
-	box-shadow		: 6px 6px 5px var(--sub-color); /* 影 */
 }
 
 /* タグ検索ボタンをhover */

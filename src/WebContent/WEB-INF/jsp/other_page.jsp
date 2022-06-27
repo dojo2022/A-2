@@ -6,25 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/jquery-1.12.4.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/my_page.css">
 <!--  アコーディオンメニューのjs -->
 
-<script src="js/jquery-1.12.4.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!--
 <script>
 	$(function(){
 		$('.nav-open').click(function(){
 			$(this).toggleClass('active');
-			$(this).next('nav').slideToggle();
+			$(this).next('nav.step_list').slideToggle();
 		});
 	});
-</script>
+</script> -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>他ユーザーマイページ</title>
 </head>
-<body id="top">
+<body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
 <main>
 <table class="hee">
@@ -85,7 +87,7 @@
 		<!-- 達成未達成 -->
 		<div class="user_botton">
 			<c:if test="${t.decsAchieveFlag==true}">
-			<img src="/killerQueen/img/icon/achievement.png">
+			<img src="/killerQueen/img/icon/achievement.png" width="30px">
 			</c:if>
 			<c:if test="${t.decsAchieveFlag==false}">
 

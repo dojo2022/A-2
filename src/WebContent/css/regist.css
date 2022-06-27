@@ -1,6 +1,9 @@
 
 @charset "UTF-8";
 
+html {
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 
 body {
 	background-color: #ebdbbdff;		/* 背景色 */
@@ -106,6 +109,17 @@ a {
 	width: 140px;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: rgba(0,0,0,0);
+    border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #9EABC5;
+    border-radius: 100px;
+}
 
 
 

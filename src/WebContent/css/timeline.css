@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 /* ----------あいまい検索機能---------- */
 
 /* あいまい検索 */
@@ -207,14 +205,17 @@ ul	{ list-style: none; }
 	margin-left: auto;
     margin-right: auto;
     margin-bottom:auto;
+
 }
 
 #at{
 	color:#ffffff;
+	text-decoration: none;
 }
 
 #ab{
 	color:#ffffff;
+	text-decoration: none;
 }
 
 

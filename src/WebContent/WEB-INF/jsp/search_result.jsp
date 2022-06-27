@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
+<link rel="icon" href="/killerQueen/img/webicon.png">
 
 <!-- 検索結果画面のCSS -->
 <link rel="stylesheet" type="text/css" href="/killerQueen/css/search_result.css">
@@ -34,7 +35,7 @@
 		<table class="search">
 		<tr>
 			<td ><!-- 検索ボックス -->
-				<input type="text" name="str" autocomplete="off" class="search_box">
+				<input type="text" name="str" value = "${search}" autocomplete="off" class="search_box">
 			</td>
 			<td><!-- 検索ボタン -->
 				<input type="image" src="/killerQueen/img/icon/select.png" class="search_button">
@@ -131,10 +132,12 @@
 		<div class="achieve_rate">
 			<c:forEach var="s" items="${stepList}" >
 			<c:if test="${t.decsId == s.declarationId}">
+			<c:if test="${s.step != ''}">
 				<c:if test="${s.achieveFlag==true}">
 				<%achieve++; %>
 				</c:if>
 				<%step++; %>
+			</c:if>
 			</c:if>
 			</c:forEach>
 				<%=achieve %>/<%=step %>
@@ -147,7 +150,7 @@
 		<ul>
 			<c:forEach var="s" items="${stepList}" >
 			<c:if test="${t.decsId == s.declarationId }">
-
+			<c:if test="${s.step != ''}">
 		<li>
 			<c:if test="${s.achieveFlag==false}">
 				<table>
@@ -167,6 +170,7 @@
 			</c:if>
 		</li>
 			</c:if>
+			</c:if>
 			</c:forEach>
 		</ul>
 	</nav>
@@ -180,7 +184,7 @@
 <a href="#top"><img src="/killerQueen/img/circle_icon/top.png"></a>
 </div>
 
-<!-- タイムラインjs -->>
+<!-- タイムラインjs -->
 <script src="/killerQueen/js/search_result.js" charset="utf-8"></script>
 
 </body>

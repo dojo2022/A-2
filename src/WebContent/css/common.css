@@ -11,6 +11,7 @@
 		--back-color: #E9E6E0;
 		--header-color: #9EABC5;
 		--sub-color: #C6BEBA;
+		--side-color: #D4AF92;
 		--mono-color: #4b4b4b;
 	}
 
@@ -19,6 +20,7 @@
 		--back-color: #FFFCC6;
 		--header-color: #FFF568;
 		--sub-color: #FFFAA8;
+		--side-color: #F3DFAD;
 		--mono-color: #4b4b4b;
 	}
 
@@ -27,6 +29,7 @@
 		--back-color: #F5E1BF;
 		--header-color: #D4AF92;
 		--sub-color: #DDC7AF;
+		--side-color: #C6BEBA;
 		--mono-color: #4b4b4b;
 	}
 
@@ -35,6 +38,7 @@
 		--back-color: #F5F8F3;
 		--header-color: #8CBDBD;
 		--sub-color:  #D1E6D5;
+		--side-color: #F3DFAD;
 		--mono-color: #4b4b4b;
 	}
 
@@ -43,8 +47,13 @@
 		--back-color: #F5DFBD;
 		--header-color: #6D9384;
 		--sub-color: #F4F0E4;
+		--side-color: #E1A080;
 		--mono-color: #4b4b4b;
 	}
+
+html {
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 
 
 body {
@@ -54,15 +63,16 @@ body {
 
 header {
 	background-color:var(--header-color);
+	height: 70px;
 }
 
 /* ロゴ */
 .logo {
 	display: block;			/* 表示方法(積み上げ) */
-	margin-right: auto;		/* 右の余白 */
+ 	margin-right: auto;		/* 右の余白 */
 	margin-left: auto;		/* 左の余白 */
-	width: 13%;				/*画像の幅*/
-	height: 90%;			/*画像の高さ*/
+	width: 150px;				/*画像の幅*/
+	height: 60px;			/*画像の高さ*/
 }
 
 /* ユーザーアイコン */
@@ -159,7 +169,7 @@ header {
 	background: var(--header-color);
 	transition: all 0.6s;				/* 動く速度 */
 	z-index: 9998;						/* 階層 */
-	overflow-y: auto;					/* スクロールバー */
+	overflow-y: auto;				/* スクロールバー */
 }
 
 /* メニューの項目全体 */
@@ -200,5 +210,21 @@ header {
 	opacity: 0.6;			/* 透明度 */
 	visibility: visible;	/* 可視化 */
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: rgba(0,0,0,0);
+    border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--side-color);
+    border-radius: 100px;
+}
+
+
+
+
 
 

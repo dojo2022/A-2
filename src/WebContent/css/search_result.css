@@ -5,7 +5,7 @@
 
 /* あいまい検索 */
 .search {
-	margin-top  : 30px; /* 間隔調整 */
+	margin-top  : 0px; /* 間隔調整 */
 	margin-left	: auto; /* 中央揃え */
  	margin-right: auto; /* 中央揃え */
 }
@@ -141,7 +141,7 @@ nav.step_list{
 	width 		: 30px;  /* サイズ */
 	height 		: 30px;  /* サイズ */
 	margin-left : 20px;  /* 間隔調整 */
-	opacity		: 0.7;   /* 画像の色を薄く調整 */
+	opacity		: 0.75;   /* 画像の色を薄く調整 */
 }
 
 /* リアクション赤 */

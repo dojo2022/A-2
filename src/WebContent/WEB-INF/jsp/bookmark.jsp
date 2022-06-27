@@ -17,8 +17,8 @@
 <table id="select_tag">
 <tr>
 	<!-- タイムラインとブックマークのリンク -->
-	<th bgcolor="#C6BEBA" width="300" height="30"><a href ="/killerQueen/TimelineServlet" id ="at">タイムライン</a>
-	<th bgcolor="#4b4b4b" width="300" height="30"><a href ="/killerQueen/BookmarkServlet" id ="ab">ブックマーク</a>
+	<th bgcolor="#C6BEBA" width="300" height="30" class="thclass"onclick="location.href='/killerQueen/TimelineServlet'">タイムライン</th>
+	<th bgcolor="#4b4b4b" width="300" height="30" class="thclass"onclick="location.href='/killerQueen/BookmarkServlet'">ブックマーク</th>
 </tr>
 </table>
 
@@ -79,12 +79,12 @@
 			<div class = "bookmark_div">
 				<c:if test="${t.bookmarksId == 0}">
 					<div id="changeBook${status.index}">
-							<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+							<input type="image" src="/killerQueen/img/icon/bookmarkWhite.png" width="30px" value="ブックマークしてない" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
 					</div>
 							</c:if>
 							<c:if test="${t.bookmarksId != 0}">
 					<div id="changeBook${status.index}">
-							<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" id="bookmark${status.index}" onclick="goBook('${status.index}')">
+							<input type="image" src="/killerQueen/img/icon/bookmarkBlack.png" width="30px" value="ブックマークしてる" class="bookmark_button" id="bookmark${status.index}" onclick="goBook('${status.index}')">
 					</div>
 							</c:if>
 			</div>
@@ -93,12 +93,12 @@
 			<div class ="reaction_div">
 				<c:if test="${t.reactionsId == 0}">
 					<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+						<input type="image" src="/killerQueen/img/icon/whiteHeart.png" width="30px" value="リアクションしてない" class="reaction_white" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 					</div>
 				</c:if>
 				<c:if test="${t.reactionsId != 0}">
 					<div id="change${status.index}">
-						<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" id="reaction${status.index}" onclick="goAjax('${status.index}')">
+						<input type="image" src="/killerQueen/img/icon/redHeart.png" width="30px" value="リアクションしてる" class="reaction_red" id="reaction${status.index}" onclick="goAjax('${status.index}')">
 					</div>
 				</c:if>
 			</div>

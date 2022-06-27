@@ -27,9 +27,11 @@
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
 <!-- 宣言の数が0件の場合 -->
-<div class="result_message">
-<p>${result.message}</p>
-</div>
+<c:if test="${result.message != '' }">
+	<div class="result_message">
+	<p>${result.message}</p>
+	</div>
+</c:if>
 <!-- リストのひとかたまり -->
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div class="list">
@@ -64,33 +66,35 @@
 
 				<!-- タグの表示：${e.tag } -->
 				<div class="decla_tag">
-					<c:if test="${e.tag == 0}">
-						#勉強
-					</c:if>
-					<c:if test="${e.tag == 1}">
-						#仕事
-					</c:if>
-					<c:if test="${e.tag == 2}">
-						#趣味
-					</c:if>
-					<c:if test="${e.tag == 3}">
-						#ダイエット
-					</c:if>
-					<c:if test="${e.tag == 4}">
-						#運動
-					</c:if>
-					<c:if test="${e.tag == 5}">
-						#健康
-					</c:if>
-					<c:if test="${e.tag == 6}">
-						#美容
-					</c:if>
-					<c:if test="${e.tag == 7}">
-						#日常
-					</c:if>
-					<c:if test="${e.tag == 8}">
-						#その他
-					</c:if>
+					<a href="SearchServlet?${e.tag}">
+						<c:if test="${e.tag == 0}">
+							#勉強
+						</c:if>
+						<c:if test="${e.tag == 1}">
+							#仕事
+						</c:if>
+						<c:if test="${e.tag == 2}">
+							#趣味
+						</c:if>
+						<c:if test="${e.tag == 3}">
+							#ダイエット
+						</c:if>
+						<c:if test="${e.tag == 4}">
+							#運動
+						</c:if>
+						<c:if test="${e.tag == 5}">
+							#健康
+						</c:if>
+						<c:if test="${e.tag == 6}">
+							#美容
+						</c:if>
+						<c:if test="${e.tag == 7}">
+							#日常
+						</c:if>
+						<c:if test="${e.tag == 8}">
+							#その他
+						</c:if>
+					</a>
 				</div>
 
 

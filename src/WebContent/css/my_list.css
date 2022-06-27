@@ -3,11 +3,17 @@
 
 /* 表示関連のCSS */
 
+
 /* 宣言が0個の時のメッセージ文 */
 .result_message {
 		text-align: center;
 	    margin-top: 200px;
     margin-left: auto;
+}
+
+h3 {
+	text-align: center;
+	margin:0;
 }
 
 

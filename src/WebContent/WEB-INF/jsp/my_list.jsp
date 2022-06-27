@@ -32,6 +32,7 @@
 	<p>${result.message}</p>
 	</div>
 </c:if>
+<h3>マイリスト</h3>
 <!-- リストのひとかたまり -->
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div class="list">
@@ -191,8 +192,8 @@
 				</c:forEach>
 			</ul>
 			<div class="step_submit">
-				<input type="submit" value="達成" name="bt">
-				<input type="submit" value="削除" name="bt">
+				<input type="submit" value="達成" name="bt" onclick="return confirm('この宣言達成します。よろしいですか？(達成済み宣言はマイページに表示されます。)');">
+				<input type="submit" value="削除" name="bt" onclick="return confirm('この宣言を削除します。(どこにも残りません)');">
 			</div>
 		</nav>
 	</form>
@@ -239,8 +240,9 @@
 						</label>
 					</div>
 
+					<!-- ステップの新規登録 -->
 					<div id="target" class="target">
-						<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step1" id="inputform_1" placeholder="ステップを入力してね(任意)"><br>
+						<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step1" id="inputform_1" placeholder="ステップを入力してね(任意)" maxlength="100"><br>
 					</div>
 					<input type="hidden" name="count" value="1" id="count">
 					<div class="step_add">
@@ -348,7 +350,7 @@
 						</div>
 						<!-- 宣言の編集 -->
 						<div class="input_dec">
-							<input type = "text" name="declaration_edit" value="${e.declaration}"><br>
+							<input type = "text" name="declaration_edit" value="${e.declaration}" required maxlength="20"><br>
 						</div>
 						<!-- 非公開の編集 -->
 						<div class="private_edit">
@@ -372,7 +374,7 @@
 						<div class="target">
 							<c:forEach var="t" items="${pageList }" varStatus="step_status" >
 								<c:if test="${t.stepsDecId == e.id }">
-									<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>"><input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}"><input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
+									<img src="/killerQueen/img/circle_icon/circle.png"><input type = "text" name="step_edit<%=countStep %>" value="${t.stepsStep}" id="edit_form<%=countStep %>" maxlength="100"><input type="hidden" name="step_id_edit<%=countStep %>" value="${t.stepsId}"><input type="hidden" name="step_achive_flag_edit" value="${t.stepsAchieveFlag}"><input type="hidden" name="step_foreign_id<%=countStep %>" value="${t.stepsDecId }"><br>
 									<%countStep++; %>
 								</c:if>
 							</c:forEach>
@@ -465,6 +467,7 @@ function addEditForm(indexNo, indexStep){
 	input_data.id = 'edit_form' + j;
 	input_data.name='edit_form' + j;
 	input_data.placeholder='ステップを追加してね(任意)';
+	input_data.maxlength='100';
 	//alert(input_data.name);
 	var step = document.createElement('img');
 	step.src = '/killerQueen/img/circle_icon/circle.png';
@@ -495,6 +498,7 @@ function addForm(){
 	input_data.id = 'inputform_' + i;
 	input_data.name='step' + i;
 	input_data.placeholder='ステップを追加してね(任意)';
+	input_data.maxlength='100';
 	//alert(input_data.name);
 	var step = document.createElement('img');
 	step.src = '/killerQueen/img/circle_icon/circle.png';

@@ -199,6 +199,8 @@ public class MyListServlet extends HttpServlet {
 			//String userId = "1";
 			request.setCharacterEncoding("UTF-8");
 			String declaration = request.getParameter("declaration");
+			//replaceを行う
+			declaration = declaration.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
 			int tag = Integer.parseInt(request.getParameter("tag"));
 			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag"));
 
@@ -212,6 +214,7 @@ public class MyListServlet extends HttpServlet {
 			System.out.println(request.getParameter("count"));
 			for(int i = 1; i < count + 1; i++) {
 				String step = request.getParameter("step"+i);
+				step = step.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
 				System.out.println(step);
 				StepsDao stepsDao = new StepsDao();
 				boolean stepResult = stepsDao.createStep(step);
@@ -242,6 +245,8 @@ public class MyListServlet extends HttpServlet {
 			String userId = (String) session.getAttribute("id");
 			request.setCharacterEncoding("UTF-8");
 			String declaration = request.getParameter("declaration_edit");
+			//replaceをする
+			declaration = declaration.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換
 			int tag = Integer.parseInt(request.getParameter("tag_edit"));
 			System.out.println(declaration);
 			boolean privateFlag = Boolean.parseBoolean(request.getParameter("private_flag_edit"));

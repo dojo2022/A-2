@@ -80,7 +80,7 @@
 
 					<tr>
 						<th>ひとこと</th>
-						<td><input type="text" name="comment" value="${comment}>" maxlength="10" class="text-box"></td>
+						<td><input type="text" name="comment" value="${comment}" maxlength="10" class="text-box"></td>
 					</tr>
 
 					<tr></tr>

@@ -230,3 +230,7 @@ ul	{ list-style: none; }
 .thclass{
 	color:#ffffff;
 }
+
+.thclass:hover {
+	cursor:pointer;
+}

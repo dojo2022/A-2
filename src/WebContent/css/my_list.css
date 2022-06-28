@@ -68,7 +68,7 @@ h3 {
     top: -66px;
     padding: 10px;
     border-radius: 5px;
-    background: #a9a9a9;
+    background:var(--header-color);
     color: #fff;
     font-weight: bold;
 }
@@ -83,7 +83,7 @@ h3 {
       margin-left: 10px;
       border: solid transparent;
       border-color: rgba(0, 0, 0, 0);
-      border-top-color: #a9a9a9;
+      border-top-color:var(--header-color);
       border-width: 10px;
       pointer-events: none;
       content: " ";
@@ -155,7 +155,7 @@ input[type=checkbox]#pvf{
     bottom: 90px;
     padding: 10px;
     border-radius: 5px;
-    background: #a9a9a9;
+    background:var(--header-color);
     color: #fff;
     font-weight: bold;
 }
@@ -170,7 +170,7 @@ input[type=checkbox]#pvf{
       margin-left: 10px;
       border: solid transparent;
       border-color: rgba(0, 0, 0, 0);
-      border-top-color: #a9a9a9;
+      border-top-color:var(--header-color);
       border-width: 10px;
       pointer-events: none;
       content: " ";

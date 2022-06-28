@@ -132,7 +132,7 @@ display:inline-block;
 
 .inline-block_test {
     display: inline-block;      /* インラインブロック要素にする */
-    background-color:var(--header-color);    /* 背景色指定 */
+    background-color:var(--help-color);    /* 背景色指定 */
     padding:  20px;             /* 余白指定 */
     border-radius: 7px;
 }

@@ -100,7 +100,7 @@ header {
 	display: inline-block;		/* 横に積み重ね */
 	transition: all 0.4s;		/* 三本線に戻るときにかかる秒数 */
 	box-sizing: border-box;		/*  */
-	position: absolute;			/* 絶対位置 */
+	position: fixed;			/* 絶対位置 */
 	top: 0;						/* 上からの位置 */
 	width: 40px;				/* 横 */
 	height: 40px;				/* 縦 */

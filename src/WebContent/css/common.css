@@ -159,7 +159,7 @@ header {
 	background: var(--mono-color);
 	opacity: 0.45;
 	visibility: hidden;				/* 見えないようにする */
-	transition: all 0.1s;
+	transition: all 0.6s;
 	cursor: auto;					/* カーソルの種類 */
 }
 
@@ -213,7 +213,7 @@ header {
 
 /* 三本線がクリックされると「menu-bg」クラスが以下に変わる */
 .menu-bg.black {
-	opacity: 0.6;			/* 透明度 */
+	opacity: 0.45;			/* 透明度 */
 	visibility: visible;	/* 可視化 */
 }
 

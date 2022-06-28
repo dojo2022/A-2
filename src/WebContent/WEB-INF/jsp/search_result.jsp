@@ -58,25 +58,49 @@
 	<div class="nav-open"><%int step=0; %><%int achieve=0; %>
 
 		<!-- ユーザーアイコン -->
-		<div class="user_botton">
-		<a href="/killerQueen/OtherPageServlet?${t.usersId}">
-			<c:if test="${t.usersIcon==0}">
-				<img src="/killerQueen/img/user_icon/user_boy.png">
-			</c:if>
-			<c:if test="${t.usersIcon==1}">
-				<img src="/killerQueen/img/user_icon/user_man1.png">
-			</c:if>
-			<c:if test="${t.usersIcon==2}">
-				<img src="/killerQueen/img/user_icon/user_man2.png">
-			</c:if>
-			<c:if test="${t.usersIcon==3}">
-				<img src="/killerQueen/img/user_icon/user_woman1.png">
-			</c:if>
-			<c:if test="${t.usersIcon==4}">
-				<img src="/killerQueen/img/user_icon/user_woman2.png">
-			</c:if>
-		</a>
-		</div>
+		<div class="my_botton">
+				<a href="/killerQueen/MyPageServlet">
+					<c:if test="${t.usersId == id}">
+						<c:if test="${t.usersIcon==0}">
+							<img src="/killerQueen/img/user_icon/user_boy.png">
+						</c:if>
+						<c:if test="${t.usersIcon==1}">
+							<img src="/killerQueen/img/user_icon/user_man1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==2}">
+							<img src="/killerQueen/img/user_icon/user_man2.png">
+						</c:if>
+						<c:if test="${t.usersIcon==3}">
+							<img src="/killerQueen/img/user_icon/user_woman1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==4}">
+							<img src="/killerQueen/img/user_icon/user_woman2.png">
+						</c:if>
+					</c:if>
+				</a>
+			</div>
+
+			<div class="user_botton">
+				<a href="/killerQueen/OtherPageServlet?${t.usersId}">
+					<c:if test="${t.usersId != id}">
+						<c:if test="${t.usersIcon==0}">
+							<img src="/killerQueen/img/user_icon/user_boy.png">
+						</c:if>
+						<c:if test="${t.usersIcon==1}">
+							<img src="/killerQueen/img/user_icon/user_man1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==2}">
+							<img src="/killerQueen/img/user_icon/user_man2.png">
+						</c:if>
+						<c:if test="${t.usersIcon==3}">
+							<img src="/killerQueen/img/user_icon/user_woman1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==4}">
+							<img src="/killerQueen/img/user_icon/user_woman2.png">
+						</c:if>
+					</c:if>
+				</a>
+			</div>
 
 		<!-- タグと宣言のまとまり -->
 		<div class="decla_text">
@@ -153,7 +177,7 @@
 		<ul>
 			<c:forEach var="s" items="${stepList}" >
 			<c:if test="${t.decsId == s.declarationId }">
-			<c:if test="${s.step != ''}">
+			<c:if test="${s.step != ''&& s.step != null}">
 		<li>
 			<c:if test="${s.achieveFlag==false}">
 				<table>

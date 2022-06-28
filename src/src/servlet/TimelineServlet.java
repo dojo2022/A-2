@@ -34,7 +34,7 @@ public class TimelineServlet extends HttpServlet {
 
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/killerQueen/loginServlet");
+			response.sendRedirect("/killerQueen/LoginServlet");
 			return;
 		}
 

@@ -13,6 +13,7 @@
 		--sub-color: #C6BEBA;
 		--side-color: #D4AF92;
 		--mono-color: #4b4b4b;
+		--help-color: #C6BEBA;
 	}
 
 	/* テーマカラー1 */
@@ -22,6 +23,7 @@
 		--sub-color: #FFFAA8;
 		--side-color: #F3DFAD;
 		--mono-color: #4b4b4b;
+		--help-color: #F3DFAD;
 	}
 
  	/* テーマカラー2 */
@@ -31,6 +33,7 @@
 		--sub-color: #DDC7AF;
 		--side-color: #C6BEBA;
 		--mono-color: #4b4b4b;
+		--help-color: #DDC7AF;
 	}
 
 	/* テーマカラー3 */
@@ -40,6 +43,7 @@
 		--sub-color:  #D1E6D5;
 		--side-color: #F3DFAD;
 		--mono-color: #4b4b4b;
+		--help-color: #8CBDBD;
 	}
 
 	/* テーマカラー4 */
@@ -49,6 +53,7 @@
 		--sub-color: #F4F0E4;
 		--side-color: #E1A080;
 		--mono-color: #4b4b4b;
+		--help-color: #E1A080;
 	}
 
 html input{
@@ -95,7 +100,7 @@ header {
 	display: inline-block;		/* 横に積み重ね */
 	transition: all 0.4s;		/* 三本線に戻るときにかかる秒数 */
 	box-sizing: border-box;		/*  */
-	position: absolute;			/* 絶対位置 */
+	position: fixed;			/* 絶対位置 */
 	top: 0;						/* 上からの位置 */
 	width: 40px;				/* 横 */
 	height: 40px;				/* 縦 */
@@ -154,7 +159,7 @@ header {
 	background: var(--mono-color);
 	opacity: 0.45;
 	visibility: hidden;				/* 見えないようにする */
-	transition: all 0.1s;
+	transition: all 0.6s;
 	cursor: auto;					/* カーソルの種類 */
 }
 
@@ -208,7 +213,7 @@ header {
 
 /* 三本線がクリックされると「menu-bg」クラスが以下に変わる */
 .menu-bg.black {
-	opacity: 0.6;			/* 透明度 */
+	opacity: 0.45;			/* 透明度 */
 	visibility: visible;	/* 可視化 */
 }
 

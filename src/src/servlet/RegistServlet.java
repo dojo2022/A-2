@@ -37,9 +37,12 @@ public class RegistServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		request.setAttribute("name", name);
-		request.setAttribute("id", id);
-		request.setAttribute("pw", pw);
+		String nameA = name;
+		String idA = id;
+		String pwA = pw;
+		request.setAttribute("nameA", nameA);
+		request.setAttribute("idA", idA);
+		request.setAttribute("pwA", pwA);
 
 	// スペースが入力された場合は空文字にする
 		name = name.replaceAll("　| ", ""); // 全角半角スペースを空文字に置換

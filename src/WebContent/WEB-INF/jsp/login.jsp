@@ -29,13 +29,13 @@
 		<table>
 			<tr>
 				<td class="main under_line">
-					<span>　  id　　　  </span><input type="text" name="id" required minlength="1" maxlength="10" class="main text-box" value="${id}">
+					<span>　  id　　　  </span><input type="text" name="id" required minlength="1" maxlength="10" class="main text-box" value="${idA}">
 				</td>
 			</tr>
 			<tr></tr>
 			<tr>
 				<td class="under_line">
-					<span>password　</span><input type="password" name="pw" required minlength="4" maxlength="10" class="main text-box" value="${pw}">
+					<span>password　</span><input type="password" name="pw" required minlength="4" maxlength="10" class="main text-box" value="${pwA}">
 				</td>
 			</tr>
 		</table>

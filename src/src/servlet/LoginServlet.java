@@ -68,9 +68,11 @@ public class LoginServlet extends HttpServlet {
 			// リクエストスコープ(attribute区画)にエラーメッセージを格納する
 			Result result = new Result();
 			result.setMessage("idかpasswordが異なります。");
+			String idA = id;
+			String pwA = pw;
 			request.setAttribute("result", result);
-			request.setAttribute("id", id);
-			request.setAttribute("pw", pw);
+			request.setAttribute("idA", idA);
+			request.setAttribute("pwA", pwA);
 
 			// ログイン画面にフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");

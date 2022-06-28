@@ -42,22 +42,46 @@
 		<!-- アコーディオン -->
 		<div class="nav-open"><%int step=0; %><%int achieve=0; %>
 			<!-- ユーザーアイコン -->
+			<div class="my_botton">
+				<a href="/killerQueen/MyPageServlet">
+					<c:if test="${t.usersId == id}">
+						<c:if test="${t.usersIcon==0}">
+							<img src="/killerQueen/img/user_icon/user_boy.png">
+						</c:if>
+						<c:if test="${t.usersIcon==1}">
+							<img src="/killerQueen/img/user_icon/user_man1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==2}">
+							<img src="/killerQueen/img/user_icon/user_man2.png">
+						</c:if>
+						<c:if test="${t.usersIcon==3}">
+							<img src="/killerQueen/img/user_icon/user_woman1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==4}">
+							<img src="/killerQueen/img/user_icon/user_woman2.png">
+						</c:if>
+					</c:if>
+				</a>
+			</div>
+
 			<div class="user_botton">
 				<a href="/killerQueen/OtherPageServlet?${t.usersId}">
-					<c:if test="${t.usersIcon==0}">
-						<img src="/killerQueen/img/user_icon/user_boy.png">
-					</c:if>
-					<c:if test="${t.usersIcon==1}">
-						<img src="/killerQueen/img/user_icon/user_man1.png">
-					</c:if>
-					<c:if test="${t.usersIcon==2}">
-						<img src="/killerQueen/img/user_icon/user_man2.png">
-					</c:if>
-					<c:if test="${t.usersIcon==3}">
-						<img src="/killerQueen/img/user_icon/user_woman1.png">
-					</c:if>
-					<c:if test="${t.usersIcon==4}">
-						<img src="/killerQueen/img/user_icon/user_woman2.png">
+					<c:if test="${t.usersId != id}">
+						<c:if test="${t.usersIcon==0}">
+							<img src="/killerQueen/img/user_icon/user_boy.png">
+						</c:if>
+						<c:if test="${t.usersIcon==1}">
+							<img src="/killerQueen/img/user_icon/user_man1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==2}">
+							<img src="/killerQueen/img/user_icon/user_man2.png">
+						</c:if>
+						<c:if test="${t.usersIcon==3}">
+							<img src="/killerQueen/img/user_icon/user_woman1.png">
+						</c:if>
+						<c:if test="${t.usersIcon==4}">
+							<img src="/killerQueen/img/user_icon/user_woman2.png">
+						</c:if>
 					</c:if>
 				</a>
 			</div>

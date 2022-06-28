@@ -90,6 +90,18 @@ nav.step_list{
 	z-index:2;
 }
 
+.my_botton img {
+	float	: left; /* 左に回り込み */
+	width 	: 70px; /* サイズ */
+	height 	: 70px; /* サイズ */
+	z-index:2;
+}
+
+.my_botton img {
+      border: 4px solid var(--header-color);
+      border-radius: 60px;
+    }
+
 
 
 /* タグと宣言の二行 */

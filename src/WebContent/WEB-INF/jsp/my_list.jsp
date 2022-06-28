@@ -26,13 +26,13 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/common.jsp" %>
+<h3>マイリスト</h3>
 <!-- 宣言の数が0件の場合 -->
 <c:if test="${result.message != '' }">
 	<div class="result_message">
 	<p>${result.message}</p>
 	</div>
 </c:if>
-<h3>マイリスト</h3>
 <!-- リストのひとかたまり -->
 <c:forEach var="e" items="${decList }" varStatus="status">
 <div class="list">

@@ -1,0 +1,154 @@
+環境構築
+
+ID:1
+PW: dojo2022
+
+画面一覧
+マイリスト：宣言とステップの登録、編集、達成、削除、表示
+マイページ：プロフィール、これまで自分が宣言した宣言とステップの一覧表示
+タイムライン：全ユーザが登録した宣言とステップが表示される
+ブックマーク：ブックマーク登録をされた宣言とステップが表示される
+検索：あいまい検索、タグ検索
+ヘルプ：それぞれの詳しい使い方
+設定：プロフィールの編集、テーマカラーの変更
+
+用語
+宣言…ToDoリストの大項目にあたることを指します
+ステップ…ToDoリストの大項目に対する小項目を指します
+
+
+DB作成用SQL文（すべてコピペで使用することができます。）
+
+CREATE TABLE users(	
+id varchar(10) PRIMARY KEY,	
+pw varchar(10) NOT NULL,	
+name varchar(10) NOT NULL,	
+comment varchar(10),	
+icon int NOT NULL default 0,	
+themecolor int NOT NULL default 0);	
+	
+INSERT INTO users (id, pw, name, comment)values(0001, 'dojo2022', 'チョコラータ', '頑張ろう～！');	
+INSERT INTO users (id, pw, name, comment)values(0002, 'dojo2022', 'ディアボロ', '痩せたい');	
+INSERT INTO users (id, pw, name)values(0003, 'dojo2022', 'プロシュート兄貴');	
+INSERT INTO users (id, pw, name)values(0004, 'dojo2022', 'ペッシ');	
+INSERT INTO users (id, pw, name)values(0005, 'dojo2022', 'メローネ');	
+INSERT INTO users (id, pw, name)values(0006, 'dojo2022', '露伴');	
+	
+	
+UPDATE users SET icon=3,  themecolor =2 WHERE id=chisarabit;	
+UPDATE users SET icon=1 ,themecolor =1 WHERE id=3;	
+UPDATE users SET icon=2 ,themecolor =0 WHERE id=4;	
+UPDATE users SET icon=4 ,themecolor =2 WHERE id=5;	
+	
+SELECT * FROM users;	
+	
+CREATE TABLE declarations(	
+id int PRIMARY KEY AUTO_INCREMENT,	
+declaration varchar(100) NOT NULL,	
+tag int NOT NULL,	
+achieve_flag boolean NOT NULL default 0,	
+private_flag boolean NOT NULL default 0,	
+delete_flag boolean NOT NULL default 0,	
+user_id varchar(10),	
+FOREIGN KEY(user_id) REFERENCES users(id));	
+	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('基本情報に合格する', 0, 1);	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('部屋を片付ける', 7, 1);	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('５kg痩せる', 3, 2);	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('ピアノ大会で優勝する！', 2, 2);	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('簿記３級一発合格', 0, 3);	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('６月の研修をやり切る', 1, 4);	
+INSERT INTO declarations(declaration, tag, user_id)	
+values('健康的な生活を送る', 5, 5);	
+	
+UPDATE declarations SET achieve_flag=1 WHERE id=1;	
+	
+SELECT * FROM declarations;	
+	
+CREATE TABLE steps(	
+id int PRIMARY KEY AUTO_INCREMENT,	
+step varchar(100) NOT NULL,	
+achieve_flag boolean NOT NULL default 0,	
+declaration_id int NOT NULL,	
+FOREIGN KEY(declaration_id) REFERENCES declarations(id));	
+	
+INSERT INTO steps(step, declaration_id)	
+values('参考書を5ページ進める', 1);	
+INSERT INTO steps(step, declaration_id)	
+values('javadrillをする', 1);	
+INSERT INTO steps(step, declaration_id)	
+values('体調を崩さない', 1);	
+INSERT INTO steps(step, declaration_id)	
+values('ゴミを出す', 2);	
+INSERT INTO steps(step, declaration_id)	
+values('冷蔵庫を掃除する', 2);	
+INSERT INTO steps(step, declaration_id)	
+values('水２L飲む', 3);	
+INSERT INTO steps(step, declaration_id)	
+values('夜10分間ジョギングする', 3);	
+INSERT INTO steps(step, declaration_id)	
+values('朝ごはんにバナナを食べる', 3);	
+INSERT INTO steps(step, declaration_id)	
+values('過去問１年分とく', 5);	
+INSERT INTO steps(step, declaration_id)	
+values('Youtube講座を３本みる', 5);	
+INSERT INTO steps(step, declaration_id)	
+values('試験の申し込みをする', 5);	
+INSERT INTO steps(step, declaration_id)	
+values('Servletを完成させる', 6);	
+INSERT INTO steps(step, declaration_id)	
+values('Ajaxを理解する', 6);	
+INSERT INTO steps(step, declaration_id)	
+values('しっかり休む', 6);	
+	
+UPDATE steps SET achieve_flag=1 WHERE id=3;	
+UPDATE steps SET achieve_flag=1 WHERE id=5;	
+UPDATE steps SET achieve_flag=1 WHERE id=10;	
+UPDATE steps SET achieve_flag=1 WHERE id=11;	
+UPDATE steps SET achieve_flag=1 WHERE id=12;	
+	
+SELECT * FROM steps;	
+	
+CREATE TABLE reactions (	
+id int PRIMARY KEY AUTO_INCREMENT,	
+user_id varchar(10) NOT NULL,	
+FOREIGN KEY(user_id) REFERENCES users(id),	
+declaration_id int NOT NULL,	
+FOREIGN KEY(declaration_id) REFERENCES declarations(id));	
+	
+INSERT INTO reactions(user_id, declaration_id)	
+values(1, 3);	
+INSERT INTO reactions(user_id, declaration_id)	
+values(2, 2);	
+INSERT INTO reactions(user_id, declaration_id)	
+values(3, 2);	
+INSERT INTO reactions(user_id, declaration_id)	
+values(4, 2);	
+INSERT INTO reactions(user_id, declaration_id)	
+values(5, 2);	
+INSERT INTO reactions(user_id, declaration_id)	
+values(6, 2);	
+	
+SELECT * FROM reactions;	
+	
+create table bookmarks (	
+id int PRIMARY KEY AUTO_INCREMENT,	
+user_id varchar(10) NOT NULL,	
+FOREIGN KEY(user_id) REFERENCES users(id),	
+declaration_id int NOT NULL,	
+FOREIGN KEY(declaration_id) REFERENCES declarations(id));	
+	
+Insert into bookmarks(user_id, declaration_id)	
+values(1,3);	
+Insert into bookmarks(user_id, declaration_id)	
+values(1,6);	
+Insert into bookmarks(user_id, declaration_id)	
+values(1,7);	
+	
+SELECT * FROM bookmarks;	
